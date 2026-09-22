@@ -8,15 +8,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'home.dart';
+import 'onboarding.dart';
+import 'presets.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   final prefs = await SharedPreferences.getInstance();
+  final onboarded = await Presets.isOnboarded();
 
   Themes.defaultIndex = prefs.getInt('defaultIndex') ?? 10;
-  bool presentation = prefs.getBool('presentation') ?? true;
 
   if (Platform.isAndroid) {
     MobileAds.instance.initialize();
@@ -25,7 +27,7 @@ void main() async {
   runApp(
     Main(
       savedThemeMode: savedThemeMode,
-      presentation: presentation,
+      onboarded: onboarded,
     ),
   );
 
@@ -50,12 +52,12 @@ void main() async {
 
 class Main extends StatefulWidget {
   final AdaptiveThemeMode? savedThemeMode;
-  final bool presentation;
+  final bool onboarded;
 
   const Main({
     super.key,
     this.savedThemeMode,
-    required this.presentation,
+    required this.onboarded,
   });
 
   @override
@@ -66,25 +68,15 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
-        light: ThemeData(
-          brightness: Brightness.light,
-          colorSchemeSeed: Themes.colors[Themes.defaultIndex],
-          useMaterial3: true,
-        ),
-        dark: ThemeData(
-          brightness: Brightness.dark,
-          colorSchemeSeed: Themes.colors[Themes.defaultIndex],
-          useMaterial3: true,
-        ),
+        light: Themes.light(Themes.defaultIndex),
+        dark: Themes.dark(Themes.defaultIndex),
         initial: widget.savedThemeMode ?? AdaptiveThemeMode.light,
         builder: (theme, darkTheme) {
           return MaterialApp(
             title: "Enfo",
             theme: theme,
             darkTheme: darkTheme,
-            home: Home(
-              presentation: widget.presentation,
-            ),
+            home: widget.onboarded ? const Home() : const Onboarding(),
           );
         });
   }
