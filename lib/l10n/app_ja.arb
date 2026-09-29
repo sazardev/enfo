@@ -255,7 +255,7 @@
   "comboCookieJar": "クッキー缶",
   "comboSandbox": "砂場",
   "comboPizzaNight": "ピザナイト",
-  "onbLanguageTitle": "Enfoへようこそ",
+  "onbLanguageTitle": "言語",
   "onbLanguageBody": "言語を選んでください。ここでの選択は、あとで設定から変更できます。",
   "onbRhythmTitle": "あなたのリズム",
   "onbRhythmBody": "集中する時間と休憩する時間を決めます。",
@@ -681,5 +681,7 @@
   "modeDescMusic": "集中のためのローファイ音楽",
   "musicCreditsSubtitle": "アーティストとライセンス",
   "displayMenuButtons": "メニューボタン",
-  "displayMenuButtonsHint": "下のメニューに表示するボタンを選びます。設定は常に表示されます。"
+  "displayMenuButtonsHint": "下のメニューに表示するボタンを選びます。設定は常に表示されます。",
+  "onbWelcomeTitle": "Enfoへようこそ",
+  "onbWelcomeTagline": "集中を、ひとつの静かなダイヤルに。"
 }

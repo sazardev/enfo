@@ -255,7 +255,7 @@
   "comboCookieJar": "Pote de biscoitos",
   "comboSandbox": "Caixa de areia",
   "comboPizzaNight": "Noite de pizza",
-  "onbLanguageTitle": "Bem-vindo ao Enfo",
+  "onbLanguageTitle": "Seu idioma",
   "onbLanguageBody": "Escolha seu idioma. Tudo o que você escolher aqui pode ser alterado depois em Ajustes.",
   "onbRhythmTitle": "Seu ritmo",
   "onbRhythmBody": "Quanto tempo você foca e quanto descansa.",
@@ -681,5 +681,7 @@
   "modeDescMusic": "Músicas lo-fi para focar",
   "musicCreditsSubtitle": "Artistas e licenças",
   "displayMenuButtons": "Botões do menu",
-  "displayMenuButtonsHint": "Escolha quais botões aparecem no menu inferior. Configurações sempre fica visível."
+  "displayMenuButtonsHint": "Escolha quais botões aparecem no menu inferior. Configurações sempre fica visível.",
+  "onbWelcomeTitle": "Bem-vindo ao Enfo",
+  "onbWelcomeTagline": "Foco, em um só mostrador calmo."
 }

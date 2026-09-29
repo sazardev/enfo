@@ -824,7 +824,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get comboPizzaNight => 'Noche de pizza';
 
   @override
-  String get onbLanguageTitle => 'Bienvenido a Enfo';
+  String get onbLanguageTitle => 'Tu idioma';
 
   @override
   String get onbLanguageBody =>
@@ -2238,4 +2238,10 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get displayMenuButtonsHint =>
       'Elige qué botones aparecen en el menú inferior. Ajustes siempre está disponible.';
+
+  @override
+  String get onbWelcomeTitle => 'Bienvenido a Enfo';
+
+  @override
+  String get onbWelcomeTagline => 'Enfoque, en un solo dial tranquilo.';
 }

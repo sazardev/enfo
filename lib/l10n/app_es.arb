@@ -255,7 +255,7 @@
   "comboCookieJar": "Galletero",
   "comboSandbox": "Arenero",
   "comboPizzaNight": "Noche de pizza",
-  "onbLanguageTitle": "Bienvenido a Enfo",
+  "onbLanguageTitle": "Tu idioma",
   "onbLanguageBody": "Elige tu idioma. Todo lo que elijas aquí se puede cambiar después en Ajustes.",
   "onbRhythmTitle": "Tu ritmo",
   "onbRhythmBody": "Cuánto tiempo te enfocas y cuánto descansas.",
@@ -681,5 +681,7 @@
   "modeDescMusic": "Canciones lo-fi para concentrarte",
   "musicCreditsSubtitle": "Artistas y licencias",
   "displayMenuButtons": "Botones del menú",
-  "displayMenuButtonsHint": "Elige qué botones aparecen en el menú inferior. Ajustes siempre está disponible."
+  "displayMenuButtonsHint": "Elige qué botones aparecen en el menú inferior. Ajustes siempre está disponible.",
+  "onbWelcomeTitle": "Bienvenido a Enfo",
+  "onbWelcomeTagline": "Enfoque, en un solo dial tranquilo."
 }

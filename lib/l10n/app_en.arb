@@ -340,7 +340,7 @@
   "comboCookieJar": "Cookie jar",
   "comboSandbox": "Sandbox",
   "comboPizzaNight": "Pizza night",
-  "onbLanguageTitle": "Welcome to Enfo",
+  "onbLanguageTitle": "Your language",
   "onbLanguageBody": "Pick your language. Everything you choose here can be changed later in Settings.",
   "onbRhythmTitle": "Your rhythm",
   "onbRhythmBody": "How long you focus, and how long you rest.",
@@ -1018,5 +1018,7 @@
   "modeDescMusic": "Lo-fi songs to focus to",
   "musicCreditsSubtitle": "Artists and licenses",
   "displayMenuButtons": "Menu buttons",
-  "displayMenuButtonsHint": "Choose which buttons appear in the bottom menu. Settings is always there."
+  "displayMenuButtonsHint": "Choose which buttons appear in the bottom menu. Settings is always there.",
+  "onbWelcomeTitle": "Welcome to Enfo",
+  "onbWelcomeTagline": "Focus, one calm dial."
 }

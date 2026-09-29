@@ -255,7 +255,7 @@
   "comboCookieJar": "कुकी जार",
   "comboSandbox": "सैंडबॉक्स",
   "comboPizzaNight": "पिज़्ज़ा नाइट",
-  "onbLanguageTitle": "Enfo में आपका स्वागत है",
+  "onbLanguageTitle": "आपकी भाषा",
   "onbLanguageBody": "अपनी भाषा चुनें। यहाँ चुनी गई हर चीज़ बाद में सेटिंग्स में बदली जा सकती है।",
   "onbRhythmTitle": "आपकी लय",
   "onbRhythmBody": "कितनी देर फ़ोकस करें और कितनी देर आराम।",
@@ -681,5 +681,7 @@
   "modeDescMusic": "ध्यान लगाने के लिए लो-फाई गाने",
   "musicCreditsSubtitle": "कलाकार और लाइसेंस",
   "displayMenuButtons": "मेनू बटन",
-  "displayMenuButtonsHint": "चुनें कि निचले मेनू में कौन से बटन दिखें। सेटिंग्स हमेशा रहेगी।"
+  "displayMenuButtonsHint": "चुनें कि निचले मेनू में कौन से बटन दिखें। सेटिंग्स हमेशा रहेगी।",
+  "onbWelcomeTitle": "Enfo में आपका स्वागत है",
+  "onbWelcomeTagline": "फ़ोकस, एक शांत डायल में।"
 }

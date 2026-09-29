@@ -824,7 +824,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get comboPizzaNight => 'Pizza night';
 
   @override
-  String get onbLanguageTitle => 'Welcome to Enfo';
+  String get onbLanguageTitle => 'Your language';
 
   @override
   String get onbLanguageBody =>
@@ -2227,4 +2227,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get displayMenuButtonsHint =>
       'Choose which buttons appear in the bottom menu. Settings is always there.';
+
+  @override
+  String get onbWelcomeTitle => 'Welcome to Enfo';
+
+  @override
+  String get onbWelcomeTagline => 'Focus, one calm dial.';
 }

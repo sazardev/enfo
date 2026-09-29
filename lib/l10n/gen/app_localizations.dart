@@ -1645,7 +1645,7 @@ abstract class AppLocalizations {
   /// No description provided for @onbLanguageTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to Enfo'**
+  /// **'Your language'**
   String get onbLanguageTitle;
 
   /// No description provided for @onbLanguageBody.
@@ -4203,6 +4203,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose which buttons appear in the bottom menu. Settings is always there.'**
   String get displayMenuButtonsHint;
+
+  /// No description provided for @onbWelcomeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Enfo'**
+  String get onbWelcomeTitle;
+
+  /// No description provided for @onbWelcomeTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus, one calm dial.'**
+  String get onbWelcomeTagline;
 }
 
 class _AppLocalizationsDelegate

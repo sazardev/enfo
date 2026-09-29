@@ -255,7 +255,7 @@
   "comboCookieJar": "饼干罐",
   "comboSandbox": "沙盒",
   "comboPizzaNight": "披萨之夜",
-  "onbLanguageTitle": "欢迎使用 Enfo",
+  "onbLanguageTitle": "你的语言",
   "onbLanguageBody": "选择你的语言。这里的所有选择之后都可以在设置中更改。",
   "onbRhythmTitle": "你的节奏",
   "onbRhythmBody": "专注多久，休息多久。",
@@ -681,5 +681,7 @@
   "modeDescMusic": "助你专注的 Lo-fi 音乐",
   "musicCreditsSubtitle": "艺术家与许可协议",
   "displayMenuButtons": "菜单按钮",
-  "displayMenuButtonsHint": "选择底部菜单显示哪些按钮。设置始终可用。"
+  "displayMenuButtonsHint": "选择底部菜单显示哪些按钮。设置始终可用。",
+  "onbWelcomeTitle": "欢迎使用 Enfo",
+  "onbWelcomeTagline": "专注，一个宁静的表盘。"
 }

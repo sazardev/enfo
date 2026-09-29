@@ -255,7 +255,7 @@
   "comboCookieJar": "Boîte à biscuits",
   "comboSandbox": "Bac à sable",
   "comboPizzaNight": "Soirée pizza",
-  "onbLanguageTitle": "Bienvenue sur Enfo",
+  "onbLanguageTitle": "Ta langue",
   "onbLanguageBody": "Choisis ta langue. Tout ce que tu choisis ici pourra être modifié plus tard dans les Réglages.",
   "onbRhythmTitle": "Ton rythme",
   "onbRhythmBody": "Combien de temps tu te concentres et combien tu te reposes.",
@@ -681,5 +681,7 @@
   "modeDescMusic": "Musique lo-fi pour se concentrer",
   "musicCreditsSubtitle": "Artistes et licences",
   "displayMenuButtons": "Boutons du menu",
-  "displayMenuButtonsHint": "Choisissez les boutons du menu du bas. Les réglages restent toujours là."
+  "displayMenuButtonsHint": "Choisissez les boutons du menu du bas. Les réglages restent toujours là.",
+  "onbWelcomeTitle": "Bienvenue sur Enfo",
+  "onbWelcomeTagline": "Se concentrer, un cadran serein."
 }

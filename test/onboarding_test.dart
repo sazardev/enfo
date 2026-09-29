@@ -105,12 +105,17 @@ void main() {
     await tester.pumpWidget(_app());
     await _settle(tester);
 
+    // 0. Welcome: the logo builds, then the greeting and tagline.
+    expect(find.text('Welcome to Enfo'), findsOneWidget);
+    expect(find.text('Focus, one calm dial.'), findsOneWidget);
+    await _tap(tester, find.text('Next'));
+
     // 1. Language re-translates the wizard on the spot.
-    expect(find.text('Welcome to Enfo'), findsOneWidget);
+    expect(find.text('Your language'), findsOneWidget);
     await _tap(tester, find.text('Español'));
-    expect(find.text('Bienvenido a Enfo'), findsOneWidget);
+    expect(find.text('Tu idioma'), findsOneWidget);
     await _tap(tester, find.text('English'));
-    expect(find.text('Welcome to Enfo'), findsOneWidget);
+    expect(find.text('Your language'), findsOneWidget);
     var prefs = await SharedPreferences.getInstance();
     expect(prefs.getString('locale'), 'en');
     await _tap(tester, find.text('Next'));
@@ -178,6 +183,7 @@ void main() {
 
     await _tap(tester, find.text('Next'));
     await _tap(tester, find.text('Next'));
+    await _tap(tester, find.text('Next'));
     await _tap(tester, find.text('Deep'));
     await _tap(tester, find.text('Skip'));
 
@@ -197,7 +203,7 @@ void main() {
 
     expect(tester.widget<Visibility>(find.byType(Visibility)).visible, false);
     await _tap(tester, find.text('Next'));
-    expect(find.text('Your tools'), findsOneWidget);
+    expect(find.text('Your language'), findsOneWidget);
     await _tap(tester, find.text('Back'));
     expect(find.text('Welcome to Enfo'), findsOneWidget);
   });
@@ -217,9 +223,9 @@ void main() {
         steps++;
       }
       expect(tester.takeException(), isNull);
-      // Watch keeps two steps (language, rhythm); the rest six (the
-      // permissions step only exists on Android).
-      expect(steps, size.key == 'watch' ? 2 : 6);
+      // Watch keeps three steps (welcome, language, rhythm); the rest seven
+      // (the permissions step only exists on Android).
+      expect(steps, size.key == 'watch' ? 3 : 7);
       expect(find.text('Start'), findsOneWidget);
     });
   }

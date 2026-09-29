@@ -200,7 +200,9 @@ void main() {
       expect(prefs.getBool('onboarded'), true);
       expect(await SessionHistory.load(), hasLength(1));
       // The intro starts from the rhythm in use, not the classic preset.
-      await tester.tap(find.text('Next'));
+      await tester.tap(find.text('Next')); // past the welcome step
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Next')); // past the language step
       await tester.pumpAndSettle();
       await tester.tap(find.text('Next')); // past the modes step
       await tester.pumpAndSettle();

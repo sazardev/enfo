@@ -813,7 +813,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get comboPizzaNight => '披萨之夜';
 
   @override
-  String get onbLanguageTitle => '欢迎使用 Enfo';
+  String get onbLanguageTitle => '你的语言';
 
   @override
   String get onbLanguageBody => '选择你的语言。这里的所有选择之后都可以在设置中更改。';
@@ -2177,4 +2177,10 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get displayMenuButtonsHint => '选择底部菜单显示哪些按钮。设置始终可用。';
+
+  @override
+  String get onbWelcomeTitle => '欢迎使用 Enfo';
+
+  @override
+  String get onbWelcomeTagline => '专注，一个宁静的表盘。';
 }

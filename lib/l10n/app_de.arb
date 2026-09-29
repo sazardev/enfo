@@ -255,7 +255,7 @@
   "comboCookieJar": "Keksdose",
   "comboSandbox": "Sandkasten",
   "comboPizzaNight": "Pizzaabend",
-  "onbLanguageTitle": "Willkommen bei Enfo",
+  "onbLanguageTitle": "Deine Sprache",
   "onbLanguageBody": "Wähle deine Sprache. Alles, was du hier wählst, kannst du später in den Einstellungen ändern.",
   "onbRhythmTitle": "Dein Rhythmus",
   "onbRhythmBody": "Wie lange du dich fokussierst und wie lange du Pause machst.",
@@ -681,5 +681,7 @@
   "modeDescMusic": "Lo-fi-Musik zum Fokussieren",
   "musicCreditsSubtitle": "Künstler und Lizenzen",
   "displayMenuButtons": "Menütasten",
-  "displayMenuButtonsHint": "Wähle, welche Tasten im unteren Menü erscheinen. Einstellungen bleibt immer sichtbar."
+  "displayMenuButtonsHint": "Wähle, welche Tasten im unteren Menü erscheinen. Einstellungen bleibt immer sichtbar.",
+  "onbWelcomeTitle": "Willkommen bei Enfo",
+  "onbWelcomeTagline": "Fokus, ein ruhiges Zifferblatt."
 }

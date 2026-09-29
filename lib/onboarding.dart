@@ -18,6 +18,7 @@ import 'l10n/locale_controller.dart';
 import 'presets.dart';
 import 'theme.dart';
 import 'ui/atoms/app_icon_button.dart';
+import 'ui/brand/enfo_mark.dart';
 import 'ui/clock/clock_combo.dart';
 import 'ui/clock/clock_frame.dart';
 import 'ui/clock/clock_style.dart';
@@ -37,6 +38,7 @@ import 'ui/organisms/preset_picker.dart';
 import 'ui/atoms/app_switch.dart';
 
 enum _Step {
+  welcome,
   language,
   modes,
   rhythm,
@@ -119,7 +121,11 @@ class _OnboardingState extends State<Onboarding>
 
   List<_Step> _steps(Responsive r) {
     if (r.isWatch) {
-      return [_Step.language, if (_on(AppMode.pomodoro)) _Step.rhythm];
+      return [
+        _Step.welcome,
+        _Step.language,
+        if (_on(AppMode.pomodoro)) _Step.rhythm,
+      ];
     }
     final hasOptions =
         _on(AppMode.pomodoro) || _on(AppMode.clock) || Haptics.available;
@@ -330,7 +336,10 @@ class _OnboardingState extends State<Onboarding>
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
 
+    if (step == _Step.welcome) return const _WelcomeHero();
+
     final (String title, String body, List<Widget> content) = switch (step) {
+      _Step.welcome => ('', '', const <Widget>[]),
       _Step.language => (
           l10n.onbLanguageTitle,
           l10n.onbLanguageBody,
@@ -917,6 +926,132 @@ class _LookPreview extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// The first thing a new user sees: the logo builds itself, then the welcome
+/// line and the tagline rise in one after the other. Replays only when the
+/// wizard is opened again; with reduced motion it simply shows the result.
+class _WelcomeHero extends StatefulWidget {
+  const _WelcomeHero();
+
+  @override
+  State<_WelcomeHero> createState() => _WelcomeHeroState();
+}
+
+class _WelcomeHeroState extends State<_WelcomeHero>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _c = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 3200),
+  );
+  late final Animation<double> _mark = CurvedAnimation(
+    parent: _c,
+    curve: const Interval(0.08, 0.62),
+  );
+  late final Animation<double> _word = _rise(0.55, 0.72);
+  late final Animation<double> _title = _rise(0.66, 0.84);
+  late final Animation<double> _tagline = _rise(0.78, 0.96);
+  bool _started = false;
+
+  Animation<double> _rise(double a, double b) => CurvedAnimation(
+        parent: _c,
+        curve: Interval(a, b, curve: Curves.easeOutCubic),
+      );
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_started) return;
+    _started = true;
+    if (MediaQuery.disableAnimationsOf(context)) {
+      _c.value = 1;
+    } else {
+      _c.forward();
+    }
+  }
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  Widget _reveal(Animation<double> a, Widget child) => AnimatedBuilder(
+        animation: a,
+        builder: (context, child) => Opacity(
+          opacity: a.value,
+          child: Transform.translate(
+            offset: Offset(0, 14 * (1 - a.value)),
+            child: child,
+          ),
+        ),
+        child: child,
+      );
+
+  @override
+  Widget build(BuildContext context) {
+    final r = Responsive.of(context);
+    final l10n = context.l10n;
+    final text = Theme.of(context).textTheme;
+    final scheme = Theme.of(context).colorScheme;
+    final compact = r.isWatch || r.size.height < 480;
+    final markSize = compact
+        ? (r.size.shortestSide * 0.36).clamp(64.0, 140.0)
+        : (r.size.shortestSide * 0.4).clamp(120.0, 240.0);
+
+    return LayoutBuilder(
+      builder: (context, box) => SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: r.pagePadding),
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: box.maxHeight),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxWidth: r.contentWidth),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  EnfoMark(progress: _mark, size: markSize),
+                  SizedBox(height: markSize * 0.2),
+                  _reveal(
+                    _word,
+                    Text(
+                      'enfo',
+                      style: text.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 8,
+                        color: scheme.primary,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: compact ? AppSpacing.md : AppSpacing.xl),
+                  _reveal(
+                    _title,
+                    Text(
+                      l10n.onbWelcomeTitle,
+                      textAlign: TextAlign.center,
+                      style:
+                          (r.isWatch ? text.titleMedium : text.headlineMedium)
+                              ?.copyWith(fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                  SizedBox(height: AppSpacing.sm),
+                  _reveal(
+                    _tagline,
+                    Text(
+                      l10n.onbWelcomeTagline,
+                      textAlign: TextAlign.center,
+                      style: text.bodyLarge
+                          ?.copyWith(color: scheme.onSurfaceVariant),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

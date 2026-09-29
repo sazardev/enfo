@@ -27,6 +27,7 @@ import 'bar_buttons.dart';
 import 'onboarding.dart';
 import 'pomodoro_state.dart';
 import 'presets.dart';
+import 'splash.dart';
 import 'ui/design/responsive.dart';
 import 'widgets/widget_prefs.dart';
 import 'widgets/widget_sync.dart';
@@ -163,7 +164,11 @@ class _MainState extends State<Main> {
               localeResolutionCallback: (deviceLocale, supported) {
                 return Locale(resolveLanguage(deviceLocale?.languageCode));
               },
-              home: widget.onboarded ? const ModeHost() : const Onboarding(),
+              // Returning users get the short logo splash; first run goes straight
+              // to the onboarding, whose welcome step builds the logo itself.
+              home: widget.onboarded
+                  ? const SplashScreen(next: ModeHost())
+                  : const Onboarding(),
             ),
           );
         });

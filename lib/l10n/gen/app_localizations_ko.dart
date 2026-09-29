@@ -816,7 +816,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get comboPizzaNight => '피자 나이트';
 
   @override
-  String get onbLanguageTitle => 'Enfo에 오신 것을 환영해요';
+  String get onbLanguageTitle => '언어';
 
   @override
   String get onbLanguageBody => '언어를 선택하세요. 여기서 고른 항목은 나중에 설정에서 바꿀 수 있어요.';
@@ -2188,4 +2188,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get displayMenuButtonsHint => '하단 메뉴에 표시할 버튼을 고르세요. 설정은 항상 표시됩니다.';
+
+  @override
+  String get onbWelcomeTitle => 'Enfo에 오신 것을 환영해요';
+
+  @override
+  String get onbWelcomeTagline => '집중을, 차분한 다이얼 하나로.';
 }
