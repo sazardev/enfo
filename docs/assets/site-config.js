@@ -8,7 +8,7 @@ window.SITE = (function () {
   var GH = 'https://github.com/' + GITHUB_SLUG;
   return {
     name: 'Enfo',
-    version: '1.1.0',
+    version: '1.2.0',
     githubSlug: GITHUB_SLUG,
     packageId: PACKAGE_ID,
     urls: {

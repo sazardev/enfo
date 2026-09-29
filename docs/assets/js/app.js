@@ -452,6 +452,16 @@
     slot.hidden = false; show(names[0]);
   }
 
+  function setupBrand() {
+    var card = $('#markCard'); if (!card) return;
+    var play = function () { card.classList.remove('is-on'); void card.offsetWidth; card.classList.add('is-on'); };
+    card.addEventListener('click', play);
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { play(); io.disconnect(); } }); }, { threshold: 0.5 });
+      io.observe(card);
+    } else { play(); }
+  }
+
   /* ---------- init ---------- */
   function bindHeader() {
     document.addEventListener('click', function (e) {
@@ -484,6 +494,7 @@
     setupPlay();
     renderI18nSections();
     loadMedia();
+    setupBrand();
     setupReveal();
     var top = $('#top'); var sc = function () { top.classList.toggle('scrolled', window.scrollY > 8); }; sc(); window.addEventListener('scroll', sc, { passive: true });
     setInterval(function () { if (!document.hidden) tickWidgets(); }, 400);

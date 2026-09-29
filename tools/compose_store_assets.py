@@ -395,52 +395,8 @@ def contact_sheet(paths, out, cols=4, thumb=360):
 
 # ---------------------------------------------------------------- icon
 def draw_icon(size=ICON_SIZE):
-    """Redraw the flat launcher icon (192px source) at high resolution. Coordinates are
-    in a 768-unit design space measured from the 192px launcher PNG."""
-    k = 4
-    S = size * k
-    u = S / 768
-    bg, olive, lime = (243, 245, 244), (133, 139, 0), (207, 228, 47)
-    pill, white = (163, 192, 6), (244, 255, 255)
-    im = Image.new("RGB", (S, S), bg)
-    d = ImageDraw.Draw(im)
-
-    def P(x, y):
-        return (x * u, y * u)
-
-    def circ(cx, cy, r, col):
-        d.ellipse((cx * u - r * u, cy * u - r * u, cx * u + r * u, cy * u + r * u), fill=col)
-
-    def thick(p0, p1, wd, col):
-        d.line((P(*p0), P(*p1)), fill=col, width=round(wd * u))
-        circ(*p0, wd / 2, col)
-        circ(*p1, wd / 2, col)
-
-    # outer arc (ringing arc) with round caps
-    import math
-    acx, acy, ar, aw = 390, 385, 351, 22
-    d.arc((P(acx - ar, acy - ar), P(acx + ar, acy + ar)), -88, 46, fill=lime, width=round(aw * u))
-    for ang in (-88, 46):
-        cx = acx + (ar - aw / 2) * math.cos(math.radians(ang))
-        cy = acy + (ar - aw / 2) * math.sin(math.radians(ang))
-        circ(cx, cy, aw / 2, lime)
-    # side / bottom pills
-    d.rounded_rectangle((*P(25, 318), *P(70, 440)), radius=22 * u, fill=pill)
-    d.rounded_rectangle((*P(328, 695), *P(448, 738)), radius=21 * u, fill=pill)
-    # clock body
-    circ(385, 385, 305, olive)
-    circ(385, 385, 272, lime)
-    circ(265, 222, 18, white)
-    circ(217, 270, 20, white)
-    # hands: olive outline first, then white fill
-    hub = (388, 388)
-    thick(hub, (540, 262), 84, olive)
-    thick(hub, (490, 478), 84, olive)
-    thick(hub, (540, 262), 54, white)
-    thick(hub, (490, 478), 54, white)
-    circ(*hub, 68, olive)
-    circ(*hub, 48, white)
-    return im.resize((size, size), Image.LANCZOS)
+    """The Play icon, rendered by tools/make_logo.py (single source of truth for the logo)."""
+    return Image.open(GFX / "icon_512.png").convert("RGB").resize((size, size), Image.LANCZOS)
 
 
 # ---------------------------------------------------------------- banners
@@ -558,13 +514,15 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sheets", default=None)
     ap.add_argument("--locales", default=None)
+    ap.add_argument("--graphics-only", action="store_true",
+                    help="skip the screenshots; rebuild icon, feature graphics, OG card, montage")
     a = ap.parse_args()
     scenes, hb, hs = load_data()
     locales = a.locales.split(",") if a.locales else [k for k in hs if not k.startswith("_")]
     for listing_id, _, _ in SCENES:
         assert listing_id in hs["_scenes"], listing_id
 
-    for locale in locales:
+    for locale in [] if a.graphics_only else locales:
         lang = lang_of(locale)
         for device in DEVICES:
             for orient in ("portrait", "landscape"):

@@ -10,13 +10,15 @@ Outputs: store/video/enfo_promo_{portrait,landscape}.mp4,
 import json, os, subprocess, sys, shutil
 from multiprocessing import Pool
 from PIL import Image, ImageDraw, ImageFont
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'tools'))
+from brand_draw import draw_mark
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 TMP = '/tmp/enfo_video'
 OUT = os.path.join(ROOT, 'store', 'video')
 FONT = lambda w, s: ImageFont.truetype(os.path.join(ROOT, 'assets/fonts', f'GeistMono-{w}.ttf'), s)
 SONG = os.path.join(ROOT, 'assets/music/01_chill_beat.ogg')
-OUTRO = 90  # frames of outro card
+OUTRO = 120  # frames of outro card (wipe, logo build, wordmark)
 FADE = 6
 
 CFG = {
@@ -125,19 +127,38 @@ def outro(args):
     if p >= 1:
         cv = Image.new('RGB', (W, H), accent)
     fg = (255, 255, 255) if lum(accent) < .62 else (28, 27, 31)
-    a = max(0, min(1, (k - WIPE) / 10))
-    if a > 0:
+    portrait = orient == 'portrait'
+    # The logo builds itself (same timeline as the in-app splash), then the wordmark.
+    tb = (k - WIPE) / 38  # 0..1 over frames 14..52
+    if tb > 0:
         lay = Image.new('RGBA', (W, H), (0, 0, 0, 0))
         dd = ImageDraw.Draw(lay)
-        big = 250 if orient == 'portrait' else 230
-        f1, f2, f3 = FONT('Bold', big), FONT('Medium', 46 if orient == 'portrait' else 40), FONT('Regular', 30 if orient == 'portrait' else 26)
-        def centered(text, font, y, al):
-            w = dd.textlength(text, font=font)
-            dd.text(((W - w) / 2, y), text, font=font, fill=fg + (int(255 * al),))
-        cy = H // 2 - big // 2 - (60 if orient == 'portrait' else 30)
-        centered('Enfo', f1, cy, a)
-        centered('a clock & timer toolbox', f2, cy + big + 40, a)
-        centered('63 clock styles  /  60 combos  /  9 languages', f3, cy + big + 130, a * .7)
+        msz = 470 if portrait else 400
+        tint = tuple(round(fg[i] + (accent[i] - fg[i]) * .35) for i in range(3))
+        mark = draw_mark(msz, min(1, tb), color=fg, tint=tint)
+        wf, tf, sf = FONT('Bold', 120 if portrait else 104), FONT('Medium', 44 if portrait else 38), FONT('Regular', 30 if portrait else 26)
+        gap = 46
+        total = msz + gap + wf.size + 34 + tf.size + 44 + sf.size
+        y0 = (H - total) // 2
+        lay.paste(mark, ((W - msz) // 2, y0), mark)
+
+        def line(text, font, y, al, spacing=0):
+            if al <= 0:
+                return
+            widths = [dd.textlength(ch, font=font) + spacing for ch in text]
+            x = (W - (sum(widths) - spacing)) / 2
+            for ch, wch in zip(text, widths):
+                dd.text((x, y + (1 - al) * 16), ch, font=font, fill=fg + (int(255 * al),))
+                x += wch
+
+        def fade(a0, a1):
+            return max(0, min(1, (k - a0) / (a1 - a0)))
+        y = y0 + msz + gap
+        line('enfo', wf, y, fade(44, 56), spacing=22)
+        y += wf.size + 34
+        line('a clock & timer toolbox', tf, y, fade(52, 64))
+        y += tf.size + 44
+        line('63 clock styles  /  60 combos  /  9 languages', sf, y, fade(58, 70) * .7)
         cv = Image.alpha_composite(cv.convert('RGBA'), lay).convert('RGB')
     cv.save(dst, compress_level=1)
 
