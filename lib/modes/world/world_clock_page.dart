@@ -12,7 +12,9 @@ import '../clock/time_builder.dart';
 import '../mode_scaffold.dart';
 import 'cities.dart';
 import 'city_picker_page.dart';
+import 'meeting_planner_page.dart';
 import 'world_prefs.dart';
+import '../../haptics/haptics.dart';
 
 /// "+9h", "-5h", "+5h 30m".
 String formatOffset(Duration d) {
@@ -133,6 +135,8 @@ class _WorldClockPageState extends State<WorldClockPage> {
           Expanded(
             child: ReorderableListView(
               buildDefaultDragHandles: false,
+              onReorderStart: (_) => Haptics.dragStart(),
+              onReorderEnd: (_) => Haptics.drop(),
               proxyDecorator: (child, _, __) =>
                   Material(color: Colors.transparent, child: child),
               onReorderItem: WorldPrefs.reorder,
@@ -188,6 +192,16 @@ class _WorldClockPageState extends State<WorldClockPage> {
                 for (final t in tiles) SizedBox(width: width, child: t),
               ],
             ),
+            if (!r.isWatch && ids.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: AppSpacing.lg),
+                child: FilledButton.tonalIcon(
+                  onPressed: () => Navigator.of(context)
+                      .push(appPageRoute((_) => const MeetingPlannerPage())),
+                  icon: const Icon(Icons.event_available_rounded),
+                  label: Text(l10n.worldPlan),
+                ),
+              ),
             if (ids.isEmpty)
               Padding(
                 padding: const EdgeInsets.all(AppSpacing.xl),

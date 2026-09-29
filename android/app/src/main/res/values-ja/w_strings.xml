@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_clock_label">Enfo · 時計</string>
+    <string name="widget_clock_desc">システムの色で表示する時刻と日付です。</string>
+    <string name="widget_analog_label">Enfo · アナログ時計</string>
+    <string name="widget_analog_desc">落ち着いたアナログ時計です。</string>
+    <string name="widget_pomodoro_label">Enfo · ポモドーロ</string>
+    <string name="widget_pomodoro_desc">選んだ時計スタイルでポモドーロを表示。ボタンで開始/一時停止します。</string>
+    <string name="widget_timer_label">Enfo · タイマー</string>
+    <string name="widget_timer_desc">選んだ時計スタイルで、ワンタップでタイマーを開始します。</string>
+    <string name="widget_stopwatch_label">Enfo · ストップウォッチ</string>
+    <string name="widget_stopwatch_desc">アプリを開かずに開始・停止・ラップができます。</string>
+    <string name="widget_alarm_label">Enfo · アラーム</string>
+    <string name="widget_alarm_desc">次のアラームをひと目で確認できます。</string>
+    <string name="widget_world_label">Enfo · 世界時計</string>
+    <string name="widget_world_desc">登録した都市の時刻を表示します。</string>
+    <string name="widget_open">Enfoを開く</string>
+    <string name="widget_sample_date">9月29日(月)</string>
+</resources>

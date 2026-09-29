@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 import 'app_preferences.dart';
@@ -10,6 +8,7 @@ import 'ui/design/spacing.dart';
 import 'ui/molecules/settings_row.dart';
 import 'ui/organisms/preset_picker.dart';
 import 'ui/templates/settings_shell.dart';
+import 'ui/atoms/app_switch.dart';
 
 /// Work/rest durations: presets, or exact manual values.
 class TimersPage extends StatefulWidget {
@@ -84,24 +83,12 @@ class _TimersPageState extends State<TimersPage> {
           builder: (context, value, _) => SettingsRow(
             label: l10n.autoStartNext,
             subtitle: l10n.autoStartNextHint,
-            trailing: Switch(
+            trailing: AppSwitch(
               value: value,
               onChanged: AppPreferences.setAutoStartNext,
             ),
           ),
         ),
-        if (Platform.isAndroid || Platform.isIOS)
-          ValueListenableBuilder<bool>(
-            valueListenable: AppPreferences.haptics,
-            builder: (context, value, _) => SettingsRow(
-              label: l10n.hapticFeedback,
-              subtitle: l10n.hapticFeedbackHint,
-              trailing: Switch(
-                value: value,
-                onChanged: AppPreferences.setHaptics,
-              ),
-            ),
-          ),
         const SizedBox(height: AppSpacing.xl),
         Container(
           padding: const EdgeInsets.all(AppSpacing.lg),

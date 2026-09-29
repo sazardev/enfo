@@ -12,6 +12,7 @@ import '../fullscreen.dart';
 import 'clock_prefs.dart';
 import 'faces.dart';
 import 'time_builder.dart';
+import '../../ui/atoms/app_switch.dart';
 
 /// Pick the clock design (live previews) and what it shows.
 class ClockSettingsPage extends StatelessWidget {
@@ -32,7 +33,7 @@ class ClockSettingsPage extends StatelessWidget {
           builder: (context, on, _) => SettingsRow(
             label: label,
             subtitle: hint,
-            trailing: Switch(value: on, onChanged: set),
+            trailing: AppSwitch(value: on, onChanged: set),
           ),
         );
 
@@ -62,7 +63,7 @@ class ClockSettingsPage extends StatelessWidget {
               childAspectRatio: 1.0,
               children: [
                 for (final face in ClockFace.values)
-                  _FaceTile(
+                  ClockFaceTile(
                     face: face,
                     selected: face == current,
                     data: FaceData.of(context, now, compact: true),
@@ -101,8 +102,10 @@ class ClockSettingsPage extends StatelessWidget {
   }
 }
 
-class _FaceTile extends StatelessWidget {
-  const _FaceTile({
+/// Selectable clock-design tile with a live preview.
+class ClockFaceTile extends StatelessWidget {
+  const ClockFaceTile({
+    super.key,
     required this.face,
     required this.selected,
     required this.data,

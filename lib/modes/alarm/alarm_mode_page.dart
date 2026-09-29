@@ -18,6 +18,7 @@ import 'alarm.dart';
 import 'alarm_edit_page.dart';
 import 'alarm_labels.dart';
 import 'alarm_service.dart';
+import '../../ui/atoms/app_switch.dart';
 
 /// Alarm list: big times with an on/off switch, the next one to ring, and
 /// a nudge to grant the permissions alarms need on a phone.
@@ -206,7 +207,7 @@ class _AlarmCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Switch(value: on, onChanged: onToggle),
+              AppSwitch(value: on, onChanged: onToggle),
             ],
           ),
         ),

@@ -99,10 +99,15 @@ void main() {
     await tester.pump(const Duration(milliseconds: 500));
 
     expect(find.text('Estilo de reloj'), findsOneWidget);
-    expect(find.text('Solo animación'), findsOneWidget);
-    expect(find.text('Tomate'), findsOneWidget);
 
-    await tester.ensureVisible(find.text('Tomate'));
+    // Tiles are lazy: scroll until the one we want gets built.
+    await tester.scrollUntilVisible(find.text('Tomate'), 400,
+        scrollable: find.byType(Scrollable).first);
+    expect(find.text('Tomate'), findsOneWidget);
+    await tester.scrollUntilVisible(find.text('Solo animación'), 400,
+        scrollable: find.byType(Scrollable).first);
+    await tester.scrollUntilVisible(find.text('Tomate'), -400,
+        scrollable: find.byType(Scrollable).first);
     await tester.tap(find.text('Tomate'));
     await tester.pump(const Duration(milliseconds: 500));
     expect(await ClockStyle.load(), ClockStyle.tomato);
@@ -138,7 +143,14 @@ void main() {
     await tester.tap(find.byTooltip('Expand all'));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 600));
+    await tester.scrollUntilVisible(find.text('Tomato'), 400,
+        scrollable: find.byType(Scrollable).first);
     expect(find.text('Tomato'), findsOneWidget);
+    tester
+        .state<ScrollableState>(find.byType(Scrollable).first)
+        .position
+        .jumpTo(0);
+    await tester.pump();
 
     await tester.tap(find.text('Deep focus'));
     await tester.pump(const Duration(milliseconds: 600));

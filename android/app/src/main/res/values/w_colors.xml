@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Widget palette, light. On Android 12+ values-v31 replaces these with the
+     system's Material You colors; before that (or when the user prefers
+     Enfo's own accent) the app pushes its palette and these are the
+     fallback until it does. -->
+<resources>
+    <color name="w_surface">#F2F1E8</color>
+    <color name="w_tile">#E3E3D3</color>
+    <color name="w_on_surface">#1B1C16</color>
+    <color name="w_variant">#46483A</color>
+    <color name="w_primary">#506600</color>
+    <color name="w_on_primary">#FFFFFF</color>
+    <color name="w_container">#D2F17B</color>
+    <color name="w_on_container">#161F00</color>
+</resources>

@@ -1,5 +1,6 @@
 import 'package:enfo/accent_color_page.dart';
 import 'package:enfo/app_preferences.dart';
+import 'package:enfo/bar_buttons.dart';
 import 'package:enfo/display_page.dart';
 import 'package:enfo/l10n/gen/app_localizations.dart';
 import 'package:enfo/live_clock.dart';
@@ -101,7 +102,10 @@ void main() {
       await tester.pumpAndSettle();
       expect(AppPreferences.showClock.value, true);
 
-      await tester.tap(find.byType(Switch));
+      // The menu-button switches come first; the show-clock one follows them.
+      final showClock = find.byType(Switch).at(BarButton.values.length);
+      await tester.ensureVisible(showClock);
+      await tester.tap(showClock);
       await tester.pumpAndSettle();
       expect(AppPreferences.showClock.value, false);
       final prefs = await SharedPreferences.getInstance();

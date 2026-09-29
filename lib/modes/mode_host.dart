@@ -11,7 +11,9 @@ import 'app_mode.dart';
 import 'fullscreen.dart';
 import 'mode_pages.dart';
 import 'mode_prefs.dart';
+import 'mode_services.dart';
 import 'ringing_page.dart';
+import '../pomodoro_state.dart';
 import 'timer/timer_controller.dart';
 
 /// The app's root: shows whichever [AppMode] is current.
@@ -28,7 +30,9 @@ class ModeHost extends StatefulWidget {
 }
 
 class _ModeHostState extends State<ModeHost> {
-  bool _pomodoroShown = false;
+  // A Pomodoro left running (or mid-rest) last time is built at once, so its
+  // phase keeps time and is logged even if another mode opens first.
+  bool _pomodoroShown = PomodoroStore.snapshot != null;
   bool _ringing = false;
   Timer? _tick;
 
@@ -41,6 +45,7 @@ class _ModeHostState extends State<ModeHost> {
     _tick = Timer.periodic(const Duration(seconds: 1), (_) {
       TimerController.instance.check();
       AlarmService.check();
+      checkModeServices();
     });
     WidgetsBinding.instance.addPostFrameCallback((_) => _onAlert());
   }

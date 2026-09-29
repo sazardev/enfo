@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_clock_label">Enfo · Uhr</string>
+    <string name="widget_clock_desc">Uhrzeit und Datum in deinen Systemfarben.</string>
+    <string name="widget_analog_label">Enfo · Analoguhr</string>
+    <string name="widget_analog_desc">Eine ruhige Analoguhr.</string>
+    <string name="widget_pomodoro_label">Enfo · Pomodoro</string>
+    <string name="widget_pomodoro_desc">Dein Pomodoro im gewählten Uhrstil. Mit der Taste startest oder pausierst du.</string>
+    <string name="widget_timer_label">Enfo · Timer</string>
+    <string name="widget_timer_desc">Starte einen Timer mit einem Tipp, im gewählten Uhrstil.</string>
+    <string name="widget_stopwatch_label">Enfo · Stoppuhr</string>
+    <string name="widget_stopwatch_desc">Starten, stoppen und Runden nehmen, ohne die App zu öffnen.</string>
+    <string name="widget_alarm_label">Enfo · Wecker</string>
+    <string name="widget_alarm_desc">Deine nächsten Wecker auf einen Blick.</string>
+    <string name="widget_world_label">Enfo · Weltzeituhr</string>
+    <string name="widget_world_desc">Die Uhrzeit in deinen Städten.</string>
+    <string name="widget_open">Enfo öffnen</string>
+    <string name="widget_sample_date">Mo., 29. Sep.</string>
+</resources>

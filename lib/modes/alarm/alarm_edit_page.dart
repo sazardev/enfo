@@ -13,6 +13,7 @@ import '../timer/duration_wheels.dart';
 import 'alarm.dart';
 import 'alarm_labels.dart';
 import 'alarm_service.dart';
+import '../../haptics/haptics.dart';
 
 /// Create or edit an alarm: hour/minute wheels, a label and repeat days.
 /// (No system time-picker dialog: the app allows no modals.)
@@ -64,6 +65,7 @@ class _AlarmEditPageState extends State<AlarmEditPage> {
             enabled: true,
           );
     await AlarmService.upsert(alarm);
+    Haptics.success();
     if (mounted) Navigator.of(context).pop();
   }
 
@@ -162,6 +164,7 @@ class _AlarmEditPageState extends State<AlarmEditPage> {
                 full: DateFormat.EEEE(locale).format(DateTime(2024, 1, d)),
                 selected: _days.contains(d),
                 onTap: () => setState(() {
+                  Haptics.select();
                   _days = {..._days};
                   _days.contains(d) ? _days.remove(d) : _days.add(d);
                 }),

@@ -15,7 +15,7 @@ import 'app_mode.dart';
 import 'format.dart';
 import 'tool_history.dart';
 
-enum _Filter { all, pomodoro, timer, stopwatch, alarm, display }
+enum _Filter { all, pomodoro, timer, stopwatch, alarm, display, more }
 
 /// One row of the unified feed, whatever produced it.
 class _Entry {
@@ -152,6 +152,25 @@ class _ActivityPageState extends State<ActivityPage> {
             },
             done: e.outcome != 'missed',
           ));
+        case ToolKind.intervals:
+        case ToolKind.breathe:
+        case ToolKind.tracker:
+        case ToolKind.kitchen:
+        case ToolKind.versus:
+          final mode = AppMode.values.firstWhere((m) => m.name == e.kind.name);
+          entries.add(_Entry(
+            at: e.at,
+            filter: _Filter.more,
+            icon: mode.icon,
+            title: '${e.label ?? mode.labelOf(l10n)}  ·  $time',
+            subtitle: e.planned == null
+                ? formatDuration(e.seconds)
+                : l10n.activityRan(
+                    formatDuration(e.seconds),
+                    formatDuration(e.planned!),
+                  ),
+            done: e.completed,
+          ));
         case ToolKind.display:
           final mode = AppMode.values.firstWhere(
             (m) => m.name == e.outcome,
@@ -284,6 +303,7 @@ class _ActivityPageState extends State<ActivityPage> {
                   _Filter.stopwatch => l10n.modeStopwatch,
                   _Filter.alarm => l10n.modeAlarm,
                   _Filter.display => l10n.tooltipFullscreen,
+                  _Filter.more => l10n.onbMoreTools,
                 },
                 selected: f == _filter,
                 onTap: () => setState(() => _filter = f),

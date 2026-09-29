@@ -10,6 +10,8 @@ import 'ui/clock/clock_style_l10n.dart';
 import 'ui/design/page_transition.dart';
 import 'ui/molecules/settings_row.dart';
 import 'ui/templates/settings_shell.dart';
+import 'ui/design/spacing.dart';
+import 'ui/molecules/theme_mode_selector.dart';
 
 /// Theme mode and accent color.
 class AppearancePage extends StatefulWidget {
@@ -66,24 +68,17 @@ class _AppearancePageState extends State<AppearancePage> {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return SettingsShell(
       title: l10n.appearanceTitle,
       loaded: true,
       children: [
-        SettingsRow(
-          label: l10n.darkTheme,
-          trailing: Switch(
-            value: isDark,
-            onChanged: (value) {
-              if (value) {
-                AdaptiveTheme.of(context).setDark();
-              } else {
-                AdaptiveTheme.of(context).setLight();
-              }
-            },
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg,
+            vertical: AppSpacing.sm,
           ),
+          child: const ThemeModeSelector(),
         ),
         SettingsRow(
           label: l10n.accentColor,

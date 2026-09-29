@@ -5,6 +5,24 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'gen/app_localizations.dart';
 
+/// Languages the app is translated into, each named in its own language
+/// (so it's readable even when the app is in a language you can't read).
+const languageNames = <String, String>{
+  'en': 'English',
+  'es': 'Español',
+  'ja': '日本語',
+  'fr': 'Français',
+  'pt': 'Português',
+  'de': 'Deutsch',
+  'hi': 'हिन्दी',
+  'ko': '한국어',
+  'zh': '中文',
+};
+
+/// The supported language code for [code], English when unsupported.
+String resolveLanguage(String? code) =>
+    languageNames.containsKey(code) ? code! : 'en';
+
 /// The user's language choice. A null [locale] means "follow the system",
 /// which falls back to English when the system language isn't supported.
 class LocaleController {
@@ -35,9 +53,9 @@ extension AppL10n on BuildContext {
 
 /// Translations without a BuildContext, for code that talks to the user
 /// outside the widget tree (notifications). Follows the same rule as the
-/// app: Spanish if chosen (or the system is Spanish), otherwise English.
+/// app: the chosen language (or the system's, if supported), else English.
 AppLocalizations currentL10n() {
   final chosen = LocaleController.locale.value?.languageCode ??
       PlatformDispatcher.instance.locale.languageCode;
-  return lookupAppLocalizations(Locale(chosen == 'es' ? 'es' : 'en'));
+  return lookupAppLocalizations(Locale(resolveLanguage(chosen)));
 }

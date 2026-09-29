@@ -11,6 +11,8 @@ import 'activity_page.dart';
 import 'app_mode.dart';
 import 'clock/clock_settings_page.dart';
 import 'mode_prefs.dart';
+import '../ui/atoms/app_switch.dart';
+import '../haptics/haptics.dart';
 
 /// The modes menu: jump to a mode, choose which ones are on, drag to set
 /// the order the quick-switch button cycles through, and pick the mode the
@@ -86,6 +88,8 @@ class _ModesPageState extends State<ModesPage> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               buildDefaultDragHandles: false,
+              onReorderStart: (_) => Haptics.dragStart(),
+              onReorderEnd: (_) => Haptics.drop(),
               proxyDecorator: (child, _, __) =>
                   Material(color: Colors.transparent, child: child),
               onReorderItem: (from, to) {
@@ -213,7 +217,7 @@ class _ModeTile extends StatelessWidget {
                     ],
                   ),
                 ),
-                Switch(value: enabled, onChanged: onToggle),
+                AppSwitch(value: enabled, onChanged: onToggle),
                 ReorderableDragStartListener(
                   index: index,
                   child: Padding(

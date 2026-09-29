@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../haptics/haptic_events.dart';
+import '../haptics/haptics.dart';
 import '../l10n/locale_controller.dart';
 import '../ui/design/responsive.dart';
 import '../ui/design/spacing.dart';
@@ -24,33 +26,59 @@ class _RingingPageState extends State<RingingPage>
     with SingleTickerProviderStateMixin {
   static const _giveUpAfter = Duration(minutes: 2);
 
+  /// One ringer cycle. The vibration pattern, the sound and the pulse of the
+  /// disc all restart together each cycle, so they beat as one.
+  late final int _period = Haptics.ringPeriod(timer: widget.request.timer);
   late final AnimationController _pulse = AnimationController(
     vsync: this,
-    duration: const Duration(milliseconds: 900),
+    duration: Duration(milliseconds: _period),
   );
-  Timer? _beep;
+  late final HapticEvent _feel = widget.request.timer
+      ? HapticEvents.timerDone
+      : Haptics.alarmPattern.value.event;
+
+  Timer? _cycle;
   Timer? _expire;
   bool _done = false;
+  bool _started = false;
+  bool _still = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _still = MediaQuery.disableAnimationsOf(context);
+    // The first beat waits for dependencies (it reads MediaQuery).
+    if (!_started) {
+      _started = true;
+      _beat();
+    }
+  }
 
   @override
   void initState() {
     super.initState();
-    _pulse.repeat(reverse: true);
-    _ring();
-    _beep = Timer.periodic(const Duration(seconds: 2), (_) => _ring());
-    _expire = Timer(_giveUpAfter, () => _finish(widget.request.onExpire));
+    _cycle = Timer.periodic(Duration(milliseconds: _period), (_) => _beat());
+    _expire = Timer(widget.request.giveUpAfter ?? _giveUpAfter,
+        () => _finish(widget.request.onExpire));
   }
 
-  void _ring() {
-    SystemSound.play(SystemSoundType.alert);
-    HapticFeedback.vibrate();
+  void _beat() {
+    if (widget.request.gentle) {
+      Haptics.transition();
+    } else {
+      SystemSound.play(SystemSoundType.alert);
+      Haptics.ringCycle(timer: widget.request.timer);
+    }
+    if (!_still) _pulse.forward(from: 0);
   }
 
   void _finish(VoidCallback? action) {
     if (_done) return;
     _done = true;
-    _beep?.cancel();
+    _cycle?.cancel();
     _expire?.cancel();
+    // Cut whatever is still buzzing, then acknowledge with a clean tap.
+    Haptics.cancel().then((_) => Haptics.confirm());
     (action ?? widget.request.onDismiss).call();
     Alerts.finish();
     if (mounted) Navigator.of(context).pop();
@@ -58,7 +86,7 @@ class _RingingPageState extends State<RingingPage>
 
   @override
   void dispose() {
-    _beep?.cancel();
+    _cycle?.cancel();
     _expire?.cancel();
     _pulse.dispose();
     super.dispose();
@@ -91,11 +119,16 @@ class _RingingPageState extends State<RingingPage>
                   children: [
                     AnimatedBuilder(
                       animation: _pulse,
+                      // The disc swells on each beat and relaxes between them:
+                      // the same envelope as the vibration.
                       builder: (context, child) => Transform.scale(
                         scale: still
                             ? 1
-                            : 0.92 +
-                                0.16 * Curves.easeInOut.transform(_pulse.value),
+                            : 0.94 +
+                                0.14 *
+                                    _feel.envelopeAt(
+                                      (_pulse.value * _period).round(),
+                                    ),
                         child: child,
                       ),
                       child: Container(
@@ -140,7 +173,7 @@ class _RingingPageState extends State<RingingPage>
                         height: r.isWatch ? AppSpacing.md : AppSpacing.huge),
                     FilledButton(
                       onPressed: () => _finish(null),
-                      child: Text(l10n.ringDismiss),
+                      child: Text(req.dismissLabel ?? l10n.ringDismiss),
                     ),
                     if (req.onSnooze != null && req.snoozeMinutes != null) ...[
                       const SizedBox(height: AppSpacing.sm),
@@ -149,6 +182,11 @@ class _RingingPageState extends State<RingingPage>
                         child: Text(l10n.ringSnooze(req.snoozeMinutes!)),
                       ),
                     ],
+                    if (req.onExtra != null && req.extraLabel != null)
+                      TextButton(
+                        onPressed: () => _finish(req.onExtra),
+                        child: Text(req.extraLabel!),
+                      ),
                   ],
                 ),
               ),

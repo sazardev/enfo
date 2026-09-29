@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="w_alpha_light" format="float" type="dimen">0</item>
+    <item name="w_alpha_dark" format="float" type="dimen">1</item>
+</resources>

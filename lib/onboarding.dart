@@ -1,34 +1,57 @@
-import 'dart:io';
-
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 
 import 'app_preferences.dart';
+import 'haptics/haptic_events.dart';
+import 'haptics/haptics.dart';
 import 'clock_style_page.dart';
+import 'modes/app_mode.dart';
+import 'modes/clock/clock_prefs.dart';
+import 'modes/clock/clock_settings_page.dart';
+import 'modes/clock/faces.dart';
+import 'modes/clock/time_builder.dart';
+import 'modes/fullscreen.dart';
 import 'modes/mode_host.dart';
+import 'modes/mode_prefs.dart';
+import 'modes/notifier.dart';
 import 'l10n/locale_controller.dart';
 import 'presets.dart';
 import 'theme.dart';
 import 'ui/atoms/app_icon_button.dart';
 import 'ui/clock/clock_combo.dart';
+import 'ui/clock/clock_frame.dart';
 import 'ui/clock/clock_style.dart';
+import 'ui/clock/clock_style_l10n.dart';
+import 'ui/clock/clock_view.dart';
 import 'ui/design/motion.dart';
 import 'ui/design/page_transition.dart';
 import 'ui/design/responsive.dart';
 import 'ui/design/spacing.dart';
 import 'ui/molecules/clock_combo_card.dart';
+import 'ui/molecules/clock_style_tile.dart';
 import 'ui/molecules/settings_row.dart';
+import 'ui/molecules/theme_mode_selector.dart';
 import 'ui/organisms/accent_picker.dart';
 import 'ui/organisms/language_options.dart';
 import 'ui/organisms/preset_picker.dart';
+import 'ui/atoms/app_switch.dart';
 
-enum _Step { language, rhythm, look, clock, options }
+enum _Step {
+  language,
+  modes,
+  rhythm,
+  look,
+  display,
+  options,
+  permissions,
+}
 
-/// First-run setup, as a short wizard: language, rhythm, theme + accent,
-/// clock look, and the display/behavior options. Every choice is applied
-/// the moment it is made (the screen re-themes, re-translates and rescales
-/// as you go) and stays editable later in Settings. Watches only get the
-/// two steps that matter: language and rhythm.
+/// First-run setup, as a wizard: language, which modes to use, rhythm,
+/// theme + accent (with a live preview), clock look, display, behavior and
+/// (on Android) the notification permissions. Steps that do not apply are
+/// left out (no rhythm without Pomodoro, no permissions on desktop). Every
+/// choice is applied the moment it is made and stays editable later in
+/// Settings. Watches only get language and rhythm.
 class Onboarding extends StatefulWidget {
   const Onboarding({super.key});
 
@@ -46,6 +69,9 @@ class _OnboardingState extends State<Onboarding>
   int _restMinutes = Presets.classic.restMinutes;
   ClockStyle _style = ClockStyle.ring;
   bool _notifications = true;
+  bool _notifAllowed = false;
+  bool _exactAllowed = false;
+  bool _lastModeBlocked = false;
 
   /// One shared clock for the animated combo previews; runs only while the
   /// clock step is showing.
@@ -68,8 +94,12 @@ class _OnboardingState extends State<Onboarding>
     final preset = await Presets.load();
     final style = await ClockStyle.load();
     final notifications = await Presets.loadNotificationsEnabled();
+    final notifAllowed = await Notifier.notificationsAllowed();
+    final exactAllowed = await Notifier.exactAlarmsAllowed();
     if (!mounted) return;
     setState(() {
+      _notifAllowed = notifAllowed;
+      _exactAllowed = exactAllowed;
       _workMinutes = preset.workMinutes;
       _restMinutes = preset.restMinutes;
       _style = style;
@@ -85,16 +115,36 @@ class _OnboardingState extends State<Onboarding>
     super.dispose();
   }
 
-  List<_Step> _steps(Responsive r) =>
-      r.isWatch ? const [_Step.language, _Step.rhythm] : _Step.values;
+  bool _on(AppMode mode) => ModePrefs.enabled.contains(mode);
+
+  List<_Step> _steps(Responsive r) {
+    if (r.isWatch) {
+      return [_Step.language, if (_on(AppMode.pomodoro)) _Step.rhythm];
+    }
+    final hasOptions =
+        _on(AppMode.pomodoro) || _on(AppMode.clock) || Haptics.available;
+    return [
+      for (final step in _Step.values)
+        if (switch (step) {
+          _Step.rhythm => _on(AppMode.pomodoro),
+          _Step.options => hasOptions,
+          _Step.permissions => Notifier.canAskPermissions,
+          _ => true,
+        })
+          step,
+    ];
+  }
+
+  /// Steps that show animated clock previews.
+  bool _animated(_Step step) => step == _Step.look;
 
   Future<void> _go(int index, List<_Step> steps) async {
     if (index < 0 || index >= steps.length) return;
+    Haptics.transition();
     setState(() => _index = index);
 
-    if (steps[index] == _Step.clock &&
-        !MediaQuery.disableAnimationsOf(context)) {
-      _clock.forward();
+    if (_animated(steps[index]) && !MediaQuery.disableAnimationsOf(context)) {
+      if (!_clock.isAnimating) _clock.forward();
     } else {
       _clock.stop();
     }
@@ -111,6 +161,7 @@ class _OnboardingState extends State<Onboarding>
   }
 
   Future<void> _finish() async {
+    Haptics.success();
     await Presets.save(workMinutes: _workMinutes, restMinutes: _restMinutes);
     if (!mounted) return;
     Navigator.of(context).pushReplacement(
@@ -285,6 +336,11 @@ class _OnboardingState extends State<Onboarding>
           l10n.onbLanguageBody,
           [const LanguageOptions()],
         ),
+      _Step.modes => (
+          l10n.onbModesTitle,
+          l10n.onbModesBody,
+          _modesContent(),
+        ),
       _Step.rhythm => (
           l10n.onbRhythmTitle,
           l10n.onbRhythmBody,
@@ -300,15 +356,31 @@ class _OnboardingState extends State<Onboarding>
           ],
         ),
       _Step.look => (l10n.onbLookTitle, l10n.onbLookBody, _lookContent(r)),
-      _Step.clock => (l10n.onbClockTitle, l10n.onbClockBody, _clockContent(r)),
+      _Step.display => (
+          l10n.onbDisplayTitle,
+          l10n.onbDisplayBody,
+          _displayContent(r),
+        ),
       _Step.options => (
           l10n.onbOptionsTitle,
           l10n.onbOptionsBody,
           _optionsContent(),
         ),
+      _Step.permissions => (
+          l10n.onbPermTitle,
+          l10n.onbPermBody,
+          _permissionsContent(),
+        ),
     };
 
-    return SingleChildScrollView(
+    // The look step's preview is pinned under the scrolling picker when
+    // there is height for it; otherwise it simply ends the list.
+    final pinPreview = step == _Step.look && !r.isWatch && r.size.height >= 560;
+    final preview = step == _Step.look
+        ? _LookPreview(style: _style, clock: _seconds)
+        : null;
+
+    final scroll = SingleChildScrollView(
       padding: EdgeInsets.symmetric(
         horizontal: r.pagePadding,
         vertical: AppSpacing.lg,
@@ -345,28 +417,124 @@ class _OnboardingState extends State<Onboarding>
                 ),
               SizedBox(height: r.isWatch ? AppSpacing.md : AppSpacing.xxl),
               ...content,
+              if (preview != null && !pinPreview) ...[
+                const SizedBox(height: AppSpacing.xl),
+                preview,
+              ],
             ],
           ),
         ),
       ),
     );
+
+    if (!pinPreview) return scroll;
+    return Column(
+      children: [
+        Expanded(child: scroll),
+        Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: r.contentWidth),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: r.pagePadding),
+              child: preview,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  List<Widget> _modesContent() {
+    final l10n = context.l10n;
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
+    return [
+      ValueListenableBuilder<Set<AppMode>>(
+        valueListenable: ModePrefs.disabled,
+        builder: (context, disabled, _) => Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            for (final mode in AppMode.values.where((m) => m.core))
+              _modeRow(mode, disabled),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.lg,
+                AppSpacing.xl,
+                AppSpacing.lg,
+                AppSpacing.sm,
+              ),
+              child: Text(
+                l10n.onbMoreTools,
+                style: textTheme.labelLarge
+                    ?.copyWith(color: colorScheme.onSurfaceVariant),
+              ),
+            ),
+            for (final mode in AppMode.values.where((m) => !m.core))
+              _modeRow(mode, disabled),
+          ],
+        ),
+      ),
+      if (_lastModeBlocked)
+        Padding(
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.lg,
+            AppSpacing.sm,
+            AppSpacing.lg,
+            0,
+          ),
+          child: Text(
+            l10n.modesAtLeastOne,
+            style: textTheme.bodySmall?.copyWith(color: colorScheme.error),
+          ),
+        ),
+    ];
+  }
+
+  Widget _modeRow(AppMode mode, Set<AppMode> disabled) {
+    final l10n = context.l10n;
+    final colorScheme = Theme.of(context).colorScheme;
+    return SettingsRow(
+      label: mode.labelOf(l10n),
+      subtitle: mode.descriptionOf(l10n),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(mode.icon, color: colorScheme.onSurfaceVariant),
+          const SizedBox(width: AppSpacing.md),
+          AppSwitch(
+            value: !disabled.contains(mode),
+            onChanged: (on) async {
+              final ok = await ModePrefs.setEnabled(mode, on);
+              if (!mounted) return;
+              // Steps depend on the modes chosen.
+              setState(() => _lastModeBlocked = !ok);
+            },
+          ),
+        ],
+      ),
+    );
   }
 
   List<Widget> _lookContent(Responsive r) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
     return [
-      SettingsRow(
-        label: context.l10n.darkTheme,
-        trailing: Switch(
-          value: isDark,
-          onChanged: (value) {
-            final theme = AdaptiveTheme.maybeOf(context);
-            value ? theme?.setDark() : theme?.setLight();
-            setState(() {});
-          },
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
+        child: ThemeModeSelector(onChanged: () => setState(() {})),
+      ),
+      const SizedBox(height: AppSpacing.xl),
+      ..._comboContent(r),
+      const SizedBox(height: AppSpacing.xl),
+      Padding(
+        padding:
+            const EdgeInsets.only(left: AppSpacing.lg, bottom: AppSpacing.md),
+        child: Text(
+          context.l10n.accentColor,
+          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
         ),
       ),
-      const SizedBox(height: AppSpacing.lg),
       AccentPicker(
         colors: Themes.colors,
         color: Themes.accent,
@@ -376,7 +544,7 @@ class _OnboardingState extends State<Onboarding>
     ];
   }
 
-  List<Widget> _clockContent(Responsive r) {
+  List<Widget> _comboContent(Responsive r) {
     return [
       SizedBox(
         height: 190 * r.scale,
@@ -407,12 +575,53 @@ class _OnboardingState extends State<Onboarding>
     ];
   }
 
-  List<Widget> _optionsContent() {
+  List<Widget> _displayContent(Responsive r) {
     final l10n = context.l10n;
     final colorScheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
 
     return [
+      if (_on(AppMode.clock)) ...[
+        Padding(
+          padding: const EdgeInsets.only(
+            left: AppSpacing.lg,
+            bottom: AppSpacing.sm,
+          ),
+          child: Text(
+            l10n.onbClockModeDesign,
+            style: textTheme.labelLarge
+                ?.copyWith(color: colorScheme.onSurfaceVariant),
+          ),
+        ),
+        SizedBox(
+          height: 170 * r.scale,
+          child: TimeBuilder(
+            builder: (context, now) => ValueListenableBuilder<ClockFace>(
+              valueListenable: ClockPrefs.face,
+              builder: (context, current, _) => ListView.separated(
+                scrollDirection: Axis.horizontal,
+                clipBehavior: Clip.none,
+                itemCount: ClockFace.values.length,
+                separatorBuilder: (_, __) =>
+                    const SizedBox(width: AppSpacing.md),
+                itemBuilder: (context, i) {
+                  final face = ClockFace.values[i];
+                  return SizedBox(
+                    width: 150 * r.scale,
+                    child: ClockFaceTile(
+                      face: face,
+                      selected: face == current,
+                      data: FaceData.of(context, now, compact: true),
+                      onTap: () => ClockPrefs.setFace(face),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: AppSpacing.lg),
+      ],
       ValueListenableBuilder<bool>(
         valueListenable: AppPreferences.showClock,
         builder: (context, show, _) => Column(
@@ -420,7 +629,7 @@ class _OnboardingState extends State<Onboarding>
           children: [
             SettingsRow(
               label: l10n.showClock,
-              trailing: Switch(
+              trailing: AppSwitch(
                 value: show,
                 onChanged: AppPreferences.setShowClock,
               ),
@@ -472,39 +681,6 @@ class _OnboardingState extends State<Onboarding>
           ],
         ),
       ),
-      ValueListenableBuilder<bool>(
-        valueListenable: AppPreferences.autoStartNext,
-        builder: (context, value, _) => SettingsRow(
-          label: l10n.autoStartNext,
-          subtitle: l10n.autoStartNextHint,
-          trailing: Switch(
-            value: value,
-            onChanged: AppPreferences.setAutoStartNext,
-          ),
-        ),
-      ),
-      if (Platform.isAndroid || Platform.isIOS)
-        ValueListenableBuilder<bool>(
-          valueListenable: AppPreferences.haptics,
-          builder: (context, value, _) => SettingsRow(
-            label: l10n.hapticFeedback,
-            trailing: Switch(
-              value: value,
-              onChanged: AppPreferences.setHaptics,
-            ),
-          ),
-        ),
-      SettingsRow(
-        label: l10n.notificationsToggle,
-        subtitle: l10n.notificationsHint,
-        trailing: Switch(
-          value: _notifications,
-          onChanged: (value) {
-            setState(() => _notifications = value);
-            Presets.saveNotificationsEnabled(value);
-          },
-        ),
-      ),
       ValueListenableBuilder<UiSize>(
         valueListenable: AppPreferences.uiSize,
         builder: (context, size, _) {
@@ -539,8 +715,11 @@ class _OnboardingState extends State<Onboarding>
                   max: (UiSize.values.length - 1).toDouble(),
                   divisions: UiSize.values.length - 1,
                   label: name,
-                  onChanged: (v) =>
-                      AppPreferences.setUiSize(UiSize.values[v.round()]),
+                  onChanged: (v) {
+                    final next = UiSize.values[v.round()];
+                    if (next != size) Haptics.tick();
+                    AppPreferences.setUiSize(next);
+                  },
                 ),
               ],
             ),
@@ -548,5 +727,197 @@ class _OnboardingState extends State<Onboarding>
         },
       ),
     ];
+  }
+
+  List<Widget> _optionsContent() {
+    final l10n = context.l10n;
+
+    return [
+      if (_on(AppMode.pomodoro))
+        ValueListenableBuilder<bool>(
+          valueListenable: AppPreferences.autoStartNext,
+          builder: (context, value, _) => SettingsRow(
+            label: l10n.autoStartNext,
+            subtitle: l10n.autoStartNextHint,
+            trailing: AppSwitch(
+              value: value,
+              onChanged: AppPreferences.setAutoStartNext,
+            ),
+          ),
+        ),
+      if (_on(AppMode.clock))
+        ValueListenableBuilder<bool>(
+          valueListenable: Fullscreen.keepClockAwake,
+          builder: (context, value, _) => SettingsRow(
+            label: l10n.clockKeepAwake,
+            subtitle: l10n.clockKeepAwakeHint,
+            trailing: AppSwitch(
+              value: value,
+              onChanged: Fullscreen.setKeepClockAwake,
+            ),
+          ),
+        ),
+      if (Haptics.available)
+        ValueListenableBuilder<bool>(
+          valueListenable: Haptics.enabled,
+          builder: (context, value, _) => SettingsRow(
+            label: l10n.hapticFeedback,
+            subtitle: l10n.hapticFeedbackHint,
+            trailing: AppSwitch(
+              value: value,
+              // Feel the setting the moment it is turned on.
+              onChanged: (on) {
+                Haptics.setEnabled(on);
+                if (on) Haptics.preview(HapticEvents.success);
+              },
+            ),
+          ),
+        ),
+    ];
+  }
+
+  Widget _permissionButton(bool allowed, VoidCallback onPressed) {
+    final l10n = context.l10n;
+    if (allowed) {
+      return Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.check_rounded,
+              color: Theme.of(context).colorScheme.primary),
+          const SizedBox(width: AppSpacing.xs),
+          Text(l10n.onbPermAllowed),
+        ],
+      );
+    }
+    return FilledButton.tonal(
+        onPressed: onPressed, child: Text(l10n.onbPermAllow));
+  }
+
+  List<Widget> _permissionsContent() {
+    final l10n = context.l10n;
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return [
+      SettingsRow(
+        label: l10n.onbPermNotifications,
+        subtitle: l10n.onbPermNotificationsHint,
+        trailing: _permissionButton(_notifAllowed, () async {
+          final ok = await Notifier.requestNotifications();
+          if (mounted) setState(() => _notifAllowed = ok);
+        }),
+      ),
+      if (_on(AppMode.alarm) || _on(AppMode.timer))
+        SettingsRow(
+          label: l10n.onbPermExact,
+          subtitle: l10n.onbPermExactHint,
+          trailing: _permissionButton(_exactAllowed, () async {
+            final ok = await Notifier.requestExactAlarms();
+            if (mounted) setState(() => _exactAllowed = ok);
+          }),
+        ),
+      if (_on(AppMode.pomodoro))
+        SettingsRow(
+          label: l10n.notificationsToggle,
+          subtitle: l10n.notificationsHint,
+          trailing: AppSwitch(
+            value: _notifications,
+            onChanged: (value) {
+              setState(() => _notifications = value);
+              Presets.saveNotificationsEnabled(value);
+            },
+          ),
+        ),
+      Padding(
+        padding: const EdgeInsets.fromLTRB(
+          AppSpacing.lg,
+          AppSpacing.md,
+          AppSpacing.lg,
+          0,
+        ),
+        child: Text(
+          l10n.onbPermLater,
+          style: textTheme.bodySmall
+              ?.copyWith(color: colorScheme.onSurfaceVariant),
+        ),
+      ),
+    ];
+  }
+}
+
+/// The current clock style, dressed in the current theme + accent, so color
+/// and theme choices are seen on the real thing as they are made.
+class _LookPreview extends StatelessWidget {
+  const _LookPreview({required this.style, required this.clock});
+
+  final ClockStyle style;
+  final Animation<double> clock;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final r = Responsive.of(context);
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    final palette = ClockPalette.of(colorScheme, rest: false, paused: false);
+    final still = MediaQuery.disableAnimationsOf(context);
+    final labels = ClockLabels.of(l10n);
+
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.md),
+      decoration: BoxDecoration(
+        color: colorScheme.surfaceContainerHigh,
+        borderRadius: BorderRadius.circular(32),
+      ),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 110 * r.scale,
+            height: 110 * r.scale,
+            child: AnimatedBuilder(
+              animation: clock,
+              builder: (context, _) => ClockView(
+                style: style,
+                fill: 0.95,
+                palette: palette,
+                frame: demoFrame(
+                  seconds: clock.value,
+                  still: still,
+                  labels: labels,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: AppSpacing.lg),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  l10n.onbPreview,
+                  style: textTheme.labelMedium
+                      ?.copyWith(color: colorScheme.onSurfaceVariant),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  style.labelOf(l10n),
+                  style: textTheme.titleMedium
+                      ?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Container(
+                  height: 8,
+                  width: 64,
+                  decoration: BoxDecoration(
+                    color: colorScheme.primary,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

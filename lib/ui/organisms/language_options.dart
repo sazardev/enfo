@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../l10n/locale_controller.dart';
 import '../molecules/settings_row.dart';
 
-/// Radio list: follow the system language, or force Spanish / English.
+/// Radio list: follow the system language, or force one of the translations.
 /// Applies immediately (the whole app re-translates as you tap).
 class LanguageOptions extends StatelessWidget {
   const LanguageOptions({super.key});
@@ -35,8 +35,8 @@ class LanguageOptions extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             option(l10n.languageSystem, null),
-            option(l10n.languageSpanish, const Locale('es')),
-            option(l10n.languageEnglish, const Locale('en')),
+            for (final entry in languageNames.entries)
+              option(entry.value, Locale(entry.key)),
           ],
         );
       },

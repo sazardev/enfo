@@ -135,7 +135,10 @@ void main() {
     expect(switches, findsNWidgets(AppMode.values.length));
     await tester.tap(switches.at(3)); // stopwatch
     await settle(tester);
-    expect(ModePrefs.disabled.value, {AppMode.stopwatch});
+    expect(ModePrefs.disabled.value, {
+      AppMode.stopwatch,
+      ...AppMode.values.where((m) => !m.core),
+    });
 
     // Turn everything else off: the last one refuses.
     for (final i in [1, 2, 4, 5]) {
@@ -167,20 +170,22 @@ void main() {
       await tapText(tester, '10m');
       expect(t.totalSeconds, 600);
 
-      await tapText(tester, 'Start');
+      // Play/pause lives in the button bar, not in the page body.
+      expect(find.text('Start'), findsNothing);
+      await tapTip(tester, 'Start');
       expect(t.phase, TimerPhase.running);
-      expect(find.text('Pause'), findsOneWidget);
+      expect(find.byTooltip('Pause'), findsOneWidget);
 
-      await tapText(tester, 'Pause');
+      await tapTip(tester, 'Pause');
       expect(t.phase, TimerPhase.paused);
-      expect(find.text('Resume'), findsOneWidget);
+      expect(find.byTooltip('Resume'), findsOneWidget);
 
-      await tapText(tester, 'Resume');
+      await tapTip(tester, 'Resume');
       expect(t.phase, TimerPhase.running);
 
       await tapTip(tester, 'Reset');
       expect(t.phase, TimerPhase.idle);
-      expect(find.text('Start'), findsOneWidget);
+      expect(find.byTooltip('Start'), findsOneWidget);
       // Leave nothing running for the next test.
       t.wipe();
     });
@@ -221,7 +226,7 @@ void main() {
     await tester.pumpWidget(testApp(const ModeHost()));
     await settle(tester);
 
-    await tapText(tester, 'Start');
+    await tapTip(tester, 'Start');
     now = now.add(const Duration(seconds: 12));
     await tester.pump(const Duration(milliseconds: 50));
     await tapTip(tester, 'Lap');
@@ -229,12 +234,13 @@ void main() {
     expect(find.text('#1'), findsOneWidget);
 
     now = now.add(const Duration(seconds: 8));
-    await tapText(tester, 'Stop');
+    await tapTip(tester, 'Pause');
     expect(StopwatchController.instance.running, false);
 
     await tapTip(tester, 'Reset');
     expect(StopwatchController.instance.hasData, false);
-    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+    await tester
+        .runAsync(() => Future<void>.delayed(const Duration(milliseconds: 50)));
     final events = await tester.runAsync(ToolHistory.load);
     expect(events!.single.seconds, 20);
     expect(events.single.laps, [12000, 8000]);

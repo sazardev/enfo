@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_clock_label">Enfo · घड़ी</string>
+    <string name="widget_clock_desc">आपके सिस्टम के रंगों में समय और तारीख।</string>
+    <string name="widget_analog_label">Enfo · एनालॉग घड़ी</string>
+    <string name="widget_analog_desc">एक शांत एनालॉग घड़ी।</string>
+    <string name="widget_pomodoro_label">Enfo · पोमोडोरो</string>
+    <string name="widget_pomodoro_desc">आपके चुने घड़ी-स्टाइल में आपका पोमोडोरो। शुरू या रोकने के लिए बटन दबाएँ।</string>
+    <string name="widget_timer_label">Enfo · टाइमर</string>
+    <string name="widget_timer_desc">चुने हुए घड़ी-स्टाइल में एक टैप से टाइमर शुरू करें।</string>
+    <string name="widget_stopwatch_label">Enfo · स्टॉपवॉच</string>
+    <string name="widget_stopwatch_desc">ऐप खोले बिना शुरू करें, रोकें और लैप लें।</string>
+    <string name="widget_alarm_label">Enfo · अलार्म</string>
+    <string name="widget_alarm_desc">आपके अगले अलार्म एक नज़र में।</string>
+    <string name="widget_world_label">Enfo · विश्व घड़ी</string>
+    <string name="widget_world_desc">आपके शहरों का समय।</string>
+    <string name="widget_open">Enfo खोलें</string>
+    <string name="widget_sample_date">सोम, 29 सित॰</string>
+</resources>

@@ -11,6 +11,12 @@ class RingRequest {
     this.snoozeMinutes,
     this.onSnooze,
     this.onExpire,
+    this.timer = false,
+    this.giveUpAfter,
+    this.gentle = false,
+    this.dismissLabel,
+    this.extraLabel,
+    this.onExtra,
   });
 
   final String title;
@@ -26,6 +32,22 @@ class RingRequest {
 
   /// Nobody answered for a couple of minutes (alarms log this as missed).
   final VoidCallback? onExpire;
+
+  /// A finished timer (its own beat) rather than an alarm.
+  final bool timer;
+
+  /// How long before [onExpire] runs on its own (default two minutes).
+  final Duration? giveUpAfter;
+
+  /// A soft prompt (a short break): no alert sound, a light haptic tap.
+  final bool gentle;
+
+  /// Replaces the "Dismiss" label (e.g. "Done").
+  final String? dismissLabel;
+
+  /// One more choice next to Dismiss/Snooze (e.g. "Skip").
+  final String? extraLabel;
+  final VoidCallback? onExtra;
 }
 
 /// Queue of things ringing. The host shows the front one full screen;

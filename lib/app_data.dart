@@ -1,16 +1,25 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_preferences.dart';
+import 'bar_buttons.dart';
 import 'history.dart';
 import 'l10n/locale_controller.dart';
+import 'haptics/haptics.dart';
 import 'modes/alarm/alarm_service.dart';
 import 'modes/clock/clock_prefs.dart';
+import 'modes/breaks/breaks_service.dart';
+import 'modes/event/event_service.dart';
 import 'modes/fullscreen.dart';
+import 'modes/intervals/intervals_service.dart';
+import 'modes/kitchen/kitchen_service.dart';
+import 'modes/tracker/tracker_service.dart';
+import 'modes/versus/versus_controller.dart';
 import 'modes/mode_prefs.dart';
 import 'modes/stopwatch/stopwatch_controller.dart';
 import 'modes/timer/timer_controller.dart';
 import 'modes/tool_history.dart';
 import 'modes/world/world_prefs.dart';
+import 'pomodoro_state.dart';
 import 'theme.dart';
 
 /// Everything Enfo stores lives in shared preferences: the session history,
@@ -28,7 +37,15 @@ class AppData {
     TimerController.presetsKey,
     'timer_state',
     'stopwatch_state',
+    PomodoroStore.key,
     WorldPrefs.key,
+    // Content from the newer modes: events, tracked activities, timers,
+    // and the alarms the sleep planner created.
+    EventService.key,
+    'tracker_state',
+    'kitchen_timers',
+    'sleep_alarm_id',
+    'sleep_wind_id',
   };
 
   /// Pomodoro sessions and everything the other modes logged.
@@ -60,6 +77,13 @@ class AppData {
     await AlarmService.wipe();
     TimerController.instance.wipe();
     StopwatchController.instance.wipe();
+    PomodoroStore.wipe();
+    await EventService.instance.wipe();
+    await TrackerService.instance.wipe();
+    await BreaksService.instance.wipe();
+    IntervalsService.instance.wipe();
+    KitchenService.instance.wipe();
+    VersusController.instance.wipe();
     await _reloadInMemoryState();
   }
 
@@ -67,7 +91,9 @@ class AppData {
   static Future<void> _reloadInMemoryState() async {
     Themes.resetAccent();
     await AppPreferences.load();
+    await Haptics.load();
     await ModePrefs.load();
+    await BarButtons.load();
     await Fullscreen.load();
     await ClockPrefs.load();
     await WorldPrefs.load();

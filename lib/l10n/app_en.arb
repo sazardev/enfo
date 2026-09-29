@@ -65,6 +65,9 @@
   "appearanceLight": "Light theme",
   "appearanceDark": "Dark theme",
   "darkTheme": "Dark theme",
+  "themeModeSystem": "System",
+  "themeModeLight": "Light",
+  "themeModeDark": "Dark",
   "accentColor": "Accent color",
   "notificationsTitle": "Notifications",
   "notificationsOn": "On",
@@ -73,8 +76,6 @@
   "notificationsHint": "Get notified when it is time to rest or to get back to work.",
   "languageTitle": "Language",
   "languageSystem": "System default",
-  "languageSpanish": "Español",
-  "languageEnglish": "English",
   "languageHint": "Choose the language of the app.",
   "supportTitle": "Support Enfo",
   "supportSubtitle": "Coffee and ads",
@@ -203,8 +204,8 @@
   "behaviorTitle": "Behavior",
   "autoStartNext": "Start next phase automatically",
   "autoStartNextHint": "When focus or rest ends, the next one begins without tapping.",
-  "hapticFeedback": "Vibrate when a phase ends",
-  "hapticFeedbackHint": "A short vibration on your phone.",
+  "hapticFeedback": "Vibration",
+  "hapticFeedbackHint": "Taps, wheels, phase changes and alarms.",
   "clockCombosTitle": "Combos",
   "clockCollapseAll": "Collapse all",
   "clockExpandAll": "Expand all",
@@ -344,12 +345,27 @@
   "onbRhythmTitle": "Your rhythm",
   "onbRhythmBody": "How long you focus, and how long you rest.",
   "onbLookTitle": "Make it yours",
-  "onbLookBody": "Theme and accent color. The screen updates as you choose.",
+  "onbLookBody": "Theme, clock style and color. Start from a combo, then tweak the color if you like.",
   "onbClockTitle": "Pick a clock",
   "onbClockBody": "Curated looks: a clock style and a color in one tap.",
   "onbAllStyles": "Browse all styles",
   "onbOptionsTitle": "Final touches",
   "onbOptionsBody": "Display and behavior. All of this is in Settings too.",
+  "onbModesTitle": "Your tools",
+  "onbModesBody": "Enfo is a clock and timer toolbox. Turn on what you will use; change it anytime from the modes menu.",
+  "onbPreview": "Preview",
+  "onbDisplayTitle": "Display",
+  "onbDisplayBody": "How the clock looks and how big everything is.",
+  "onbClockModeDesign": "Clock mode design",
+  "onbPermTitle": "Permissions",
+  "onbPermBody": "So timers and alarms can reach you even when Enfo is closed.",
+  "onbPermNotifications": "Notifications",
+  "onbPermNotificationsHint": "Alerts when a timer ends or an alarm rings.",
+  "onbPermExact": "Exact alarms",
+  "onbPermExactHint": "Ring at the exact minute, even in battery saver.",
+  "onbPermAllow": "Allow",
+  "onbPermAllowed": "Allowed",
+  "onbPermLater": "You can change these anytime in the system settings.",
   "onbNext": "Next",
   "onbBack": "Back",
   "onbSkip": "Skip",
@@ -548,5 +564,459 @@
   "alarmOnce": "Once",
   "alarmPermissionHint": "To ring with the app closed, Enfo needs permission to send notifications and set exact alarms.",
   "alarmPermissionButton": "Allow alarms",
-  "alarmDesktopHint": "On this device Enfo has to be open for alarms to ring."
+  "alarmDesktopHint": "On this device Enfo has to be open for alarms to ring.",
+  "hapticsTitle": "Vibration",
+  "hapticsOff": "Off",
+  "hapticsStrength": "Strength",
+  "hapticsSoft": "Soft",
+  "hapticsMedium": "Medium",
+  "hapticsStrong": "Strong",
+  "hapticsTouch": "Touch",
+  "hapticsTouchHint": "Buttons, switches and selections.",
+  "hapticsMotion": "Motion",
+  "hapticsMotionHint": "Wheels, sliders, dragging and transitions.",
+  "hapticsAlerts": "Alerts",
+  "hapticsAlertsHint": "Timers, phase changes, the final countdown and alarms.",
+  "hapticsAlarmPattern": "Alarm pattern",
+  "hapticsAlarmPatternHint": "Tap a pattern to feel it. The ringing screen pulses to the same beat.",
+  "hapticsPatternHeartbeat": "Heartbeat",
+  "hapticsPatternPulse": "Pulse",
+  "hapticsPatternCrescendo": "Crescendo",
+  "hapticsPatternRipple": "Ripple",
+  "hapticsPatternBeacon": "Beacon",
+  "hapticsTry": "Try it",
+  "hapticsTryTap": "Tap",
+  "hapticsTrySuccess": "Success",
+  "hapticsTryToRest": "Focus done",
+  "hapticsTryToWork": "Rest done",
+  "hapticsTryTimer": "Timer done",
+  "hapticsTryWarning": "Warning",
+  "hapticsUnavailable": "This device has no vibration motor.",
+  "hapticsWhen": "When it vibrates",
+  "widgetsTitle": "Widgets",
+  "widgetsSubtitle": "Clocks and timers on your home screen",
+  "widgetsAddHeader": "Add to home screen",
+  "widgetsAdd": "Add",
+  "widgetsDynamicColor": "Material You colors",
+  "widgetsDynamicColorHint": "Widgets take their colors from your wallpaper. Turn off to use Enfo's accent color.",
+  "widgetsManualHint": "Your launcher can't add widgets from here. Long-press the home screen, choose Widgets and look for Enfo.",
+  "widgetsStyleHint": "The Pomodoro and timer widgets are drawn in the clock style you picked. Change the style in the app and they follow.",
+  "widgetsTapHint": "Buttons on a widget open Enfo and do the action, so time is always kept by the app.",
+  "shortcutsTitle": "Keyboard & remote",
+  "shortcutsSubtitle": "Shortcuts for keyboard, mouse and TV remote",
+  "shortcutsIntro": "Arrow keys or the remote's D-pad move around, Enter or OK presses. These keys do the rest.",
+  "shortcutKeySpace": "Space",
+  "shortcutPlayPause": "Start or pause",
+  "shortcutReset": "Reset",
+  "shortcutLap": "Lap (stopwatch)",
+  "shortcutJumpMode": "Go to mode 1–9",
+  "shortcutStepMode": "Previous / next mode",
+  "shortcutFullscreen": "Full screen",
+  "shortcutDim": "Dim the screen (full screen)",
+  "shortcutSettings": "Settings",
+  "shortcutModes": "Modes menu",
+  "shortcutBack": "Back / leave full screen",
+  "shortcutHelp": "Show this list",
+  "onbMoreTools": "More tools",
+  "modeEvent": "Events",
+  "modeDescEvent": "Count the days to what matters",
+  "modeIntervals": "Intervals",
+  "modeDescIntervals": "Work and rest rounds, like HIIT",
+  "modeBreathe": "Breathe",
+  "modeDescBreathe": "Guided breathing to calm down",
+  "modeTracker": "Tracker",
+  "modeDescTracker": "Time what you do, see the totals",
+  "modeKitchen": "Kitchen",
+  "modeDescKitchen": "Several named timers at once",
+  "modeSleep": "Sleep",
+  "modeDescSleep": "Plan bedtime and wake-up in sleep cycles",
+  "modeVersus": "Turns",
+  "modeDescVersus": "Two-player clock for chess, games and debates",
+  "modeBreaks": "Breaks",
+  "modeDescBreaks": "Reminders to rest your eyes and stretch",
+  "modeAmbient": "Ambient",
+  "modeDescAmbient": "Background sounds with a sleep timer",
+  "intervalsPresetTabata": "Tabata",
+  "intervalsPresetHiit": "HIIT",
+  "intervalsPresetEmom": "EMOM",
+  "intervalsPresetCustom": "Custom",
+  "intervalsWarmUp": "Warm-up",
+  "intervalsWork": "Work",
+  "intervalsRest": "Rest",
+  "intervalsRounds": "Rounds",
+  "intervalsCoolDown": "Cool-down",
+  "intervalsOff": "Off",
+  "intervalsRound": "Round {current}/{total}",
+  "@intervalsRound": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "intervalsTotal": "Total {duration}",
+  "@intervalsTotal": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "intervalsSkip": "Skip to next phase",
+  "intervalsHint": "Tap a row to edit it. Any change saves as Custom.",
+  "intervalsDoneTitle": "Workout complete",
+  "intervalsDoneBody": "{name} · {duration}. Great work!",
+  "@intervalsDoneBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "kitchenPasta": "Pasta",
+  "kitchenEggs": "Eggs",
+  "kitchenTea": "Tea",
+  "kitchenRice": "Rice",
+  "kitchenOven": "Oven",
+  "kitchenCustom": "Custom",
+  "kitchenNameHint": "Name",
+  "kitchenAdd": "Start timer",
+  "kitchenDelete": "Delete timer",
+  "kitchenEmpty": "No timers yet. Tap a chip to start one.",
+  "kitchenDefaultName": "Timer",
+  "kitchenDoneTitle": "{name} is ready",
+  "@kitchenDoneTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "kitchenDoneBody": "The {duration} timer finished.",
+  "@kitchenDoneBody": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "trackerToday": "Today",
+  "trackerWeek": "Last 7 days",
+  "trackerTapToStart": "Tap an activity to start timing it",
+  "trackerNoRunning": "Nothing running",
+  "trackerAddActivity": "New activity",
+  "trackerNameHint": "Name",
+  "trackerStudy": "Study",
+  "trackerReading": "Reading",
+  "trackerCode": "Code",
+  "trackerExercise": "Exercise",
+  "trackerEdit": "Edit activity",
+  "trackerDetails": "Details and chart",
+  "trackerColor": "Color",
+  "trackerIcon": "Icon",
+  "trackerDelete": "Delete activity",
+  "trackerDeleteConfirm": "Confirm: delete this activity",
+  "trackerDeleteHint": "Time already logged stays in the activity history.",
+  "trackerAddTime": "Add time manually",
+  "trackerAddMinutes": "Add {minutes} min",
+  "@trackerAddMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "trackerMinutesFewer": "Fewer minutes",
+  "trackerMinutesMore": "More minutes",
+  "trackerStop": "Stop",
+  "versusDuel": "Duel",
+  "versusSpeakers": "Speakers",
+  "versusCustom": "Custom",
+  "versusIncrement": "Increment",
+  "versusTapToStart": "Tap your side to start your clock",
+  "versusTimeIsUp": "Time is up",
+  "versusMoves": "{count, plural, =1{1 move} other{{count} moves}}",
+  "@versusMoves": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "versusResetGame": "Reset game",
+  "versusConfirmReset": "Confirm reset",
+  "versusSpeakerN": "Speaker {n}",
+  "@versusSpeakerN": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "versusAddSpeaker": "Add speaker",
+  "versusRemoveSpeaker": "Remove speaker",
+  "versusSpeakerName": "Speaker or topic",
+  "versusNext": "Next speaker",
+  "versusFinish": "Finish",
+  "versusOvertime": "Overtime",
+  "versusElapsedOfPlanned": "{elapsed} of {planned}",
+  "@versusElapsedOfPlanned": {
+    "placeholders": {
+      "elapsed": {
+        "type": "String"
+      },
+      "planned": {
+        "type": "String"
+      }
+    }
+  },
+  "versusAgendaDone": "Agenda finished",
+  "versusStartAgenda": "Start agenda",
+  "versusMinutesFewer": "Fewer minutes",
+  "versusMinutesMore": "More minutes",
+  "versusTotal": "Total",
+  "breatheInhale": "Inhale",
+  "breatheHold": "Hold",
+  "breatheExhale": "Exhale",
+  "breatheStart": "Start breathing",
+  "breathePause": "Pause",
+  "breatheResume": "Resume",
+  "breatheReset": "Stop session",
+  "breatheDone": "Well done",
+  "breatheReady": "Find a comfortable position",
+  "breathePatternBox": "Box",
+  "breathePatternCoherent": "Coherent",
+  "breathePatternCalm": "Calm",
+  "breathePatternCustom": "Custom",
+  "breatheSession": "Session",
+  "breatheEndless": "Endless",
+  "breatheSeconds": "{n}s",
+  "@breatheSeconds": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ambientWhite": "White noise",
+  "ambientPink": "Pink noise",
+  "ambientBrown": "Brown noise",
+  "ambientRain": "Rain",
+  "ambientWind": "Wind",
+  "ambientOcean": "Ocean",
+  "ambientVolume": "Volume",
+  "ambientSleepTimer": "Sleep timer",
+  "ambientTimerOff": "Off",
+  "ambientPlay": "Play sound",
+  "ambientStop": "Stop sound",
+  "ambientUnavailable": "Sound is not available on this device.",
+  "ambientPreparing": "Preparing sound…",
+  "ambientTimeLeft": "{time} left",
+  "@ambientTimeLeft": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "breaksStart": "Start breaks",
+  "breaksStop": "Stop breaks",
+  "breaksStatusOff": "Break reminders are off",
+  "breaksNoneEnabled": "Turn on at least one reminder",
+  "breaksNextName": "Next: {name}",
+  "@breaksNextName": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "breaksToday": "Today",
+  "breaksTaken": "Breaks taken",
+  "breaksSkipped": "Skipped",
+  "breaksEyeName": "Eye rest (20-20-20)",
+  "breaksEyeHint": "Look at something 6 m (20 ft) away for 20 seconds",
+  "breaksStretchName": "Stretch",
+  "breaksStretchHint": "Stand up and stretch your whole body",
+  "breaksWaterName": "Drink water",
+  "breaksWaterHint": "Have a glass of water",
+  "breaksPostureName": "Posture check",
+  "breaksPostureHint": "Sit up straight and relax your shoulders",
+  "breaksCustomDefault": "My reminder",
+  "breaksForDuration": "Take {duration}",
+  "@breaksForDuration": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "breaksEveryMinutes": "Every {minutes} min",
+  "@breaksEveryMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "breaksShorter": "Shorter interval",
+  "breaksLonger": "Longer interval",
+  "breaksDone": "Done",
+  "breaksSkip": "Skip",
+  "breaksActiveHours": "Active hours",
+  "breaksActiveHoursHint": "Reminders only appear between these times",
+  "breaksFrom": "From",
+  "breaksTo": "To",
+  "breaksLaterHour": "Later",
+  "breaksEarlierHour": "Earlier",
+  "breaksBackground": "Also when Enfo is closed",
+  "breaksBackgroundOn": "Notifications remind you even when the app is closed.",
+  "breaksBackgroundOff": "Reminders only appear while Enfo is open.",
+  "breaksDesktopNotice": "Reminders appear while Enfo is running (it can stay minimized).",
+  "breaksAddCustom": "Add custom reminder",
+  "breaksEdit": "Edit reminder",
+  "breaksName": "Name",
+  "breaksDuration": "Duration",
+  "breaksIcon": "Icon",
+  "breaksShorterDuration": "Shorter break",
+  "breaksLongerDuration": "Longer break",
+  "breaksRemove": "Remove reminder",
+  "breaksRemoveConfirm": "Confirm: remove reminder",
+  "breaksRemoveHint": "It will stop reminding you.",
+  "worldPlan": "Plan a meeting",
+  "worldPlanIntro": "Slide the marker to find a time that works for everyone.",
+  "worldPlanNow": "Now",
+  "worldPlanEarlier": "15 minutes earlier",
+  "worldPlanLater": "15 minutes later",
+  "worldPlanSelected": "Selected time in {city}",
+  "@worldPlanSelected": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "worldPlanTapCity": "Tap a city to use its time as the reference.",
+  "worldPlanNextDay": "+1 day",
+  "worldPlanPrevDay": "-1 day",
+  "worldPlanOverlapTitle": "Everyone is at work",
+  "worldPlanNoOverlap": "No time in the next 24 hours works for everyone.",
+  "worldPlanLeastBad": "Least bad: {time}",
+  "@worldPlanLeastBad": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "worldPlanAtWork": "{count} of {total} at work",
+  "@worldPlanAtWork": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "worldPlanWork": "Working hours (09-18)",
+  "worldPlanNight": "Night",
+  "worldPlanMarker": "Selected time",
+  "eventAdd": "New event",
+  "eventEdit": "Edit event",
+  "eventName": "Name",
+  "eventNameHint": "Birthday, trip, launch...",
+  "eventYearly": "Repeat every year",
+  "eventYearlyHint": "For birthdays and anniversaries: it moves on to the next one.",
+  "eventNotify": "Notify me",
+  "eventNotifyHint": "At the moment it arrives.",
+  "eventDayBefore": "Also the day before",
+  "eventSave": "Save",
+  "eventDelete": "Delete event",
+  "eventConfirmDelete": "Confirm: delete event",
+  "eventDeleteHint": "This event will be removed.",
+  "eventEmpty": "No events yet.\nTap + to count down to one.",
+  "eventToday": "Today!",
+  "eventDaysAgo": "{count, plural, =1{1 day ago} other{{count} days ago}}",
+  "@eventDaysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "eventDaysShort": "d",
+  "eventUnitDays": "days",
+  "eventUnitHours": "hours",
+  "eventUnitMinutes": "min",
+  "eventRepeatsYearly": "Every year",
+  "eventNotifyNow": "It's time!",
+  "eventNotifyTomorrow": "Tomorrow",
+  "sleepPlanWake": "Wake at",
+  "sleepPlanBed": "Sleep at",
+  "sleepPlanNow": "Sleep now",
+  "sleepTitleWake": "I want to wake up at",
+  "sleepTitleBed": "I go to bed at",
+  "sleepTitleNow": "If I fall asleep now ({time})",
+  "@sleepTitleNow": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "sleepBedtimeWord": "Bedtime",
+  "sleepWakeWord": "Wake up",
+  "sleepCyclesLine": "{cycles} cycles · {duration} of sleep",
+  "@sleepCyclesLine": {
+    "placeholders": {
+      "cycles": {
+        "type": "int"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "sleepNote": "Cycles last 90 minutes and falling asleep takes about 15. Five or six cycles are recommended.",
+  "sleepWindDown": "Wind-down reminder",
+  "sleepWindDownHint": "An alarm 30 minutes before bedtime.",
+  "sleepWindDownPassed": "That time has already passed.",
+  "sleepWindDownLabel": "Time to wind down",
+  "sleepAlarmLabel": "Wake up",
+  "sleepSetAlarm": "Set alarm",
+  "sleepRemoveAlarm": "Remove alarm",
+  "sleepAlarmSet": "Alarm set for {time}",
+  "@sleepAlarmSet": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "sleepPast": "This time has already passed",
+  "sleepRecommended": "Recommended",
+  "ambientMusicTabSounds": "Sounds",
+  "ambientMusicTab": "Music",
+  "ambientMusicPlay": "Play music",
+  "ambientMusicPause": "Pause music",
+  "ambientMusicNext": "Next song",
+  "ambientMusicPrevious": "Previous song",
+  "ambientMusicShuffle": "Shuffle",
+  "ambientMusicRepeat": "Repeat all",
+  "ambientMusicVolume": "Music volume",
+  "ambientMusicCredits": "Music credits",
+  "ambientMusicCreditsNote": "Songs from Wikimedia Commons, released under CC0 or Creative Commons Attribution licenses.",
+  "modeMusic": "Music",
+  "modeDescMusic": "Lo-fi songs to focus to",
+  "musicCreditsSubtitle": "Artists and licenses",
+  "displayMenuButtons": "Menu buttons",
+  "displayMenuButtonsHint": "Choose which buttons appear in the bottom menu. Settings is always there."
 }

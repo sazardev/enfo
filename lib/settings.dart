@@ -6,14 +6,18 @@ import 'app_preferences.dart';
 import 'appearance_page.dart';
 import 'data_page.dart';
 import 'display_page.dart';
+import 'haptics/haptics.dart';
+import 'haptics/haptics_page.dart';
 import 'language_page.dart';
 import 'l10n/locale_controller.dart';
 import 'modes/mode_prefs.dart';
 import 'modes/modes_page.dart';
 import 'notifications_page.dart';
 import 'presets.dart';
+import 'shortcuts_page.dart';
 import 'support_page.dart';
 import 'timers_page.dart';
+import 'modes/music/music_credits_page.dart';
 import 'ui/design/motion.dart';
 import 'ui/design/page_transition.dart';
 import 'ui/design/responsive.dart';
@@ -21,6 +25,8 @@ import 'ui/design/spacing.dart';
 import 'ui/molecules/app_top_bar.dart';
 import 'ui/molecules/settings_nav_tile.dart';
 import 'ui/templates/settings_shell.dart';
+import 'widgets/widget_bridge.dart';
+import 'widgets/widgets_page.dart';
 
 class _Section {
   const _Section({
@@ -74,11 +80,9 @@ class _SettingsState extends State<Settings> {
   List<_Section> _sections(BuildContext context, Responsive r) {
     final l10n = context.l10n;
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final language = switch (LocaleController.locale.value?.languageCode) {
-      'es' => l10n.languageSpanish,
-      'en' => l10n.languageEnglish,
-      _ => l10n.languageSystem,
-    };
+    final language =
+        languageNames[LocaleController.locale.value?.languageCode] ??
+            l10n.languageSystem;
 
     return [
       _Section(
@@ -107,6 +111,23 @@ class _SettingsState extends State<Settings> {
             : l10n.displayClockHidden,
         page: const DisplayPage(),
       ),
+      if (Haptics.available)
+        _Section(
+          icon: Icons.vibration_rounded,
+          title: l10n.hapticsTitle,
+          subtitle: Haptics.enabled.value
+              ? hapticStrengthLabel(l10n, Haptics.strength.value)
+              : l10n.hapticsOff,
+          page: const HapticsPage(),
+        ),
+      // Home-screen widgets exist on Android only.
+      if (WidgetBridge.supported)
+        _Section(
+          icon: Icons.widgets_outlined,
+          title: l10n.widgetsTitle,
+          subtitle: l10n.widgetsSubtitle,
+          page: const WidgetsPage(),
+        ),
       _Section(
         icon: Icons.notifications_none_rounded,
         title: l10n.notificationsTitle,
@@ -120,6 +141,18 @@ class _SettingsState extends State<Settings> {
         title: l10n.languageTitle,
         subtitle: language,
         page: const LanguagePage(),
+      ),
+      _Section(
+        icon: Icons.keyboard_rounded,
+        title: l10n.shortcutsTitle,
+        subtitle: l10n.shortcutsSubtitle,
+        page: const ShortcutsPage(),
+      ),
+      _Section(
+        icon: Icons.library_music_rounded,
+        title: l10n.ambientMusicCredits,
+        subtitle: l10n.musicCreditsSubtitle,
+        page: const MusicCreditsPage(),
       ),
       _Section(
         icon: Icons.storage_rounded,
@@ -155,6 +188,7 @@ class _SettingsState extends State<Settings> {
         AppPreferences.uiSize,
         LocaleController.locale,
         ModePrefs.changes,
+        Haptics.changes,
       ]),
       builder: (context, _) {
         final sections = _sections(context, r);

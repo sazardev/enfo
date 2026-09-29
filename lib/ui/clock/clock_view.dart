@@ -145,7 +145,7 @@ class _LiveClockViewState extends State<LiveClockView>
           animation: Listenable.merge([widget.progress, _time]),
           builder: (context, _) => ClockView(
             style: widget.style,
-            fill: 0.83,
+            fill: 0.9,
             palette: palette,
             frame: ClockFrame(
               progress: widget.progress.value,

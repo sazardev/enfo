@@ -27,7 +27,8 @@ void main() {
 
   group('modes', () {
     test('order, visibility and the quick-switch cycle', () async {
-      expect(ModePrefs.enabled, AppMode.values);
+      // More tools start off; only the core modes are on out of the box.
+      expect(ModePrefs.enabled, AppMode.values.where((m) => m.core));
       await ModePrefs.setEnabled(AppMode.timer, false);
       await ModePrefs.setEnabled(AppMode.alarm, false);
       expect(ModePrefs.enabled, [

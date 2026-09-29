@@ -5,8 +5,15 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
+import 'app_localizations_fr.dart';
+import 'app_localizations_hi.dart';
+import 'app_localizations_ja.dart';
+import 'app_localizations_ko.dart';
+import 'app_localizations_pt.dart';
+import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -94,8 +101,15 @@ abstract class AppLocalizations {
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
+    Locale('de'),
     Locale('en'),
-    Locale('es')
+    Locale('es'),
+    Locale('fr'),
+    Locale('hi'),
+    Locale('ja'),
+    Locale('ko'),
+    Locale('pt'),
+    Locale('zh')
   ];
 
   /// No description provided for @appTitle.
@@ -284,6 +298,24 @@ abstract class AppLocalizations {
   /// **'Dark theme'**
   String get darkTheme;
 
+  /// No description provided for @themeModeSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get themeModeSystem;
+
+  /// No description provided for @themeModeLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get themeModeLight;
+
+  /// No description provided for @themeModeDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get themeModeDark;
+
   /// No description provided for @accentColor.
   ///
   /// In en, this message translates to:
@@ -331,18 +363,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'System default'**
   String get languageSystem;
-
-  /// No description provided for @languageSpanish.
-  ///
-  /// In en, this message translates to:
-  /// **'Español'**
-  String get languageSpanish;
-
-  /// No description provided for @languageEnglish.
-  ///
-  /// In en, this message translates to:
-  /// **'English'**
-  String get languageEnglish;
 
   /// No description provided for @languageHint.
   ///
@@ -851,13 +871,13 @@ abstract class AppLocalizations {
   /// No description provided for @hapticFeedback.
   ///
   /// In en, this message translates to:
-  /// **'Vibrate when a phase ends'**
+  /// **'Vibration'**
   String get hapticFeedback;
 
   /// No description provided for @hapticFeedbackHint.
   ///
   /// In en, this message translates to:
-  /// **'A short vibration on your phone.'**
+  /// **'Taps, wheels, phase changes and alarms.'**
   String get hapticFeedbackHint;
 
   /// No description provided for @clockCombosTitle.
@@ -1655,7 +1675,7 @@ abstract class AppLocalizations {
   /// No description provided for @onbLookBody.
   ///
   /// In en, this message translates to:
-  /// **'Theme and accent color. The screen updates as you choose.'**
+  /// **'Theme, clock style and color. Start from a combo, then tweak the color if you like.'**
   String get onbLookBody;
 
   /// No description provided for @onbClockTitle.
@@ -1687,6 +1707,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Display and behavior. All of this is in Settings too.'**
   String get onbOptionsBody;
+
+  /// No description provided for @onbModesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your tools'**
+  String get onbModesTitle;
+
+  /// No description provided for @onbModesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Enfo is a clock and timer toolbox. Turn on what you will use; change it anytime from the modes menu.'**
+  String get onbModesBody;
+
+  /// No description provided for @onbPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get onbPreview;
+
+  /// No description provided for @onbDisplayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Display'**
+  String get onbDisplayTitle;
+
+  /// No description provided for @onbDisplayBody.
+  ///
+  /// In en, this message translates to:
+  /// **'How the clock looks and how big everything is.'**
+  String get onbDisplayBody;
+
+  /// No description provided for @onbClockModeDesign.
+  ///
+  /// In en, this message translates to:
+  /// **'Clock mode design'**
+  String get onbClockModeDesign;
+
+  /// No description provided for @onbPermTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Permissions'**
+  String get onbPermTitle;
+
+  /// No description provided for @onbPermBody.
+  ///
+  /// In en, this message translates to:
+  /// **'So timers and alarms can reach you even when Enfo is closed.'**
+  String get onbPermBody;
+
+  /// No description provided for @onbPermNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get onbPermNotifications;
+
+  /// No description provided for @onbPermNotificationsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Alerts when a timer ends or an alarm rings.'**
+  String get onbPermNotificationsHint;
+
+  /// No description provided for @onbPermExact.
+  ///
+  /// In en, this message translates to:
+  /// **'Exact alarms'**
+  String get onbPermExact;
+
+  /// No description provided for @onbPermExactHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring at the exact minute, even in battery saver.'**
+  String get onbPermExactHint;
+
+  /// No description provided for @onbPermAllow.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow'**
+  String get onbPermAllow;
+
+  /// No description provided for @onbPermAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'Allowed'**
+  String get onbPermAllowed;
+
+  /// No description provided for @onbPermLater.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change these anytime in the system settings.'**
+  String get onbPermLater;
 
   /// No description provided for @onbNext.
   ///
@@ -2341,6 +2451,1758 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'On this device Enfo has to be open for alarms to ring.'**
   String get alarmDesktopHint;
+
+  /// No description provided for @hapticsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Vibration'**
+  String get hapticsTitle;
+
+  /// No description provided for @hapticsOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get hapticsOff;
+
+  /// No description provided for @hapticsStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Strength'**
+  String get hapticsStrength;
+
+  /// No description provided for @hapticsSoft.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft'**
+  String get hapticsSoft;
+
+  /// No description provided for @hapticsMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get hapticsMedium;
+
+  /// No description provided for @hapticsStrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Strong'**
+  String get hapticsStrong;
+
+  /// No description provided for @hapticsTouch.
+  ///
+  /// In en, this message translates to:
+  /// **'Touch'**
+  String get hapticsTouch;
+
+  /// No description provided for @hapticsTouchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Buttons, switches and selections.'**
+  String get hapticsTouchHint;
+
+  /// No description provided for @hapticsMotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Motion'**
+  String get hapticsMotion;
+
+  /// No description provided for @hapticsMotionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Wheels, sliders, dragging and transitions.'**
+  String get hapticsMotionHint;
+
+  /// No description provided for @hapticsAlerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Alerts'**
+  String get hapticsAlerts;
+
+  /// No description provided for @hapticsAlertsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Timers, phase changes, the final countdown and alarms.'**
+  String get hapticsAlertsHint;
+
+  /// No description provided for @hapticsAlarmPattern.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarm pattern'**
+  String get hapticsAlarmPattern;
+
+  /// No description provided for @hapticsAlarmPatternHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a pattern to feel it. The ringing screen pulses to the same beat.'**
+  String get hapticsAlarmPatternHint;
+
+  /// No description provided for @hapticsPatternHeartbeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Heartbeat'**
+  String get hapticsPatternHeartbeat;
+
+  /// No description provided for @hapticsPatternPulse.
+  ///
+  /// In en, this message translates to:
+  /// **'Pulse'**
+  String get hapticsPatternPulse;
+
+  /// No description provided for @hapticsPatternCrescendo.
+  ///
+  /// In en, this message translates to:
+  /// **'Crescendo'**
+  String get hapticsPatternCrescendo;
+
+  /// No description provided for @hapticsPatternRipple.
+  ///
+  /// In en, this message translates to:
+  /// **'Ripple'**
+  String get hapticsPatternRipple;
+
+  /// No description provided for @hapticsPatternBeacon.
+  ///
+  /// In en, this message translates to:
+  /// **'Beacon'**
+  String get hapticsPatternBeacon;
+
+  /// No description provided for @hapticsTry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try it'**
+  String get hapticsTry;
+
+  /// No description provided for @hapticsTryTap.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap'**
+  String get hapticsTryTap;
+
+  /// No description provided for @hapticsTrySuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get hapticsTrySuccess;
+
+  /// No description provided for @hapticsTryToRest.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus done'**
+  String get hapticsTryToRest;
+
+  /// No description provided for @hapticsTryToWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest done'**
+  String get hapticsTryToWork;
+
+  /// No description provided for @hapticsTryTimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Timer done'**
+  String get hapticsTryTimer;
+
+  /// No description provided for @hapticsTryWarning.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get hapticsTryWarning;
+
+  /// No description provided for @hapticsUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'This device has no vibration motor.'**
+  String get hapticsUnavailable;
+
+  /// No description provided for @hapticsWhen.
+  ///
+  /// In en, this message translates to:
+  /// **'When it vibrates'**
+  String get hapticsWhen;
+
+  /// No description provided for @widgetsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Widgets'**
+  String get widgetsTitle;
+
+  /// No description provided for @widgetsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Clocks and timers on your home screen'**
+  String get widgetsSubtitle;
+
+  /// No description provided for @widgetsAddHeader.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to home screen'**
+  String get widgetsAddHeader;
+
+  /// No description provided for @widgetsAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get widgetsAdd;
+
+  /// No description provided for @widgetsDynamicColor.
+  ///
+  /// In en, this message translates to:
+  /// **'Material You colors'**
+  String get widgetsDynamicColor;
+
+  /// No description provided for @widgetsDynamicColorHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Widgets take their colors from your wallpaper. Turn off to use Enfo\'s accent color.'**
+  String get widgetsDynamicColorHint;
+
+  /// No description provided for @widgetsManualHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your launcher can\'t add widgets from here. Long-press the home screen, choose Widgets and look for Enfo.'**
+  String get widgetsManualHint;
+
+  /// No description provided for @widgetsStyleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The Pomodoro and timer widgets are drawn in the clock style you picked. Change the style in the app and they follow.'**
+  String get widgetsStyleHint;
+
+  /// No description provided for @widgetsTapHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Buttons on a widget open Enfo and do the action, so time is always kept by the app.'**
+  String get widgetsTapHint;
+
+  /// No description provided for @shortcutsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keyboard & remote'**
+  String get shortcutsTitle;
+
+  /// No description provided for @shortcutsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shortcuts for keyboard, mouse and TV remote'**
+  String get shortcutsSubtitle;
+
+  /// No description provided for @shortcutsIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrow keys or the remote\'s D-pad move around, Enter or OK presses. These keys do the rest.'**
+  String get shortcutsIntro;
+
+  /// No description provided for @shortcutKeySpace.
+  ///
+  /// In en, this message translates to:
+  /// **'Space'**
+  String get shortcutKeySpace;
+
+  /// No description provided for @shortcutPlayPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Start or pause'**
+  String get shortcutPlayPause;
+
+  /// No description provided for @shortcutReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get shortcutReset;
+
+  /// No description provided for @shortcutLap.
+  ///
+  /// In en, this message translates to:
+  /// **'Lap (stopwatch)'**
+  String get shortcutLap;
+
+  /// No description provided for @shortcutJumpMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to mode 1–9'**
+  String get shortcutJumpMode;
+
+  /// No description provided for @shortcutStepMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous / next mode'**
+  String get shortcutStepMode;
+
+  /// No description provided for @shortcutFullscreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Full screen'**
+  String get shortcutFullscreen;
+
+  /// No description provided for @shortcutDim.
+  ///
+  /// In en, this message translates to:
+  /// **'Dim the screen (full screen)'**
+  String get shortcutDim;
+
+  /// No description provided for @shortcutSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get shortcutSettings;
+
+  /// No description provided for @shortcutModes.
+  ///
+  /// In en, this message translates to:
+  /// **'Modes menu'**
+  String get shortcutModes;
+
+  /// No description provided for @shortcutBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back / leave full screen'**
+  String get shortcutBack;
+
+  /// No description provided for @shortcutHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Show this list'**
+  String get shortcutHelp;
+
+  /// No description provided for @onbMoreTools.
+  ///
+  /// In en, this message translates to:
+  /// **'More tools'**
+  String get onbMoreTools;
+
+  /// No description provided for @modeEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Events'**
+  String get modeEvent;
+
+  /// No description provided for @modeDescEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Count the days to what matters'**
+  String get modeDescEvent;
+
+  /// No description provided for @modeIntervals.
+  ///
+  /// In en, this message translates to:
+  /// **'Intervals'**
+  String get modeIntervals;
+
+  /// No description provided for @modeDescIntervals.
+  ///
+  /// In en, this message translates to:
+  /// **'Work and rest rounds, like HIIT'**
+  String get modeDescIntervals;
+
+  /// No description provided for @modeBreathe.
+  ///
+  /// In en, this message translates to:
+  /// **'Breathe'**
+  String get modeBreathe;
+
+  /// No description provided for @modeDescBreathe.
+  ///
+  /// In en, this message translates to:
+  /// **'Guided breathing to calm down'**
+  String get modeDescBreathe;
+
+  /// No description provided for @modeTracker.
+  ///
+  /// In en, this message translates to:
+  /// **'Tracker'**
+  String get modeTracker;
+
+  /// No description provided for @modeDescTracker.
+  ///
+  /// In en, this message translates to:
+  /// **'Time what you do, see the totals'**
+  String get modeDescTracker;
+
+  /// No description provided for @modeKitchen.
+  ///
+  /// In en, this message translates to:
+  /// **'Kitchen'**
+  String get modeKitchen;
+
+  /// No description provided for @modeDescKitchen.
+  ///
+  /// In en, this message translates to:
+  /// **'Several named timers at once'**
+  String get modeDescKitchen;
+
+  /// No description provided for @modeSleep.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep'**
+  String get modeSleep;
+
+  /// No description provided for @modeDescSleep.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan bedtime and wake-up in sleep cycles'**
+  String get modeDescSleep;
+
+  /// No description provided for @modeVersus.
+  ///
+  /// In en, this message translates to:
+  /// **'Turns'**
+  String get modeVersus;
+
+  /// No description provided for @modeDescVersus.
+  ///
+  /// In en, this message translates to:
+  /// **'Two-player clock for chess, games and debates'**
+  String get modeDescVersus;
+
+  /// No description provided for @modeBreaks.
+  ///
+  /// In en, this message translates to:
+  /// **'Breaks'**
+  String get modeBreaks;
+
+  /// No description provided for @modeDescBreaks.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders to rest your eyes and stretch'**
+  String get modeDescBreaks;
+
+  /// No description provided for @modeAmbient.
+  ///
+  /// In en, this message translates to:
+  /// **'Ambient'**
+  String get modeAmbient;
+
+  /// No description provided for @modeDescAmbient.
+  ///
+  /// In en, this message translates to:
+  /// **'Background sounds with a sleep timer'**
+  String get modeDescAmbient;
+
+  /// No description provided for @intervalsPresetTabata.
+  ///
+  /// In en, this message translates to:
+  /// **'Tabata'**
+  String get intervalsPresetTabata;
+
+  /// No description provided for @intervalsPresetHiit.
+  ///
+  /// In en, this message translates to:
+  /// **'HIIT'**
+  String get intervalsPresetHiit;
+
+  /// No description provided for @intervalsPresetEmom.
+  ///
+  /// In en, this message translates to:
+  /// **'EMOM'**
+  String get intervalsPresetEmom;
+
+  /// No description provided for @intervalsPresetCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get intervalsPresetCustom;
+
+  /// No description provided for @intervalsWarmUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Warm-up'**
+  String get intervalsWarmUp;
+
+  /// No description provided for @intervalsWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Work'**
+  String get intervalsWork;
+
+  /// No description provided for @intervalsRest.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest'**
+  String get intervalsRest;
+
+  /// No description provided for @intervalsRounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounds'**
+  String get intervalsRounds;
+
+  /// No description provided for @intervalsCoolDown.
+  ///
+  /// In en, this message translates to:
+  /// **'Cool-down'**
+  String get intervalsCoolDown;
+
+  /// No description provided for @intervalsOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get intervalsOff;
+
+  /// No description provided for @intervalsRound.
+  ///
+  /// In en, this message translates to:
+  /// **'Round {current}/{total}'**
+  String intervalsRound(int current, int total);
+
+  /// No description provided for @intervalsTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total {duration}'**
+  String intervalsTotal(String duration);
+
+  /// No description provided for @intervalsSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip to next phase'**
+  String get intervalsSkip;
+
+  /// No description provided for @intervalsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a row to edit it. Any change saves as Custom.'**
+  String get intervalsHint;
+
+  /// No description provided for @intervalsDoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Workout complete'**
+  String get intervalsDoneTitle;
+
+  /// No description provided for @intervalsDoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} · {duration}. Great work!'**
+  String intervalsDoneBody(String name, String duration);
+
+  /// No description provided for @kitchenPasta.
+  ///
+  /// In en, this message translates to:
+  /// **'Pasta'**
+  String get kitchenPasta;
+
+  /// No description provided for @kitchenEggs.
+  ///
+  /// In en, this message translates to:
+  /// **'Eggs'**
+  String get kitchenEggs;
+
+  /// No description provided for @kitchenTea.
+  ///
+  /// In en, this message translates to:
+  /// **'Tea'**
+  String get kitchenTea;
+
+  /// No description provided for @kitchenRice.
+  ///
+  /// In en, this message translates to:
+  /// **'Rice'**
+  String get kitchenRice;
+
+  /// No description provided for @kitchenOven.
+  ///
+  /// In en, this message translates to:
+  /// **'Oven'**
+  String get kitchenOven;
+
+  /// No description provided for @kitchenCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get kitchenCustom;
+
+  /// No description provided for @kitchenNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get kitchenNameHint;
+
+  /// No description provided for @kitchenAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Start timer'**
+  String get kitchenAdd;
+
+  /// No description provided for @kitchenDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete timer'**
+  String get kitchenDelete;
+
+  /// No description provided for @kitchenEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No timers yet. Tap a chip to start one.'**
+  String get kitchenEmpty;
+
+  /// No description provided for @kitchenDefaultName.
+  ///
+  /// In en, this message translates to:
+  /// **'Timer'**
+  String get kitchenDefaultName;
+
+  /// No description provided for @kitchenDoneTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} is ready'**
+  String kitchenDoneTitle(String name);
+
+  /// No description provided for @kitchenDoneBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The {duration} timer finished.'**
+  String kitchenDoneBody(String duration);
+
+  /// No description provided for @trackerToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get trackerToday;
+
+  /// No description provided for @trackerWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 7 days'**
+  String get trackerWeek;
+
+  /// No description provided for @trackerTapToStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap an activity to start timing it'**
+  String get trackerTapToStart;
+
+  /// No description provided for @trackerNoRunning.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing running'**
+  String get trackerNoRunning;
+
+  /// No description provided for @trackerAddActivity.
+  ///
+  /// In en, this message translates to:
+  /// **'New activity'**
+  String get trackerAddActivity;
+
+  /// No description provided for @trackerNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get trackerNameHint;
+
+  /// No description provided for @trackerStudy.
+  ///
+  /// In en, this message translates to:
+  /// **'Study'**
+  String get trackerStudy;
+
+  /// No description provided for @trackerReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading'**
+  String get trackerReading;
+
+  /// No description provided for @trackerCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Code'**
+  String get trackerCode;
+
+  /// No description provided for @trackerExercise.
+  ///
+  /// In en, this message translates to:
+  /// **'Exercise'**
+  String get trackerExercise;
+
+  /// No description provided for @trackerEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit activity'**
+  String get trackerEdit;
+
+  /// No description provided for @trackerDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Details and chart'**
+  String get trackerDetails;
+
+  /// No description provided for @trackerColor.
+  ///
+  /// In en, this message translates to:
+  /// **'Color'**
+  String get trackerColor;
+
+  /// No description provided for @trackerIcon.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get trackerIcon;
+
+  /// No description provided for @trackerDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete activity'**
+  String get trackerDelete;
+
+  /// No description provided for @trackerDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm: delete this activity'**
+  String get trackerDeleteConfirm;
+
+  /// No description provided for @trackerDeleteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Time already logged stays in the activity history.'**
+  String get trackerDeleteHint;
+
+  /// No description provided for @trackerAddTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Add time manually'**
+  String get trackerAddTime;
+
+  /// No description provided for @trackerAddMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Add {minutes} min'**
+  String trackerAddMinutes(int minutes);
+
+  /// No description provided for @trackerMinutesFewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Fewer minutes'**
+  String get trackerMinutesFewer;
+
+  /// No description provided for @trackerMinutesMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More minutes'**
+  String get trackerMinutesMore;
+
+  /// No description provided for @trackerStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get trackerStop;
+
+  /// No description provided for @versusDuel.
+  ///
+  /// In en, this message translates to:
+  /// **'Duel'**
+  String get versusDuel;
+
+  /// No description provided for @versusSpeakers.
+  ///
+  /// In en, this message translates to:
+  /// **'Speakers'**
+  String get versusSpeakers;
+
+  /// No description provided for @versusCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get versusCustom;
+
+  /// No description provided for @versusIncrement.
+  ///
+  /// In en, this message translates to:
+  /// **'Increment'**
+  String get versusIncrement;
+
+  /// No description provided for @versusTapToStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap your side to start your clock'**
+  String get versusTapToStart;
+
+  /// No description provided for @versusTimeIsUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Time is up'**
+  String get versusTimeIsUp;
+
+  /// No description provided for @versusMoves.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 move} other{{count} moves}}'**
+  String versusMoves(int count);
+
+  /// No description provided for @versusResetGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset game'**
+  String get versusResetGame;
+
+  /// No description provided for @versusConfirmReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm reset'**
+  String get versusConfirmReset;
+
+  /// No description provided for @versusSpeakerN.
+  ///
+  /// In en, this message translates to:
+  /// **'Speaker {n}'**
+  String versusSpeakerN(int n);
+
+  /// No description provided for @versusAddSpeaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Add speaker'**
+  String get versusAddSpeaker;
+
+  /// No description provided for @versusRemoveSpeaker.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove speaker'**
+  String get versusRemoveSpeaker;
+
+  /// No description provided for @versusSpeakerName.
+  ///
+  /// In en, this message translates to:
+  /// **'Speaker or topic'**
+  String get versusSpeakerName;
+
+  /// No description provided for @versusNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next speaker'**
+  String get versusNext;
+
+  /// No description provided for @versusFinish.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get versusFinish;
+
+  /// No description provided for @versusOvertime.
+  ///
+  /// In en, this message translates to:
+  /// **'Overtime'**
+  String get versusOvertime;
+
+  /// No description provided for @versusElapsedOfPlanned.
+  ///
+  /// In en, this message translates to:
+  /// **'{elapsed} of {planned}'**
+  String versusElapsedOfPlanned(String elapsed, String planned);
+
+  /// No description provided for @versusAgendaDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Agenda finished'**
+  String get versusAgendaDone;
+
+  /// No description provided for @versusStartAgenda.
+  ///
+  /// In en, this message translates to:
+  /// **'Start agenda'**
+  String get versusStartAgenda;
+
+  /// No description provided for @versusMinutesFewer.
+  ///
+  /// In en, this message translates to:
+  /// **'Fewer minutes'**
+  String get versusMinutesFewer;
+
+  /// No description provided for @versusMinutesMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More minutes'**
+  String get versusMinutesMore;
+
+  /// No description provided for @versusTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get versusTotal;
+
+  /// No description provided for @breatheInhale.
+  ///
+  /// In en, this message translates to:
+  /// **'Inhale'**
+  String get breatheInhale;
+
+  /// No description provided for @breatheHold.
+  ///
+  /// In en, this message translates to:
+  /// **'Hold'**
+  String get breatheHold;
+
+  /// No description provided for @breatheExhale.
+  ///
+  /// In en, this message translates to:
+  /// **'Exhale'**
+  String get breatheExhale;
+
+  /// No description provided for @breatheStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start breathing'**
+  String get breatheStart;
+
+  /// No description provided for @breathePause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get breathePause;
+
+  /// No description provided for @breatheResume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get breatheResume;
+
+  /// No description provided for @breatheReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop session'**
+  String get breatheReset;
+
+  /// No description provided for @breatheDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Well done'**
+  String get breatheDone;
+
+  /// No description provided for @breatheReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a comfortable position'**
+  String get breatheReady;
+
+  /// No description provided for @breathePatternBox.
+  ///
+  /// In en, this message translates to:
+  /// **'Box'**
+  String get breathePatternBox;
+
+  /// No description provided for @breathePatternCoherent.
+  ///
+  /// In en, this message translates to:
+  /// **'Coherent'**
+  String get breathePatternCoherent;
+
+  /// No description provided for @breathePatternCalm.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm'**
+  String get breathePatternCalm;
+
+  /// No description provided for @breathePatternCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get breathePatternCustom;
+
+  /// No description provided for @breatheSession.
+  ///
+  /// In en, this message translates to:
+  /// **'Session'**
+  String get breatheSession;
+
+  /// No description provided for @breatheEndless.
+  ///
+  /// In en, this message translates to:
+  /// **'Endless'**
+  String get breatheEndless;
+
+  /// No description provided for @breatheSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}s'**
+  String breatheSeconds(int n);
+
+  /// No description provided for @ambientWhite.
+  ///
+  /// In en, this message translates to:
+  /// **'White noise'**
+  String get ambientWhite;
+
+  /// No description provided for @ambientPink.
+  ///
+  /// In en, this message translates to:
+  /// **'Pink noise'**
+  String get ambientPink;
+
+  /// No description provided for @ambientBrown.
+  ///
+  /// In en, this message translates to:
+  /// **'Brown noise'**
+  String get ambientBrown;
+
+  /// No description provided for @ambientRain.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain'**
+  String get ambientRain;
+
+  /// No description provided for @ambientWind.
+  ///
+  /// In en, this message translates to:
+  /// **'Wind'**
+  String get ambientWind;
+
+  /// No description provided for @ambientOcean.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocean'**
+  String get ambientOcean;
+
+  /// No description provided for @ambientVolume.
+  ///
+  /// In en, this message translates to:
+  /// **'Volume'**
+  String get ambientVolume;
+
+  /// No description provided for @ambientSleepTimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep timer'**
+  String get ambientSleepTimer;
+
+  /// No description provided for @ambientTimerOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get ambientTimerOff;
+
+  /// No description provided for @ambientPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play sound'**
+  String get ambientPlay;
+
+  /// No description provided for @ambientStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop sound'**
+  String get ambientStop;
+
+  /// No description provided for @ambientUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Sound is not available on this device.'**
+  String get ambientUnavailable;
+
+  /// No description provided for @ambientPreparing.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing sound…'**
+  String get ambientPreparing;
+
+  /// No description provided for @ambientTimeLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'{time} left'**
+  String ambientTimeLeft(String time);
+
+  /// No description provided for @breaksStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start breaks'**
+  String get breaksStart;
+
+  /// No description provided for @breaksStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop breaks'**
+  String get breaksStop;
+
+  /// No description provided for @breaksStatusOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Break reminders are off'**
+  String get breaksStatusOff;
+
+  /// No description provided for @breaksNoneEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on at least one reminder'**
+  String get breaksNoneEnabled;
+
+  /// No description provided for @breaksNextName.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {name}'**
+  String breaksNextName(String name);
+
+  /// No description provided for @breaksToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get breaksToday;
+
+  /// No description provided for @breaksTaken.
+  ///
+  /// In en, this message translates to:
+  /// **'Breaks taken'**
+  String get breaksTaken;
+
+  /// No description provided for @breaksSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped'**
+  String get breaksSkipped;
+
+  /// No description provided for @breaksEyeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Eye rest (20-20-20)'**
+  String get breaksEyeName;
+
+  /// No description provided for @breaksEyeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Look at something 6 m (20 ft) away for 20 seconds'**
+  String get breaksEyeHint;
+
+  /// No description provided for @breaksStretchName.
+  ///
+  /// In en, this message translates to:
+  /// **'Stretch'**
+  String get breaksStretchName;
+
+  /// No description provided for @breaksStretchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Stand up and stretch your whole body'**
+  String get breaksStretchHint;
+
+  /// No description provided for @breaksWaterName.
+  ///
+  /// In en, this message translates to:
+  /// **'Drink water'**
+  String get breaksWaterName;
+
+  /// No description provided for @breaksWaterHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Have a glass of water'**
+  String get breaksWaterHint;
+
+  /// No description provided for @breaksPostureName.
+  ///
+  /// In en, this message translates to:
+  /// **'Posture check'**
+  String get breaksPostureName;
+
+  /// No description provided for @breaksPostureHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sit up straight and relax your shoulders'**
+  String get breaksPostureHint;
+
+  /// No description provided for @breaksCustomDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'My reminder'**
+  String get breaksCustomDefault;
+
+  /// No description provided for @breaksForDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Take {duration}'**
+  String breaksForDuration(String duration);
+
+  /// No description provided for @breaksEveryMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Every {minutes} min'**
+  String breaksEveryMinutes(int minutes);
+
+  /// No description provided for @breaksShorter.
+  ///
+  /// In en, this message translates to:
+  /// **'Shorter interval'**
+  String get breaksShorter;
+
+  /// No description provided for @breaksLonger.
+  ///
+  /// In en, this message translates to:
+  /// **'Longer interval'**
+  String get breaksLonger;
+
+  /// No description provided for @breaksDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get breaksDone;
+
+  /// No description provided for @breaksSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get breaksSkip;
+
+  /// No description provided for @breaksActiveHours.
+  ///
+  /// In en, this message translates to:
+  /// **'Active hours'**
+  String get breaksActiveHours;
+
+  /// No description provided for @breaksActiveHoursHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders only appear between these times'**
+  String get breaksActiveHoursHint;
+
+  /// No description provided for @breaksFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get breaksFrom;
+
+  /// No description provided for @breaksTo.
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get breaksTo;
+
+  /// No description provided for @breaksLaterHour.
+  ///
+  /// In en, this message translates to:
+  /// **'Later'**
+  String get breaksLaterHour;
+
+  /// No description provided for @breaksEarlierHour.
+  ///
+  /// In en, this message translates to:
+  /// **'Earlier'**
+  String get breaksEarlierHour;
+
+  /// No description provided for @breaksBackground.
+  ///
+  /// In en, this message translates to:
+  /// **'Also when Enfo is closed'**
+  String get breaksBackground;
+
+  /// No description provided for @breaksBackgroundOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications remind you even when the app is closed.'**
+  String get breaksBackgroundOn;
+
+  /// No description provided for @breaksBackgroundOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders only appear while Enfo is open.'**
+  String get breaksBackgroundOff;
+
+  /// No description provided for @breaksDesktopNotice.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders appear while Enfo is running (it can stay minimized).'**
+  String get breaksDesktopNotice;
+
+  /// No description provided for @breaksAddCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Add custom reminder'**
+  String get breaksAddCustom;
+
+  /// No description provided for @breaksEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit reminder'**
+  String get breaksEdit;
+
+  /// No description provided for @breaksName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get breaksName;
+
+  /// No description provided for @breaksDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration'**
+  String get breaksDuration;
+
+  /// No description provided for @breaksIcon.
+  ///
+  /// In en, this message translates to:
+  /// **'Icon'**
+  String get breaksIcon;
+
+  /// No description provided for @breaksShorterDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Shorter break'**
+  String get breaksShorterDuration;
+
+  /// No description provided for @breaksLongerDuration.
+  ///
+  /// In en, this message translates to:
+  /// **'Longer break'**
+  String get breaksLongerDuration;
+
+  /// No description provided for @breaksRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove reminder'**
+  String get breaksRemove;
+
+  /// No description provided for @breaksRemoveConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm: remove reminder'**
+  String get breaksRemoveConfirm;
+
+  /// No description provided for @breaksRemoveHint.
+  ///
+  /// In en, this message translates to:
+  /// **'It will stop reminding you.'**
+  String get breaksRemoveHint;
+
+  /// No description provided for @worldPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Plan a meeting'**
+  String get worldPlan;
+
+  /// No description provided for @worldPlanIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Slide the marker to find a time that works for everyone.'**
+  String get worldPlanIntro;
+
+  /// No description provided for @worldPlanNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Now'**
+  String get worldPlanNow;
+
+  /// No description provided for @worldPlanEarlier.
+  ///
+  /// In en, this message translates to:
+  /// **'15 minutes earlier'**
+  String get worldPlanEarlier;
+
+  /// No description provided for @worldPlanLater.
+  ///
+  /// In en, this message translates to:
+  /// **'15 minutes later'**
+  String get worldPlanLater;
+
+  /// No description provided for @worldPlanSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected time in {city}'**
+  String worldPlanSelected(String city);
+
+  /// No description provided for @worldPlanTapCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a city to use its time as the reference.'**
+  String get worldPlanTapCity;
+
+  /// No description provided for @worldPlanNextDay.
+  ///
+  /// In en, this message translates to:
+  /// **'+1 day'**
+  String get worldPlanNextDay;
+
+  /// No description provided for @worldPlanPrevDay.
+  ///
+  /// In en, this message translates to:
+  /// **'-1 day'**
+  String get worldPlanPrevDay;
+
+  /// No description provided for @worldPlanOverlapTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Everyone is at work'**
+  String get worldPlanOverlapTitle;
+
+  /// No description provided for @worldPlanNoOverlap.
+  ///
+  /// In en, this message translates to:
+  /// **'No time in the next 24 hours works for everyone.'**
+  String get worldPlanNoOverlap;
+
+  /// No description provided for @worldPlanLeastBad.
+  ///
+  /// In en, this message translates to:
+  /// **'Least bad: {time}'**
+  String worldPlanLeastBad(String time);
+
+  /// No description provided for @worldPlanAtWork.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} of {total} at work'**
+  String worldPlanAtWork(int count, int total);
+
+  /// No description provided for @worldPlanWork.
+  ///
+  /// In en, this message translates to:
+  /// **'Working hours (09-18)'**
+  String get worldPlanWork;
+
+  /// No description provided for @worldPlanNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Night'**
+  String get worldPlanNight;
+
+  /// No description provided for @worldPlanMarker.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected time'**
+  String get worldPlanMarker;
+
+  /// No description provided for @eventAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'New event'**
+  String get eventAdd;
+
+  /// No description provided for @eventEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit event'**
+  String get eventEdit;
+
+  /// No description provided for @eventName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get eventName;
+
+  /// No description provided for @eventNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Birthday, trip, launch...'**
+  String get eventNameHint;
+
+  /// No description provided for @eventYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat every year'**
+  String get eventYearly;
+
+  /// No description provided for @eventYearlyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For birthdays and anniversaries: it moves on to the next one.'**
+  String get eventYearlyHint;
+
+  /// No description provided for @eventNotify.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify me'**
+  String get eventNotify;
+
+  /// No description provided for @eventNotifyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'At the moment it arrives.'**
+  String get eventNotifyHint;
+
+  /// No description provided for @eventDayBefore.
+  ///
+  /// In en, this message translates to:
+  /// **'Also the day before'**
+  String get eventDayBefore;
+
+  /// No description provided for @eventSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get eventSave;
+
+  /// No description provided for @eventDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete event'**
+  String get eventDelete;
+
+  /// No description provided for @eventConfirmDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm: delete event'**
+  String get eventConfirmDelete;
+
+  /// No description provided for @eventDeleteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'This event will be removed.'**
+  String get eventDeleteHint;
+
+  /// No description provided for @eventEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No events yet.\nTap + to count down to one.'**
+  String get eventEmpty;
+
+  /// No description provided for @eventToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today!'**
+  String get eventToday;
+
+  /// No description provided for @eventDaysAgo.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day ago} other{{count} days ago}}'**
+  String eventDaysAgo(int count);
+
+  /// No description provided for @eventDaysShort.
+  ///
+  /// In en, this message translates to:
+  /// **'d'**
+  String get eventDaysShort;
+
+  /// No description provided for @eventUnitDays.
+  ///
+  /// In en, this message translates to:
+  /// **'days'**
+  String get eventUnitDays;
+
+  /// No description provided for @eventUnitHours.
+  ///
+  /// In en, this message translates to:
+  /// **'hours'**
+  String get eventUnitHours;
+
+  /// No description provided for @eventUnitMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'min'**
+  String get eventUnitMinutes;
+
+  /// No description provided for @eventRepeatsYearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Every year'**
+  String get eventRepeatsYearly;
+
+  /// No description provided for @eventNotifyNow.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s time!'**
+  String get eventNotifyNow;
+
+  /// No description provided for @eventNotifyTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow'**
+  String get eventNotifyTomorrow;
+
+  /// No description provided for @sleepPlanWake.
+  ///
+  /// In en, this message translates to:
+  /// **'Wake at'**
+  String get sleepPlanWake;
+
+  /// No description provided for @sleepPlanBed.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep at'**
+  String get sleepPlanBed;
+
+  /// No description provided for @sleepPlanNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Sleep now'**
+  String get sleepPlanNow;
+
+  /// No description provided for @sleepTitleWake.
+  ///
+  /// In en, this message translates to:
+  /// **'I want to wake up at'**
+  String get sleepTitleWake;
+
+  /// No description provided for @sleepTitleBed.
+  ///
+  /// In en, this message translates to:
+  /// **'I go to bed at'**
+  String get sleepTitleBed;
+
+  /// No description provided for @sleepTitleNow.
+  ///
+  /// In en, this message translates to:
+  /// **'If I fall asleep now ({time})'**
+  String sleepTitleNow(String time);
+
+  /// No description provided for @sleepBedtimeWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Bedtime'**
+  String get sleepBedtimeWord;
+
+  /// No description provided for @sleepWakeWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Wake up'**
+  String get sleepWakeWord;
+
+  /// No description provided for @sleepCyclesLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{cycles} cycles · {duration} of sleep'**
+  String sleepCyclesLine(int cycles, String duration);
+
+  /// No description provided for @sleepNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Cycles last 90 minutes and falling asleep takes about 15. Five or six cycles are recommended.'**
+  String get sleepNote;
+
+  /// No description provided for @sleepWindDown.
+  ///
+  /// In en, this message translates to:
+  /// **'Wind-down reminder'**
+  String get sleepWindDown;
+
+  /// No description provided for @sleepWindDownHint.
+  ///
+  /// In en, this message translates to:
+  /// **'An alarm 30 minutes before bedtime.'**
+  String get sleepWindDownHint;
+
+  /// No description provided for @sleepWindDownPassed.
+  ///
+  /// In en, this message translates to:
+  /// **'That time has already passed.'**
+  String get sleepWindDownPassed;
+
+  /// No description provided for @sleepWindDownLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to wind down'**
+  String get sleepWindDownLabel;
+
+  /// No description provided for @sleepAlarmLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Wake up'**
+  String get sleepAlarmLabel;
+
+  /// No description provided for @sleepSetAlarm.
+  ///
+  /// In en, this message translates to:
+  /// **'Set alarm'**
+  String get sleepSetAlarm;
+
+  /// No description provided for @sleepRemoveAlarm.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove alarm'**
+  String get sleepRemoveAlarm;
+
+  /// No description provided for @sleepAlarmSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarm set for {time}'**
+  String sleepAlarmSet(String time);
+
+  /// No description provided for @sleepPast.
+  ///
+  /// In en, this message translates to:
+  /// **'This time has already passed'**
+  String get sleepPast;
+
+  /// No description provided for @sleepRecommended.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended'**
+  String get sleepRecommended;
+
+  /// No description provided for @ambientMusicTabSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Sounds'**
+  String get ambientMusicTabSounds;
+
+  /// No description provided for @ambientMusicTab.
+  ///
+  /// In en, this message translates to:
+  /// **'Music'**
+  String get ambientMusicTab;
+
+  /// No description provided for @ambientMusicPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play music'**
+  String get ambientMusicPlay;
+
+  /// No description provided for @ambientMusicPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause music'**
+  String get ambientMusicPause;
+
+  /// No description provided for @ambientMusicNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next song'**
+  String get ambientMusicNext;
+
+  /// No description provided for @ambientMusicPrevious.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous song'**
+  String get ambientMusicPrevious;
+
+  /// No description provided for @ambientMusicShuffle.
+  ///
+  /// In en, this message translates to:
+  /// **'Shuffle'**
+  String get ambientMusicShuffle;
+
+  /// No description provided for @ambientMusicRepeat.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat all'**
+  String get ambientMusicRepeat;
+
+  /// No description provided for @ambientMusicVolume.
+  ///
+  /// In en, this message translates to:
+  /// **'Music volume'**
+  String get ambientMusicVolume;
+
+  /// No description provided for @ambientMusicCredits.
+  ///
+  /// In en, this message translates to:
+  /// **'Music credits'**
+  String get ambientMusicCredits;
+
+  /// No description provided for @ambientMusicCreditsNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Songs from Wikimedia Commons, released under CC0 or Creative Commons Attribution licenses.'**
+  String get ambientMusicCreditsNote;
+
+  /// No description provided for @modeMusic.
+  ///
+  /// In en, this message translates to:
+  /// **'Music'**
+  String get modeMusic;
+
+  /// No description provided for @modeDescMusic.
+  ///
+  /// In en, this message translates to:
+  /// **'Lo-fi songs to focus to'**
+  String get modeDescMusic;
+
+  /// No description provided for @musicCreditsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Artists and licenses'**
+  String get musicCreditsSubtitle;
+
+  /// No description provided for @displayMenuButtons.
+  ///
+  /// In en, this message translates to:
+  /// **'Menu buttons'**
+  String get displayMenuButtons;
+
+  /// No description provided for @displayMenuButtonsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose which buttons appear in the bottom menu. Settings is always there.'**
+  String get displayMenuButtonsHint;
 }
 
 class _AppLocalizationsDelegate
@@ -2353,8 +4215,17 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'es'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+        'de',
+        'en',
+        'es',
+        'fr',
+        'hi',
+        'ja',
+        'ko',
+        'pt',
+        'zh'
+      ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -2363,10 +4234,24 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'de':
+      return AppLocalizationsDe();
     case 'en':
       return AppLocalizationsEn();
     case 'es':
       return AppLocalizationsEs();
+    case 'fr':
+      return AppLocalizationsFr();
+    case 'hi':
+      return AppLocalizationsHi();
+    case 'ja':
+      return AppLocalizationsJa();
+    case 'ko':
+      return AppLocalizationsKo();
+    case 'pt':
+      return AppLocalizationsPt();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../app_preferences.dart';
+import '../bar_buttons.dart';
 import '../l10n/locale_controller.dart';
 import '../settings.dart';
 import '../ui/atoms/app_icon_button.dart';
@@ -20,6 +21,7 @@ class ModeScaffold extends StatelessWidget {
     super.key,
     required this.body,
     this.actions = const [],
+    this.primaryAction,
     this.showClockBar = true,
   });
 
@@ -28,6 +30,9 @@ class ModeScaffold extends StatelessWidget {
 
   /// Mode-specific buttons, placed before the shared ones.
   final List<Widget> actions;
+
+  /// The mode's play/pause control; the shell places it last in the bar.
+  final Widget? primaryAction;
 
   /// The little "current time" readout. A clock mode hides it (redundant).
   final bool showClockBar;
@@ -59,15 +64,19 @@ class ModeScaffold extends StatelessWidget {
           icon: const Icon(Icons.tune_rounded),
         ),
         if (!r.isWatch)
-          AppIconButton(
-            tooltip: l10n.tooltipActivity,
-            onPressed: () => Navigator.of(context)
-                .push(appPageRoute((_) => const ActivityPage())),
-            icon: const Icon(Icons.bar_chart_rounded),
+          BarButtonVisibility(
+            button: BarButton.stats,
+            child: AppIconButton(
+              tooltip: l10n.tooltipActivity,
+              onPressed: () => Navigator.of(context)
+                  .push(appPageRoute((_) => const ActivityPage())),
+              icon: const Icon(Icons.bar_chart_rounded),
+            ),
           ),
         ...actions,
         const ModeActionButtons(),
       ],
+      primaryAction: primaryAction,
     );
   }
 }

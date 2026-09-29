@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="w_radius">24dp</dimen>
+    <dimen name="w_radius_inner">16dp</dimen>
+    <dimen name="w_pad">12dp</dimen>
+    <!-- Which of the two pictures of a face widget (light / dark) shows.
+         Flipped in values-night, so the launcher swaps them by itself when
+         the system theme changes, with no update from the app. -->
+    <item name="w_alpha_light" format="float" type="dimen">1</item>
+    <item name="w_alpha_dark" format="float" type="dimen">0</item>
+</resources>

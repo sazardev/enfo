@@ -1,17 +1,21 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:enfo/app_preferences.dart';
+import 'package:enfo/haptics/haptics.dart';
 import 'package:enfo/l10n/gen/app_localizations.dart';
 import 'package:enfo/l10n/locale_controller.dart';
 import 'package:enfo/modes/clock/clock_prefs.dart';
 import 'package:enfo/modes/clock/time_builder.dart';
 import 'package:enfo/modes/alarm/alarm_service.dart';
 import 'package:enfo/modes/alerts.dart';
+import 'package:enfo/modes/app_shortcuts.dart';
 import 'package:enfo/modes/fullscreen.dart';
 import 'package:enfo/modes/stopwatch/stopwatch_controller.dart';
 import 'package:enfo/modes/timer/timer_controller.dart';
 import 'package:enfo/modes/world/world_prefs.dart';
+import 'package:enfo/pomodoro_state.dart';
 import 'package:timezone/data/latest_10y.dart' as tzdata;
 import 'package:enfo/modes/mode_prefs.dart';
+import 'package:enfo/modes/tool_history.dart';
 import 'package:enfo/theme.dart';
 import 'package:enfo/ui/design/responsive.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +42,7 @@ Future<void> resetTestState([Map<String, Object> initial = const {}]) async {
   SharedPreferencesAsyncPlatform.instance =
       InMemorySharedPreferencesAsync.empty();
   await AppPreferences.load();
+  await Haptics.load();
   await ModePrefs.load();
   await Fullscreen.load();
   await ClockPrefs.load();
@@ -46,10 +51,12 @@ Future<void> resetTestState([Map<String, Object> initial = const {}]) async {
   await AlarmService.load();
   TimerController.instance.wipe();
   StopwatchController.instance.wipe();
+  PomodoroStore.wipe();
   Alerts.reset();
   Fullscreen.active.value = false;
   Themes.resetAccent();
   LocaleController.locale.value = const Locale('en');
+  ToolHistory.debugResetQueue();
   nowProvider = DateTime.now;
 }
 
@@ -62,6 +69,7 @@ Widget testApp(Widget home) => AdaptiveTheme(
         valueListenable: LocaleController.locale,
         builder: (context, locale, _) => MaterialApp(
           debugShowCheckedModeBanner: false,
+          navigatorKey: appNavigatorKey,
           theme: theme,
           darkTheme: dark,
           locale: locale,
@@ -81,7 +89,7 @@ Widget testApp(Widget home) => AdaptiveTheme(
                 data: media.copyWith(textScaler: TextScaler.linear(scale)),
                 child: IconTheme.merge(
                   data: IconThemeData(size: 24 * scale),
-                  child: child!,
+                  child: AppShortcuts(child: child!),
                 ),
               );
             },
@@ -95,4 +103,39 @@ void setScreen(WidgetTester tester, Size size) {
   tester.view.physicalSize = size;
   tester.view.devicePixelRatio = 1;
   addTearDown(tester.view.reset);
+}
+
+/// Fakes the phone: records what reaches the platform haptic engine and the
+/// `vibration` plugin.
+class FakePhone {
+  final system = <String>[];
+  final patterns = <Map<Object?, Object?>>[];
+  var cancels = 0;
+
+  void attach() {
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(SystemChannels.platform, (call) async {
+      if (call.method == 'HapticFeedback.vibrate') {
+        system.add(call.arguments as String);
+      }
+      return null;
+    });
+    messenger.setMockMethodCallHandler(const MethodChannel('vibration'),
+        (call) async {
+      if (call.method == 'vibrate') {
+        patterns.add(Map<Object?, Object?>.from(call.arguments as Map));
+      } else if (call.method == 'cancel') {
+        cancels++;
+      }
+      return null;
+    });
+  }
+
+  void detach() {
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(SystemChannels.platform, null);
+    messenger.setMockMethodCallHandler(const MethodChannel('vibration'), null);
+  }
 }

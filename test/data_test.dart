@@ -40,6 +40,8 @@ Map<String, Object> _populated() => {
       'session_history': jsonEncode([_session(DateTime(2026, 9, 1)).toJson()]),
     };
 
+const _modeKeys = {'mode_seen', 'mode_disabled'};
+
 void main() {
   setUp(() async {
     SharedPreferences.setMockInitialValues(_populated());
@@ -59,7 +61,9 @@ void main() {
       await AppData.resetSettings();
 
       final prefs = await SharedPreferences.getInstance();
-      expect(prefs.getKeys(), {'onboarded', 'session_history'});
+      // Reloading the mode list re-records its own defaults.
+      expect(prefs.getKeys().difference(_modeKeys),
+          {'onboarded', 'session_history'});
       expect(AppPreferences.autoStartNext.value, false);
       expect(AppPreferences.showClock.value, true);
       expect(AppPreferences.uiSize.value, UiSize.normal);
@@ -72,7 +76,7 @@ void main() {
       await AppData.eraseAll();
 
       final prefs = await SharedPreferences.getInstance();
-      expect(prefs.getKeys(), isEmpty);
+      expect(prefs.getKeys().difference(_modeKeys), isEmpty);
       expect(await _isOnboarded(), false);
       expect(await SessionHistory.load(), isEmpty);
       expect(Themes.accent, Themes.defaultAccent);
@@ -197,6 +201,8 @@ void main() {
       expect(await SessionHistory.load(), hasLength(1));
       // The intro starts from the rhythm in use, not the classic preset.
       await tester.tap(find.text('Next'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Next')); // past the modes step
       await tester.pumpAndSettle();
       expect(find.text('50/10 min'), findsWidgets);
     });

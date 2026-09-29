@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_clock_label">Enfo · Reloj</string>
+    <string name="widget_clock_desc">La hora y la fecha, con los colores de tu sistema.</string>
+    <string name="widget_analog_label">Enfo · Reloj analógico</string>
+    <string name="widget_analog_desc">Un reloj analógico tranquilo.</string>
+    <string name="widget_pomodoro_label">Enfo · Pomodoro</string>
+    <string name="widget_pomodoro_desc">Tu Pomodoro con el estilo de reloj que elijas. Toca el botón para iniciar o pausar.</string>
+    <string name="widget_timer_label">Enfo · Temporizador</string>
+    <string name="widget_timer_desc">Inicia un temporizador con un toque, dibujado con tu estilo de reloj.</string>
+    <string name="widget_stopwatch_label">Enfo · Cronómetro</string>
+    <string name="widget_stopwatch_desc">Inicia, detén y toma vueltas sin abrir la app.</string>
+    <string name="widget_alarm_label">Enfo · Alarmas</string>
+    <string name="widget_alarm_desc">Tus próximas alarmas de un vistazo.</string>
+    <string name="widget_world_label">Enfo · Reloj mundial</string>
+    <string name="widget_world_desc">La hora en tus ciudades.</string>
+    <string name="widget_open">Abrir Enfo</string>
+    <string name="widget_sample_date">lun, 29 sep</string>
+</resources>

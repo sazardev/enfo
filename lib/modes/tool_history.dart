@@ -1,10 +1,25 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// What kind of thing happened. Pomodoro sessions keep their own richer
 /// history ([SessionHistory]); everything else lands here.
-enum ToolKind { timer, stopwatch, alarm, display }
+enum ToolKind {
+  timer,
+  stopwatch,
+  alarm,
+  display,
+  // Later modes. Their names match their [AppMode] so the history can pick
+  // the icon and title; `label` is the specific thing (workout, activity,
+  // recipe, game), `seconds` how long it ran, `planned` the plan.
+  intervals,
+  breathe,
+  tracker,
+  kitchen,
+  versus,
+}
 
 /// One entry in the tools history: a timer that ran, a stopwatch with its
 /// laps, an alarm that rang, or a stretch of time the clock was on display.
@@ -86,7 +101,27 @@ class ToolHistory {
     }
   }
 
-  static Future<void> add(ToolEvent event) async {
+  /// Writes are read-modify-write: chain them so two events logged in the
+  /// same tick (a timer ending as another is stopped) both survive.
+  static Future<void>? _last;
+  static Zone? _lastZone;
+
+  @visibleForTesting
+  static void debugResetQueue() => _last = null;
+
+  static Future<void> add(ToolEvent event) {
+    // A write still pending in another zone (a finished test's fake-async
+    // zone) would never complete: only chain within the current zone.
+    if (_lastZone != Zone.current) {
+      _last = null;
+      _lastZone = Zone.current;
+    }
+    final next = (_last ?? Future<void>.value()).then((_) => _add(event));
+    _last = next.catchError((_) {});
+    return next;
+  }
+
+  static Future<void> _add(ToolEvent event) async {
     final events = await load();
     events.add(event);
     final kept = events.length > _maxEvents

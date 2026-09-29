@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// One work or rest phase, from the first tap on start until it either ran
-/// to the end ([completed]) or was abandoned (reset, preset change, app
-/// closed).
+/// to the end ([completed]) or was abandoned (reset, preset change).
+/// Closing the app does not abandon it: the phase is saved and resumes.
 class PomodoroSession {
   const PomodoroSession({
     required this.isWork,

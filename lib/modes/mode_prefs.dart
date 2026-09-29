@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_mode.dart';
+import '../haptics/haptics.dart';
 
 /// Which modes exist for the user, in what order, and which one is showing.
 /// Order is also the order the quick-switch button cycles through.
@@ -10,6 +11,7 @@ class ModePrefs {
   static const _disabledKey = 'mode_disabled';
   static const _currentKey = 'mode_current';
   static const _startKey = 'mode_start';
+  static const _seenKey = 'mode_seen';
 
   static final order = ValueNotifier<List<AppMode>>(List.of(AppMode.values));
   static final disabled = ValueNotifier<Set<AppMode>>(<AppMode>{});
@@ -50,6 +52,27 @@ class ModePrefs {
         .map(_parse)
         .whereType<AppMode>()
         .toSet();
+    // A mode the user has never been offered starts off unless it is core,
+    // so an update does not bury the quick-switch under new tools.
+    final seen = (prefs.getString(_seenKey) ?? '')
+        .split(',')
+        .map(_parse)
+        .whereType<AppMode>()
+        .toSet();
+    if (prefs.getString(_seenKey) == null &&
+        prefs.getString(_orderKey) != null) {
+      // Existing install from before the seen list: the original modes.
+      seen.addAll(AppMode.values.where((m) => m.core));
+    }
+    final fresh = AppMode.values.where((m) => !seen.contains(m));
+    disabled.value = {
+      ...disabled.value,
+      ...fresh.where((m) => !m.core),
+    };
+    await prefs.setString(
+        _seenKey, AppMode.values.map((m) => m.name).join(','));
+    await prefs.setString(
+        _disabledKey, disabled.value.map((m) => m.name).join(','));
     // Never leave the user with nothing.
     if (enabled.isEmpty || disabled.value.length >= AppMode.values.length) {
       disabled.value = <AppMode>{};
@@ -65,6 +88,7 @@ class ModePrefs {
 
   static Future<void> setCurrent(AppMode mode) async {
     if (!enabled.contains(mode)) return;
+    if (current.value != mode) Haptics.transition();
     current.value = mode;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_currentKey, mode.name);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../atoms/bouncy_tap.dart';
+import '../atoms/chubby_icon.dart';
 import '../design/radii.dart';
 import '../design/responsive.dart';
 import '../design/spacing.dart';
@@ -63,7 +64,7 @@ class SettingsNavTile extends StatelessWidget {
                       : colorScheme.primary.withValues(alpha: 0.14),
                   borderRadius: AppRadii.smRadius,
                 ),
-                child: Icon(
+                child: ChubbyIcon(
                   icon,
                   size: badge * 0.55,
                   color: selected ? colorScheme.onPrimary : colorScheme.primary,

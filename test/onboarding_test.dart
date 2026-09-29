@@ -3,6 +3,8 @@ import 'package:enfo/app_preferences.dart';
 import 'package:enfo/home.dart';
 import 'package:enfo/l10n/gen/app_localizations.dart';
 import 'package:enfo/l10n/locale_controller.dart';
+import 'package:enfo/modes/app_mode.dart';
+import 'package:enfo/modes/mode_prefs.dart';
 import 'package:enfo/onboarding.dart';
 import 'package:enfo/theme.dart';
 import 'package:enfo/ui/atoms/accent_swatch.dart';
@@ -29,7 +31,7 @@ const _screens = <String, Size>{
 Widget _app() => AdaptiveTheme(
       light: Themes.light(Themes.accent),
       dark: Themes.dark(Themes.accent),
-      initial: AdaptiveThemeMode.light,
+      initial: AdaptiveThemeMode.system,
       builder: (theme, dark) => ValueListenableBuilder<Locale?>(
         valueListenable: LocaleController.locale,
         builder: (context, locale, _) => MaterialApp(
@@ -88,6 +90,10 @@ void main() {
     await AppPreferences.load();
     await LocaleController.load();
     Themes.resetAccent();
+    ModePrefs.disabled.value = {
+      for (final m in AppMode.values)
+        if (!m.core) m,
+    };
     LocaleController.locale.value = const Locale('en');
   });
 
@@ -109,23 +115,33 @@ void main() {
     expect(prefs.getString('locale'), 'en');
     await _tap(tester, find.text('Next'));
 
-    // 2. Rhythm.
+    // 2. Modes: turning one off is applied at once and shortens the flow.
+    expect(find.text('Your tools'), findsOneWidget);
+    expect(find.text('More tools'), findsOneWidget);
+    await _tap(tester, find.byType(Switch).at(5)); // world clock
+    expect(ModePrefs.disabled.value, contains(AppMode.world));
+    await _tap(tester, find.byType(Switch).at(6)); // events: turn a new one on
+    expect(ModePrefs.disabled.value, isNot(contains(AppMode.event)));
+    await _tap(tester, find.text('Next'));
+
+    // 3. Rhythm.
     expect(find.text('Your rhythm'), findsOneWidget);
     await _tap(tester, find.text('Extended'));
     await _tap(tester, find.text('Next'));
 
-    // 3. Theme + accent, live.
+    // 4. Theme (System by default) + accent, with the preview below.
     expect(find.text('Make it yours'), findsOneWidget);
-    await _tap(tester, find.byType(Switch));
-    expect(AdaptiveTheme.of(tester.element(find.byType(Switch))).mode.isDark,
+    expect(AdaptiveTheme.of(tester.element(find.text('Dark'))).mode.isSystem,
         true);
+    expect(find.text('Preview'), findsOneWidget);
+    await _tap(tester, find.text('Dark'));
+    expect(
+        AdaptiveTheme.of(tester.element(find.text('Dark'))).mode.isDark, true);
     await _tap(tester, find.byType(AccentSwatch).first); // red
     prefs = await SharedPreferences.getInstance();
     expect(prefs.getInt('accent_color'), Themes.colors.first.toARGB32());
-    await _tap(tester, find.text('Next'));
 
-    // 4. A combo sets clock style AND accent together.
-    expect(find.text('Pick a clock'), findsOneWidget);
+    // 5. A combo sets clock style AND accent together (same step).
     final combo = ClockCombo.deepFocus;
     final l10n = await AppLocalizations.delegate.load(const Locale('en'));
     await _tap(tester, find.text(combo.labelOf(l10n)));
@@ -134,10 +150,14 @@ void main() {
     expect(prefs.getInt('accent_color'), combo.color.toARGB32());
     await _tap(tester, find.text('Next'));
 
-    // 5. Options.
+    // 6. Display.
+    expect(find.text('Display'), findsOneWidget);
+    await _tap(tester, find.text('Next'));
+
+    // 7. Options.
     expect(find.text('Final touches'), findsOneWidget);
     expect(AppPreferences.autoStartNext.value, false);
-    await _tap(tester, find.byType(Switch).at(1));
+    await _tap(tester, find.byType(Switch).first);
     expect(AppPreferences.autoStartNext.value, true);
     await _tap(tester, find.text('Start'));
 
@@ -156,6 +176,7 @@ void main() {
     await tester.pumpWidget(_app());
     await _settle(tester);
 
+    await _tap(tester, find.text('Next'));
     await _tap(tester, find.text('Next'));
     await _tap(tester, find.text('Deep'));
     await _tap(tester, find.text('Skip'));
@@ -176,7 +197,7 @@ void main() {
 
     expect(tester.widget<Visibility>(find.byType(Visibility)).visible, false);
     await _tap(tester, find.text('Next'));
-    expect(find.text('Your rhythm'), findsOneWidget);
+    expect(find.text('Your tools'), findsOneWidget);
     await _tap(tester, find.text('Back'));
     expect(find.text('Welcome to Enfo'), findsOneWidget);
   });
@@ -196,8 +217,9 @@ void main() {
         steps++;
       }
       expect(tester.takeException(), isNull);
-      // Watch keeps two steps (language, rhythm); everything else five.
-      expect(steps, size.key == 'watch' ? 2 : 5);
+      // Watch keeps two steps (language, rhythm); the rest six (the
+      // permissions step only exists on Android).
+      expect(steps, size.key == 'watch' ? 2 : 6);
       expect(find.text('Start'), findsOneWidget);
     });
   }

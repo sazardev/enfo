@@ -179,6 +179,10 @@ enum ClockStyle {
 
   static const _prefsKey = 'clock_style';
 
+  /// Bumped whenever the chosen style is saved, so things that mirror it
+  /// (the home-screen widgets) can follow.
+  static final changes = ValueNotifier<int>(0);
+
   static Future<ClockStyle> load() async {
     final prefs = await SharedPreferences.getInstance();
     final name = prefs.getString(_prefsKey);
@@ -191,5 +195,6 @@ enum ClockStyle {
   static Future<void> save(ClockStyle style) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_prefsKey, style.name);
+    changes.value++;
   }
 }

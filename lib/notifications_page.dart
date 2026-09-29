@@ -5,6 +5,7 @@ import 'presets.dart';
 import 'ui/design/spacing.dart';
 import 'ui/molecules/settings_row.dart';
 import 'ui/templates/settings_shell.dart';
+import 'ui/atoms/app_switch.dart';
 
 /// Phase-change notification toggle.
 class NotificationsPage extends StatefulWidget {
@@ -44,7 +45,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
       children: [
         SettingsRow(
           label: l10n.notificationsToggle,
-          trailing: Switch(
+          trailing: AppSwitch(
             value: _enabled,
             onChanged: (value) async {
               setState(() => _enabled = value);

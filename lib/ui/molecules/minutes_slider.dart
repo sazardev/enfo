@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../l10n/locale_controller.dart';
 import '../atoms/app_icon_button.dart';
 import '../design/spacing.dart';
+import '../../haptics/haptics.dart';
 
 /// A labeled minutes control: coarse slider plus −/+ buttons for exact
 /// one-minute adjustments. Used by the custom (manual) preset.
@@ -70,7 +71,11 @@ class MinutesSlider extends StatelessWidget {
             min: min.toDouble(),
             max: max.toDouble(),
             divisions: max - min,
-            onChanged: (value) => onChanged(value.round()),
+            onChanged: (value) {
+              final next = value.round();
+              if (next != minutes) Haptics.tick();
+              onChanged(next);
+            },
           ),
         ),
       ],

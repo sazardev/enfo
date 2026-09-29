@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../l10n/locale_controller.dart';
 import '../../ui/design/radii.dart';
 import '../format.dart';
+import '../../haptics/haptics.dart';
 
 /// Hours / minutes / seconds wheels. Reports the total in seconds, and
 /// follows [totalSeconds] when it is changed from outside (a preset tap).
@@ -152,14 +154,18 @@ class LoopWheel extends StatelessWidget {
       height: 1,
     );
 
-    return ListWheelScrollView.useDelegate(
+    final wheel = ListWheelScrollView.useDelegate(
       controller: controller,
       itemExtent: extent,
       physics: const FixedExtentScrollPhysics(),
       diameterRatio: 2.4,
       perspective: 0.002,
       overAndUnderCenterOpacity: 0.3,
-      onSelectedItemChanged: (_) => onChanged(),
+      onSelectedItemChanged: (_) {
+        // One notch per row, like a physical dial.
+        Haptics.tick();
+        onChanged();
+      },
       childDelegate: ListWheelChildLoopingListDelegate(
         children: [
           for (var i = 0; i < count; i++)
@@ -186,6 +192,44 @@ class LoopWheel extends StatelessWidget {
               ),
             ),
         ],
+      ),
+    );
+
+    // Reachable with Tab / D-pad; Up and Down (or Page Up / Down) turn it,
+    // Left and Right pass on to the neighbouring wheel.
+    return Focus(
+      onKeyEvent: (node, event) {
+        if (event is KeyUpEvent) return KeyEventResult.ignored;
+        final step = switch (event.logicalKey) {
+          LogicalKeyboardKey.arrowUp => 1,
+          LogicalKeyboardKey.arrowDown => -1,
+          LogicalKeyboardKey.pageUp => 5,
+          LogicalKeyboardKey.pageDown => -5,
+          _ => 0,
+        };
+        if (step == 0 || !controller.hasClients) return KeyEventResult.ignored;
+        controller.animateToItem(
+          controller.selectedItem + step,
+          duration: const Duration(milliseconds: 120),
+          curve: Curves.easeOut,
+        );
+        return KeyEventResult.handled;
+      },
+      child: Builder(
+        builder: (context) {
+          final showFocus = Focus.of(context).hasFocus &&
+              FocusManager.instance.highlightMode ==
+                  FocusHighlightMode.traditional;
+          return DecoratedBox(
+            decoration: BoxDecoration(
+              color: showFocus
+                  ? colorScheme.primary.withValues(alpha: 0.22)
+                  : Colors.transparent,
+              borderRadius: AppRadii.mdRadius,
+            ),
+            child: wheel,
+          );
+        },
       ),
     );
   }

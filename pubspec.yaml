@@ -2,7 +2,7 @@ name: enfo
 description: Enfo, a minimalistic pomodoro timer for distracted people.
 publish_to: 'none'
 
-version: 1.0.0+3
+version: 1.1.0+4
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -24,6 +24,8 @@ dependencies:
   google_mobile_ads: ^9.1.0
   wakelock_plus: ^1.8.0
   timezone: ^0.11.1
+  vibration: ^3.2.1
+  flutter_soloud: ^5.1.4
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +37,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+
+  assets:
+    - assets/music/
+    - assets/music/envelopes/
 
   fonts:
     - family: GeistMono

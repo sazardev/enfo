@@ -9,6 +9,7 @@ import 'package:window_manager/window_manager.dart';
 import 'app_mode.dart';
 import 'mode_prefs.dart';
 import 'tool_history.dart';
+import '../haptics/haptics.dart';
 
 /// Full-screen "display" state: hides all chrome, keeps the screen on, and
 /// (optionally) dims it — Enfo as a desk / nightstand clock.
@@ -55,6 +56,7 @@ class Fullscreen {
   }
 
   static Future<void> cycleDim() async {
+    Haptics.select();
     dimStep.value = (dimStep.value + 1) % dimLevels.length;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_dimKey, dimStep.value);
@@ -80,6 +82,7 @@ class Fullscreen {
 
   static Future<void> enter() async {
     if (active.value) return;
+    Haptics.transition();
     active.value = true;
     _since = DateTime.now();
     try {
@@ -97,6 +100,7 @@ class Fullscreen {
 
   static Future<void> exit() async {
     if (!active.value) return;
+    Haptics.transition();
     active.value = false;
     try {
       if (_isDesktop) {

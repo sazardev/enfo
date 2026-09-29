@@ -28,13 +28,20 @@ class ClockComboCard extends StatelessWidget {
   final Animation<double> clock;
   final double width;
 
+  /// `ColorScheme.fromSeed` runs a heavy color-science pass; combos reuse
+  /// the same handful of seeds on every rebuild, so memoize it.
+  static final Map<(int, Brightness), ColorScheme> _schemes = {};
+
+  static ColorScheme _scheme(Color seed, Brightness brightness) =>
+      _schemes.putIfAbsent(
+        (seed.toARGB32(), brightness),
+        () => ColorScheme.fromSeed(seedColor: seed, brightness: brightness),
+      );
+
   @override
   Widget build(BuildContext context) {
     final brightness = Theme.of(context).brightness;
-    final scheme = ColorScheme.fromSeed(
-      seedColor: combo.color,
-      brightness: brightness,
-    );
+    final scheme = _scheme(combo.color, brightness);
     final palette = ClockPalette.of(scheme, rest: false, paused: false);
     final still = MediaQuery.disableAnimationsOf(context);
     final labels = ClockLabels.of(context.l10n);

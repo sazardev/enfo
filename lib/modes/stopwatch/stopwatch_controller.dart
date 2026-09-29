@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../clock/time_builder.dart';
 import '../tool_history.dart';
+import '../../haptics/haptics.dart';
 
 /// The stopwatch. One app-wide instance built on timestamps: it keeps
 /// counting while you use other modes or close the app, and only
@@ -80,6 +81,7 @@ class StopwatchController extends ChangeNotifier {
 
   void start() {
     if (running) return;
+    Haptics.confirm();
     _runStart = nowProvider();
     _sessionStart ??= _runStart;
     running = true;
@@ -88,6 +90,7 @@ class StopwatchController extends ChangeNotifier {
 
   void stop() {
     if (!running) return;
+    Haptics.tap();
     _accumulated += nowProvider().difference(_runStart!);
     _runStart = null;
     running = false;
@@ -96,6 +99,7 @@ class StopwatchController extends ChangeNotifier {
 
   void lap() {
     if (!running) return;
+    Haptics.lap();
     final now = elapsed;
     laps.add((now - _lapMark).inMilliseconds);
     _lapMark = now;
@@ -104,6 +108,7 @@ class StopwatchController extends ChangeNotifier {
 
   /// Clears the stopwatch, filing a run of at least a second in the history.
   void reset() {
+    Haptics.warning();
     final total = elapsed;
     if (total >= const Duration(seconds: 1) && _sessionStart != null) {
       final finished = [...laps];

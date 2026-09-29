@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import '../../haptics/haptics.dart';
 
 import '../design/motion.dart';
 import '../design/radii.dart';
@@ -17,8 +17,10 @@ class BouncyTap extends StatefulWidget {
     this.duration = Motion.fast,
     this.releaseCurve = Motion.bouncy,
     this.enableFeedback = true,
+    this.longPressFeedback = true,
     this.behavior = HitTestBehavior.opaque,
     this.focusBorderRadius = AppRadii.mdRadius,
+    this.autofocus = false,
   });
 
   final Widget child;
@@ -28,10 +30,18 @@ class BouncyTap extends StatefulWidget {
   final Duration duration;
   final Curve releaseCurve;
   final bool enableFeedback;
+
+  /// Whether a long press adds its own confirm beat. Off for callers whose
+  /// action already has a haptic of its own.
+  final bool longPressFeedback;
   final HitTestBehavior behavior;
 
   /// Shape of the keyboard / D-pad focus halo. Match the child's shape.
   final BorderRadius focusBorderRadius;
+
+  /// Takes focus when first shown, so a remote or keyboard has a starting
+  /// point. (The halo only appears while navigating with keys / D-pad.)
+  final bool autofocus;
 
   @override
   State<BouncyTap> createState() => _BouncyTapState();
@@ -60,7 +70,8 @@ class _BouncyTapState extends State<BouncyTap>
     } else {
       _controller.forward();
     }
-    if (widget.enableFeedback) HapticFeedback.selectionClick();
+    // Lands with the press-down scale, so touch and motion agree.
+    if (widget.enableFeedback) Haptics.tap();
   }
 
   void _release() {
@@ -86,6 +97,8 @@ class _BouncyTapState extends State<BouncyTap>
     // tinted halo behind the child, no border or shadow.
     return FocusableActionDetector(
       enabled: widget.onTap != null,
+      autofocus: widget.autofocus,
+      mouseCursor: _enabled ? SystemMouseCursors.click : MouseCursor.defer,
       onShowFocusHighlight: (focused) => setState(() => _focused = focused),
       actions: {
         ActivateIntent: CallbackAction<ActivateIntent>(
@@ -101,7 +114,12 @@ class _BouncyTapState extends State<BouncyTap>
         onTapUp: (_) => _release(),
         onTapCancel: _release,
         onTap: widget.onTap,
-        onLongPress: widget.onLongPress,
+        onLongPress: widget.onLongPress == null
+            ? null
+            : () {
+                if (widget.longPressFeedback) Haptics.confirm();
+                widget.onLongPress!();
+              },
         child: AnimatedBuilder(
           animation: _scale,
           builder: (context, child) => Transform.scale(

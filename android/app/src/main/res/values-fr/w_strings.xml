@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_clock_label">Enfo · Horloge</string>
+    <string name="widget_clock_desc">L\'heure et la date, aux couleurs de votre système.</string>
+    <string name="widget_analog_label">Enfo · Horloge analogique</string>
+    <string name="widget_analog_desc">Une horloge analogique apaisante.</string>
+    <string name="widget_pomodoro_label">Enfo · Pomodoro</string>
+    <string name="widget_pomodoro_desc">Votre Pomodoro dans le style d\'horloge choisi. Touchez le bouton pour démarrer ou mettre en pause.</string>
+    <string name="widget_timer_label">Enfo · Minuteur</string>
+    <string name="widget_timer_desc">Lancez un minuteur en un geste, dans le style d\'horloge choisi.</string>
+    <string name="widget_stopwatch_label">Enfo · Chronomètre</string>
+    <string name="widget_stopwatch_desc">Démarrez, arrêtez et prenez des tours sans ouvrir l\'appli.</string>
+    <string name="widget_alarm_label">Enfo · Alarmes</string>
+    <string name="widget_alarm_desc">Vos prochaines alarmes en un coup d\'œil.</string>
+    <string name="widget_world_label">Enfo · Horloge mondiale</string>
+    <string name="widget_world_desc">L\'heure dans vos villes.</string>
+    <string name="widget_open">Ouvrir Enfo</string>
+    <string name="widget_sample_date">lun. 29 sept.</string>
+</resources>

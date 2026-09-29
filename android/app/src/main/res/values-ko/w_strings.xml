@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_clock_label">Enfo · 시계</string>
+    <string name="widget_clock_desc">시스템 색상으로 보는 시간과 날짜입니다.</string>
+    <string name="widget_analog_label">Enfo · 아날로그 시계</string>
+    <string name="widget_analog_desc">차분한 아날로그 시계입니다.</string>
+    <string name="widget_pomodoro_label">Enfo · 포모도로</string>
+    <string name="widget_pomodoro_desc">선택한 시계 스타일로 보는 포모도로. 버튼으로 시작하거나 일시정지하세요.</string>
+    <string name="widget_timer_label">Enfo · 타이머</string>
+    <string name="widget_timer_desc">선택한 시계 스타일로 한 번에 타이머를 시작하세요.</string>
+    <string name="widget_stopwatch_label">Enfo · 스톱워치</string>
+    <string name="widget_stopwatch_desc">앱을 열지 않고 시작, 정지, 랩을 기록하세요.</string>
+    <string name="widget_alarm_label">Enfo · 알람</string>
+    <string name="widget_alarm_desc">다음 알람을 한눈에 확인하세요.</string>
+    <string name="widget_world_label">Enfo · 세계 시계</string>
+    <string name="widget_world_desc">내 도시들의 현재 시간입니다.</string>
+    <string name="widget_open">Enfo 열기</string>
+    <string name="widget_sample_date">9월 29일 (월)</string>
+</resources>

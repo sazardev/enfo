@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../l10n/locale_controller.dart';
 import '../design/motion.dart';
 import 'settings_row.dart';
+import '../../haptics/haptics.dart';
 
 /// A destructive action that confirms in place (the app allows no dialogs):
 /// the row swaps for a "Confirm" row plus a "Cancel" row. Nothing runs
@@ -37,6 +38,7 @@ class _ConfirmActionRowState extends State<ConfirmActionRow> {
 
   Future<void> _confirm() async {
     if (_busy) return;
+    Haptics.warning();
     setState(() => _busy = true);
     try {
       await widget.onConfirmed();

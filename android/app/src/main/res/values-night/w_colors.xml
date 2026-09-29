@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="w_surface">#1D1F17</color>
+    <color name="w_tile">#2E3026</color>
+    <color name="w_on_surface">#E4E3D8</color>
+    <color name="w_variant">#C6C8B4</color>
+    <color name="w_primary">#B6D562</color>
+    <color name="w_on_primary">#273500</color>
+    <color name="w_container">#3B4D00</color>
+    <color name="w_on_container">#D2F17B</color>
+</resources>

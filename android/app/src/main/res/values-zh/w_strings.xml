@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="widget_clock_label">Enfo · 时钟</string>
+    <string name="widget_clock_desc">以系统配色显示时间和日期。</string>
+    <string name="widget_analog_label">Enfo · 模拟时钟</string>
+    <string name="widget_analog_desc">一款宁静的模拟时钟。</string>
+    <string name="widget_pomodoro_label">Enfo · 番茄钟</string>
+    <string name="widget_pomodoro_desc">以你选择的时钟样式显示番茄钟。点按按钮开始或暂停。</string>
+    <string name="widget_timer_label">Enfo · 计时器</string>
+    <string name="widget_timer_desc">以你选择的时钟样式,一键开始计时。</string>
+    <string name="widget_stopwatch_label">Enfo · 秒表</string>
+    <string name="widget_stopwatch_desc">无需打开应用即可开始、停止和计圈。</string>
+    <string name="widget_alarm_label">Enfo · 闹钟</string>
+    <string name="widget_alarm_desc">一眼查看接下来的闹钟。</string>
+    <string name="widget_world_label">Enfo · 世界时钟</string>
+    <string name="widget_world_desc">查看你所选城市的时间。</string>
+    <string name="widget_open">打开 Enfo</string>
+    <string name="widget_sample_date">9月29日周一</string>
+</resources>

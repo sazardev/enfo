@@ -111,6 +111,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get darkTheme => 'Dark theme';
 
   @override
+  String get themeModeSystem => 'System';
+
+  @override
+  String get themeModeLight => 'Light';
+
+  @override
+  String get themeModeDark => 'Dark';
+
+  @override
   String get accentColor => 'Accent color';
 
   @override
@@ -134,12 +143,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get languageSystem => 'System default';
-
-  @override
-  String get languageSpanish => 'Español';
-
-  @override
-  String get languageEnglish => 'English';
 
   @override
   String get languageHint => 'Choose the language of the app.';
@@ -419,10 +422,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'When focus or rest ends, the next one begins without tapping.';
 
   @override
-  String get hapticFeedback => 'Vibrate when a phase ends';
+  String get hapticFeedback => 'Vibration';
 
   @override
-  String get hapticFeedbackHint => 'A short vibration on your phone.';
+  String get hapticFeedbackHint => 'Taps, wheels, phase changes and alarms.';
 
   @override
   String get clockCombosTitle => 'Combos';
@@ -838,7 +841,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onbLookBody =>
-      'Theme and accent color. The screen updates as you choose.';
+      'Theme, clock style and color. Start from a combo, then tweak the color if you like.';
 
   @override
   String get onbClockTitle => 'Pick a clock';
@@ -856,6 +859,56 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get onbOptionsBody =>
       'Display and behavior. All of this is in Settings too.';
+
+  @override
+  String get onbModesTitle => 'Your tools';
+
+  @override
+  String get onbModesBody =>
+      'Enfo is a clock and timer toolbox. Turn on what you will use; change it anytime from the modes menu.';
+
+  @override
+  String get onbPreview => 'Preview';
+
+  @override
+  String get onbDisplayTitle => 'Display';
+
+  @override
+  String get onbDisplayBody => 'How the clock looks and how big everything is.';
+
+  @override
+  String get onbClockModeDesign => 'Clock mode design';
+
+  @override
+  String get onbPermTitle => 'Permissions';
+
+  @override
+  String get onbPermBody =>
+      'So timers and alarms can reach you even when Enfo is closed.';
+
+  @override
+  String get onbPermNotifications => 'Notifications';
+
+  @override
+  String get onbPermNotificationsHint =>
+      'Alerts when a timer ends or an alarm rings.';
+
+  @override
+  String get onbPermExact => 'Exact alarms';
+
+  @override
+  String get onbPermExactHint =>
+      'Ring at the exact minute, even in battery saver.';
+
+  @override
+  String get onbPermAllow => 'Allow';
+
+  @override
+  String get onbPermAllowed => 'Allowed';
+
+  @override
+  String get onbPermLater =>
+      'You can change these anytime in the system settings.';
 
   @override
   String get onbNext => 'Next';
@@ -1225,4 +1278,953 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get alarmDesktopHint =>
       'On this device Enfo has to be open for alarms to ring.';
+
+  @override
+  String get hapticsTitle => 'Vibration';
+
+  @override
+  String get hapticsOff => 'Off';
+
+  @override
+  String get hapticsStrength => 'Strength';
+
+  @override
+  String get hapticsSoft => 'Soft';
+
+  @override
+  String get hapticsMedium => 'Medium';
+
+  @override
+  String get hapticsStrong => 'Strong';
+
+  @override
+  String get hapticsTouch => 'Touch';
+
+  @override
+  String get hapticsTouchHint => 'Buttons, switches and selections.';
+
+  @override
+  String get hapticsMotion => 'Motion';
+
+  @override
+  String get hapticsMotionHint => 'Wheels, sliders, dragging and transitions.';
+
+  @override
+  String get hapticsAlerts => 'Alerts';
+
+  @override
+  String get hapticsAlertsHint =>
+      'Timers, phase changes, the final countdown and alarms.';
+
+  @override
+  String get hapticsAlarmPattern => 'Alarm pattern';
+
+  @override
+  String get hapticsAlarmPatternHint =>
+      'Tap a pattern to feel it. The ringing screen pulses to the same beat.';
+
+  @override
+  String get hapticsPatternHeartbeat => 'Heartbeat';
+
+  @override
+  String get hapticsPatternPulse => 'Pulse';
+
+  @override
+  String get hapticsPatternCrescendo => 'Crescendo';
+
+  @override
+  String get hapticsPatternRipple => 'Ripple';
+
+  @override
+  String get hapticsPatternBeacon => 'Beacon';
+
+  @override
+  String get hapticsTry => 'Try it';
+
+  @override
+  String get hapticsTryTap => 'Tap';
+
+  @override
+  String get hapticsTrySuccess => 'Success';
+
+  @override
+  String get hapticsTryToRest => 'Focus done';
+
+  @override
+  String get hapticsTryToWork => 'Rest done';
+
+  @override
+  String get hapticsTryTimer => 'Timer done';
+
+  @override
+  String get hapticsTryWarning => 'Warning';
+
+  @override
+  String get hapticsUnavailable => 'This device has no vibration motor.';
+
+  @override
+  String get hapticsWhen => 'When it vibrates';
+
+  @override
+  String get widgetsTitle => 'Widgets';
+
+  @override
+  String get widgetsSubtitle => 'Clocks and timers on your home screen';
+
+  @override
+  String get widgetsAddHeader => 'Add to home screen';
+
+  @override
+  String get widgetsAdd => 'Add';
+
+  @override
+  String get widgetsDynamicColor => 'Material You colors';
+
+  @override
+  String get widgetsDynamicColorHint =>
+      'Widgets take their colors from your wallpaper. Turn off to use Enfo\'s accent color.';
+
+  @override
+  String get widgetsManualHint =>
+      'Your launcher can\'t add widgets from here. Long-press the home screen, choose Widgets and look for Enfo.';
+
+  @override
+  String get widgetsStyleHint =>
+      'The Pomodoro and timer widgets are drawn in the clock style you picked. Change the style in the app and they follow.';
+
+  @override
+  String get widgetsTapHint =>
+      'Buttons on a widget open Enfo and do the action, so time is always kept by the app.';
+
+  @override
+  String get shortcutsTitle => 'Keyboard & remote';
+
+  @override
+  String get shortcutsSubtitle => 'Shortcuts for keyboard, mouse and TV remote';
+
+  @override
+  String get shortcutsIntro =>
+      'Arrow keys or the remote\'s D-pad move around, Enter or OK presses. These keys do the rest.';
+
+  @override
+  String get shortcutKeySpace => 'Space';
+
+  @override
+  String get shortcutPlayPause => 'Start or pause';
+
+  @override
+  String get shortcutReset => 'Reset';
+
+  @override
+  String get shortcutLap => 'Lap (stopwatch)';
+
+  @override
+  String get shortcutJumpMode => 'Go to mode 1–9';
+
+  @override
+  String get shortcutStepMode => 'Previous / next mode';
+
+  @override
+  String get shortcutFullscreen => 'Full screen';
+
+  @override
+  String get shortcutDim => 'Dim the screen (full screen)';
+
+  @override
+  String get shortcutSettings => 'Settings';
+
+  @override
+  String get shortcutModes => 'Modes menu';
+
+  @override
+  String get shortcutBack => 'Back / leave full screen';
+
+  @override
+  String get shortcutHelp => 'Show this list';
+
+  @override
+  String get onbMoreTools => 'More tools';
+
+  @override
+  String get modeEvent => 'Events';
+
+  @override
+  String get modeDescEvent => 'Count the days to what matters';
+
+  @override
+  String get modeIntervals => 'Intervals';
+
+  @override
+  String get modeDescIntervals => 'Work and rest rounds, like HIIT';
+
+  @override
+  String get modeBreathe => 'Breathe';
+
+  @override
+  String get modeDescBreathe => 'Guided breathing to calm down';
+
+  @override
+  String get modeTracker => 'Tracker';
+
+  @override
+  String get modeDescTracker => 'Time what you do, see the totals';
+
+  @override
+  String get modeKitchen => 'Kitchen';
+
+  @override
+  String get modeDescKitchen => 'Several named timers at once';
+
+  @override
+  String get modeSleep => 'Sleep';
+
+  @override
+  String get modeDescSleep => 'Plan bedtime and wake-up in sleep cycles';
+
+  @override
+  String get modeVersus => 'Turns';
+
+  @override
+  String get modeDescVersus => 'Two-player clock for chess, games and debates';
+
+  @override
+  String get modeBreaks => 'Breaks';
+
+  @override
+  String get modeDescBreaks => 'Reminders to rest your eyes and stretch';
+
+  @override
+  String get modeAmbient => 'Ambient';
+
+  @override
+  String get modeDescAmbient => 'Background sounds with a sleep timer';
+
+  @override
+  String get intervalsPresetTabata => 'Tabata';
+
+  @override
+  String get intervalsPresetHiit => 'HIIT';
+
+  @override
+  String get intervalsPresetEmom => 'EMOM';
+
+  @override
+  String get intervalsPresetCustom => 'Custom';
+
+  @override
+  String get intervalsWarmUp => 'Warm-up';
+
+  @override
+  String get intervalsWork => 'Work';
+
+  @override
+  String get intervalsRest => 'Rest';
+
+  @override
+  String get intervalsRounds => 'Rounds';
+
+  @override
+  String get intervalsCoolDown => 'Cool-down';
+
+  @override
+  String get intervalsOff => 'Off';
+
+  @override
+  String intervalsRound(int current, int total) {
+    return 'Round $current/$total';
+  }
+
+  @override
+  String intervalsTotal(String duration) {
+    return 'Total $duration';
+  }
+
+  @override
+  String get intervalsSkip => 'Skip to next phase';
+
+  @override
+  String get intervalsHint =>
+      'Tap a row to edit it. Any change saves as Custom.';
+
+  @override
+  String get intervalsDoneTitle => 'Workout complete';
+
+  @override
+  String intervalsDoneBody(String name, String duration) {
+    return '$name · $duration. Great work!';
+  }
+
+  @override
+  String get kitchenPasta => 'Pasta';
+
+  @override
+  String get kitchenEggs => 'Eggs';
+
+  @override
+  String get kitchenTea => 'Tea';
+
+  @override
+  String get kitchenRice => 'Rice';
+
+  @override
+  String get kitchenOven => 'Oven';
+
+  @override
+  String get kitchenCustom => 'Custom';
+
+  @override
+  String get kitchenNameHint => 'Name';
+
+  @override
+  String get kitchenAdd => 'Start timer';
+
+  @override
+  String get kitchenDelete => 'Delete timer';
+
+  @override
+  String get kitchenEmpty => 'No timers yet. Tap a chip to start one.';
+
+  @override
+  String get kitchenDefaultName => 'Timer';
+
+  @override
+  String kitchenDoneTitle(String name) {
+    return '$name is ready';
+  }
+
+  @override
+  String kitchenDoneBody(String duration) {
+    return 'The $duration timer finished.';
+  }
+
+  @override
+  String get trackerToday => 'Today';
+
+  @override
+  String get trackerWeek => 'Last 7 days';
+
+  @override
+  String get trackerTapToStart => 'Tap an activity to start timing it';
+
+  @override
+  String get trackerNoRunning => 'Nothing running';
+
+  @override
+  String get trackerAddActivity => 'New activity';
+
+  @override
+  String get trackerNameHint => 'Name';
+
+  @override
+  String get trackerStudy => 'Study';
+
+  @override
+  String get trackerReading => 'Reading';
+
+  @override
+  String get trackerCode => 'Code';
+
+  @override
+  String get trackerExercise => 'Exercise';
+
+  @override
+  String get trackerEdit => 'Edit activity';
+
+  @override
+  String get trackerDetails => 'Details and chart';
+
+  @override
+  String get trackerColor => 'Color';
+
+  @override
+  String get trackerIcon => 'Icon';
+
+  @override
+  String get trackerDelete => 'Delete activity';
+
+  @override
+  String get trackerDeleteConfirm => 'Confirm: delete this activity';
+
+  @override
+  String get trackerDeleteHint =>
+      'Time already logged stays in the activity history.';
+
+  @override
+  String get trackerAddTime => 'Add time manually';
+
+  @override
+  String trackerAddMinutes(int minutes) {
+    return 'Add $minutes min';
+  }
+
+  @override
+  String get trackerMinutesFewer => 'Fewer minutes';
+
+  @override
+  String get trackerMinutesMore => 'More minutes';
+
+  @override
+  String get trackerStop => 'Stop';
+
+  @override
+  String get versusDuel => 'Duel';
+
+  @override
+  String get versusSpeakers => 'Speakers';
+
+  @override
+  String get versusCustom => 'Custom';
+
+  @override
+  String get versusIncrement => 'Increment';
+
+  @override
+  String get versusTapToStart => 'Tap your side to start your clock';
+
+  @override
+  String get versusTimeIsUp => 'Time is up';
+
+  @override
+  String versusMoves(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count moves',
+      one: '1 move',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get versusResetGame => 'Reset game';
+
+  @override
+  String get versusConfirmReset => 'Confirm reset';
+
+  @override
+  String versusSpeakerN(int n) {
+    return 'Speaker $n';
+  }
+
+  @override
+  String get versusAddSpeaker => 'Add speaker';
+
+  @override
+  String get versusRemoveSpeaker => 'Remove speaker';
+
+  @override
+  String get versusSpeakerName => 'Speaker or topic';
+
+  @override
+  String get versusNext => 'Next speaker';
+
+  @override
+  String get versusFinish => 'Finish';
+
+  @override
+  String get versusOvertime => 'Overtime';
+
+  @override
+  String versusElapsedOfPlanned(String elapsed, String planned) {
+    return '$elapsed of $planned';
+  }
+
+  @override
+  String get versusAgendaDone => 'Agenda finished';
+
+  @override
+  String get versusStartAgenda => 'Start agenda';
+
+  @override
+  String get versusMinutesFewer => 'Fewer minutes';
+
+  @override
+  String get versusMinutesMore => 'More minutes';
+
+  @override
+  String get versusTotal => 'Total';
+
+  @override
+  String get breatheInhale => 'Inhale';
+
+  @override
+  String get breatheHold => 'Hold';
+
+  @override
+  String get breatheExhale => 'Exhale';
+
+  @override
+  String get breatheStart => 'Start breathing';
+
+  @override
+  String get breathePause => 'Pause';
+
+  @override
+  String get breatheResume => 'Resume';
+
+  @override
+  String get breatheReset => 'Stop session';
+
+  @override
+  String get breatheDone => 'Well done';
+
+  @override
+  String get breatheReady => 'Find a comfortable position';
+
+  @override
+  String get breathePatternBox => 'Box';
+
+  @override
+  String get breathePatternCoherent => 'Coherent';
+
+  @override
+  String get breathePatternCalm => 'Calm';
+
+  @override
+  String get breathePatternCustom => 'Custom';
+
+  @override
+  String get breatheSession => 'Session';
+
+  @override
+  String get breatheEndless => 'Endless';
+
+  @override
+  String breatheSeconds(int n) {
+    return '${n}s';
+  }
+
+  @override
+  String get ambientWhite => 'White noise';
+
+  @override
+  String get ambientPink => 'Pink noise';
+
+  @override
+  String get ambientBrown => 'Brown noise';
+
+  @override
+  String get ambientRain => 'Rain';
+
+  @override
+  String get ambientWind => 'Wind';
+
+  @override
+  String get ambientOcean => 'Ocean';
+
+  @override
+  String get ambientVolume => 'Volume';
+
+  @override
+  String get ambientSleepTimer => 'Sleep timer';
+
+  @override
+  String get ambientTimerOff => 'Off';
+
+  @override
+  String get ambientPlay => 'Play sound';
+
+  @override
+  String get ambientStop => 'Stop sound';
+
+  @override
+  String get ambientUnavailable => 'Sound is not available on this device.';
+
+  @override
+  String get ambientPreparing => 'Preparing sound…';
+
+  @override
+  String ambientTimeLeft(String time) {
+    return '$time left';
+  }
+
+  @override
+  String get breaksStart => 'Start breaks';
+
+  @override
+  String get breaksStop => 'Stop breaks';
+
+  @override
+  String get breaksStatusOff => 'Break reminders are off';
+
+  @override
+  String get breaksNoneEnabled => 'Turn on at least one reminder';
+
+  @override
+  String breaksNextName(String name) {
+    return 'Next: $name';
+  }
+
+  @override
+  String get breaksToday => 'Today';
+
+  @override
+  String get breaksTaken => 'Breaks taken';
+
+  @override
+  String get breaksSkipped => 'Skipped';
+
+  @override
+  String get breaksEyeName => 'Eye rest (20-20-20)';
+
+  @override
+  String get breaksEyeHint =>
+      'Look at something 6 m (20 ft) away for 20 seconds';
+
+  @override
+  String get breaksStretchName => 'Stretch';
+
+  @override
+  String get breaksStretchHint => 'Stand up and stretch your whole body';
+
+  @override
+  String get breaksWaterName => 'Drink water';
+
+  @override
+  String get breaksWaterHint => 'Have a glass of water';
+
+  @override
+  String get breaksPostureName => 'Posture check';
+
+  @override
+  String get breaksPostureHint => 'Sit up straight and relax your shoulders';
+
+  @override
+  String get breaksCustomDefault => 'My reminder';
+
+  @override
+  String breaksForDuration(String duration) {
+    return 'Take $duration';
+  }
+
+  @override
+  String breaksEveryMinutes(int minutes) {
+    return 'Every $minutes min';
+  }
+
+  @override
+  String get breaksShorter => 'Shorter interval';
+
+  @override
+  String get breaksLonger => 'Longer interval';
+
+  @override
+  String get breaksDone => 'Done';
+
+  @override
+  String get breaksSkip => 'Skip';
+
+  @override
+  String get breaksActiveHours => 'Active hours';
+
+  @override
+  String get breaksActiveHoursHint =>
+      'Reminders only appear between these times';
+
+  @override
+  String get breaksFrom => 'From';
+
+  @override
+  String get breaksTo => 'To';
+
+  @override
+  String get breaksLaterHour => 'Later';
+
+  @override
+  String get breaksEarlierHour => 'Earlier';
+
+  @override
+  String get breaksBackground => 'Also when Enfo is closed';
+
+  @override
+  String get breaksBackgroundOn =>
+      'Notifications remind you even when the app is closed.';
+
+  @override
+  String get breaksBackgroundOff => 'Reminders only appear while Enfo is open.';
+
+  @override
+  String get breaksDesktopNotice =>
+      'Reminders appear while Enfo is running (it can stay minimized).';
+
+  @override
+  String get breaksAddCustom => 'Add custom reminder';
+
+  @override
+  String get breaksEdit => 'Edit reminder';
+
+  @override
+  String get breaksName => 'Name';
+
+  @override
+  String get breaksDuration => 'Duration';
+
+  @override
+  String get breaksIcon => 'Icon';
+
+  @override
+  String get breaksShorterDuration => 'Shorter break';
+
+  @override
+  String get breaksLongerDuration => 'Longer break';
+
+  @override
+  String get breaksRemove => 'Remove reminder';
+
+  @override
+  String get breaksRemoveConfirm => 'Confirm: remove reminder';
+
+  @override
+  String get breaksRemoveHint => 'It will stop reminding you.';
+
+  @override
+  String get worldPlan => 'Plan a meeting';
+
+  @override
+  String get worldPlanIntro =>
+      'Slide the marker to find a time that works for everyone.';
+
+  @override
+  String get worldPlanNow => 'Now';
+
+  @override
+  String get worldPlanEarlier => '15 minutes earlier';
+
+  @override
+  String get worldPlanLater => '15 minutes later';
+
+  @override
+  String worldPlanSelected(String city) {
+    return 'Selected time in $city';
+  }
+
+  @override
+  String get worldPlanTapCity => 'Tap a city to use its time as the reference.';
+
+  @override
+  String get worldPlanNextDay => '+1 day';
+
+  @override
+  String get worldPlanPrevDay => '-1 day';
+
+  @override
+  String get worldPlanOverlapTitle => 'Everyone is at work';
+
+  @override
+  String get worldPlanNoOverlap =>
+      'No time in the next 24 hours works for everyone.';
+
+  @override
+  String worldPlanLeastBad(String time) {
+    return 'Least bad: $time';
+  }
+
+  @override
+  String worldPlanAtWork(int count, int total) {
+    return '$count of $total at work';
+  }
+
+  @override
+  String get worldPlanWork => 'Working hours (09-18)';
+
+  @override
+  String get worldPlanNight => 'Night';
+
+  @override
+  String get worldPlanMarker => 'Selected time';
+
+  @override
+  String get eventAdd => 'New event';
+
+  @override
+  String get eventEdit => 'Edit event';
+
+  @override
+  String get eventName => 'Name';
+
+  @override
+  String get eventNameHint => 'Birthday, trip, launch...';
+
+  @override
+  String get eventYearly => 'Repeat every year';
+
+  @override
+  String get eventYearlyHint =>
+      'For birthdays and anniversaries: it moves on to the next one.';
+
+  @override
+  String get eventNotify => 'Notify me';
+
+  @override
+  String get eventNotifyHint => 'At the moment it arrives.';
+
+  @override
+  String get eventDayBefore => 'Also the day before';
+
+  @override
+  String get eventSave => 'Save';
+
+  @override
+  String get eventDelete => 'Delete event';
+
+  @override
+  String get eventConfirmDelete => 'Confirm: delete event';
+
+  @override
+  String get eventDeleteHint => 'This event will be removed.';
+
+  @override
+  String get eventEmpty => 'No events yet.\nTap + to count down to one.';
+
+  @override
+  String get eventToday => 'Today!';
+
+  @override
+  String eventDaysAgo(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days ago',
+      one: '1 day ago',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get eventDaysShort => 'd';
+
+  @override
+  String get eventUnitDays => 'days';
+
+  @override
+  String get eventUnitHours => 'hours';
+
+  @override
+  String get eventUnitMinutes => 'min';
+
+  @override
+  String get eventRepeatsYearly => 'Every year';
+
+  @override
+  String get eventNotifyNow => 'It\'s time!';
+
+  @override
+  String get eventNotifyTomorrow => 'Tomorrow';
+
+  @override
+  String get sleepPlanWake => 'Wake at';
+
+  @override
+  String get sleepPlanBed => 'Sleep at';
+
+  @override
+  String get sleepPlanNow => 'Sleep now';
+
+  @override
+  String get sleepTitleWake => 'I want to wake up at';
+
+  @override
+  String get sleepTitleBed => 'I go to bed at';
+
+  @override
+  String sleepTitleNow(String time) {
+    return 'If I fall asleep now ($time)';
+  }
+
+  @override
+  String get sleepBedtimeWord => 'Bedtime';
+
+  @override
+  String get sleepWakeWord => 'Wake up';
+
+  @override
+  String sleepCyclesLine(int cycles, String duration) {
+    return '$cycles cycles · $duration of sleep';
+  }
+
+  @override
+  String get sleepNote =>
+      'Cycles last 90 minutes and falling asleep takes about 15. Five or six cycles are recommended.';
+
+  @override
+  String get sleepWindDown => 'Wind-down reminder';
+
+  @override
+  String get sleepWindDownHint => 'An alarm 30 minutes before bedtime.';
+
+  @override
+  String get sleepWindDownPassed => 'That time has already passed.';
+
+  @override
+  String get sleepWindDownLabel => 'Time to wind down';
+
+  @override
+  String get sleepAlarmLabel => 'Wake up';
+
+  @override
+  String get sleepSetAlarm => 'Set alarm';
+
+  @override
+  String get sleepRemoveAlarm => 'Remove alarm';
+
+  @override
+  String sleepAlarmSet(String time) {
+    return 'Alarm set for $time';
+  }
+
+  @override
+  String get sleepPast => 'This time has already passed';
+
+  @override
+  String get sleepRecommended => 'Recommended';
+
+  @override
+  String get ambientMusicTabSounds => 'Sounds';
+
+  @override
+  String get ambientMusicTab => 'Music';
+
+  @override
+  String get ambientMusicPlay => 'Play music';
+
+  @override
+  String get ambientMusicPause => 'Pause music';
+
+  @override
+  String get ambientMusicNext => 'Next song';
+
+  @override
+  String get ambientMusicPrevious => 'Previous song';
+
+  @override
+  String get ambientMusicShuffle => 'Shuffle';
+
+  @override
+  String get ambientMusicRepeat => 'Repeat all';
+
+  @override
+  String get ambientMusicVolume => 'Music volume';
+
+  @override
+  String get ambientMusicCredits => 'Music credits';
+
+  @override
+  String get ambientMusicCreditsNote =>
+      'Songs from Wikimedia Commons, released under CC0 or Creative Commons Attribution licenses.';
+
+  @override
+  String get modeMusic => 'Music';
+
+  @override
+  String get modeDescMusic => 'Lo-fi songs to focus to';
+
+  @override
+  String get musicCreditsSubtitle => 'Artists and licenses';
+
+  @override
+  String get displayMenuButtons => 'Menu buttons';
+
+  @override
+  String get displayMenuButtonsHint =>
+      'Choose which buttons appear in the bottom menu. Settings is always there.';
 }

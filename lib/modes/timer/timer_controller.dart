@@ -10,6 +10,7 @@ import '../clock/time_builder.dart';
 import '../format.dart';
 import '../notifier.dart';
 import '../tool_history.dart';
+import '../../haptics/haptics.dart';
 
 enum TimerPhase { idle, running, paused }
 
@@ -33,6 +34,10 @@ class TimerController extends ChangeNotifier {
   DateTime? _endsAt;
   int _pausedRemainingMs = 0;
   DateTime? _startedAt;
+
+  /// The last countdown second already ticked (0 = none), so each second
+  /// ticks once however often [check] runs.
+  int _lastCountdown = 0;
 
   bool get running => phase == TimerPhase.running;
 
@@ -119,6 +124,9 @@ class TimerController extends ChangeNotifier {
     } else {
       return;
     }
+    // A fresh start is a decision (firm); resuming is just a touch.
+    phase == TimerPhase.idle ? Haptics.confirm() : Haptics.tap();
+    _lastCountdown = 0;
     phase = TimerPhase.running;
     _scheduleNotification();
     _changed();
@@ -126,6 +134,8 @@ class TimerController extends ChangeNotifier {
 
   void pause() {
     if (!running) return;
+    Haptics.tap();
+    _lastCountdown = 0;
     _pausedRemainingMs = remainingMs;
     phase = TimerPhase.paused;
     _endsAt = null;
@@ -136,6 +146,8 @@ class TimerController extends ChangeNotifier {
   /// Adds time to a running/paused timer.
   void addSeconds(int seconds) {
     if (phase == TimerPhase.idle) return;
+    Haptics.select();
+    _lastCountdown = 0;
     totalSeconds = math.min(totalSeconds + seconds, maxSeconds);
     if (running) {
       _endsAt = _endsAt!.add(Duration(seconds: seconds));
@@ -149,6 +161,7 @@ class TimerController extends ChangeNotifier {
   /// Back to idle. A run that got somewhere is logged as not completed.
   void reset() {
     if (phase != TimerPhase.idle) {
+      Haptics.warning();
       final ran = totalSeconds - (remainingMs / 1000).ceil();
       if (ran >= 5 && _startedAt != null) {
         ToolHistory.add(ToolEvent(
@@ -175,8 +188,19 @@ class TimerController extends ChangeNotifier {
   /// Called every second by the host: fires the timer if it ran out.
   void check() {
     if (!running || _endsAt == null) return;
-    if (nowProvider().isBefore(_endsAt!)) return;
-    _finish();
+    final left = _endsAt!.difference(nowProvider());
+    if (left <= Duration.zero) {
+      _finish();
+      return;
+    }
+    // The last three seconds tick, firming up towards zero.
+    final secs = (left.inMilliseconds / 1000).ceil();
+    if (secs > 3) {
+      _lastCountdown = 0;
+    } else if (secs != _lastCountdown) {
+      _lastCountdown = secs;
+      Haptics.countdown(secs);
+    }
   }
 
   void _finish() {
@@ -202,6 +226,7 @@ class TimerController extends ChangeNotifier {
       title: title,
       subtitle: body,
       icon: Icons.timer_rounded,
+      timer: true,
       onDismiss: () {},
     ));
   }

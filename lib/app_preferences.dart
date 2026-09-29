@@ -22,20 +22,17 @@ class AppPreferences {
   static const _showClockKey = 'show_clock';
   static const _clockFormatKey = 'clock_format';
   static const _autoStartKey = 'auto_start_next';
-  static const _hapticsKey = 'haptics';
   static const _uiSizeKey = 'ui_size';
 
   static final showClock = ValueNotifier<bool>(true);
   static final clockFormat = ValueNotifier<ClockFormat>(ClockFormat.system);
   static final autoStartNext = ValueNotifier<bool>(false);
-  static final haptics = ValueNotifier<bool>(true);
   static final uiSize = ValueNotifier<UiSize>(UiSize.normal);
 
   static Future<void> load() async {
     final prefs = await SharedPreferences.getInstance();
     showClock.value = prefs.getBool(_showClockKey) ?? true;
     autoStartNext.value = prefs.getBool(_autoStartKey) ?? false;
-    haptics.value = prefs.getBool(_hapticsKey) ?? true;
     final size = prefs.getString(_uiSizeKey);
     uiSize.value = UiSize.values.firstWhere(
       (u) => u.name == size,
@@ -70,11 +67,5 @@ class AppPreferences {
     uiSize.value = value;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_uiSizeKey, value.name);
-  }
-
-  static Future<void> setHaptics(bool value) async {
-    haptics.value = value;
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(_hapticsKey, value);
   }
 }

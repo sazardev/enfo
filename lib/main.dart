@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui' show PointerDeviceKind;
 
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:enfo/theme.dart';
@@ -9,7 +10,9 @@ import 'package:timezone/data/latest_10y.dart' as tzdata;
 import 'package:window_manager/window_manager.dart';
 
 import 'app_preferences.dart';
+import 'haptics/haptics.dart';
 import 'modes/alarm/alarm_service.dart';
+import 'modes/app_shortcuts.dart';
 import 'modes/clock/clock_prefs.dart';
 import 'modes/fullscreen.dart';
 import 'modes/stopwatch/stopwatch_controller.dart';
@@ -19,9 +22,14 @@ import 'modes/mode_host.dart';
 import 'modes/mode_prefs.dart';
 import 'l10n/gen/app_localizations.dart';
 import 'l10n/locale_controller.dart';
+import 'modes/mode_services.dart';
+import 'bar_buttons.dart';
 import 'onboarding.dart';
+import 'pomodoro_state.dart';
 import 'presets.dart';
 import 'ui/design/responsive.dart';
+import 'widgets/widget_prefs.dart';
+import 'widgets/widget_sync.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,14 +40,19 @@ void main() async {
 
   await Themes.loadAccent();
   await AppPreferences.load();
+  await Haptics.load();
   await ModePrefs.load();
+  await BarButtons.load();
   await Fullscreen.load();
   await ClockPrefs.load();
   await TimerController.instance.load();
   await StopwatchController.instance.load();
+  await PomodoroStore.load();
   tzdata.initializeTimeZones();
   await WorldPrefs.load();
   await AlarmService.load();
+  await loadModeServices();
+  await WidgetPrefs.load();
 
   if (Platform.isAndroid) {
     MobileAds.instance.initialize();
@@ -51,6 +64,9 @@ void main() async {
       onboarded: onboarded,
     ),
   );
+
+  // Android home-screen widgets: keep them in step with the app.
+  WidgetSync.start();
 
   if (Platform.isWindows) {
     await windowManager.ensureInitialized();
@@ -69,6 +85,18 @@ void main() async {
       await windowManager.show();
     });
   }
+}
+
+/// Lets a mouse or trackpad drag-scroll, not just touch.
+class _AnyDeviceScroll extends MaterialScrollBehavior {
+  const _AnyDeviceScroll();
+
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        ...super.dragDevices,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 }
 
 class Main extends StatefulWidget {
@@ -91,13 +119,16 @@ class _MainState extends State<Main> {
     return AdaptiveTheme(
         light: Themes.light(Themes.accent),
         dark: Themes.dark(Themes.accent),
-        initial: widget.savedThemeMode ?? AdaptiveThemeMode.light,
+        initial: widget.savedThemeMode ?? AdaptiveThemeMode.system,
         builder: (theme, darkTheme) {
           return ValueListenableBuilder<Locale?>(
             valueListenable: LocaleController.locale,
             builder: (context, locale, _) => MaterialApp(
               onGenerateTitle: (context) =>
                   AppLocalizations.of(context).appTitle,
+              navigatorKey: appNavigatorKey,
+              // Mouse and trackpad drag-scroll like a finger (wheels, lists).
+              scrollBehavior: const _AnyDeviceScroll(),
               theme: theme,
               darkTheme: darkTheme,
               locale: locale,
@@ -116,7 +147,7 @@ class _MainState extends State<Main> {
                     ),
                     child: IconTheme.merge(
                       data: IconThemeData(size: 24 * scale),
-                      child: child!,
+                      child: AppShortcuts(child: child!),
                     ),
                   );
                 },
@@ -128,11 +159,9 @@ class _MainState extends State<Main> {
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
               ],
-              // Spanish or English only; anything else falls back to English.
+              // Anything we don't translate falls back to English.
               localeResolutionCallback: (deviceLocale, supported) {
-                return deviceLocale?.languageCode == 'es'
-                    ? const Locale('es')
-                    : const Locale('en');
+                return Locale(resolveLanguage(deviceLocale?.languageCode));
               },
               home: widget.onboarded ? const ModeHost() : const Onboarding(),
             ),

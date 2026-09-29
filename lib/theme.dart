@@ -9,6 +9,10 @@ class Themes {
   /// The accent the app is currently themed with (loaded at startup).
   static Color accent = defaultAccent;
 
+  /// Bumped whenever [accent] changes, for things that mirror it outside the
+  /// widget tree (the home-screen widgets).
+  static final accentChanges = ValueNotifier<int>(0);
+
   static const _accentKey = 'accent_color';
   // Legacy: the accent used to be stored as an index into [colors]. The
   // first 16 entries keep their order so old indexes still resolve.
@@ -29,10 +33,14 @@ class Themes {
 
   /// Back to the built-in accent, in memory only (callers that erase
   /// preferences have already removed the stored value).
-  static void resetAccent() => accent = defaultAccent;
+  static void resetAccent() {
+    accent = defaultAccent;
+    accentChanges.value++;
+  }
 
   static Future<void> saveAccent(Color color) async {
     accent = color;
+    accentChanges.value++;
     final prefs = await SharedPreferences.getInstance();
     await prefs.setInt(_accentKey, color.toARGB32());
   }

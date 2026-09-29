@@ -8,8 +8,10 @@ import '../../ui/design/spacing.dart';
 import '../clock/faces.dart';
 import '../clock/time_builder.dart';
 import '../format.dart';
-import '../watch_button.dart';
+import '../../ui/molecules/primary_action_button.dart';
 import '../fullscreen.dart';
+import '../app_mode.dart';
+import '../mode_keys.dart';
 import '../mode_scaffold.dart';
 import 'stopwatch_controller.dart';
 
@@ -23,48 +25,71 @@ class StopwatchModePage extends StatelessWidget {
     final sw = StopwatchController.instance;
     final r = Responsive.of(context);
 
-    return ModeScaffold(
-      body: ListenableBuilder(
-        listenable: Listenable.merge([sw, Fullscreen.active]),
-        builder: (context, _) {
-          final full = Fullscreen.active.value;
-          final face = _Face(sw: sw);
-          final controls = _Controls(sw: sw);
-          final laps = _Laps(sw: sw);
+    final l10n = context.l10n;
 
-          if (full) return face;
+    return ModeKeyBindings(
+      mode: AppMode.stopwatch,
+      actions: ModeKeyActions(
+        primary: () => sw.running ? sw.stop() : sw.start(),
+        reset: () {
+          if (!sw.running && sw.hasData) sw.reset();
+        },
+        lap: sw.lap,
+      ),
+      child: ModeScaffold(
+        primaryAction: ListenableBuilder(
+          listenable: sw,
+          builder: (context, _) => PrimaryActionButton(
+            running: sw.running,
+            label: sw.running
+                ? l10n.timerPause
+                : (sw.hasData ? l10n.timerResume : l10n.timerStart),
+            onPressed: sw.running ? sw.stop : sw.start,
+          ),
+        ),
+        body: ListenableBuilder(
+          listenable: Listenable.merge([sw, Fullscreen.active]),
+          builder: (context, _) {
+            final full = Fullscreen.active.value;
+            final face = _Face(sw: sw);
+            final controls = _Controls(sw: sw);
+            final laps = _Laps(sw: sw);
 
-          return LayoutBuilder(builder: (context, c) {
-            final sideBySide = c.maxWidth > c.maxHeight * 1.25 && !r.isWatch;
-            if (sideBySide) {
-              return Row(
-                children: [
-                  Expanded(child: face),
-                  const SizedBox(width: AppSpacing.xl),
-                  Expanded(
-                    child: Column(
-                      children: [
-                        controls,
-                        const SizedBox(height: AppSpacing.lg),
-                        Expanded(child: laps),
-                      ],
+            if (full) return face;
+
+            return LayoutBuilder(builder: (context, c) {
+              final sideBySide = c.maxWidth > c.maxHeight * 1.25 && !r.isWatch;
+              if (sideBySide) {
+                return Row(
+                  children: [
+                    Expanded(child: face),
+                    const SizedBox(width: AppSpacing.xl),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          controls,
+                          const SizedBox(height: AppSpacing.lg),
+                          Expanded(child: laps),
+                        ],
+                      ),
                     ),
+                  ],
+                );
+              }
+              return Column(
+                children: [
+                  Expanded(flex: 3, child: face),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: AppSpacing.md),
+                    child: controls,
                   ),
+                  if (!r.isWatch && sw.laps.isNotEmpty) Expanded(child: laps),
                 ],
               );
-            }
-            return Column(
-              children: [
-                Expanded(flex: 3, child: face),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
-                  child: controls,
-                ),
-                if (!r.isWatch && sw.laps.isNotEmpty) Expanded(child: laps),
-              ],
-            );
-          });
-        },
+            });
+          },
+        ),
       ),
     );
   }
@@ -152,8 +177,8 @@ class _Controls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final watch = Responsive.of(context).isWatch;
-    final gap = SizedBox(width: watch ? 4 : AppSpacing.md);
+    // Nothing to offer before the first start: play lives in the menu.
+    if (!sw.hasData && !sw.running) return const SizedBox.shrink();
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -165,17 +190,6 @@ class _Controls extends StatelessWidget {
             onPressed: sw.reset,
             icon: const Icon(Icons.stop_rounded),
           ),
-        gap,
-        FilledButton(
-          style: watch ? watchButtonStyle : null,
-          onPressed: sw.running ? sw.stop : sw.start,
-          child: Text(
-            sw.running
-                ? l10n.stopwatchStop
-                : (sw.hasData ? l10n.timerResume : l10n.timerStart),
-          ),
-        ),
-        gap,
         if (sw.running)
           AppIconButton(
             tooltip: l10n.stopwatchLap,

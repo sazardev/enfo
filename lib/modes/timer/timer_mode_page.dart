@@ -10,8 +10,10 @@ import '../../ui/clock/clock_view.dart';
 import '../../ui/design/responsive.dart';
 import '../../ui/design/spacing.dart';
 import '../format.dart';
-import '../watch_button.dart';
+import '../../ui/molecules/primary_action_button.dart';
 import '../fullscreen.dart';
+import '../app_mode.dart';
+import '../mode_keys.dart';
 import '../mode_scaffold.dart';
 import 'duration_wheels.dart';
 import 'timer_controller.dart';
@@ -77,8 +79,34 @@ class _TimerModePageState extends State<TimerModePage>
 
   @override
   Widget build(BuildContext context) {
-    return ModeScaffold(
-      body: _timer.phase == TimerPhase.idle ? _idle(context) : _active(context),
+    final l10n = context.l10n;
+    final phase = _timer.phase;
+    return ModeKeyBindings(
+      mode: AppMode.timer,
+      actions: ModeKeyActions(
+        primary: () {
+          if (_timer.running) {
+            _timer.pause();
+          } else if (_timer.phase != TimerPhase.idle ||
+              _timer.totalSeconds > 0) {
+            _timer.start();
+          }
+        },
+        reset: _timer.reset,
+      ),
+      child: ModeScaffold(
+        primaryAction: PrimaryActionButton(
+          running: _timer.running,
+          label: switch (phase) {
+            TimerPhase.idle => l10n.timerStart,
+            TimerPhase.running => l10n.timerPause,
+            TimerPhase.paused => l10n.timerResume,
+          },
+          onPressed: _timer.running ? _timer.pause : _timer.start,
+          enabled: phase != TimerPhase.idle || _timer.totalSeconds > 0,
+        ),
+        body: phase == TimerPhase.idle ? _idle(context) : _active(context),
+      ),
     );
   }
 
@@ -138,12 +166,6 @@ class _TimerModePageState extends State<TimerModePage>
                         ),
                   ),
                 ],
-                SizedBox(height: r.isWatch ? AppSpacing.xs : AppSpacing.xl),
-                FilledButton(
-                  style: r.isWatch ? watchButtonStyle : null,
-                  onPressed: _timer.totalSeconds > 0 ? _timer.start : null,
-                  child: Text(l10n.timerStart),
-                ),
               ],
             ),
           ),
@@ -189,14 +211,6 @@ class _TimerModePageState extends State<TimerModePage>
                         tooltip: l10n.timerReset,
                         onPressed: _timer.reset,
                         icon: const Icon(Icons.stop_rounded),
-                      ),
-                      SizedBox(width: r.isWatch ? 4 : AppSpacing.md),
-                      FilledButton(
-                        style: r.isWatch ? watchButtonStyle : null,
-                        onPressed: paused ? _timer.start : _timer.pause,
-                        child: Text(
-                          paused ? l10n.timerResume : l10n.timerPause,
-                        ),
                       ),
                       SizedBox(width: r.isWatch ? 4 : AppSpacing.md),
                       if (!r.isWatch)

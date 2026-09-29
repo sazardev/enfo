@@ -31,7 +31,7 @@ class ClockStylePage extends StatefulWidget {
 const Object _combosKey = 'combos';
 
 class _ClockStylePageState extends State<ClockStylePage>
-    with TickerProviderStateMixin {
+    with SingleTickerProviderStateMixin {
   late ClockStyle _selected = widget.selected;
   final Set<Object> _collapsed = {};
   bool _applying = false;
@@ -43,13 +43,6 @@ class _ClockStylePageState extends State<ClockStylePage>
   );
   late final Animation<double> _seconds =
       _controller.drive(Tween<double>(begin: 0, end: 3600));
-
-  /// Staggered entrance of the tiles.
-  late final AnimationController _entrance = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 1100),
-  );
-  bool _entranceStarted = false;
 
   static final List<Object> _allSections = [
     _combosKey,
@@ -63,20 +56,14 @@ class _ClockStylePageState extends State<ClockStylePage>
     super.didChangeDependencies();
     if (MediaQuery.disableAnimationsOf(context)) {
       _controller.stop();
-      _entrance.value = 1;
-    } else {
-      if (!_controller.isAnimating) _controller.forward();
-      if (!_entranceStarted) {
-        _entranceStarted = true;
-        _entrance.forward();
-      }
+    } else if (!_controller.isAnimating) {
+      _controller.forward();
     }
   }
 
   @override
   void dispose() {
     _controller.dispose();
-    _entrance.dispose();
     super.dispose();
   }
 
@@ -115,57 +102,42 @@ class _ClockStylePageState extends State<ClockStylePage>
     Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
-  int _tileIndex = 0;
-
-  Widget _pop(Widget child) => _Pop(
-        animation: _entrance,
-        index: _tileIndex++,
-        child: child,
-      );
-
-  Widget _section({
+  Widget _header({
     required Object key,
     required IconData icon,
     required String title,
-    required Widget body,
   }) {
     final collapsed = _collapsed.contains(key);
     final cs = Theme.of(context).colorScheme;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        BouncyTap(
-          onTap: () => _toggle(key),
-          pressedScale: 0.97,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
-            child: Row(
-              children: [
-                Icon(icon, size: 18, color: cs.primary),
-                const SizedBox(width: AppSpacing.sm),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
-                  ),
-                ),
-                AnimatedRotation(
-                  turns: collapsed ? -0.25 : 0,
-                  duration: Motion.medium,
-                  curve: Motion.snappy,
-                  child: Icon(
-                    Icons.expand_more_rounded,
-                    color: cs.onSurfaceVariant,
-                  ),
-                ),
-              ],
+    return BouncyTap(
+      onTap: () => _toggle(key),
+      pressedScale: 0.97,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: AppSpacing.md),
+        child: Row(
+          children: [
+            Icon(icon, size: 18, color: cs.primary),
+            const SizedBox(width: AppSpacing.sm),
+            Expanded(
+              child: Text(
+                title,
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+              ),
             ),
-          ),
+            AnimatedRotation(
+              turns: collapsed ? -0.25 : 0,
+              duration: Motion.medium,
+              curve: Motion.snappy,
+              child: Icon(
+                Icons.expand_more_rounded,
+                color: cs.onSurfaceVariant,
+              ),
+            ),
+          ],
         ),
-        _Collapsible(expanded: !collapsed, child: body),
-      ],
+      ),
     );
   }
 
@@ -179,7 +151,6 @@ class _ClockStylePageState extends State<ClockStylePage>
       FormFactor.medium => 3,
       FormFactor.expanded => 4,
     };
-    _tileIndex = 0;
 
     return Scaffold(
       appBar: appTopBar(
@@ -206,182 +177,132 @@ class _ClockStylePageState extends State<ClockStylePage>
           SizedBox(width: responsive.isWatch ? 0 : AppSpacing.sm),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(
-          AppSpacing.xl,
-          0,
-          AppSpacing.xl,
-          AppSpacing.xxxl,
-        ),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: AppLayout.contentWidth(context),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _section(
-                  key: _combosKey,
-                  icon: Icons.auto_awesome_rounded,
-                  title: l10n.clockCombosTitle,
-                  body: SizedBox(
-                    // Two rows of cards scrolling sideways: 60 combos stay
-                    // browsable without a very long list.
-                    height:
-                        (responsive.isWatch ? 1 : 2) * 176 * responsive.scale +
-                            (responsive.isWatch ? 0 : AppSpacing.md),
-                    child: GridView.builder(
-                      scrollDirection: Axis.horizontal,
-                      clipBehavior: Clip.none,
-                      itemCount: ClockCombo.values.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: responsive.isWatch ? 1 : 2,
-                        mainAxisSpacing: AppSpacing.md,
-                        crossAxisSpacing: AppSpacing.md,
-                        mainAxisExtent: 148 * responsive.scale,
-                      ),
-                      itemBuilder: (context, i) {
-                        final combo = ClockCombo.values[i];
-                        return _pop(ClockComboCard(
-                          combo: combo,
-                          width: 148 * responsive.scale,
-                          selected: combo.style == _selected &&
-                              combo.color.toARGB32() ==
-                                  Themes.accent.toARGB32(),
-                          clock: _seconds,
-                          onTap: () => _apply(combo.style, accent: combo.color),
-                        ));
-                      },
-                    ),
-                  ),
-                ),
-                for (final category in ClockCategory.values)
-                  _section(
-                    key: category,
-                    icon: category.icon,
-                    title: category.labelOf(l10n),
-                    body: GridView.count(
-                      crossAxisCount: columns,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      mainAxisSpacing: AppSpacing.md,
-                      crossAxisSpacing: AppSpacing.md,
-                      childAspectRatio: 0.9,
-                      children: [
-                        for (final style in ClockStyle.values)
-                          if (style.category == category)
-                            _pop(ClockStyleTile(
-                              style: style,
-                              selected: style == _selected,
-                              clock: _seconds,
-                              onTap: () => _apply(style),
-                            )),
-                      ],
-                    ),
-                  ),
+      // Lazy slivers: only the tiles near the viewport are built, so the
+      // ~120 live previews never all animate (or lay out) at once.
+      body: LayoutBuilder(builder: (context, constraints) {
+        final side =
+            ((constraints.maxWidth - AppLayout.contentWidth(context)) / 2)
+                .clamp(AppSpacing.xl, double.infinity);
+        final styles = [
+          for (final category in ClockCategory.values)
+            (
+              category,
+              [
+                for (final style in ClockStyle.values)
+                  if (style.category == category) style,
               ],
             ),
-          ),
+        ];
+        return CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: EdgeInsets.fromLTRB(side, 0, side, AppSpacing.xxxl),
+              sliver: SliverMainAxisGroup(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: _header(
+                      key: _combosKey,
+                      icon: Icons.auto_awesome_rounded,
+                      title: l10n.clockCombosTitle,
+                    ),
+                  ),
+                  if (!_collapsed.contains(_combosKey))
+                    SliverToBoxAdapter(
+                      child: SizedBox(
+                        // Two rows of cards scrolling sideways: 60 combos
+                        // stay browsable without a very long list.
+                        height: (responsive.isWatch ? 1 : 2) *
+                                176 *
+                                responsive.scale +
+                            (responsive.isWatch ? 0 : AppSpacing.md),
+                        child: GridView.builder(
+                          scrollDirection: Axis.horizontal,
+                          clipBehavior: Clip.none,
+                          itemCount: ClockCombo.values.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: responsive.isWatch ? 1 : 2,
+                            mainAxisSpacing: AppSpacing.md,
+                            crossAxisSpacing: AppSpacing.md,
+                            mainAxisExtent: 148 * responsive.scale,
+                          ),
+                          itemBuilder: (context, i) {
+                            final combo = ClockCombo.values[i];
+                            return _Pop(
+                              child: ClockComboCard(
+                                combo: combo,
+                                width: 148 * responsive.scale,
+                                selected: combo.style == _selected &&
+                                    combo.color.toARGB32() ==
+                                        Themes.accent.toARGB32(),
+                                clock: _seconds,
+                                onTap: () =>
+                                    _apply(combo.style, accent: combo.color),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                  for (final (category, items) in styles) ...[
+                    SliverToBoxAdapter(
+                      child: _header(
+                        key: category,
+                        icon: category.icon,
+                        title: category.labelOf(l10n),
+                      ),
+                    ),
+                    if (!_collapsed.contains(category))
+                      SliverGrid.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: columns,
+                          mainAxisSpacing: AppSpacing.md,
+                          crossAxisSpacing: AppSpacing.md,
+                          childAspectRatio: 0.9,
+                        ),
+                        itemCount: items.length,
+                        itemBuilder: (context, i) => _Pop(
+                          child: ClockStyleTile(
+                            style: items[i],
+                            selected: items[i] == _selected,
+                            clock: _seconds,
+                            onTap: () => _apply(items[i]),
+                          ),
+                        ),
+                      ),
+                  ],
+                ],
+              ),
+            ),
+          ],
+        );
+      }),
+    );
+  }
+}
+
+/// Short pop-in played when a tile is first built (tiles are lazy, so it
+/// runs as they scroll into view instead of for all of them up front).
+class _Pop extends StatelessWidget {
+  const _Pop({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    if (MediaQuery.disableAnimationsOf(context)) return child;
+    return TweenAnimationBuilder<double>(
+      tween: Tween<double>(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 320),
+      curve: Curves.easeOut,
+      child: child,
+      builder: (context, t, child) => Opacity(
+        opacity: t,
+        child: Transform.scale(
+          scale: 0.85 + 0.15 * Curves.easeOutBack.transform(t),
+          child: child,
         ),
       ),
-    );
-  }
-}
-
-/// Staggered pop-in: each item scales up with a spring-ish overshoot and
-/// fades in slightly after the previous one.
-class _Pop extends StatelessWidget {
-  const _Pop({
-    required this.animation,
-    required this.index,
-    required this.child,
-  });
-
-  final Animation<double> animation;
-  final int index;
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    final start = (index * 0.035).clamp(0.0, 0.55);
-    final end = (start + 0.45).clamp(0.0, 1.0);
-    return AnimatedBuilder(
-      animation: animation,
-      child: child,
-      builder: (context, child) {
-        final t = ((animation.value - start) / (end - start)).clamp(0.0, 1.0);
-        return Opacity(
-          opacity: Curves.easeOut.transform(t),
-          child: Transform.scale(
-            scale: 0.8 + 0.2 * Curves.easeOutBack.transform(t),
-            child: child,
-          ),
-        );
-      },
-    );
-  }
-}
-
-/// Animated expand/collapse. While fully collapsed the child is not built at
-/// all, so hidden live previews cost nothing.
-class _Collapsible extends StatefulWidget {
-  const _Collapsible({required this.expanded, required this.child});
-
-  final bool expanded;
-  final Widget child;
-
-  @override
-  State<_Collapsible> createState() => _CollapsibleState();
-}
-
-class _CollapsibleState extends State<_Collapsible>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    vsync: this,
-    duration: Motion.medium,
-    value: widget.expanded ? 1 : 0,
-  );
-  late final CurvedAnimation _curve =
-      CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic);
-
-  @override
-  void didUpdateWidget(covariant _Collapsible oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.expanded == widget.expanded) return;
-    if (MediaQuery.disableAnimationsOf(context)) {
-      _controller.value = widget.expanded ? 1 : 0;
-    } else if (widget.expanded) {
-      _controller.forward();
-    } else {
-      _controller.reverse();
-    }
-  }
-
-  @override
-  void dispose() {
-    _curve.dispose();
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        if (_controller.isDismissed) {
-          return const SizedBox(width: double.infinity);
-        }
-        return ClipRect(
-          child: Align(
-            alignment: Alignment.topCenter,
-            heightFactor: _curve.value,
-            child: FadeTransition(opacity: _curve, child: child),
-          ),
-        );
-      },
-      child: widget.child,
     );
   }
 }
