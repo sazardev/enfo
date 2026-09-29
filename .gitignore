@@ -44,3 +44,11 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 tools/.l10n.lock
+
+# Marketing assets: regenerable (tools/compose_store_assets.py, tool/store/*).
+# Only the en-US / es-419 screenshot sets are kept in git.
+store/raw/
+store/screenshots/*
+!store/screenshots/en-US/
+!store/screenshots/es-419/
+!store/screenshots/README.md

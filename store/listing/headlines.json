@@ -1,0 +1,112 @@
+{
+  "_scenes": [
+    "hero_pomodoro",
+    "clock_styles",
+    "fullscreen_clock",
+    "timer_stopwatch",
+    "intervals",
+    "kitchen_timers",
+    "breathe_music",
+    "world_sleep"
+  ],
+  "en-US": [
+    "Focus, one calm dial",
+    "63 clock styles, 60 combos",
+    "Your desk clock, full screen",
+    "Timers and laps, made simple",
+    "HIIT and Tabata intervals",
+    "Kitchen timers, all at once",
+    "Breathe. Then play lo-fi.",
+    "World time. Better sleep."
+  ],
+  "es-419": [
+    "Enfócate con un solo dial",
+    "63 estilos, 60 combinaciones",
+    "Tu reloj de escritorio",
+    "Timers y vueltas, sin líos",
+    "Intervalos HIIT y Tabata",
+    "Timers de cocina a la vez",
+    "Respira. Y pon lo-fi.",
+    "Hora mundial. Mejor sueño."
+  ],
+  "de-DE": [
+    "Fokus mit einem Zifferblatt",
+    "63 Stile, 60 Kombis",
+    "Deine Schreibtischuhr",
+    "Timer und Runden, einfach",
+    "HIIT- und Tabata-Intervalle",
+    "Küchentimer, alle zugleich",
+    "Atmen. Dann Lo-Fi hören.",
+    "Weltzeit. Besserer Schlaf."
+  ],
+  "fr-FR": [
+    "Un cadran, zéro distraction",
+    "63 styles, 60 combinaisons",
+    "Votre horloge de bureau",
+    "Minuteurs et tours, simples",
+    "Intervalles HIIT et Tabata",
+    "Tous vos minuteurs cuisine",
+    "Respirez. Puis lo-fi.",
+    "Le monde, et mieux dormir"
+  ],
+  "pt-BR": [
+    "Foco em um único mostrador",
+    "63 estilos, 60 combinações",
+    "Seu relógio de mesa",
+    "Timers e voltas sem estresse",
+    "Intervalos HIIT e Tabata",
+    "Timers de cozinha juntos",
+    "Respire. Depois, lo-fi.",
+    "Hora mundial. Sono melhor."
+  ],
+  "hi-IN": [
+    "एक शांत डायल से फ़ोकस",
+    "63 स्टाइल, 60 कॉम्बो",
+    "फ़ुल-स्क्रीन डेस्क घड़ी",
+    "टाइमर और लैप, आसान",
+    "HIIT और Tabata इंटरवल",
+    "किचन के सारे टाइमर",
+    "सांस लें, फिर लो-फ़ाई",
+    "दुनिया का समय, बेहतर नींद"
+  ],
+  "ja-JP": [
+    "ひとつのダイヤルで集中",
+    "63種のデザイン、60コンボ",
+    "全画面のデスク時計",
+    "タイマーもラップも簡単",
+    "HIIT・Tabataインターバル",
+    "キッチンタイマーを同時に",
+    "深呼吸して、ローファイ",
+    "世界時計と、いい眠り"
+  ],
+  "ko-KR": [
+    "다이얼 하나로 집중",
+    "시계 63종, 콤보 60개",
+    "전체 화면 데스크 시계",
+    "타이머와 랩, 간단하게",
+    "HIIT·타바타 인터벌",
+    "주방 타이머를 한꺼번에",
+    "숨 고르고, 로파이 한 곡",
+    "세계 시간, 더 좋은 잠"
+  ],
+  "zh-CN": [
+    "一个表盘,专注到底",
+    "63种样式,60套组合",
+    "全屏桌面时钟",
+    "计时与分圈,超简单",
+    "HIIT 与 Tabata 间歇",
+    "厨房计时,同时进行",
+    "深呼吸,再听 Lo-fi",
+    "世界时间,更好睡眠"
+  ],
+  "es-ES": [
+    "Enfócate con un solo dial",
+    "63 estilos, 60 combinaciones",
+    "Tu reloj de escritorio",
+    "Timers y vueltas, sin líos",
+    "Intervalos HIIT y Tabata",
+    "Timers de cocina a la vez",
+    "Respira. Y pon lo-fi.",
+    "Hora mundial. Mejor sueño."
+  ]
+}

@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Enfo – a flat, calm clock &amp; timer toolbox (Pomodoro, timers, alarms, world clock and more)</title>
+<meta name="description" content="Enfo is a flat, minimal clock and timer toolbox for Android, Windows and Linux: Pomodoro, timer, stopwatch, alarm, world clock and 10 more tools, 63 clock styles, Material You colors, 9 languages.">
+<meta name="theme-color" content="#fbfbf2">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://sazardev.github.io/enfo/">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="preload" href="assets/fonts/GeistMono-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="preload" href="assets/fonts/GeistMono-Bold.ttf" as="font" type="font/ttf" crossorigin>
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Enfo">
+<meta property="og:title" content="Enfo – a flat, calm clock &amp; timer toolbox">
+<meta property="og:description" content="16 tools, 63 clock styles, Material You colors, 9 languages. Android, Windows, Linux.">
+<meta property="og:url" content="https://sazardev.github.io/enfo/">
+<meta property="og:image" content="https://sazardev.github.io/enfo/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Enfo – a flat, calm clock &amp; timer toolbox">
+<meta name="twitter:description" content="16 tools, 63 clock styles, Material You colors, 9 languages. Android, Windows, Linux.">
+<meta name="twitter:image" content="https://sazardev.github.io/enfo/assets/og.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Enfo","applicationCategory":"UtilitiesApplication","operatingSystem":"Android, Windows, Linux","description":"A flat, minimal clock and timer toolbox with 16 tools and 63 clock styles.","softwareVersion":"1.1.0","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://sazardev.github.io/enfo/"}</script>
+
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/site-config.js"></script>
+<script src="assets/js/theme.js"></script>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+<header class="top" id="top">
+  <div class="top-in">
+    <a class="brand" href="#hero" aria-label="Enfo">
+      <img src="assets/icon-192.png" width="36" height="36" alt="" class="brand-ico">
+      <span>Enfo</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="#why" data-i18n="nav.why">Why Enfo</a>
+      <a href="#tools" data-i18n="nav.tools">Tools</a>
+      <a href="#styles" data-i18n="nav.styles">Clock styles</a>
+      <a href="#themes" data-i18n="nav.themes">Colors</a>
+      <a href="#devices" data-i18n="nav.devices">Devices</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a class="nav-cta" href="#download" data-i18n="nav.download">Download</a>
+    </nav>
+    <div class="top-tools">
+      <div class="seg" role="group" aria-label="Language" data-seg="lang">
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <div class="seg" role="group" aria-label="Theme" data-seg="mode" id="modeSeg"></div>
+      <button type="button" class="ibtn menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav" aria-label="Menu"></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow reveal" data-i18n="hero.eyebrow">Clock &amp; timer toolbox</p>
+      <h1 class="reveal" data-i18n="hero.title">Every kind of time, in one flat, calm app.</h1>
+      <p class="lead reveal" data-i18n="hero.sub">Enfo began as a Pomodoro timer. Now it is 16 tools, from timers and alarms to breathing, sleep cycles and lo-fi music, drawn in 63 clock styles that follow your color.</p>
+      <div class="cta-row reveal" id="heroCta"></div>
+      <p class="detected reveal" id="detected" aria-live="polite"></p>
+      <ul class="facts reveal" aria-label="Facts">
+        <li><b>16</b> <span data-i18n="facts.tools">tools</span></li>
+        <li><b>63</b> <span data-i18n="facts.styles">clock styles</span></li>
+        <li><b>9</b> <span data-i18n="facts.langs">languages</span></li>
+        <li><b>7</b> <span data-i18n="facts.widgets">Android widgets</span></li>
+      </ul>
+    </div>
+    <div class="hero-dial reveal">
+      <div class="dial-card">
+        <div class="dial-top">
+          <span class="chip on" id="heroStyleName">Ring</span>
+          <span class="chip" id="heroComboName" hidden></span>
+        </div>
+        <div class="dial-stage"><canvas id="heroCanvas" aria-label="Animated clock face" role="img"></canvas></div>
+        <div class="dial-ctl">
+          <button type="button" class="ibtn" id="heroPrev" aria-label="Previous style"></button>
+          <div class="dial-dots" id="heroDots" aria-hidden="true"></div>
+          <button type="button" class="ibtn" id="heroNext" aria-label="Next style"></button>
+        </div>
+      </div>
+      <div class="swatch-row" id="heroSwatches" role="group" aria-label="Accent color"></div>
+      <p class="hint" data-i18n="hero.swatchHint">Pick a color: the whole page re-themes, just like the app.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEE IT -->
+<section class="section" id="see" aria-labelledby="see-h">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="see.eyebrow">In your pocket</p>
+    <h2 id="see-h" class="reveal" data-i18n="see.title">See it in motion</h2>
+    <p class="lead reveal" data-i18n="see.lead">Real screens from the app, for phone and tablet. Every screen is flat: tone, shape and motion do the work.</p>
+    <div class="video-slot reveal" id="videoSlot" hidden></div>
+    <div class="shots reveal" id="shots" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="section tint" id="why" aria-labelledby="why-h">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="why.eyebrow">Why Enfo</p>
+    <h2 id="why-h" class="reveal" data-i18n="why.title">Small on the surface, deep underneath</h2>
+    <div class="cards" id="whyCards"></div>
+    <p class="note reveal" data-i18n="why.ads">Honest note: the Android version shows ads (Google AdMob). Enfo has no account, no sign-in and no in-app purchases that we know of; the support page in the app has a tip jar if you would rather chip in.</p>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="section" id="tools" aria-labelledby="tools-h">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="tools.eyebrow">16 tools</p>
+    <h2 id="tools-h" class="reveal" data-i18n="tools.title">One app, sixteen ways to spend time well</h2>
+    <p class="lead reveal" data-i18n="tools.lead">Six tools are on from the start; the other ten are one tap away in the Modes menu. Try the live demos below (they are silent and run only in your browser).</p>
+    <div class="modes reveal">
+      <div class="mode-list" id="modeList" role="tablist" aria-label="Tools" aria-orientation="horizontal"></div>
+      <div class="mode-panel" id="modePanel" role="tabpanel" tabindex="0" aria-live="off">
+        <div class="mode-head">
+          <span class="mode-badge" id="modeBadge"></span>
+          <div><h3 id="modeName"></h3><p id="modeDesc"></p></div>
+          <span class="chip" id="modeTag"></span>
+        </div>
+        <div class="mode-demo" id="modeDemo"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOCK STYLES -->
+<section class="section tint" id="styles" aria-labelledby="styles-h">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="styles.eyebrow">63 clock styles &middot; 60 combos</p>
+    <h2 id="styles-h" class="reveal" data-i18n="styles.title">Your timer can look like anything</h2>
+    <p class="lead reveal" data-i18n="styles.lead">Rings, waves, pies, dials, gauges, spirals, digits, flowers, gears. A combo pairs a style with a color in one tap. Here are a few of them, alive; scrub the time and shuffle.</p>
+    <div class="play reveal">
+      <div class="play-main">
+        <div class="play-stage"><canvas id="playCanvas" role="img" aria-label="Clock style preview"></canvas></div>
+        <div class="play-ctl">
+          <label class="range"><span data-i18n="styles.progress">Progress</span>
+            <input type="range" id="playP" min="0" max="1000" value="350" aria-label="Progress">
+          </label>
+          <div class="cta-row">
+            <button type="button" class="btn" id="playShuffle"></button>
+            <button type="button" class="btn tonal" id="playAuto" aria-pressed="true"></button>
+          </div>
+          <p class="hint" id="playName"></p>
+        </div>
+      </div>
+      <div class="tiles" id="tiles" role="listbox" aria-label="Clock styles"></div>
+    </div>
+    <div class="combos reveal" id="combos" role="group" aria-label="Combos"></div>
+  </div>
+</section>
+
+<!-- THEMES -->
+<section class="section" id="themes" aria-labelledby="themes-h">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="themes.eyebrow">Material You, flat</p>
+    <h2 id="themes-h" class="reveal" data-i18n="themes.title">One color in. A whole tonal palette out.</h2>
+    <p class="lead reveal" data-i18n="themes.lead">Pick an accent and Enfo derives every surface, container and text color from it, in light and dark. No borders, no shadows, no gradients: selection is a shape that morphs from circle to squircle.</p>
+    <div class="themes-grid">
+      <div class="reveal">
+        <div class="swatch-grid" id="swatchGrid" role="group" aria-label="Accent color"></div>
+        <label class="hexrow"><span data-i18n="themes.custom">Custom color</span>
+          <input type="color" id="customColor" value="#cddc39" aria-label="Custom color">
+        </label>
+        <div class="seg wide" role="group" aria-label="Theme" id="modeSeg2"></div>
+        <button type="button" class="btn tonal" id="resetAccent" data-i18n="themes.reset">Back to lime</button>
+      </div>
+      <div class="roles reveal" id="roles" aria-hidden="true"></div>
+    </div>
+    <div class="ui-sample reveal" aria-hidden="true">
+      <div class="card sample-card">
+        <div class="sample-top"><b>Enfo</b><span class="chip on">Focus</span></div>
+        <div class="sample-time">24:59</div>
+        <div class="pillbar"><i style="width:62%"></i></div>
+        <div class="cta-row"><span class="btn">Start</span><span class="btn tonal">Skip</span></div>
+      </div>
+      <div class="card sample-card">
+        <div class="sw-row"><span>Auto-start</span><span class="switch on"><span></span></span></div>
+        <div class="sw-row"><span>Haptics</span><span class="switch"><span></span></span></div>
+        <div class="chips"><span class="chip on">25</span><span class="chip">50</span><span class="chip">90</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEVICES -->
+<section class="section tint" id="devices" aria-labelledby="devices-h">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="devices.eyebrow">Responsive</p>
+    <h2 id="devices-h" class="reveal" data-i18n="devices.title">From a watch-sized window to a TV</h2>
+    <p class="lead reveal" data-i18n="devices.lead">One adaptive layout: a column on phones, a dial with a side panel on wide screens, master-detail settings on tablets, and everything focusable for keyboards and remotes.</p>
+    <div class="devices" id="deviceCards"></div>
+    <p class="note reveal" data-i18n="devices.note">Layouts are tested at watch, phone, tablet, TV and desktop sizes. Enfo is published for Android, Windows and Linux; separate Wear OS or Android TV store listings do not exist yet.</p>
+  </div>
+</section>
+
+<!-- KEYS -->
+<section class="section" id="keys" aria-labelledby="keys-h">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="keys.eyebrow">Keyboard &amp; remote</p>
+    <h2 id="keys-h" class="reveal" data-i18n="keys.title">Fully drivable without touching the screen</h2>
+    <p class="lead reveal" data-i18n="keys.lead">Arrow keys or a remote's D-pad move focus, Enter or OK presses. These shortcuts do the rest. Press ? or F1 in the app for this list.</p>
+    <div class="keys reveal" id="keyList"></div>
+  </div>
+</section>
+
+<!-- LANGUAGES + WIDGETS -->
+<section class="section tint" id="more" aria-labelledby="more-h">
+  <div class="wrap two">
+    <div>
+      <p class="eyebrow reveal" data-i18n="langs.eyebrow">9 languages</p>
+      <h2 id="more-h" class="reveal" data-i18n="langs.title">Speaks your language</h2>
+      <p class="lead reveal" data-i18n="langs.lead">Pick it in onboarding or Settings. City names in the World clock are still English and Spanish only. This site is available in English and Spanish.</p>
+      <div class="chips big reveal" id="langChips"></div>
+    </div>
+    <div>
+      <p class="eyebrow reveal" data-i18n="widgets.eyebrow">Android widgets</p>
+      <h2 class="reveal" data-i18n="widgets.title">Seven Material You widgets</h2>
+      <p class="lead reveal" data-i18n="widgets.lead">Clock, analog clock, Pomodoro, timer, stopwatch, alarms and world clock. The Pomodoro and timer widgets are drawn in the clock style you picked.</p>
+      <div class="widgets reveal" id="widgetList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="section download" id="download" aria-labelledby="dl-h">
+  <div class="wrap">
+    <p class="eyebrow reveal" data-i18n="dl.eyebrow">Free to download</p>
+    <h2 id="dl-h" class="reveal" data-i18n="dl.title">Descargar Enfo · Download Enfo now</h2>
+    <p class="lead reveal" data-i18n="dl.lead">Get it on Android from Google Play, or grab the latest Windows and Linux builds from GitHub Releases.</p>
+    <div class="dl-grid reveal" id="dlGrid"></div>
+    <p class="detected" id="detected2" aria-live="polite"></p>
+    <div class="build card reveal" id="build">
+      <h3 data-i18n="dl.buildTitle">Build from source</h3>
+      <p data-i18n="dl.buildLead">You need the Flutter SDK. Enfo needs a local <code>lib/secret.dart</code> (git-ignored) with an AdMob id to compile on any platform; Google's public test id works for development.</p>
+      <pre tabindex="0"><code id="buildCode"></code></pre>
+      <button type="button" class="btn tonal" id="copyBuild"></button>
+      <p class="hint" data-i18n="dl.buildLinux">Linux also needs the libnotify development package (for example libnotify-dev on Debian/Ubuntu).</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="section" id="privacy" aria-labelledby="priv-h">
+  <div class="wrap narrow">
+    <p class="eyebrow reveal" data-i18n="priv.eyebrow">Privacy</p>
+    <h2 id="priv-h" class="reveal" data-i18n="priv.title">What Enfo does with your data</h2>
+    <ul class="checks reveal" id="privList"></ul>
+  </div>
+</section>
+
+<!-- CHANGELOG + CREDITS -->
+<section class="section tint" id="changelog" aria-labelledby="cl-h">
+  <div class="wrap two">
+    <div>
+      <p class="eyebrow reveal" data-i18n="cl.eyebrow">What's new</p>
+      <h2 id="cl-h" class="reveal" data-i18n="cl.title">Changelog</h2>
+      <div class="changelog reveal" id="changelogBox"></div>
+      <a class="link reveal" id="clFull" target="_blank" rel="noopener" data-i18n="cl.full">Full changelog on GitHub</a>
+    </div>
+    <div id="music">
+      <p class="eyebrow reveal" data-i18n="music.eyebrow">Music credits</p>
+      <h2 class="reveal" data-i18n="music.title">14 lo-fi songs, properly credited</h2>
+      <p class="lead reveal" data-i18n="music.lead">All songs come from Wikimedia Commons, re-encoded to Ogg Vorbis. Ten are CC0; four are CC BY and require the credits below.</p>
+      <div class="credits reveal" id="creditList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" aria-labelledby="faq-h">
+  <div class="wrap narrow">
+    <p class="eyebrow reveal" data-i18n="faq.eyebrow">FAQ</p>
+    <h2 id="faq-h" class="reveal" data-i18n="faq.title">Questions, answered</h2>
+    <div class="faq reveal" id="faqList"></div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <div class="foot-brand">
+      <img src="assets/icon-192.png" width="40" height="40" alt="">
+      <div><b>Enfo</b><p data-i18n="foot.tag">A flat, calm clock &amp; timer toolbox.</p></div>
+    </div>
+    <div class="foot-links">
+      <a data-link="repo" target="_blank" rel="noopener">GitHub</a>
+      <a data-link="releases" target="_blank" rel="noopener">Releases</a>
+      <a data-link="play" target="_blank" rel="noopener">Google Play</a>
+      <a data-link="issues" target="_blank" rel="noopener" data-i18n="foot.issues">Report an issue</a>
+      <a data-link="coffee" target="_blank" rel="noopener" data-i18n="foot.coffee">Support the developer</a>
+    </div>
+    <p class="fine" data-i18n="foot.font">Set in Geist Mono, © The Geist Project Authors, SIL Open Font License 1.1 (<a href="assets/fonts/OFL.txt">license</a>). Icons: Material Icons, Apache 2.0.</p>
+    <p class="fine"><span data-i18n="foot.ver">Version</span> <span id="ver"></span> · <span data-i18n="foot.made">Made with Flutter. Google Play and the Google Play logo are trademarks of Google LLC.</span></p>
+  </div>
+</footer>
+
+<noscript><p class="noscript">Enfo's site uses JavaScript for its live demos and color themes. Downloads: <a href="https://github.com/sazardev/enfo/releases/latest">GitHub Releases</a> · <a href="https://play.google.com/store/apps/details?id=com.sazarcode.enfo">Google Play</a></p></noscript>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/repo-data.js"></script>
+<script src="assets/js/clocks.js"></script>
+<script src="assets/js/demos.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -154,15 +154,18 @@ class _EventModePageState extends State<EventModePage> {
     );
 
     if (r.isWide) {
-      return Row(
-        children: [
-          Expanded(child: heroBlock),
-          const SizedBox(width: AppSpacing.xl),
-          SizedBox(
-            width: 340,
-            child: SingleChildScrollView(child: list),
-          ),
-        ],
+      // The side list takes a third of the width, between 260 and 340.
+      return LayoutBuilder(
+        builder: (context, c) => Row(
+          children: [
+            Expanded(child: heroBlock),
+            const SizedBox(width: AppSpacing.xl),
+            SizedBox(
+              width: (c.maxWidth * 0.36).clamp(260.0, 340.0),
+              child: SingleChildScrollView(child: list),
+            ),
+          ],
+        ),
       );
     }
 
@@ -250,15 +253,19 @@ class _Hero extends StatelessWidget {
             ),
           )
         else if (!compact)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _Stat(value: view.days, unit: l10n.eventUnitDays),
-              const SizedBox(width: AppSpacing.sm),
-              _Stat(value: view.hours, unit: l10n.eventUnitHours),
-              const SizedBox(width: AppSpacing.sm),
-              _Stat(value: view.minutes, unit: l10n.eventUnitMinutes),
-            ],
+          // Scales down instead of overflowing next to the side list.
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _Stat(value: view.days, unit: l10n.eventUnitDays),
+                const SizedBox(width: AppSpacing.sm),
+                _Stat(value: view.hours, unit: l10n.eventUnitHours),
+                const SizedBox(width: AppSpacing.sm),
+                _Stat(value: view.minutes, unit: l10n.eventUnitMinutes),
+              ],
+            ),
           ),
         const SizedBox(height: AppSpacing.sm),
         Row(

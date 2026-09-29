@@ -248,35 +248,56 @@ class _Laps extends StatelessWidget {
           ),
           child: Row(
             children: [
+              // Every column is one line that shrinks before it wraps.
               SizedBox(
-                width: 64,
-                child: Text(
-                  '#${index + 1}',
-                  style: textTheme.bodyMedium
-                      ?.copyWith(color: scheme.onSurfaceVariant),
+                width: 48,
+                child: _OneLine(
+                  child: Text(
+                    '#${index + 1}',
+                    style: textTheme.bodyMedium
+                        ?.copyWith(color: scheme.onSurfaceVariant),
+                  ),
                 ),
               ),
               Expanded(
-                child: Text(
-                  formatStopwatch(Duration(milliseconds: ms)),
-                  style: textTheme.bodyLarge?.copyWith(
-                    color: color,
-                    fontWeight: FontWeight.w600,
+                flex: 5,
+                child: _OneLine(
+                  child: Text(
+                    formatStopwatch(Duration(milliseconds: ms)),
+                    style: textTheme.bodyLarge?.copyWith(
+                      color: color,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),
-              if (tag != null)
-                Padding(
-                  padding: const EdgeInsets.only(right: AppSpacing.md),
+              // The tag slot is always reserved so the totals line up.
+              Expanded(
+                flex: 3,
+                child: tag == null
+                    ? const SizedBox.shrink()
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: AppSpacing.sm),
+                        child: _OneLine(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            tag,
+                            style: textTheme.labelSmall?.copyWith(color: color),
+                          ),
+                        ),
+                      ),
+              ),
+              Expanded(
+                flex: 5,
+                child: _OneLine(
+                  alignment: Alignment.centerRight,
                   child: Text(
-                    tag,
-                    style: textTheme.labelSmall?.copyWith(color: color),
+                    formatStopwatch(totals[index]),
+                    style: textTheme.bodyMedium
+                        ?.copyWith(color: scheme.onSurfaceVariant),
                   ),
                 ),
-              Text(
-                formatStopwatch(totals[index]),
-                style: textTheme.bodyMedium
-                    ?.copyWith(color: scheme.onSurfaceVariant),
               ),
             ],
           ),
@@ -284,4 +305,19 @@ class _Laps extends StatelessWidget {
       },
     );
   }
+}
+
+/// One unwrapped line that scales down to the width it is given.
+class _OneLine extends StatelessWidget {
+  const _OneLine({required this.child, this.alignment = Alignment.centerLeft});
+
+  final Widget child;
+  final Alignment alignment;
+
+  @override
+  Widget build(BuildContext context) => FittedBox(
+        fit: BoxFit.scaleDown,
+        alignment: alignment,
+        child: child,
+      );
 }

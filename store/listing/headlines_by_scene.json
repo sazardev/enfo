@@ -1,0 +1,102 @@
+{
+  "en-US": {
+    "hero_pomodoro": "Focus, one calm dial",
+    "clock_styles": "63 clock styles, 60 combos",
+    "fullscreen_clock": "Your desk clock, full screen",
+    "timer_stopwatch": "Timers and laps, made simple",
+    "intervals": "HIIT and Tabata intervals",
+    "kitchen_timers": "Kitchen timers, all at once",
+    "breathe_music": "Breathe. Then play lo-fi.",
+    "world_sleep": "World time. Better sleep."
+  },
+  "es-419": {
+    "hero_pomodoro": "Enfócate con un solo dial",
+    "clock_styles": "63 estilos, 60 combinaciones",
+    "fullscreen_clock": "Tu reloj de escritorio",
+    "timer_stopwatch": "Timers y vueltas, sin líos",
+    "intervals": "Intervalos HIIT y Tabata",
+    "kitchen_timers": "Timers de cocina a la vez",
+    "breathe_music": "Respira. Y pon lo-fi.",
+    "world_sleep": "Hora mundial. Mejor sueño."
+  },
+  "de-DE": {
+    "hero_pomodoro": "Fokus mit einem Zifferblatt",
+    "clock_styles": "63 Stile, 60 Kombis",
+    "fullscreen_clock": "Deine Schreibtischuhr",
+    "timer_stopwatch": "Timer und Runden, einfach",
+    "intervals": "HIIT- und Tabata-Intervalle",
+    "kitchen_timers": "Küchentimer, alle zugleich",
+    "breathe_music": "Atmen. Dann Lo-Fi hören.",
+    "world_sleep": "Weltzeit. Besserer Schlaf."
+  },
+  "fr-FR": {
+    "hero_pomodoro": "Un cadran, zéro distraction",
+    "clock_styles": "63 styles, 60 combinaisons",
+    "fullscreen_clock": "Votre horloge de bureau",
+    "timer_stopwatch": "Minuteurs et tours, simples",
+    "intervals": "Intervalles HIIT et Tabata",
+    "kitchen_timers": "Tous vos minuteurs cuisine",
+    "breathe_music": "Respirez. Puis lo-fi.",
+    "world_sleep": "Le monde, et mieux dormir"
+  },
+  "pt-BR": {
+    "hero_pomodoro": "Foco em um único mostrador",
+    "clock_styles": "63 estilos, 60 combinações",
+    "fullscreen_clock": "Seu relógio de mesa",
+    "timer_stopwatch": "Timers e voltas sem estresse",
+    "intervals": "Intervalos HIIT e Tabata",
+    "kitchen_timers": "Timers de cozinha juntos",
+    "breathe_music": "Respire. Depois, lo-fi.",
+    "world_sleep": "Hora mundial. Sono melhor."
+  },
+  "hi-IN": {
+    "hero_pomodoro": "एक शांत डायल से फ़ोकस",
+    "clock_styles": "63 स्टाइल, 60 कॉम्बो",
+    "fullscreen_clock": "फ़ुल-स्क्रीन डेस्क घड़ी",
+    "timer_stopwatch": "टाइमर और लैप, आसान",
+    "intervals": "HIIT और Tabata इंटरवल",
+    "kitchen_timers": "किचन के सारे टाइमर",
+    "breathe_music": "सांस लें, फिर लो-फ़ाई",
+    "world_sleep": "दुनिया का समय, बेहतर नींद"
+  },
+  "ja-JP": {
+    "hero_pomodoro": "ひとつのダイヤルで集中",
+    "clock_styles": "63種のデザイン、60コンボ",
+    "fullscreen_clock": "全画面のデスク時計",
+    "timer_stopwatch": "タイマーもラップも簡単",
+    "intervals": "HIIT・Tabataインターバル",
+    "kitchen_timers": "キッチンタイマーを同時に",
+    "breathe_music": "深呼吸して、ローファイ",
+    "world_sleep": "世界時計と、いい眠り"
+  },
+  "ko-KR": {
+    "hero_pomodoro": "다이얼 하나로 집중",
+    "clock_styles": "시계 63종, 콤보 60개",
+    "fullscreen_clock": "전체 화면 데스크 시계",
+    "timer_stopwatch": "타이머와 랩, 간단하게",
+    "intervals": "HIIT·타바타 인터벌",
+    "kitchen_timers": "주방 타이머를 한꺼번에",
+    "breathe_music": "숨 고르고, 로파이 한 곡",
+    "world_sleep": "세계 시간, 더 좋은 잠"
+  },
+  "zh-CN": {
+    "hero_pomodoro": "一个表盘,专注到底",
+    "clock_styles": "63种样式,60套组合",
+    "fullscreen_clock": "全屏桌面时钟",
+    "timer_stopwatch": "计时与分圈,超简单",
+    "intervals": "HIIT 与 Tabata 间歇",
+    "kitchen_timers": "厨房计时,同时进行",
+    "breathe_music": "深呼吸,再听 Lo-fi",
+    "world_sleep": "世界时间,更好睡眠"
+  },
+  "es-ES": {
+    "hero_pomodoro": "Enfócate con un solo dial",
+    "clock_styles": "63 estilos, 60 combinaciones",
+    "fullscreen_clock": "Tu reloj de escritorio",
+    "timer_stopwatch": "Timers y vueltas, sin líos",
+    "intervals": "Intervalos HIIT y Tabata",
+    "kitchen_timers": "Timers de cocina a la vez",
+    "breathe_music": "Respira. Y pon lo-fi.",
+    "world_sleep": "Hora mundial. Mejor sueño."
+  }
+}

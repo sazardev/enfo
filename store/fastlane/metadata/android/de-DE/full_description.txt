@@ -1,0 +1,45 @@
+<b>Alle Uhren, die du brauchst, in einer ruhigen App.</b>
+Enfo begann als minimalistischer Pomodoro-Timer und ist heute ein Werkzeugkasten für Uhren und Timer: fokussiert arbeiten, kochen, trainieren, atmen, schlafen und Zeitzonen im Blick behalten, ohne ständig die App zu wechseln. Aktiviere nur die Tools, die du willst, und wechsle mit einer Taste zwischen ihnen.
+
+<b>16 TOOLS</b>
+• Pomodoro: Fokus- und Pausenzyklen, Tagesstatistik und Serien
+• Uhr: eine Dauer-Uhr mit 5 Designs und Vollbild-Schreibtischmodus
+• Timer: Räder für Stunden, Minuten und Sekunden mit gespeicherten Vorgaben
+• Stoppuhr: Runden mit hervorgehobener bester und langsamster Runde, auf die Hundertstel genau
+• Wecker: einmalig oder wiederholt, Schlummern, klingelt im Vollbild
+• Weltzeit: echte Zeitzonen mit Sommerzeit und ein Terminplaner für Meetings
+• Ereignisse: zähle die Tage bis zu dem, was zählt, mit jährlicher Wiederholung
+• Intervalle: HIIT-, Tabata- und EMOM-Runden
+• Atmen: Box-Atmung, 4-7-8, kohärent und eigene Muster
+• Tracker: Tätigkeiten zeitlich erfassen und 7-Tage-Diagramm ansehen
+• Küche: mehrere benannte Timer gleichzeitig
+• Schlaf: ein Planer für 90-Minuten-Zyklen, der deine Wecker stellt
+• Zugwechsel: Zwei-Spieler-Uhr und Rednerliste
+• Pausen: 20-20-20, Dehnen, Wasser und Haltung
+• Ambient: weißes, rosa und braunes Rauschen, Regen, Wind und Meer mit Einschlaf-Timer
+• Musik: 14 Lo-Fi-Songs zum Fokussieren
+
+Die ersten sechs Tools sind von Anfang an aktiv. Die anderen zehn schaltest du im Modus-Menü mit einem Tipp dazu.
+
+<b>63 UHRENSTILE</b>
+Sieh die Zeit als Ring, Ziffernwelle, Pizza, Lavalampe oder Keksdose. Wähle aus 63 flachen Timer-Motiven und 60 fertigen Kombinationen aus Stil und Farbe oder mische dir deine eigene.
+
+<b>VOLLBILD-UHR</b>
+Mach aus jedem Tool eine Schreibtisch- oder Nachttischuhr: Die Bedienelemente blenden sich aus, der Bildschirm bleibt an, die Helligkeit lässt sich dimmen und das Bild wandert leicht, um dein Display zu schonen.
+
+<b>HOMESCREEN-WIDGETS</b>
+Sieben Android-Widgets: Uhr, Analoguhr, Pomodoro, Timer, Stoppuhr, Wecker und Weltzeit. Sie passen zu deinem Design, und Pomodoro und Timer nutzen deinen gewählten Uhrenstil.
+
+<b>DEIN LOOK</b>
+System-, helles oder dunkles Design. 32 Akzentfarben plus eigener Farbwähler. Konsequent flaches Design mit klarer Monospace-Schrift. Du bestimmst, welche Tasten im unteren Menü erscheinen.
+
+<b>STATISTIK UND VERLAUF</b>
+Pomodoros, Fokuszeit, Serien und ein Aktivitätsverlauf, der auch Timer, Stoppuhr, Wecker und die neuen Tools umfasst.
+
+<b>DEINE SPRACHE</b>
+Deutsch, Englisch, Spanisch, Französisch, Portugiesisch, Hindi, Japanisch, Koreanisch und Chinesisch.
+
+<b>PRIVAT ENTWORFEN</b>
+Kein Konto, keine Anmeldung. Verlauf und Einstellungen liegen auf deinem Gerät und lassen sich jederzeit löschen. Werbung siehst du nur, wenn du dich entscheidest, eine anzusehen, um den Entwickler zu unterstützen.
+
+Enfo: weniger Lärm, mehr Zeit.
