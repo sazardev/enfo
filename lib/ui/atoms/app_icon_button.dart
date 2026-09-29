@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../design/responsive.dart';
 import 'bouncy_tap.dart';
 
 /// Flat, round icon button with bouncy press feedback. Replaces raw
@@ -12,21 +13,27 @@ class AppIconButton extends StatelessWidget {
     this.onPressed,
     this.tooltip,
     this.selected = false,
-    this.size = 44,
+    this.size,
   });
 
   final Widget icon;
   final VoidCallback? onPressed;
   final String? tooltip;
   final bool selected;
-  final double size;
+
+  /// Diameter. Defaults to the screen-aware size: compact on a watch, and
+  /// growing with the screen scale on tablets and TVs.
+  final double? size;
 
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final r = Responsive.of(context);
+    final size = this.size ?? (r.isWatch ? 34.0 : 44.0 * r.scale);
 
     final button = BouncyTap(
       onTap: onPressed,
+      focusBorderRadius: BorderRadius.circular(size),
       pressedScale: 0.9,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),

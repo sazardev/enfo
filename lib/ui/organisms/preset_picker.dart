@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/locale_controller.dart';
 import '../../presets.dart';
 import '../molecules/minutes_slider.dart';
 import '../molecules/preset_card.dart';
@@ -80,34 +81,52 @@ class _PresetPickerState extends State<PresetPicker> {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final isCustom = _selectedPreset == null;
+    final l10n = context.l10n;
+    // Presets.all order: classic, extended, deep work.
+    final presetLabels = [
+      l10n.presetClassic,
+      l10n.presetExtended,
+      l10n.presetDeep,
+    ];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        GridView.count(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          crossAxisCount: 2,
-          mainAxisSpacing: 10,
-          crossAxisSpacing: 10,
-          childAspectRatio: 2.4,
-          children: [
-            for (var i = 0; i < Presets.all.length; i++)
-              PresetCard(
-                label: Presets.all[i].label,
-                subtitle:
-                    '${Presets.all[i].workMinutes}/${Presets.all[i].restMinutes} min',
-                selected: _selectedPreset == i,
-                onTap: () => _selectPreset(i),
-              ),
-            PresetCard(
-              label: 'Manual',
-              subtitle: '$_workMinutes/$_restMinutes min',
-              selected: isCustom,
-              onTap: () => _setCustom(),
+        LayoutBuilder(builder: (context, constraints) {
+          // 1 column on a watch, 2 on phones, 4 when there's room. Card
+          // height follows the effective text scale so labels never clip.
+          final width = constraints.maxWidth;
+          final columns = width < 240 ? 1 : (width >= 520 ? 4 : 2);
+          final textScale = MediaQuery.textScalerOf(context).scale(1);
+          return GridView(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: columns,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              mainAxisExtent: 64 * (textScale < 1 ? 1 : textScale),
             ),
-          ],
-        ),
+            children: [
+              for (var i = 0; i < Presets.all.length; i++)
+                PresetCard(
+                  label: presetLabels[i],
+                  subtitle: l10n.presetSummary(
+                    Presets.all[i].workMinutes,
+                    Presets.all[i].restMinutes,
+                  ),
+                  selected: _selectedPreset == i,
+                  onTap: () => _selectPreset(i),
+                ),
+              PresetCard(
+                label: l10n.presetManual,
+                subtitle: l10n.presetSummary(_workMinutes, _restMinutes),
+                selected: isCustom,
+                onTap: () => _setCustom(),
+              ),
+            ],
+          );
+        }),
         AnimatedSize(
           duration: const Duration(milliseconds: 320),
           curve: Curves.easeOutCubic,
@@ -118,22 +137,20 @@ class _PresetPickerState extends State<PresetPicker> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       MinutesSlider(
-                        label: 'Enfoque',
+                        label: l10n.workLabel,
                         color: colorScheme.primary,
                         minutes: _workMinutes,
                         min: 5,
                         max: 120,
-                        divisions: 23,
                         onChanged: (value) => _setCustom(workMinutes: value),
                       ),
                       const SizedBox(height: 12),
                       MinutesSlider(
-                        label: 'Descanso',
+                        label: l10n.restLabel,
                         color: colorScheme.tertiary,
                         minutes: _restMinutes,
                         min: 1,
                         max: 30,
-                        divisions: 29,
                         onChanged: (value) => _setCustom(restMinutes: value),
                       ),
                     ],

@@ -1,9 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'ui/design/radii.dart';
 
 class Themes {
-  static int defaultIndex = 10;
+  static const Color defaultAccent = Colors.lime;
+
+  /// The accent the app is currently themed with (loaded at startup).
+  static Color accent = defaultAccent;
+
+  static const _accentKey = 'accent_color';
+  // Legacy: the accent used to be stored as an index into [colors]. The
+  // first 16 entries keep their order so old indexes still resolve.
+  static const _legacyIndexKey = 'defaultIndex';
+
+  static Future<void> loadAccent() async {
+    final prefs = await SharedPreferences.getInstance();
+    final stored = prefs.getInt(_accentKey);
+    if (stored != null) {
+      accent = Color(stored);
+      return;
+    }
+    final legacy = prefs.getInt(_legacyIndexKey);
+    if (legacy != null && legacy >= 0 && legacy < colors.length) {
+      accent = colors[legacy];
+    }
+  }
+
+  /// Back to the built-in accent, in memory only (callers that erase
+  /// preferences have already removed the stored value).
+  static void resetAccent() => accent = defaultAccent;
+
+  static Future<void> saveAccent(Color color) async {
+    accent = color;
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(_accentKey, color.toARGB32());
+  }
 
   static const List<Color> colors = [
     Colors.red,
@@ -22,16 +54,30 @@ class Themes {
     Colors.deepOrange,
     Colors.brown,
     Colors.blueGrey,
+    // Extra variety (appended: never reorder the entries above).
+    Color(0xFFE11D48), // rose
+    Color(0xFFF43F5E), // coral
+    Color(0xFFD946EF), // fuchsia
+    Color(0xFF7C3AED), // violet
+    Color(0xFF6366F1), // periwinkle
+    Color(0xFF2563EB), // royal blue
+    Color(0xFF0EA5E9), // sky
+    Color(0xFF14B8A6), // aqua
+    Color(0xFF10B981), // emerald
+    Color(0xFF84CC16), // pear
+    Color(0xFFF59E0B), // honey
+    Color(0xFFEA580C), // tangerine
+    Color(0xFF8B5E3C), // cocoa
+    Color(0xFF64748B), // slate
+    Color(0xFF334155), // midnight
+    Color(0xFF111827), // ink
   ];
 
   static const String fontFamily = 'GeistMono';
 
-  static ThemeData light(int index) => _build(colors[index], Brightness.light);
+  static ThemeData light(Color seed) => _build(seed, Brightness.light);
 
-  static ThemeData dark(int index) => _build(colors[index], Brightness.dark);
-
-  static ThemeData changeTheme(int index, bool isDark) =>
-      _build(colors[index], isDark ? Brightness.dark : Brightness.light);
+  static ThemeData dark(Color seed) => _build(seed, Brightness.dark);
 
   static ThemeData _build(Color seed, Brightness brightness) {
     final colorScheme = ColorScheme.fromSeed(
@@ -118,7 +164,8 @@ class Themes {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           shape: AppRadii.pill,
-          side: BorderSide(color: colorScheme.outlineVariant),
+          side: BorderSide.none,
+          backgroundColor: colorScheme.surfaceContainerHigh,
         ),
       ),
       segmentedButtonTheme: SegmentedButtonThemeData(

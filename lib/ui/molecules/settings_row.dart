@@ -14,12 +14,14 @@ class SettingsRow extends StatelessWidget {
     this.subtitle,
     required this.trailing,
     this.onTap,
+    this.labelColor,
   });
 
   final String label;
   final String? subtitle;
   final Widget trailing;
   final VoidCallback? onTap;
+  final Color? labelColor;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,10 @@ class SettingsRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(label, style: textTheme.bodyLarge),
+                Text(
+                  label,
+                  style: textTheme.bodyLarge?.copyWith(color: labelColor),
+                ),
                 if (subtitle != null) ...[
                   const SizedBox(height: 2),
                   Text(

@@ -1,0 +1,552 @@
+{
+  "@@locale": "en",
+  "appTitle": "Enfo",
+  "tooltipSettings": "Settings",
+  "tooltipStats": "Statistics",
+  "tooltipPin": "Keep always on top",
+  "tooltipUnpin": "Stop keeping on top",
+  "phasePaused": "Paused",
+  "phaseFocus": "Focus",
+  "phaseRelax": "Relax",
+  "notifRestTitle": "Time to rest",
+  "notifRestBody": "Take a break.",
+  "notifWorkTitle": "Time to work",
+  "notifWorkBody": "Let's continue with the work!",
+  "onboardingStart": "Start",
+  "rhythmTitle": "Focus rhythm",
+  "presetClassic": "Classic",
+  "presetExtended": "Extended",
+  "presetDeep": "Deep",
+  "presetManual": "Manual",
+  "workLabel": "Focus",
+  "restLabel": "Rest",
+  "minutes": "{n} min",
+  "@minutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "presetSummary": "{work}/{rest} min",
+  "@presetSummary": {
+    "placeholders": {
+      "work": {
+        "type": "int"
+      },
+      "rest": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsTitle": "Settings",
+  "timersTitle": "Timers",
+  "timersSubtitle": "{work} min focus · {rest} min rest",
+  "@timersSubtitle": {
+    "placeholders": {
+      "work": {
+        "type": "int"
+      },
+      "rest": {
+        "type": "int"
+      }
+    }
+  },
+  "timersCycle": "One full cycle: {total} min",
+  "@timersCycle": {
+    "placeholders": {
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "timersApplyHint": "If the timer is running, the change applies from the next cycle. If it is paused, the timer resets.",
+  "appearanceTitle": "Appearance",
+  "appearanceLight": "Light theme",
+  "appearanceDark": "Dark theme",
+  "darkTheme": "Dark theme",
+  "accentColor": "Accent color",
+  "notificationsTitle": "Notifications",
+  "notificationsOn": "On",
+  "notificationsOff": "Off",
+  "notificationsToggle": "Phase change alerts",
+  "notificationsHint": "Get notified when it is time to rest or to get back to work.",
+  "languageTitle": "Language",
+  "languageSystem": "System default",
+  "languageSpanish": "Español",
+  "languageEnglish": "English",
+  "languageHint": "Choose the language of the app.",
+  "supportTitle": "Support Enfo",
+  "supportSubtitle": "Coffee and ads",
+  "supportSubtitleNoAds": "Buy me a coffee",
+  "buyCoffee": "Buy me a coffee",
+  "watchAd": "Watch an ad to help",
+  "supportHint": "Enfo is free and made by one person. Thank you for using it.",
+  "statsTitle": "Statistics",
+  "statsEmpty": "No sessions yet.\nStart a pomodoro and it will show up here.",
+  "statsTodayPomodoros": "Pomodoros today",
+  "statsTodayFocus": "Focus today",
+  "statsCompleted": "Completed",
+  "statsStreak": "{count, plural, =1{Day in a row} other{Days in a row}}",
+  "@statsStreak": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "statsLast7Days": "Last 7 days",
+  "statsTotalFocus": "Total focus time",
+  "statsTotalRest": "Total rest time",
+  "statsAbandoned": "Abandoned",
+  "statsAbandonedValue": "{count}  ·  {percent}% completed",
+  "@statsAbandonedValue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "statsAverageFocus": "Average focus",
+  "statsLongestSession": "Longest session",
+  "statsPauses": "Pauses",
+  "statsAverageGap": "Average wait between sessions",
+  "statsLongestGap": "Longest time inactive",
+  "statsSinceLast": "Since last session",
+  "statsHistory": "History",
+  "statsClearHistory": "Clear history",
+  "statsClearConfirm": "Confirm: delete all sessions",
+  "statsClearHint": "This cannot be undone.",
+  "cancel": "Cancel",
+  "sessionFocus": "Focus",
+  "sessionRest": "Rest",
+  "sessionProgress": "{done} of {planned}",
+  "@sessionProgress": {
+    "placeholders": {
+      "done": {
+        "type": "String"
+      },
+      "planned": {
+        "type": "String"
+      }
+    }
+  },
+  "sessionPauses": "{count, plural, =1{1 pause} other{{count} pauses}} ({time})",
+  "@sessionPauses": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "sessionIdleBefore": "after {gap} idle",
+  "@sessionIdleBefore": {
+    "placeholders": {
+      "gap": {
+        "type": "String"
+      }
+    }
+  },
+  "sessionCompleted": "Completed",
+  "sessionAbandoned": "Abandoned",
+  "clockStyleTitle": "Clock style",
+  "tooltipClockStyle": "Clock style",
+  "clockCategoryProgress": "Progress & numbers",
+  "clockCategoryNumbers": "Numbers only",
+  "clockCategoryIcons": "Icon only",
+  "clockCategoryMotion": "Animation only",
+  "clockUnitMinutes": "min",
+  "clockUnitSeconds": "sec",
+  "clockRing": "Ring",
+  "clockWavyRing": "Wave",
+  "clockSegments": "Segments",
+  "clockOrbit": "Orbit",
+  "clockPie": "Pie",
+  "clockKitchen": "Kitchen",
+  "clockDots": "Dots",
+  "clockBar": "Bar",
+  "clockWavyBar": "Wavy bar",
+  "clockDigits": "Digits",
+  "clockMinutes": "Minutes",
+  "clockTiles": "Tiles",
+  "clockStack": "Stacked",
+  "clockTomato": "Tomato",
+  "clockHourglass": "Hourglass",
+  "clockBattery": "Battery",
+  "clockIcon": "Icon",
+  "clockCookie": "Cookie",
+  "clockLiquid": "Liquid",
+  "clockBreathe": "Breathe",
+  "clockEqualizer": "Equalizer",
+  "clockRipple": "Ripples",
+  "accentApply": "Apply",
+  "accentCustom": "Custom color",
+  "accentHue": "Hue",
+  "accentSaturation": "Saturation",
+  "accentBrightness": "Brightness",
+  "accentHex": "Hex code",
+  "displayTitle": "Display",
+  "displayClockShown": "Clock visible",
+  "displayClockHidden": "Clock hidden",
+  "showClock": "Show the time",
+  "showClockHint": "The small clock above the timer.",
+  "clockFormat": "Time format",
+  "clockFormatSystem": "System default",
+  "clockFormat12": "12-hour",
+  "clockFormat24": "24-hour",
+  "behaviorTitle": "Behavior",
+  "autoStartNext": "Start next phase automatically",
+  "autoStartNextHint": "When focus or rest ends, the next one begins without tapping.",
+  "hapticFeedback": "Vibrate when a phase ends",
+  "hapticFeedbackHint": "A short vibration on your phone.",
+  "clockCombosTitle": "Combos",
+  "clockCollapseAll": "Collapse all",
+  "clockExpandAll": "Expand all",
+  "comboDeepFocus": "Deep focus",
+  "comboMint": "Fresh mint",
+  "comboSunset": "Sunset",
+  "comboZen": "Zen",
+  "comboTomato": "Classic tomato",
+  "comboNight": "Night owl",
+  "comboPlayful": "Playful",
+  "comboMinimal": "Minimal",
+  "uiSizeTitle": "Interface size",
+  "uiSizeSmall": "Small",
+  "uiSizeNormal": "Normal",
+  "uiSizeLarge": "Large",
+  "uiSizeExtraLarge": "Extra large",
+  "uiSizeHint": "Makes text and controls bigger or smaller. Useful on TVs and car displays.",
+  "clockBlob": "Blob",
+  "clockFlower": "Flower",
+  "clockSun": "Sun",
+  "clockGears": "Gears",
+  "clockBubbles": "Bubbles",
+  "clockSunflower": "Sunflower",
+  "clockFireflies": "Fireflies",
+  "clockPendulum": "Pendulum",
+  "clockBounce": "Bounce",
+  "clockMorph": "Morph",
+  "dataTitle": "Data",
+  "dataSubtitle": "History, reset and intro",
+  "dataSessions": "{count, plural, =0{No saved activity} =1{1 saved entry} other{{count} saved entries}}",
+  "@dataSessions": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dataIntro": "Show the intro again",
+  "dataIntroHint": "Go through the welcome screen and pick your rhythm again. Nothing is deleted.",
+  "dataClearHistoryHint": "Deletes all recorded activity: pomodoros, timers, stopwatch runs, alarms and clock time. Settings stay as they are.",
+  "dataConfirmClearHistory": "Confirm: clear history",
+  "dataResetSettings": "Reset settings",
+  "dataResetSettingsHint": "Timers, theme, accent color, language, modes and display options go back to defaults. History stays.",
+  "dataConfirmResetSettings": "Confirm: reset settings",
+  "dataEraseAll": "Erase everything",
+  "dataEraseAllHint": "Deletes history and settings and starts fresh, as on the first launch.",
+  "dataConfirmEraseAll": "Confirm: erase everything",
+  "dataDoneHistory": "History cleared.",
+  "dataDoneSettings": "Settings restored to defaults.",
+  "dataCacheNote": "Enfo keeps no cache: everything it stores is the history and the settings listed here.",
+  "clockEndsAt": "Ends",
+  "clockFill": "Fill",
+  "clockCapsule": "Capsule",
+  "clockRollers": "Rollers",
+  "clockMatrix": "Matrix",
+  "clockSevenSeg": "Digital",
+  "clockFlip": "Flip",
+  "clockFine": "Fine",
+  "clockSuperscript": "Exponent",
+  "clockPercent": "Percent",
+  "clockEndTime": "Ends at",
+  "clockSeconds": "Seconds",
+  "clockTall": "Tall",
+  "clockWobble": "Wobble",
+  "clockLabeled": "Labeled",
+  "clockGauge": "Gauge",
+  "clockNeedle": "Needle",
+  "clockAnalog": "Analog",
+  "clockRings": "Rings",
+  "clockSquircle": "Squircle",
+  "clockColumns": "Columns",
+  "clockVertical": "Vertical",
+  "clockSteps": "Steps",
+  "clockBlocks": "Blocks",
+  "clockSpiral": "Spiral",
+  "clockSlices": "Slices",
+  "clockPills": "Pills",
+  "clockHexagon": "Hexagon",
+  "clockStairs": "Stairs",
+  "clockCandle": "Candle",
+  "clockMoon": "Moon",
+  "clockRuler": "Ruler",
+  "comboArcade": "Arcade",
+  "comboCalculator": "Calculator",
+  "comboDepartures": "Departure board",
+  "comboCandlelight": "Candlelight",
+  "comboMoonlight": "Moonlight",
+  "comboGarden": "Garden",
+  "comboSummer": "Summer",
+  "comboWorkshop": "Workshop",
+  "comboFizzy": "Fizzy",
+  "comboSunfield": "Sunflower field",
+  "comboSummerNight": "Summer night",
+  "comboHypnosis": "Hypnosis",
+  "comboBouncy": "Bouncy",
+  "comboShapeshifter": "Shapeshifter",
+  "comboLava": "Lava lamp",
+  "comboOcean": "Ocean",
+  "comboPulse": "Pulse",
+  "comboPond": "Pond",
+  "comboEspresso": "Espresso",
+  "comboSpeedometer": "Speedometer",
+  "comboCompass": "Compass",
+  "comboClassicClock": "Classic clock",
+  "comboConcentric": "Concentric",
+  "comboRounded": "Rounded",
+  "comboSignal": "Signal",
+  "comboThermometer": "Thermometer",
+  "comboMilestones": "Milestones",
+  "comboRetroBlocks": "Retro blocks",
+  "comboHypnoSpiral": "Hypnotic spiral",
+  "comboCitrus": "Citrus",
+  "comboChocolate": "Chocolate bar",
+  "comboCrystal": "Crystal",
+  "comboStaircase": "Staircase",
+  "comboTapeMeasure": "Tape measure",
+  "comboBoldType": "Bold type",
+  "comboPill": "Capsule",
+  "comboSlotMachine": "Slot machine",
+  "comboWhisper": "Whisper",
+  "comboDeadline": "Deadline",
+  "comboPercentage": "Percent",
+  "comboStopwatch": "Seconds only",
+  "comboSkyscraper": "Skyscraper",
+  "comboWaveText": "Wave text",
+  "comboDashboard": "Dashboard",
+  "comboExponent": "Exponent",
+  "comboGrandmaKitchen": "Grandma's kitchen",
+  "comboCyber": "Cyber",
+  "comboCandy": "Candy",
+  "comboConfetti": "Confetti",
+  "comboCookieJar": "Cookie jar",
+  "comboSandbox": "Sandbox",
+  "comboPizzaNight": "Pizza night",
+  "onbLanguageTitle": "Welcome to Enfo",
+  "onbLanguageBody": "Pick your language. Everything you choose here can be changed later in Settings.",
+  "onbRhythmTitle": "Your rhythm",
+  "onbRhythmBody": "How long you focus, and how long you rest.",
+  "onbLookTitle": "Make it yours",
+  "onbLookBody": "Theme and accent color. The screen updates as you choose.",
+  "onbClockTitle": "Pick a clock",
+  "onbClockBody": "Curated looks: a clock style and a color in one tap.",
+  "onbAllStyles": "Browse all styles",
+  "onbOptionsTitle": "Final touches",
+  "onbOptionsBody": "Display and behavior. All of this is in Settings too.",
+  "onbNext": "Next",
+  "onbBack": "Back",
+  "onbSkip": "Skip",
+  "onbStepOf": "Step {step} of {total}",
+  "@onbStepOf": {
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "clockFormatAuto": "Auto",
+  "modePomodoro": "Pomodoro",
+  "modeClock": "Clock",
+  "modeTimer": "Timer",
+  "modeStopwatch": "Stopwatch",
+  "modeAlarm": "Alarm",
+  "modeWorld": "World clock",
+  "modeDescPomodoro": "Focus and rest cycles",
+  "modeDescClock": "A beautiful, always-on clock",
+  "modeDescTimer": "Count down from any time",
+  "modeDescStopwatch": "Measure time, with laps",
+  "modeDescAlarm": "Wake up or get reminded",
+  "modeDescWorld": "The time in cities around the world",
+  "tooltipModes": "Modes",
+  "tooltipSwitchMode": "Next mode",
+  "tooltipFullscreen": "Full screen",
+  "tooltipExitFullscreen": "Exit full screen",
+  "tooltipDim": "Dim the screen",
+  "modesTitle": "Modes",
+  "modesHint": "Choose the modes you use and their order. Drag to reorder.",
+  "modesStart": "Start with",
+  "modesStartLast": "Last used mode",
+  "modesCustomize": "Customize",
+  "modesActivity": "Activity history",
+  "modesAtLeastOne": "At least one mode has to stay on.",
+  "modesSubtitle": "{count, plural, =1{1 mode on} other{{count} modes on}}",
+  "@modesSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "tooltipActivity": "Activity history",
+  "activityTitle": "Activity",
+  "activityEmpty": "Nothing here yet.\nUse a timer, a stopwatch, an alarm or the clock and it will show up here.",
+  "activityFilterAll": "All",
+  "activityTimersToday": "Timers today",
+  "activityStopwatchToday": "Stopwatch today",
+  "activityDisplayToday": "On display today",
+  "activityLaps": "{count, plural, =1{1 lap} other{{count} laps}}",
+  "@activityLaps": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "activityLap": "Lap {n}",
+  "@activityLap": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "activityAlarmDismissed": "Dismissed",
+  "activityAlarmSnoozed": "Snoozed",
+  "activityAlarmMissed": "Missed",
+  "activityDisplay": "{mode} on display",
+  "@activityDisplay": {
+    "placeholders": {
+      "mode": {
+        "type": "String"
+      }
+    }
+  },
+  "activityRan": "{done} of {planned}",
+  "@activityRan": {
+    "placeholders": {
+      "done": {
+        "type": "String"
+      },
+      "planned": {
+        "type": "String"
+      }
+    }
+  },
+  "faceRing": "Ring",
+  "faceDigital": "Digital",
+  "faceAnalog": "Analog",
+  "faceSplit": "Big",
+  "faceDay": "Day",
+  "tooltipCustomize": "Customize",
+  "clockSettingsTitle": "Customize the clock",
+  "clockFaceTitle": "Design",
+  "clockShowSeconds": "Show seconds",
+  "clockShowDate": "Show the date",
+  "clockBlinkColon": "Blinking colon",
+  "clockKeepAwake": "Keep the screen on",
+  "clockKeepAwakeHint": "While the clock is showing.",
+  "clockFullscreenHint": "Tap the full screen button for a desk clock that stays on. Swipe the clock to change its design.",
+  "clockDayPercent": "{percent}% of the day",
+  "@clockDayPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "ringDismiss": "Dismiss",
+  "ringSnooze": "Snooze {minutes} min",
+  "@ringSnooze": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "timerStart": "Start",
+  "timerPause": "Pause",
+  "timerResume": "Resume",
+  "timerReset": "Reset",
+  "timerAddMinute": "+1 min",
+  "timerHoursShort": "h",
+  "timerMinutesShort": "min",
+  "timerSecondsShort": "s",
+  "timerUpTitle": "Time's up",
+  "timerUpBody": "The {duration} timer finished.",
+  "@timerUpBody": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "timerSavePreset": "Save this time",
+  "timerPresetHint": "Tap + to save this time. Long-press a preset to remove it.",
+  "stopwatchStop": "Stop",
+  "stopwatchLap": "Lap",
+  "stopwatchLapBest": "Best",
+  "stopwatchLapWorst": "Slowest",
+  "worldLocal": "Local time",
+  "worldToday": "Today",
+  "worldTomorrow": "Tomorrow",
+  "worldYesterday": "Yesterday",
+  "worldAdd": "Add a city",
+  "worldSearch": "Search cities",
+  "worldNoResults": "No city matches that.",
+  "worldEdit": "Edit list",
+  "worldDone": "Done",
+  "worldRemove": "Remove",
+  "worldEmpty": "No other cities yet. Tap + to add one.",
+  "worldSameTime": "Same time as you",
+  "worldDiffAhead": "{diff} ahead of you",
+  "@worldDiffAhead": {
+    "placeholders": {
+      "diff": {
+        "type": "String"
+      }
+    }
+  },
+  "worldDiffBehind": "{diff} behind you",
+  "@worldDiffBehind": {
+    "placeholders": {
+      "diff": {
+        "type": "String"
+      }
+    }
+  },
+  "alarmNext": "Next alarm in {duration}",
+  "@alarmNext": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "alarmNone": "No alarms on",
+  "alarmNew": "New alarm",
+  "alarmEditTitle": "Edit alarm",
+  "alarmLabel": "Label",
+  "alarmRepeat": "Repeat",
+  "alarmSave": "Save",
+  "alarmDelete": "Delete alarm",
+  "alarmConfirmDelete": "Confirm: delete alarm",
+  "alarmDeleteHint": "This alarm will be removed.",
+  "alarmEmpty": "No alarms yet.\nTap + to create one.",
+  "alarmEveryDay": "Every day",
+  "alarmWeekdays": "Weekdays",
+  "alarmWeekends": "Weekends",
+  "alarmOnce": "Once",
+  "alarmPermissionHint": "To ring with the app closed, Enfo needs permission to send notifications and set exact alarms.",
+  "alarmPermissionButton": "Allow alarms",
+  "alarmDesktopHint": "On this device Enfo has to be open for alarms to ring."
+}

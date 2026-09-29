@@ -35,10 +35,6 @@ class PresetCard extends StatelessWidget {
           color:
               selected ? colorScheme.primary : colorScheme.surfaceContainerHigh,
           borderRadius: AppRadii.mdRadius,
-          border: Border.all(
-            color: selected ? colorScheme.primary : colorScheme.outlineVariant,
-            width: 1.5,
-          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

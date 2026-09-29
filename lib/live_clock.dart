@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'app_preferences.dart';
+
 class LiveClock extends StatefulWidget {
   final TextStyle? style;
 
@@ -31,7 +33,20 @@ class _LiveClockState extends State<LiveClock> {
 
   @override
   Widget build(BuildContext context) {
-    final time = TimeOfDay.fromDateTime(_now).format(context);
-    return Text(time, style: widget.style);
+    return ValueListenableBuilder<ClockFormat>(
+      valueListenable: AppPreferences.clockFormat,
+      builder: (context, format, _) {
+        final use24h = switch (format) {
+          ClockFormat.system => MediaQuery.alwaysUse24HourFormatOf(context),
+          ClockFormat.h12 => false,
+          ClockFormat.h24 => true,
+        };
+        final time = MaterialLocalizations.of(context).formatTimeOfDay(
+          TimeOfDay.fromDateTime(_now),
+          alwaysUse24HourFormat: use24h,
+        );
+        return Text(time, style: widget.style);
+      },
+    );
   }
 }

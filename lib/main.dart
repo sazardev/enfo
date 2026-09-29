@@ -3,22 +3,43 @@ import 'dart:io';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:enfo/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:timezone/data/latest_10y.dart' as tzdata;
 import 'package:window_manager/window_manager.dart';
 
-import 'home.dart';
+import 'app_preferences.dart';
+import 'modes/alarm/alarm_service.dart';
+import 'modes/clock/clock_prefs.dart';
+import 'modes/fullscreen.dart';
+import 'modes/stopwatch/stopwatch_controller.dart';
+import 'modes/timer/timer_controller.dart';
+import 'modes/world/world_prefs.dart';
+import 'modes/mode_host.dart';
+import 'modes/mode_prefs.dart';
+import 'l10n/gen/app_localizations.dart';
+import 'l10n/locale_controller.dart';
 import 'onboarding.dart';
 import 'presets.dart';
+import 'ui/design/responsive.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
-  final prefs = await SharedPreferences.getInstance();
   final onboarded = await Presets.isOnboarded();
+  await LocaleController.load();
 
-  Themes.defaultIndex = prefs.getInt('defaultIndex') ?? 10;
+  await Themes.loadAccent();
+  await AppPreferences.load();
+  await ModePrefs.load();
+  await Fullscreen.load();
+  await ClockPrefs.load();
+  await TimerController.instance.load();
+  await StopwatchController.instance.load();
+  tzdata.initializeTimeZones();
+  await WorldPrefs.load();
+  await AlarmService.load();
 
   if (Platform.isAndroid) {
     MobileAds.instance.initialize();
@@ -68,15 +89,53 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
-        light: Themes.light(Themes.defaultIndex),
-        dark: Themes.dark(Themes.defaultIndex),
+        light: Themes.light(Themes.accent),
+        dark: Themes.dark(Themes.accent),
         initial: widget.savedThemeMode ?? AdaptiveThemeMode.light,
         builder: (theme, darkTheme) {
-          return MaterialApp(
-            title: "Enfo",
-            theme: theme,
-            darkTheme: darkTheme,
-            home: widget.onboarded ? const Home() : const Onboarding(),
+          return ValueListenableBuilder<Locale?>(
+            valueListenable: LocaleController.locale,
+            builder: (context, locale, _) => MaterialApp(
+              onGenerateTitle: (context) =>
+                  AppLocalizations.of(context).appTitle,
+              theme: theme,
+              darkTheme: darkTheme,
+              locale: locale,
+              // Scales text and icons for the screen (bigger on tablets/TVs,
+              // plus the user's UI-size choice). Layout code reads the same
+              // factor through Responsive.of.
+              builder: (context, child) => ValueListenableBuilder<UiSize>(
+                valueListenable: AppPreferences.uiSize,
+                builder: (context, _, __) {
+                  final media = MediaQuery.of(context);
+                  final scale = Responsive.of(context).scale;
+                  final systemScale = media.textScaler.scale(14) / 14;
+                  return MediaQuery(
+                    data: media.copyWith(
+                      textScaler: TextScaler.linear(systemScale * scale),
+                    ),
+                    child: IconTheme.merge(
+                      data: IconThemeData(size: 24 * scale),
+                      child: child!,
+                    ),
+                  );
+                },
+              ),
+              supportedLocales: AppLocalizations.supportedLocales,
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              // Spanish or English only; anything else falls back to English.
+              localeResolutionCallback: (deviceLocale, supported) {
+                return deviceLocale?.languageCode == 'es'
+                    ? const Locale('es')
+                    : const Locale('en');
+              },
+              home: widget.onboarded ? const ModeHost() : const Onboarding(),
+            ),
           );
         });
   }

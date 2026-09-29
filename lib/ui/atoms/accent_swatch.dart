@@ -21,10 +21,9 @@ class AccentSwatch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
     return BouncyTap(
       onTap: onTap,
+      focusBorderRadius: BorderRadius.circular(size),
       pressedScale: 0.88,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
@@ -33,11 +32,9 @@ class AccentSwatch extends StatelessWidget {
         height: size,
         decoration: BoxDecoration(
           color: color,
-          shape: BoxShape.circle,
-          border: Border.all(
-            color: selected ? colorScheme.onSurface : Colors.transparent,
-            width: 3,
-          ),
+          // Flat selection cue: the circle morphs into a squircle (+ check).
+          borderRadius:
+              BorderRadius.circular(selected ? size * 0.32 : size / 2),
         ),
         child: selected
             ? Icon(Icons.check_rounded, color: _foregroundFor(color))

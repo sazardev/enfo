@@ -1,13 +1,19 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:local_notifier/local_notifier.dart';
 import 'package:window_manager/window_manager.dart';
 
+import '../../app_preferences.dart';
+import '../../history.dart';
+import '../../l10n/locale_controller.dart';
 import '../atoms/bouncy_tap.dart';
 import '../design/motion.dart';
-import '../molecules/countdown_ring.dart';
+import '../clock/clock_frame.dart';
+import '../clock/clock_style.dart';
+import '../clock/clock_view.dart';
 
 enum _RunState { idle, running, paused }
 
@@ -21,7 +27,8 @@ class CountdownDial extends StatefulWidget {
     required this.workSeconds,
     required this.restSeconds,
     required this.notification,
-    required this.mode,
+    this.mode = false,
+    this.style = ClockStyle.ring,
   });
 
   final int workSeconds;
@@ -30,6 +37,9 @@ class CountdownDial extends StatefulWidget {
 
   /// false = show mm:ss, true = show "Focus"/"Relax" text labels.
   final bool mode;
+
+  /// Visual used to draw the countdown.
+  final ClockStyle style;
 
   @override
   State<CountdownDial> createState() => _CountdownDialState();
@@ -43,6 +53,13 @@ class _CountdownDialState extends State<CountdownDial>
   late int _totalSeconds = widget.workSeconds;
   bool _rest = false;
   _RunState _runState = _RunState.idle;
+
+  // Bookkeeping for the session-history record of the current phase. Null
+  // _sessionStart means no phase has been started since the last reset.
+  DateTime? _sessionStart;
+  DateTime? _pauseStart;
+  int _pauseCount = 0;
+  Duration _pausedTotal = Duration.zero;
 
   /// Single source of truth for "elapsed fraction" of the current phase.
   /// stop() freezes .value exactly where it is (pause); animateTo(1.0,
@@ -84,6 +101,7 @@ class _CountdownDialState extends State<CountdownDial>
     // work phase: reflect it immediately without auto-starting. A change
     // made mid-rest is intentionally left for the next work cycle.
     if (durationChanged && notRunning && !_rest) {
+      _finishSession(completed: false);
       setState(() {
         _totalSeconds = widget.workSeconds;
         _runState = _RunState.idle;
@@ -98,15 +116,59 @@ class _CountdownDialState extends State<CountdownDial>
     _completePhase();
   }
 
+  void _beginSession() {
+    _sessionStart = DateTime.now();
+    _pauseStart = null;
+    _pauseCount = 0;
+    _pausedTotal = Duration.zero;
+  }
+
+  /// Persists the phase in progress (if any) to the history. Must run
+  /// before the progress/phase state is reset or toggled, since it reads
+  /// them to work out how long the timer actually ran.
+  void _finishSession({required bool completed}) {
+    final start = _sessionStart;
+    if (start == null) return;
+    _sessionStart = null;
+
+    final end = DateTime.now();
+    final pauseStart = _pauseStart;
+    if (pauseStart != null) _pausedTotal += end.difference(pauseStart);
+    _pauseStart = null;
+
+    final focused =
+        completed ? _totalSeconds : (_progress.value * _totalSeconds).round();
+    // A stray tap-and-reset isn't worth a history entry.
+    if (!completed && focused < 5) return;
+
+    SessionHistory.add(PomodoroSession(
+      isWork: !_rest,
+      startedAt: start,
+      endedAt: end,
+      plannedSeconds: _totalSeconds,
+      focusedSeconds: focused,
+      pauseCount: _pauseCount,
+      pausedSeconds: _pausedTotal.inSeconds,
+      completed: completed,
+    ));
+  }
+
   void _completePhase() {
+    _finishSession(completed: true);
     _rest = !_rest;
     _totalSeconds = _rest ? widget.restSeconds : widget.workSeconds;
 
     if (widget.notification) {
       if (_rest) {
-        _notify(title: 'Time to rest', body: 'Take a break.');
+        _notify(
+          title: context.l10n.notifRestTitle,
+          body: context.l10n.notifRestBody,
+        );
       } else {
-        _notify(title: 'Time to work', body: "Let's continue with the work!");
+        _notify(
+          title: context.l10n.notifWorkTitle,
+          body: context.l10n.notifWorkBody,
+        );
       }
     }
 
@@ -116,26 +178,42 @@ class _CountdownDialState extends State<CountdownDial>
       _progress.value = 0.0;
     });
 
+    if (AppPreferences.haptics.value) HapticFeedback.heavyImpact();
+
     if (!MediaQuery.disableAnimationsOf(context)) {
       _completePulseController.forward(from: 0);
     }
+
+    if (AppPreferences.autoStartNext.value) _startPhase();
+  }
+
+  void _startPhase() {
+    _beginSession();
+    setState(() {
+      _runState = _RunState.running;
+      _progress.duration = Duration(seconds: _totalSeconds);
+      _progress.forward(from: 0.0);
+    });
   }
 
   void _handleTap() {
     switch (_runState) {
       case _RunState.idle:
-        setState(() {
-          _runState = _RunState.running;
-          _progress.duration = Duration(seconds: _totalSeconds);
-          _progress.forward(from: 0.0);
-        });
+        _startPhase();
       case _RunState.running:
+        _pauseStart = DateTime.now();
+        _pauseCount++;
         setState(() {
           _runState = _RunState.paused;
           _progress.stop();
         });
       case _RunState.paused:
         final remainingSeconds = _totalSeconds * (1 - _progress.value);
+        final pauseStart = _pauseStart;
+        if (pauseStart != null) {
+          _pausedTotal += DateTime.now().difference(pauseStart);
+          _pauseStart = null;
+        }
         setState(() {
           _runState = _RunState.running;
           _progress.animateTo(
@@ -148,6 +226,7 @@ class _CountdownDialState extends State<CountdownDial>
   }
 
   void _handleReset() {
+    _finishSession(completed: false);
     setState(() {
       _runState = _RunState.idle;
       _progress.stop();
@@ -158,19 +237,9 @@ class _CountdownDialState extends State<CountdownDial>
     }
   }
 
-  String _label() {
-    if (_runState == _RunState.paused) return 'Paused';
-    if (widget.mode) return _rest ? 'Relax' : 'Focus';
-
-    final remaining =
-        (_totalSeconds * (1 - _progress.value)).round().clamp(0, _totalSeconds);
-    final minutes = (remaining ~/ 60).toString().padLeft(2, '0');
-    final seconds = (remaining % 60).toString().padLeft(2, '0');
-    return '$minutes:$seconds';
-  }
-
   @override
   void dispose() {
+    _finishSession(completed: false);
     _progress.dispose();
     _completePulseController.dispose();
     super.dispose();
@@ -178,52 +247,37 @@ class _CountdownDialState extends State<CountdownDial>
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-    // CountdownRing paints its label via a raw TextPainter (CustomPainter),
-    // which doesn't participate in the widget tree's DefaultTextStyle
-    // inheritance — a bare TextStyle() here would silently fall back to the
-    // platform system font instead of the app's Geist Mono. Base it on a
-    // real themed TextStyle so fontFamily carries through.
-    final baseLabelStyle =
-        Theme.of(context).textTheme.headlineMedium ?? const TextStyle();
+    final phase = switch (_runState) {
+      _RunState.idle => ClockPhase.idle,
+      _RunState.running => ClockPhase.running,
+      _RunState.paused => ClockPhase.paused,
+    };
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final dialSize = constraints.biggest.shortestSide / 1.2;
-        return Center(
-          child: BouncyTap(
-            onTap: _handleTap,
-            onLongPress: _handleReset,
-            pressedScale: 0.96,
-            child: AnimatedBuilder(
-              animation: Listenable.merge([_progress, _pulseScale]),
-              builder: (context, child) {
-                return Transform.scale(
-                  scale: _pulseScale.value,
-                  child: SizedBox(
-                    width: dialSize,
-                    height: dialSize,
-                    child: CountdownRing(
-                      progress: _progress.value,
-                      label: _label(),
-                      labelStyle: baseLabelStyle.copyWith(
-                        fontSize: dialSize / 6,
-                        fontWeight: FontWeight.w700,
-                        color: _runState == _RunState.paused
-                            ? colorScheme.onSurfaceVariant
-                            : colorScheme.onSurface,
-                      ),
-                      ringColor: colorScheme.primary,
-                      trackColor: colorScheme.primary.withValues(alpha: 0.14),
-                      surfaceColor: colorScheme.surfaceContainerHigh,
-                    ),
-                  ),
-                );
-              },
+    return Center(
+      child: BouncyTap(
+        onTap: _handleTap,
+        onLongPress: _handleReset,
+        pressedScale: 0.96,
+        child: AnimatedBuilder(
+          animation: _pulseScale,
+          builder: (context, child) =>
+              Transform.scale(scale: _pulseScale.value, child: child),
+          child: LayoutBuilder(
+            builder: (context, constraints) => SizedBox(
+              width: constraints.maxWidth,
+              height: constraints.maxHeight,
+              child: LiveClockView(
+                style: widget.style,
+                progress: _progress,
+                totalSeconds: _totalSeconds,
+                isRest: _rest,
+                phase: phase,
+                wordMode: widget.mode,
+              ),
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 

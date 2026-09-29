@@ -1,46 +1,61 @@
 import 'dart:io';
 
-import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:enfo/secret.dart';
-import 'package:enfo/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-import 'accent_color_page.dart';
+import 'app_preferences.dart';
+import 'appearance_page.dart';
+import 'data_page.dart';
+import 'display_page.dart';
+import 'language_page.dart';
+import 'l10n/locale_controller.dart';
+import 'modes/mode_prefs.dart';
+import 'modes/modes_page.dart';
+import 'notifications_page.dart';
 import 'presets.dart';
-import 'ui/atoms/app_icon_button.dart';
-import 'ui/atoms/bouncy_tap.dart';
+import 'support_page.dart';
+import 'timers_page.dart';
+import 'ui/design/motion.dart';
 import 'ui/design/page_transition.dart';
-import 'ui/molecules/settings_row.dart';
-import 'ui/organisms/preset_picker.dart';
+import 'ui/design/responsive.dart';
+import 'ui/design/spacing.dart';
+import 'ui/molecules/app_top_bar.dart';
+import 'ui/molecules/settings_nav_tile.dart';
 import 'ui/templates/settings_shell.dart';
 
-class Settings extends StatefulWidget {
-  final bool theme;
-  const Settings({
-    super.key,
-    required this.theme,
+class _Section {
+  const _Section({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.page,
   });
+
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final Widget page;
+}
+
+/// Settings hub: a concise list of sections, each opening its own page.
+/// On wide screens it becomes master-detail: the list stays on the left and
+/// the chosen page shows on the right. Subtitles summarise the current value.
+class Settings extends StatefulWidget {
+  const Settings({super.key});
 
   @override
   State<Settings> createState() => _SettingsState();
 }
 
 class _SettingsState extends State<Settings> {
-  late bool _theme = widget.theme;
   int _workMinutes = Presets.classic.workMinutes;
   int _restMinutes = Presets.classic.restMinutes;
   bool _notificationsEnabled = true;
   bool _loaded = false;
-  late int _accentIndex = Themes.defaultIndex;
-  InterstitialAd? _interstitialAd;
+  int _selected = 0;
 
   @override
   void initState() {
     super.initState();
-    _createInterstitialAd();
     _load();
   }
 
@@ -56,165 +71,167 @@ class _SettingsState extends State<Settings> {
     });
   }
 
-  void _createInterstitialAd() {
-    if (Platform.isAndroid) {
-      InterstitialAd.load(
-        adUnitId: admob_id,
-        request: const AdRequest(),
-        adLoadCallback: InterstitialAdLoadCallback(
-          onAdLoaded: (ad) => _interstitialAd = ad,
-          onAdFailedToLoad: (error) =>
-              debugPrint('Failed to load interstitial ad: $error'),
-        ),
-      );
-    }
-  }
+  List<_Section> _sections(BuildContext context, Responsive r) {
+    final l10n = context.l10n;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final language = switch (LocaleController.locale.value?.languageCode) {
+      'es' => l10n.languageSpanish,
+      'en' => l10n.languageEnglish,
+      _ => l10n.languageSystem,
+    };
 
-  Future<void> _pickAccentColor() async {
-    final index = await Navigator.of(context).push<int>(
-      appPageRoute(
-        (context) => AccentColorPage(
-          colors: Themes.colors,
-          selectedIndex: _accentIndex,
-        ),
+    return [
+      _Section(
+        icon: Icons.timer_outlined,
+        title: l10n.timersTitle,
+        subtitle: l10n.timersSubtitle(_workMinutes, _restMinutes),
+        page: const TimersPage(),
       ),
-    );
-    if (index == null || !mounted) return;
-
-    setState(() {
-      _accentIndex = index;
-      AdaptiveTheme.of(context).setTheme(
-        light: Themes.changeTheme(index, false),
-        dark: Themes.changeTheme(index, true),
-      );
-    });
-
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('defaultIndex', index);
+      _Section(
+        icon: Icons.apps_rounded,
+        title: l10n.modesTitle,
+        subtitle: l10n.modesSubtitle(ModePrefs.enabled.length),
+        page: const ModesPage(),
+      ),
+      _Section(
+        icon: Icons.palette_outlined,
+        title: l10n.appearanceTitle,
+        subtitle: isDark ? l10n.appearanceDark : l10n.appearanceLight,
+        page: const AppearancePage(),
+      ),
+      _Section(
+        icon: Icons.phone_android_rounded,
+        title: l10n.displayTitle,
+        subtitle: AppPreferences.showClock.value
+            ? l10n.displayClockShown
+            : l10n.displayClockHidden,
+        page: const DisplayPage(),
+      ),
+      _Section(
+        icon: Icons.notifications_none_rounded,
+        title: l10n.notificationsTitle,
+        subtitle: _notificationsEnabled
+            ? l10n.notificationsOn
+            : l10n.notificationsOff,
+        page: const NotificationsPage(),
+      ),
+      _Section(
+        icon: Icons.language_rounded,
+        title: l10n.languageTitle,
+        subtitle: language,
+        page: const LanguagePage(),
+      ),
+      _Section(
+        icon: Icons.storage_rounded,
+        title: l10n.dataTitle,
+        subtitle: l10n.dataSubtitle,
+        page: const DataPage(),
+      ),
+      // Coffee link and ads make no sense on a watch.
+      if (!r.isWatch)
+        _Section(
+          icon: Icons.coffee_outlined,
+          title: l10n.supportTitle,
+          subtitle: Platform.isAndroid
+              ? l10n.supportSubtitle
+              : l10n.supportSubtitleNoAds,
+          page: const SupportPage(),
+        ),
+    ];
   }
 
-  @override
-  void dispose() {
-    _interstitialAd?.dispose();
-    super.dispose();
+  Future<void> _open(Widget page) async {
+    await Navigator.of(context).push(appPageRoute((_) => page));
+    await _load();
   }
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
+    final r = Responsive.of(context);
 
-    return SettingsShell(
-      title: 'Ajustes',
-      loaded: _loaded,
-      children: [
-        SettingsRow(
-          label: 'Tema oscuro',
-          trailing: Switch(
-            value: _theme,
-            onChanged: (bool value) {
-              setState(() {
-                if (value) {
-                  AdaptiveTheme.of(context).setDark();
-                } else {
-                  AdaptiveTheme.of(context).setLight();
-                }
-                _theme = value;
-              });
-            },
-          ),
-        ),
-        SettingsRow(
-          label: 'Notificaciones',
-          trailing: Switch(
-            value: _notificationsEnabled,
-            onChanged: (value) async {
-              setState(() => _notificationsEnabled = value);
-              await Presets.saveNotificationsEnabled(value);
-            },
-          ),
-        ),
-        SettingsRow(
-          label: 'Color de acento',
-          trailing: BouncyTap(
-            onTap: _pickAccentColor,
-            pressedScale: 0.88,
-            child: Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                color: colorScheme.primary,
-                shape: BoxShape.circle,
-              ),
-            ),
-          ),
-        ),
-        const Divider(height: 32),
-        Text(
-          'Ritmo de enfoque',
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                fontWeight: FontWeight.w600,
-              ),
-        ),
-        const SizedBox(height: 12),
-        PresetPicker(
-          initialWorkMinutes: _workMinutes,
-          initialRestMinutes: _restMinutes,
-          onChanged: (selection) async {
-            setState(() {
-              _workMinutes = selection.workMinutes;
-              _restMinutes = selection.restMinutes;
-            });
-            await Presets.save(
-              workMinutes: selection.workMinutes,
-              restMinutes: selection.restMinutes,
+    return ListenableBuilder(
+      listenable: Listenable.merge([
+        AppPreferences.showClock,
+        AppPreferences.uiSize,
+        LocaleController.locale,
+        ModePrefs.changes,
+      ]),
+      builder: (context, _) {
+        final sections = _sections(context, r);
+        final selected = _selected.clamp(0, sections.length - 1);
+
+        Widget tiles({required bool detail}) => Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                for (var i = 0; i < sections.length; i++)
+                  SettingsNavTile(
+                    icon: sections[i].icon,
+                    title: sections[i].title,
+                    subtitle: sections[i].subtitle,
+                    selected: detail && i == selected,
+                    onTap: () {
+                      if (detail) {
+                        setState(() => _selected = i);
+                        _load();
+                      } else {
+                        _open(sections[i].page);
+                      }
+                    },
+                  ),
+              ],
             );
-          },
-        ),
-        const Divider(height: 32),
-        SettingsRow(
-          label: 'Invítame un café',
-          trailing: AppIconButton(
-            icon: const Icon(Icons.coffee_rounded),
-            onPressed: () async {
-              const url = 'https://www.buymeacoffee.com/sazarcode';
-              final uri = Uri.parse(url);
 
-              if (await canLaunchUrl(uri)) {
-                await launchUrl(
-                  uri,
-                  mode: Platform.isAndroid
-                      ? LaunchMode.externalApplication
-                      : LaunchMode.platformDefault,
-                );
-              }
-            },
-          ),
-        ),
-        if (Platform.isAndroid)
-          SettingsRow(
-            label: 'Ver un anuncio para ayudar',
-            trailing: AppIconButton(
-              icon: const Icon(Icons.attach_money_rounded),
-              onPressed: () {
-                if (_interstitialAd == null) {
-                  return;
-                }
-                _interstitialAd!.fullScreenContentCallback =
-                    FullScreenContentCallback(
-                  onAdDismissedFullScreenContent: (ad) {
-                    ad.dispose();
-                    _createInterstitialAd();
-                  },
-                  onAdFailedToShowFullScreenContent: (ad, error) {
-                    ad.dispose();
-                    _createInterstitialAd();
-                  },
-                );
-                _interstitialAd!.show();
-              },
+        if (!r.isExpanded) {
+          return SettingsShell(
+            title: context.l10n.settingsTitle,
+            loaded: _loaded,
+            children: [tiles(detail: false)],
+          );
+        }
+
+        // Master-detail. The detail pages render embedded (no Scaffold) and
+        // report changes back so the list's subtitles stay current.
+        final listWidth = (r.size.width * 0.34).clamp(300.0, 420.0 * r.scale);
+        return Scaffold(
+          appBar: appTopBar(context, title: Text(context.l10n.settingsTitle)),
+          body: SafeArea(
+            top: false,
+            child: Row(
+              children: [
+                SizedBox(
+                  width: listWidth,
+                  child: SingleChildScrollView(
+                    padding: EdgeInsets.fromLTRB(
+                      r.pagePadding,
+                      AppSpacing.sm,
+                      AppSpacing.md,
+                      AppSpacing.xxl,
+                    ),
+                    child: tiles(detail: true),
+                  ),
+                ),
+                Expanded(
+                  child: SettingsPaneScope(
+                    onChanged: _load,
+                    child: AnimatedSwitcher(
+                      duration: Motion.medium,
+                      // Pin pages to the top; the default stack centers them.
+                      layoutBuilder: (current, previous) => Stack(
+                        fit: StackFit.expand,
+                        children: [...previous, if (current != null) current],
+                      ),
+                      child: KeyedSubtree(
+                        key: ValueKey(selected),
+                        child: sections[selected].page,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
-      ],
+        );
+      },
     );
   }
 }

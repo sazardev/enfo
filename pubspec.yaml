@@ -10,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
   adaptive_theme: 3.7.2
   shared_preferences: ^2.5.5
@@ -19,15 +22,19 @@ dependencies:
   permission_handler: ^13.0.2
   url_launcher: ^6.3.2
   google_mobile_ads: ^9.1.0
+  wakelock_plus: ^1.8.0
+  timezone: ^0.11.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^6.0.0
+  shared_preferences_platform_interface: ^2.4.2
 
 flutter:
   uses-material-design: true
+  generate: true
 
   fonts:
     - family: GeistMono

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-/// A labeled minutes slider used by the custom (manual) preset sliders.
+import '../../l10n/locale_controller.dart';
+import '../atoms/app_icon_button.dart';
+import '../design/spacing.dart';
+
+/// A labeled minutes control: coarse slider plus −/+ buttons for exact
+/// one-minute adjustments. Used by the custom (manual) preset.
 class MinutesSlider extends StatelessWidget {
   const MinutesSlider({
     super.key,
@@ -9,16 +14,14 @@ class MinutesSlider extends StatelessWidget {
     required this.minutes,
     required this.min,
     required this.max,
-    required this.divisions,
     required this.onChanged,
   });
 
   final String label;
   final Color color;
   final int minutes;
-  final double min;
-  final double max;
-  final int divisions;
+  final int min;
+  final int max;
   final ValueChanged<int> onChanged;
 
   @override
@@ -27,15 +30,36 @@ class MinutesSlider extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(label, style: const TextStyle(fontWeight: FontWeight.w600)),
-            Text(
-              '$minutes min',
-              style: TextStyle(color: color, fontWeight: FontWeight.w600),
+            Expanded(
+              child: Text(
+                label,
+                style: const TextStyle(fontWeight: FontWeight.w600),
+              ),
+            ),
+            AppIconButton(
+              size: 36,
+              tooltip: '-1',
+              onPressed: minutes > min ? () => onChanged(minutes - 1) : null,
+              icon: const Icon(Icons.remove_rounded, size: 20),
+            ),
+            SizedBox(
+              width: 76,
+              child: Text(
+                context.l10n.minutes(minutes),
+                textAlign: TextAlign.center,
+                style: TextStyle(color: color, fontWeight: FontWeight.w700),
+              ),
+            ),
+            AppIconButton(
+              size: 36,
+              tooltip: '+1',
+              onPressed: minutes < max ? () => onChanged(minutes + 1) : null,
+              icon: const Icon(Icons.add_rounded, size: 20),
             ),
           ],
         ),
+        const SizedBox(height: AppSpacing.xs),
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
             activeTrackColor: color,
@@ -43,9 +67,9 @@ class MinutesSlider extends StatelessWidget {
           ),
           child: Slider(
             value: minutes.toDouble(),
-            min: min,
-            max: max,
-            divisions: divisions,
+            min: min.toDouble(),
+            max: max.toDouble(),
+            divisions: max - min,
             onChanged: (value) => onChanged(value.round()),
           ),
         ),
