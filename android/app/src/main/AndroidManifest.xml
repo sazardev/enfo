@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sazarcode.enfo">
+   >
 
     <!-- Runs on phones, tablets, Android TV (D-pad, no touchscreen) and Wear OS
          hardware. All optional: none of these restrict who can install. -->
