@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 import 'app_preferences.dart';
@@ -160,14 +158,12 @@ class _SettingsState extends State<Settings> {
         subtitle: l10n.dataSubtitle,
         page: const DataPage(),
       ),
-      // Coffee link and ads make no sense on a watch.
+      // The coffee link makes no sense on a watch.
       if (!r.isWatch)
         _Section(
           icon: Icons.coffee_outlined,
           title: l10n.supportTitle,
-          subtitle: Platform.isAndroid
-              ? l10n.supportSubtitle
-              : l10n.supportSubtitleNoAds,
+          subtitle: l10n.supportSubtitleNoAds,
           page: const SupportPage(),
         ),
     ];

@@ -5,7 +5,6 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:enfo/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:timezone/data/latest_10y.dart' as tzdata;
 import 'package:window_manager/window_manager.dart';
 
@@ -54,10 +53,6 @@ void main() async {
   await AlarmService.load();
   await loadModeServices();
   await WidgetPrefs.load();
-
-  if (Platform.isAndroid) {
-    MobileAds.instance.initialize();
-  }
 
   runApp(
     Main(
