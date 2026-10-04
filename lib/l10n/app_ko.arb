@@ -683,5 +683,11 @@
   "displayMenuButtons": "메뉴 버튼",
   "displayMenuButtonsHint": "하단 메뉴에 표시할 버튼을 고르세요. 설정은 항상 표시됩니다.",
   "onbWelcomeTitle": "Enfo에 오신 것을 환영해요",
-  "onbWelcomeTagline": "집중을, 차분한 다이얼 하나로."
+  "onbWelcomeTagline": "집중을, 차분한 다이얼 하나로.",
+  "timerRunningTitle": "타이머 실행 중",
+  "timerRunningBody": "{time}에 종료",
+  "timerPausedTitle": "타이머 일시정지",
+  "timerPausedBody": "{duration} 남음",
+  "musicActionPlay": "재생",
+  "musicActionPause": "일시정지"
 }

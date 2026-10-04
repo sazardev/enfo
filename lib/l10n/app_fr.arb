@@ -683,5 +683,11 @@
   "displayMenuButtons": "Boutons du menu",
   "displayMenuButtonsHint": "Choisissez les boutons du menu du bas. Les réglages restent toujours là.",
   "onbWelcomeTitle": "Bienvenue sur Enfo",
-  "onbWelcomeTagline": "Se concentrer, un cadran serein."
+  "onbWelcomeTagline": "Se concentrer, un cadran serein.",
+  "timerRunningTitle": "Minuteur en cours",
+  "timerRunningBody": "Se termine à {time}",
+  "timerPausedTitle": "Minuteur en pause",
+  "timerPausedBody": "{duration} restantes",
+  "musicActionPlay": "Lecture",
+  "musicActionPause": "Pause"
 }

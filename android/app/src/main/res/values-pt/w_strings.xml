@@ -16,4 +16,8 @@
     <string name="widget_world_desc">A hora nas suas cidades.</string>
     <string name="widget_open">Abrir o Enfo</string>
     <string name="widget_sample_date">seg., 29 de set.</string>
+    <string name="widget_music_label">Enfo · Música</string>
+    <string name="widget_music_desc">Reproduza, pause e pule sem abrir o app.</string>
+    <string name="widget_focus_label">Enfo · Foco</string>
+    <string name="widget_focus_desc">Tempo de foco e pomodoros de hoje num relance.</string>
 </resources>

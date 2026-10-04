@@ -2244,4 +2244,30 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get onbWelcomeTagline => 'Enfoque, en un solo dial tranquilo.';
+
+  @override
+  String get timerRunningTitle => 'Temporizador en marcha';
+
+  @override
+  String timerRunningBody(String time) {
+    return 'Termina a las $time';
+  }
+
+  @override
+  String get timerPausedTitle => 'Temporizador en pausa';
+
+  @override
+  String timerPausedBody(String duration) {
+    return 'Quedan $duration';
+  }
+
+  @override
+  String get musicActionPlay => 'Reproducir';
+
+  @override
+  String get musicActionPause => 'Pausar';
+
+  @override
+  String get widgetsFocusSubtitle =>
+      'Tu tiempo de enfoque y pomodoros de hoy de un vistazo.';
 }

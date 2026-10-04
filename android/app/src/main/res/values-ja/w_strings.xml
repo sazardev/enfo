@@ -16,4 +16,8 @@
     <string name="widget_world_desc">登録した都市の時刻を表示します。</string>
     <string name="widget_open">Enfoを開く</string>
     <string name="widget_sample_date">9月29日(月)</string>
+    <string name="widget_music_label">Enfo · ミュージック</string>
+    <string name="widget_music_desc">アプリを開かずに再生・一時停止・スキップ。</string>
+    <string name="widget_focus_label">Enfo · フォーカス</string>
+    <string name="widget_focus_desc">今日の集中時間とポモドーロをひと目で。</string>
 </resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Referenced only from Dart strings (notifications, media session), so the
+     release resource shrinker would drop it and Android would reject the
+     notification for having no valid small icon. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/ic_stat_enfo,@drawable/icon" />

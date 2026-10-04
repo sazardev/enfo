@@ -4215,6 +4215,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Focus, one calm dial.'**
   String get onbWelcomeTagline;
+
+  /// No description provided for @timerRunningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Timer running'**
+  String get timerRunningTitle;
+
+  /// No description provided for @timerRunningBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends at {time}'**
+  String timerRunningBody(String time);
+
+  /// No description provided for @timerPausedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Timer paused'**
+  String get timerPausedTitle;
+
+  /// No description provided for @timerPausedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{duration} left'**
+  String timerPausedBody(String duration);
+
+  /// No description provided for @musicActionPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get musicActionPlay;
+
+  /// No description provided for @musicActionPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get musicActionPause;
+
+  /// No description provided for @widgetsFocusSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\\\'s focus time and pomodoros at a glance.'**
+  String get widgetsFocusSubtitle;
 }
 
 class _AppLocalizationsDelegate

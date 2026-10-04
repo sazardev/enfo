@@ -2248,4 +2248,30 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get onbWelcomeTagline => 'Se concentrer, un cadran serein.';
+
+  @override
+  String get timerRunningTitle => 'Minuteur en cours';
+
+  @override
+  String timerRunningBody(String time) {
+    return 'Se termine à $time';
+  }
+
+  @override
+  String get timerPausedTitle => 'Minuteur en pause';
+
+  @override
+  String timerPausedBody(String duration) {
+    return '$duration restantes';
+  }
+
+  @override
+  String get musicActionPlay => 'Lecture';
+
+  @override
+  String get musicActionPause => 'Pause';
+
+  @override
+  String get widgetsFocusSubtitle =>
+      'Today\\\'s focus time and pomodoros at a glance.';
 }

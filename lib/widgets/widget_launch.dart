@@ -1,3 +1,4 @@
+import '../modes/ambient/ambient_service.dart';
 import '../modes/app_mode.dart';
 import '../modes/mode_prefs.dart';
 import '../modes/stopwatch/stopwatch_controller.dart';
@@ -18,6 +19,9 @@ class WidgetLaunch {
   static const stopwatchToggle = 'stopwatch_toggle';
   static const stopwatchLap = 'stopwatch_lap';
   static const pomodoroToggle = 'pomodoro_toggle';
+  static const musicToggle = 'music_toggle';
+  static const musicNext = 'music_next';
+  static const musicPrev = 'music_prev';
 
   static Future<void> apply(Map<String, String> launch) async {
     final mode =
@@ -49,6 +53,12 @@ class WidgetLaunch {
       StopwatchController.instance.lap();
     } else if (action == pomodoroToggle) {
       PomodoroLive.requestToggle();
+    } else if (action == musicToggle) {
+      AmbientService.instance.toggleMusic();
+    } else if (action == musicNext) {
+      AmbientService.instance.nextTrack();
+    } else if (action == musicPrev) {
+      AmbientService.instance.previousTrack();
     }
   }
 }

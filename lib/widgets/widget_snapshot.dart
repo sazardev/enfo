@@ -45,6 +45,8 @@ class WidgetSnapshot {
     required StopwatchController stopwatch,
     required List<Alarm> alarms,
     required List<String> worldCityIds,
+    required Map<String, Object?> music,
+    required Map<String, Object?> focus,
     Map<WidgetKind, FrameSet> frames = const {},
   }) {
     final nowMs = now.millisecondsSinceEpoch;
@@ -108,6 +110,8 @@ class WidgetSnapshot {
       },
       'alarms': _alarms(alarms, now, l10n, lang, h24),
       'world': _world(worldCityIds, lang),
+      'music': music,
+      'focus': focus,
     };
   }
 

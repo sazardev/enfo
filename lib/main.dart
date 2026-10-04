@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:ui' show PointerDeviceKind;
 
 import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:audio_service/audio_service.dart';
 import 'package:enfo/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -11,6 +12,7 @@ import 'package:window_manager/window_manager.dart';
 import 'app_preferences.dart';
 import 'haptics/haptics.dart';
 import 'modes/alarm/alarm_service.dart';
+import 'modes/ambient/music_handler.dart';
 import 'modes/app_shortcuts.dart';
 import 'modes/clock/clock_prefs.dart';
 import 'modes/fullscreen.dart';
@@ -53,6 +55,23 @@ void main() async {
   await AlarmService.load();
   await loadModeServices();
   await WidgetPrefs.load();
+
+  // The system media session (lock-screen player with cover art). Desktop
+  // platforms keep the plain in-app notification path.
+  if (Platform.isAndroid || Platform.isIOS) {
+    await AudioService.init(
+      builder: MusicHandler.new,
+      config: const AudioServiceConfig(
+        androidNotificationChannelId: 'com.sazarcode.enfo.music',
+        androidNotificationChannelName: 'Music',
+        androidNotificationChannelDescription: 'Shows the song that is playing',
+        androidNotificationIcon: 'drawable/ic_stat_enfo',
+        androidNotificationOngoing: true,
+        androidStopForegroundOnPause: true,
+        notificationColor: Color(0xFF506600),
+      ),
+    );
+  }
 
   runApp(
     Main(

@@ -1,11 +1,11 @@
 package com.sazarcode.enfo
 
 import android.content.Intent
+import com.ryanheise.audioservice.AudioServiceActivity
 import com.sazarcode.enfo.widgets.WidgetChannel
-import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 
-class MainActivity : FlutterActivity() {
+class MainActivity : AudioServiceActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
         WidgetChannel.attach(this, flutterEngine.dartExecutor.binaryMessenger)

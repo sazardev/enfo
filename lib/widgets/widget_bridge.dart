@@ -12,7 +12,9 @@ enum WidgetKind {
   timer,
   stopwatch,
   alarm,
-  world;
+  world,
+  music,
+  focus;
 
   /// Kinds drawn as a picture of one of the 63 clock styles.
   bool get isFace => this == pomodoro || this == timer;

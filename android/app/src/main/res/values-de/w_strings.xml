@@ -16,4 +16,8 @@
     <string name="widget_world_desc">Die Uhrzeit in deinen Städten.</string>
     <string name="widget_open">Enfo öffnen</string>
     <string name="widget_sample_date">Mo., 29. Sep.</string>
+    <string name="widget_music_label">Enfo · Musik</string>
+    <string name="widget_music_desc">Abspielen, pausieren und überspringen, ohne die App zu öffnen.</string>
+    <string name="widget_focus_label">Enfo · Fokus</string>
+    <string name="widget_focus_desc">Heutige Fokuszeit und Pomodoros auf einen Blick.</string>
 </resources>

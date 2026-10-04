@@ -16,4 +16,8 @@
     <string name="widget_world_desc">आपके शहरों का समय।</string>
     <string name="widget_open">Enfo खोलें</string>
     <string name="widget_sample_date">सोम, 29 सित॰</string>
+    <string name="widget_music_label">Enfo · संगीत</string>
+    <string name="widget_music_desc">ऐप खोले बिना चलाएँ, रोकें और बदलें।</string>
+    <string name="widget_focus_label">Enfo · फोकस</string>
+    <string name="widget_focus_desc">आज का फोकस समय और पोमोडोरो एक नज़र में।</string>
 </resources>

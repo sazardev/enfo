@@ -39,6 +39,9 @@ class TimerController extends ChangeNotifier {
   /// ticks once however often [check] runs.
   int _lastCountdown = 0;
 
+  /// When the ongoing card's progress bar was last refreshed.
+  int _lastCardMs = 0;
+
   bool get running => phase == TimerPhase.running;
 
   int get remainingMs {
@@ -85,6 +88,8 @@ class TimerController extends ChangeNotifier {
     notifyListeners();
     // It may have run out while the app was closed.
     check();
+    // Still going: bring the ongoing card back.
+    if (running) _showRunning();
   }
 
   Future<void> _save() async {
@@ -129,6 +134,7 @@ class TimerController extends ChangeNotifier {
     _lastCountdown = 0;
     phase = TimerPhase.running;
     _scheduleNotification();
+    _showRunning();
     _changed();
   }
 
@@ -140,6 +146,7 @@ class TimerController extends ChangeNotifier {
     phase = TimerPhase.paused;
     _endsAt = null;
     Notifier.cancel(_notificationId);
+    _showRunning();
     _changed();
   }
 
@@ -152,8 +159,10 @@ class TimerController extends ChangeNotifier {
     if (running) {
       _endsAt = _endsAt!.add(Duration(seconds: seconds));
       _scheduleNotification();
+      _showRunning();
     } else {
       _pausedRemainingMs += seconds * 1000;
+      _showRunning();
     }
     _changed();
   }
@@ -174,6 +183,7 @@ class TimerController extends ChangeNotifier {
       }
     }
     Notifier.cancel(_notificationId);
+    Notifier.hideRunningTimer(Notifier.timerRunningId);
     _idle();
     _changed();
   }
@@ -193,6 +203,12 @@ class TimerController extends ChangeNotifier {
       _finish();
       return;
     }
+    // Keep the progress bar moving without a notification update a second.
+    final nowMs = nowProvider().millisecondsSinceEpoch;
+    if (nowMs - _lastCardMs >= 10000) {
+      _lastCardMs = nowMs;
+      _showRunning();
+    }
     // The last three seconds tick, firming up towards zero.
     final secs = (left.inMilliseconds / 1000).ceil();
     if (secs > 3) {
@@ -207,6 +223,7 @@ class TimerController extends ChangeNotifier {
     final started = _startedAt ?? nowProvider();
     final total = totalSeconds;
     _idle();
+    Notifier.hideRunningTimer(Notifier.timerRunningId);
     _changed();
 
     ToolHistory.add(ToolEvent(
@@ -242,9 +259,29 @@ class TimerController extends ChangeNotifier {
     );
   }
 
+  /// Keeps the ongoing card in step with the timer's phase.
+  void _showRunning() {
+    if (phase == TimerPhase.running && _endsAt != null) {
+      Notifier.showRunningTimer(
+        id: Notifier.timerRunningId,
+        remainingMs: remainingMs,
+        paused: false,
+        endsAt: _endsAt,
+        totalMs: totalSeconds * 1000,
+      );
+    } else if (phase == TimerPhase.paused) {
+      Notifier.showRunningTimer(
+          id: Notifier.timerRunningId,
+          remainingMs: _pausedRemainingMs,
+          paused: true,
+          totalMs: totalSeconds * 1000);
+    }
+  }
+
   /// Back to factory state, in memory (after preferences were erased).
   void wipe() {
     Notifier.cancel(_notificationId);
+    Notifier.hideRunningTimer(Notifier.timerRunningId);
     _idle();
     totalSeconds = 300;
     presets = List.of(defaultPresets);

@@ -2243,4 +2243,30 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get onbWelcomeTagline => 'Foco, em um só mostrador calmo.';
+
+  @override
+  String get timerRunningTitle => 'Temporizador em execução';
+
+  @override
+  String timerRunningBody(String time) {
+    return 'Termina às $time';
+  }
+
+  @override
+  String get timerPausedTitle => 'Temporizador em pausa';
+
+  @override
+  String timerPausedBody(String duration) {
+    return 'Faltam $duration';
+  }
+
+  @override
+  String get musicActionPlay => 'Reproduzir';
+
+  @override
+  String get musicActionPause => 'Pausar';
+
+  @override
+  String get widgetsFocusSubtitle =>
+      'Today\\\'s focus time and pomodoros at a glance.';
 }

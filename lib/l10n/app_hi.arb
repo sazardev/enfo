@@ -683,5 +683,11 @@
   "displayMenuButtons": "मेनू बटन",
   "displayMenuButtonsHint": "चुनें कि निचले मेनू में कौन से बटन दिखें। सेटिंग्स हमेशा रहेगी।",
   "onbWelcomeTitle": "Enfo में आपका स्वागत है",
-  "onbWelcomeTagline": "फ़ोकस, एक शांत डायल में।"
+  "onbWelcomeTagline": "फ़ोकस, एक शांत डायल में।",
+  "timerRunningTitle": "टाइमर चल रहा है",
+  "timerRunningBody": "{time} पर समाप्त",
+  "timerPausedTitle": "टाइमर रुका हुआ",
+  "timerPausedBody": "{duration} शेष",
+  "musicActionPlay": "चलाएँ",
+  "musicActionPause": "रोकें"
 }

@@ -2183,4 +2183,30 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get onbWelcomeTagline => '专注，一个宁静的表盘。';
+
+  @override
+  String get timerRunningTitle => '计时器运行中';
+
+  @override
+  String timerRunningBody(String time) {
+    return '$time 结束';
+  }
+
+  @override
+  String get timerPausedTitle => '计时器已暂停';
+
+  @override
+  String timerPausedBody(String duration) {
+    return '剩余 $duration';
+  }
+
+  @override
+  String get musicActionPlay => '播放';
+
+  @override
+  String get musicActionPause => '暂停';
+
+  @override
+  String get widgetsFocusSubtitle =>
+      'Today\\\'s focus time and pomodoros at a glance.';
 }

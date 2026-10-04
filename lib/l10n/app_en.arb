@@ -1020,5 +1020,26 @@
   "displayMenuButtons": "Menu buttons",
   "displayMenuButtonsHint": "Choose which buttons appear in the bottom menu. Settings is always there.",
   "onbWelcomeTitle": "Welcome to Enfo",
-  "onbWelcomeTagline": "Focus, one calm dial."
+  "onbWelcomeTagline": "Focus, one calm dial.",
+  "timerRunningTitle": "Timer running",
+  "timerRunningBody": "Ends at {time}",
+  "timerPausedTitle": "Timer paused",
+  "timerPausedBody": "{duration} left",
+  "musicActionPlay": "Play",
+  "musicActionPause": "Pause",
+  "@timerRunningBody": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@timerPausedBody": {
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "widgetsFocusSubtitle": "Today\\'s focus time and pomodoros at a glance."
 }

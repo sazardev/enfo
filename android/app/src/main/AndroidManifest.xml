@@ -1,11 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
    >
 
-    <!-- Runs on phones, tablets, Android TV (D-pad, no touchscreen) and Wear OS
-         hardware. All optional: none of these restrict who can install. -->
+    <!-- Runs on phones, tablets and Android TV (D-pad, no touchscreen).
+         All optional: none of these restrict who can install. -->
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
     <uses-feature android:name="android.software.leanback" android:required="false" />
-    <uses-feature android:name="android.hardware.type.watch" android:required="false" />
 
     <!-- Alarms and timers that ring with the app closed. USE_EXACT_ALARM is
          granted automatically to alarm-clock apps; SCHEDULE_EXACT_ALARM is
@@ -20,6 +19,10 @@
         android:name="android.permission.SCHEDULE_EXACT_ALARM"
         android:maxSdkVersion="32" />
 
+    <!-- The media session keeps the lo-fi songs playing with the screen off. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
@@ -32,6 +35,24 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         >
+
+        <!-- Media session: lock-screen controls with cover art. -->
+        <service
+            android:name="com.ryanheise.audioservice.AudioService"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.ryanheise.audioservice.MediaButtonReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name=".MainActivity"
@@ -149,6 +170,28 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_world_info" />
+        </receiver>
+        <receiver
+            android:name=".widgets.MusicWidget"
+            android:exported="true"
+            android:label="@string/widget_music_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_music_info" />
+        </receiver>
+        <receiver
+            android:name=".widgets.FocusWidget"
+            android:exported="true"
+            android:label="@string/widget_focus_label">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_focus_info" />
         </receiver>
         <!-- Wakes the widgets when a picture, a countdown or an alarm on one
              changes with the app closed. -->

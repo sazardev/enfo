@@ -683,5 +683,11 @@
   "displayMenuButtons": "Botões do menu",
   "displayMenuButtonsHint": "Escolha quais botões aparecem no menu inferior. Configurações sempre fica visível.",
   "onbWelcomeTitle": "Bem-vindo ao Enfo",
-  "onbWelcomeTagline": "Foco, em um só mostrador calmo."
+  "onbWelcomeTagline": "Foco, em um só mostrador calmo.",
+  "timerRunningTitle": "Temporizador em execução",
+  "timerRunningBody": "Termina às {time}",
+  "timerPausedTitle": "Temporizador em pausa",
+  "timerPausedBody": "Faltam {duration}",
+  "musicActionPlay": "Reproduzir",
+  "musicActionPause": "Pausar"
 }

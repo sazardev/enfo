@@ -2229,4 +2229,30 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get onbWelcomeTagline => 'फ़ोकस, एक शांत डायल में।';
+
+  @override
+  String get timerRunningTitle => 'टाइमर चल रहा है';
+
+  @override
+  String timerRunningBody(String time) {
+    return '$time पर समाप्त';
+  }
+
+  @override
+  String get timerPausedTitle => 'टाइमर रुका हुआ';
+
+  @override
+  String timerPausedBody(String duration) {
+    return '$duration शेष';
+  }
+
+  @override
+  String get musicActionPlay => 'चलाएँ';
+
+  @override
+  String get musicActionPause => 'रोकें';
+
+  @override
+  String get widgetsFocusSubtitle =>
+      'Today\\\'s focus time and pomodoros at a glance.';
 }

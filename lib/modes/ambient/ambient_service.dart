@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
@@ -5,7 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../clock/time_builder.dart';
 import '../mode_services.dart';
+import '../notifier.dart';
 import 'ambient_player.dart';
+import 'music_art.dart';
+import 'music_handler.dart';
 import 'ambient_synth.dart';
 import 'music_catalog.dart';
 
@@ -74,6 +78,12 @@ class AmbientService extends ChangeNotifier implements ModeService {
   List<int> _order = [];
   int _orderPos = 0;
 
+  /// Keeps the music notification's progress bar moving while playing.
+  Timer? _cardTicker;
+
+  /// The system media session (Android lock screen player), when present.
+  MusicHandler? _handler;
+
   /// Live playback position of the song (the engine's clock).
   Duration get livePosition {
     if (!musicPlaying) return musicPosition;
@@ -138,6 +148,8 @@ class AmbientService extends ChangeNotifier implements ModeService {
     final i = musicCatalog.indexWhere((t) => t.asset == asset);
     musicIndex = i < 0 ? 0 : i;
     _buildOrder(first: musicIndex);
+    // Notification actions (play/pause from the shade) come back here.
+    Notifier.onAction = _onNotificationAction;
     notifyListeners();
   }
 
@@ -284,6 +296,17 @@ class AmbientService extends ChangeNotifier implements ModeService {
     _orderPos = shuffle ? 0 : first;
   }
 
+  Future<void> _publishToSession(MusicHandler handler) async {
+    final art = await MusicArt.uriFor(track);
+    handler.publish(
+      track: track,
+      playing: musicPlaying,
+      paused: musicPaused,
+      position: livePosition,
+      artUri: art,
+    );
+  }
+
   /// Starts (or continues) the current song.
   Future<void> playMusic() async {
     if (musicPlaying || musicPreparing) return;
@@ -300,6 +323,7 @@ class AmbientService extends ChangeNotifier implements ModeService {
         musicPaused = false;
       }
       notifyListeners();
+      _syncMusicNotification();
       return;
     }
     await _startTrack();
@@ -311,6 +335,7 @@ class AmbientService extends ChangeNotifier implements ModeService {
     musicPaused = true;
     _clearTimerIfIdle();
     notifyListeners();
+    _syncMusicNotification();
     try {
       await player.pauseMusic();
     } catch (_) {}
@@ -329,10 +354,74 @@ class AmbientService extends ChangeNotifier implements ModeService {
     musicPosition = Duration.zero;
     _clearTimerIfIdle();
     notifyListeners();
+    _syncMusicNotification();
     if (!wasActive) return;
     try {
       await player.stopMusic();
     } catch (_) {}
+  }
+
+  /// Wires the system media session to this service (see [MusicHandler]).
+  void attachHandler(MusicHandler handler) {
+    _handler = handler;
+  }
+
+  /// Taps on the music notification's play/pause action.
+  void _onNotificationAction(String action) {
+    switch (action) {
+      case 'music_play':
+        playMusic();
+      case 'music_pause':
+        pauseMusic();
+    }
+  }
+
+  /// Mirrors the music state onto the system media session (Android lock
+  /// screen player) when there is one, or the plain notification otherwise.
+  void _syncMusicNotification() {
+    final handler = _handler;
+    if (handler != null) {
+      if (musicPlaying) {
+        _cardTicker ??= Timer.periodic(
+          const Duration(seconds: 10),
+          (_) => _syncMusicNotification(),
+        );
+      } else {
+        _cardTicker?.cancel();
+        _cardTicker = null;
+      }
+      unawaited(_publishToSession(handler));
+      return;
+    }
+    if (musicPlaying) {
+      if (Notifier.available) {
+        _cardTicker ??= Timer.periodic(
+          const Duration(seconds: 10),
+          (_) => _syncMusicNotification(),
+        );
+      }
+      Notifier.showMusic(
+        title: track.title,
+        artist: track.artist,
+        playing: true,
+        progressMs: livePosition.inMilliseconds,
+        totalMs: trackLength.inMilliseconds,
+      );
+    } else {
+      _cardTicker?.cancel();
+      _cardTicker = null;
+      if (musicPaused) {
+        Notifier.showMusic(
+          title: track.title,
+          artist: track.artist,
+          playing: false,
+          progressMs: musicPosition.inMilliseconds,
+          totalMs: trackLength.inMilliseconds,
+        );
+      } else {
+        Notifier.hideMusic();
+      }
+    }
   }
 
   /// Stops everything (the sleep timer, the reset key).
@@ -440,8 +529,11 @@ class AmbientService extends ChangeNotifier implements ModeService {
         musicPlaying = false;
       }
     } finally {
-      if (gen == _musicGen) musicPreparing = false;
-      notifyListeners();
+      if (gen == _musicGen) {
+        musicPreparing = false;
+        notifyListeners();
+        _syncMusicNotification();
+      }
     }
   }
 

@@ -683,5 +683,11 @@
   "displayMenuButtons": "菜单按钮",
   "displayMenuButtonsHint": "选择底部菜单显示哪些按钮。设置始终可用。",
   "onbWelcomeTitle": "欢迎使用 Enfo",
-  "onbWelcomeTagline": "专注，一个宁静的表盘。"
+  "onbWelcomeTagline": "专注，一个宁静的表盘。",
+  "timerRunningTitle": "计时器运行中",
+  "timerRunningBody": "{time} 结束",
+  "timerPausedTitle": "计时器已暂停",
+  "timerPausedBody": "剩余 {duration}",
+  "musicActionPlay": "播放",
+  "musicActionPause": "暂停"
 }

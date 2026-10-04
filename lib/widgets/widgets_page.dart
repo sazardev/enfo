@@ -81,6 +81,16 @@ class _WidgetsPageState extends State<WidgetsPage> {
           description: AppMode.clock.descriptionOf(l10n),
           icon: Icons.access_time_rounded,
         ),
+      WidgetKind.music => (
+          name: AppMode.music.labelOf(l10n),
+          description: AppMode.music.descriptionOf(l10n),
+          icon: AppMode.music.icon,
+        ),
+      WidgetKind.focus => (
+          name: l10n.statsTodayFocus,
+          description: l10n.widgetsFocusSubtitle,
+          icon: Icons.local_fire_department_rounded,
+        ),
     };
   }
 

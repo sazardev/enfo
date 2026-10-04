@@ -683,5 +683,12 @@
   "displayMenuButtons": "Botones del menú",
   "displayMenuButtonsHint": "Elige qué botones aparecen en el menú inferior. Ajustes siempre está disponible.",
   "onbWelcomeTitle": "Bienvenido a Enfo",
-  "onbWelcomeTagline": "Enfoque, en un solo dial tranquilo."
+  "onbWelcomeTagline": "Enfoque, en un solo dial tranquilo.",
+  "timerRunningTitle": "Temporizador en marcha",
+  "timerRunningBody": "Termina a las {time}",
+  "timerPausedTitle": "Temporizador en pausa",
+  "timerPausedBody": "Quedan {duration}",
+  "musicActionPlay": "Reproducir",
+  "musicActionPause": "Pausar",
+  "widgetsFocusSubtitle": "Tu tiempo de enfoque y pomodoros de hoy de un vistazo."
 }

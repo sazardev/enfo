@@ -2233,4 +2233,30 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get onbWelcomeTagline => 'Focus, one calm dial.';
+
+  @override
+  String get timerRunningTitle => 'Timer running';
+
+  @override
+  String timerRunningBody(String time) {
+    return 'Ends at $time';
+  }
+
+  @override
+  String get timerPausedTitle => 'Timer paused';
+
+  @override
+  String timerPausedBody(String duration) {
+    return '$duration left';
+  }
+
+  @override
+  String get musicActionPlay => 'Play';
+
+  @override
+  String get musicActionPause => 'Pause';
+
+  @override
+  String get widgetsFocusSubtitle =>
+      'Today\\\'s focus time and pomodoros at a glance.';
 }

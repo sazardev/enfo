@@ -683,5 +683,11 @@
   "displayMenuButtons": "Menütasten",
   "displayMenuButtonsHint": "Wähle, welche Tasten im unteren Menü erscheinen. Einstellungen bleibt immer sichtbar.",
   "onbWelcomeTitle": "Willkommen bei Enfo",
-  "onbWelcomeTagline": "Fokus, ein ruhiges Zifferblatt."
+  "onbWelcomeTagline": "Fokus, ein ruhiges Zifferblatt.",
+  "timerRunningTitle": "Timer läuft",
+  "timerRunningBody": "Endet um {time}",
+  "timerPausedTitle": "Timer pausiert",
+  "timerPausedBody": "Noch {duration}",
+  "musicActionPlay": "Abspielen",
+  "musicActionPause": "Pause"
 }

@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import '../app_preferences.dart';
+import '../history.dart';
 import '../l10n/locale_controller.dart';
+import '../modes/ambient/ambient_service.dart';
+import '../modes/format.dart';
 import '../modes/alarm/alarm_service.dart';
 import '../modes/clock/clock_prefs.dart';
 import '../modes/stopwatch/stopwatch_controller.dart';
@@ -41,6 +44,7 @@ class WidgetSync {
   static List<Listenable> get _sources => [
         TimerController.instance,
         StopwatchController.instance,
+        AmbientService.instance,
         PomodoroLive.state,
         AlarmService.alarms,
         WorldPrefs.cities,
@@ -196,6 +200,24 @@ class WidgetSync {
     );
     if (!isCurrent()) return;
 
+    final sessions = await SessionHistory.load();
+    final stats = SessionStats(sessions, now: now);
+    final ambient = AmbientService.instance;
+    final music = <String, Object?>{
+      'hasSong': ambient.musicPlaying || ambient.musicPaused,
+      'playing': ambient.musicPlaying,
+      'title': ambient.track.title,
+      'artist': ambient.track.artist,
+    };
+    final focus = <String, Object?>{
+      'today': formatDuration(stats.todayFocusSeconds),
+      'detail': '${l10n.statsTodayPomodoros}: ${stats.todayPomodoros}',
+      'streak': stats.currentStreakDays > 0
+          ? l10n.statsStreak(stats.currentStreakDays)
+          : '',
+    };
+    if (!isCurrent()) return;
+
     final snapshot = WidgetSnapshot.build(
       now: now,
       l10n: l10n,
@@ -210,6 +232,8 @@ class WidgetSync {
       stopwatch: StopwatchController.instance,
       alarms: AlarmService.alarms.value,
       worldCityIds: WorldPrefs.cities.value,
+      music: music,
+      focus: focus,
       frames: frames,
     );
     await WidgetBridge.sync(WidgetSnapshot.encode(snapshot));

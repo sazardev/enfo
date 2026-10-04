@@ -19,4 +19,8 @@
     <string name="widget_sample_countdown">24:37</string>
     <string name="widget_sample_stopwatch">03:07</string>
     <string name="widget_sample_date">Mon, 29 Sep</string>
+    <string name="widget_music_label">Enfo · Music</string>
+    <string name="widget_music_desc">Play, pause and skip without opening the app.</string>
+    <string name="widget_focus_label">Enfo · Focus</string>
+    <string name="widget_focus_desc">Today\'s focus time and pomodoros at a glance.</string>
 </resources>

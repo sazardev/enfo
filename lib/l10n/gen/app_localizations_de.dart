@@ -2246,4 +2246,30 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get onbWelcomeTagline => 'Fokus, ein ruhiges Zifferblatt.';
+
+  @override
+  String get timerRunningTitle => 'Timer läuft';
+
+  @override
+  String timerRunningBody(String time) {
+    return 'Endet um $time';
+  }
+
+  @override
+  String get timerPausedTitle => 'Timer pausiert';
+
+  @override
+  String timerPausedBody(String duration) {
+    return 'Noch $duration';
+  }
+
+  @override
+  String get musicActionPlay => 'Abspielen';
+
+  @override
+  String get musicActionPause => 'Pause';
+
+  @override
+  String get widgetsFocusSubtitle =>
+      'Today\\\'s focus time and pomodoros at a glance.';
 }

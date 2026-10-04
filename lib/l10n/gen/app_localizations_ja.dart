@@ -2191,4 +2191,30 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get onbWelcomeTagline => '集中を、ひとつの静かなダイヤルに。';
+
+  @override
+  String get timerRunningTitle => 'タイマー実行中';
+
+  @override
+  String timerRunningBody(String time) {
+    return '$time に終了';
+  }
+
+  @override
+  String get timerPausedTitle => 'タイマー一時停止';
+
+  @override
+  String timerPausedBody(String duration) {
+    return '残り $duration';
+  }
+
+  @override
+  String get musicActionPlay => '再生';
+
+  @override
+  String get musicActionPause => '一時停止';
+
+  @override
+  String get widgetsFocusSubtitle =>
+      'Today\\\'s focus time and pomodoros at a glance.';
 }

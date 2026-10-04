@@ -683,5 +683,11 @@
   "displayMenuButtons": "メニューボタン",
   "displayMenuButtonsHint": "下のメニューに表示するボタンを選びます。設定は常に表示されます。",
   "onbWelcomeTitle": "Enfoへようこそ",
-  "onbWelcomeTagline": "集中を、ひとつの静かなダイヤルに。"
+  "onbWelcomeTagline": "集中を、ひとつの静かなダイヤルに。",
+  "timerRunningTitle": "タイマー実行中",
+  "timerRunningBody": "{time} に終了",
+  "timerPausedTitle": "タイマー一時停止",
+  "timerPausedBody": "残り {duration}",
+  "musicActionPlay": "再生",
+  "musicActionPause": "一時停止"
 }

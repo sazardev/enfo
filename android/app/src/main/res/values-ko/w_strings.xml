@@ -16,4 +16,8 @@
     <string name="widget_world_desc">내 도시들의 현재 시간입니다.</string>
     <string name="widget_open">Enfo 열기</string>
     <string name="widget_sample_date">9월 29일 (월)</string>
+    <string name="widget_music_label">Enfo · 음악</string>
+    <string name="widget_music_desc">앱을 열지 않고 재생, 일시정지, 건너뛰기.</string>
+    <string name="widget_focus_label">Enfo · 집중</string>
+    <string name="widget_focus_desc">오늘의 집중 시간과 뽀모도로를 한눈에.</string>
 </resources>

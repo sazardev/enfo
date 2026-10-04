@@ -16,4 +16,8 @@
     <string name="widget_world_desc">L\'heure dans vos villes.</string>
     <string name="widget_open">Ouvrir Enfo</string>
     <string name="widget_sample_date">lun. 29 sept.</string>
+    <string name="widget_music_label">Enfo · Musique</string>
+    <string name="widget_music_desc">Lecture, pause et changement de piste sans ouvrir l\'appli.</string>
+    <string name="widget_focus_label">Enfo · Concentration</string>
+    <string name="widget_focus_desc">Temps de concentration et pomodoros du jour en un coup d\'œil.</string>
 </resources>

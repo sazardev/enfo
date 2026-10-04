@@ -2194,4 +2194,30 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get onbWelcomeTagline => '집중을, 차분한 다이얼 하나로.';
+
+  @override
+  String get timerRunningTitle => '타이머 실행 중';
+
+  @override
+  String timerRunningBody(String time) {
+    return '$time에 종료';
+  }
+
+  @override
+  String get timerPausedTitle => '타이머 일시정지';
+
+  @override
+  String timerPausedBody(String duration) {
+    return '$duration 남음';
+  }
+
+  @override
+  String get musicActionPlay => '재생';
+
+  @override
+  String get musicActionPause => '일시정지';
+
+  @override
+  String get widgetsFocusSubtitle =>
+      'Today\\\'s focus time and pomodoros at a glance.';
 }

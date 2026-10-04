@@ -60,6 +60,13 @@ void main() {
       stopwatch: StopwatchController.instance,
       alarms: alarms,
       worldCityIds: const ['Asia/Tokyo', 'Europe/London'],
+      music: const {
+        'hasSong': false,
+        'playing': false,
+        'title': '',
+        'artist': '',
+      },
+      focus: const {'today': '0m', 'detail': '', 'streak': ''},
     );
   }
 

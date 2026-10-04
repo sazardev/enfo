@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -138,6 +139,9 @@ class _CountdownDialState extends State<CountdownDial>
   /// Whether the OS has a notification scheduled for the end of this phase
   /// (so it is cancelled when the phase is paused, reset or extended).
   bool _scheduled = false;
+
+  /// Refreshes the ongoing card's progress bar while the phase runs.
+  Timer? _cardTicker;
 
   @override
   void initState() {
@@ -287,6 +291,49 @@ class _CountdownDialState extends State<CountdownDial>
       _scheduled = false;
       Notifier.cancel(_notificationId);
     }
+
+    // Ongoing card so the shade shows the phase and its countdown.
+    if (_runState == _RunState.running) {
+      if (Notifier.available) {
+        _cardTicker ??= Timer.periodic(
+          const Duration(seconds: 10),
+          (_) => _refreshCard(),
+        );
+      }
+      Notifier.showRunningTimer(
+        id: Notifier.pomodoroRunningId,
+        remainingMs: remaining,
+        paused: false,
+        endsAt: DateTime.now().add(Duration(milliseconds: remaining)),
+        totalMs: _totalSeconds * 1000,
+      );
+    } else {
+      _cardTicker?.cancel();
+      _cardTicker = null;
+      if (_runState == _RunState.paused) {
+        Notifier.showRunningTimer(
+          id: Notifier.pomodoroRunningId,
+          remainingMs: remaining,
+          paused: true,
+          totalMs: _totalSeconds * 1000,
+        );
+      } else {
+        Notifier.hideRunningTimer(Notifier.pomodoroRunningId);
+      }
+    }
+  }
+
+  /// Moves the card's progress bar without touching the saved state.
+  void _refreshCard() {
+    if (_runState != _RunState.running) return;
+    final remaining = _remainingMs;
+    Notifier.showRunningTimer(
+      id: Notifier.pomodoroRunningId,
+      remainingMs: remaining,
+      paused: false,
+      endsAt: DateTime.now().add(Duration(milliseconds: remaining)),
+      totalMs: _totalSeconds * 1000,
+    );
   }
 
   @override
@@ -556,7 +603,7 @@ class _CountdownDialState extends State<CountdownDial>
 
   Future<void> _notifyMobile({String title = '', String body = ''}) async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('icon');
+        AndroidInitializationSettings('ic_stat_enfo');
 
     const InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
@@ -569,6 +616,7 @@ class _CountdownDialState extends State<CountdownDial>
         AndroidNotificationDetails(
       '0',
       'enfo',
+      icon: 'ic_stat_enfo',
       importance: Importance.max,
       priority: Priority.high,
       showWhen: false,

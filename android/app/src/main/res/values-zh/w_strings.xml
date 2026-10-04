@@ -16,4 +16,8 @@
     <string name="widget_world_desc">查看你所选城市的时间。</string>
     <string name="widget_open">打开 Enfo</string>
     <string name="widget_sample_date">9月29日周一</string>
+    <string name="widget_music_label">Enfo · 音乐</string>
+    <string name="widget_music_desc">无需打开应用即可播放、暂停和切换。</string>
+    <string name="widget_focus_label">Enfo · 专注</string>
+    <string name="widget_focus_desc">一眼查看今日专注时长和番茄钟。</string>
 </resources>
