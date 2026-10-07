@@ -419,3 +419,23 @@ Plumbing worth knowing:
   playback position; it drives the animation clock and a subtle pulse.
   Regenerate the envelopes when songs change.
 
+
+## 11. Terminal UI (`tui/`)
+
+A separate Go module (Bubble Tea v2 / Lip Gloss v2 / Bubbles / Huh / Glamour / Harmonica / Fang / Wish)
+with the same toolbox as the app, drawn in braille dots: Pomodoro (7 faces), clock (5 designs), timer,
+stopwatch, alarms, world clock with a day/night braille map, breathing, plus off-by-default extras
+(intervals, kitchen, event, breaks, sleep, tracker, versus), stats and settings pages, a CLI
+(`enfo status --waybar`, `stats`, `doctor`, `timer 10m --start`, `serve` over SSH) and a background waker that still
+notifies after the terminal is closed. **`tui/MEMORY.md` is the write-up** (architecture, decisions, traps, unverified list);
+`tui/README.md` is the user-facing doc. Versioned independently (tag `tui-vX.Y.Z`, currently 0.1.0).
+
+- Same rule as the app: engines store absolute instants, never a ticking counter.
+- Module path is `github.com/sazardev/enfo/tui`. Tests: `cd tui && go test ./...` (UI render matrices at 1x1..250x70,
+  engine logic, an i18n test that keeps es/en complete and checks every `i18n.T("key")` exists).
+- No GUI needed to verify: `vhs` renders real screenshots (`make demo`; see `tui/demo/demo.tape`); tmux works for smoke tests.
+- Gotchas: never use emoji-presentation glyphs in the TUI (terminals measure/draw them differently); slicing
+  escape-coded strings with `ansi.Cut` repeatedly grows them exponentially (use `ui.stamp`, which re-parses cells);
+  braille dots are square only if a terminal cell is ~2x as tall as wide.
+- **Unverified:** real-terminal feel (fonts differ in how big they draw braille dots), light-terminal palette,
+  sound/notification delivery on a real desktop, `enfo serve` beyond one key login, non-Linux platforms.

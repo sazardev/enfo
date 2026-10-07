@@ -1,0 +1,36 @@
+# Maintainer: Omar Flores <omar.desarrollo@gmtransporterp.com>
+# Local build:  cd tui && makepkg -si      (Arch, CachyOS, Omarchy)
+pkgname=enfo-tui
+pkgver=0.1.0
+pkgrel=1
+pkgdesc='Focus, in the terminal: Pomodoro, clock, timer, stopwatch, alarms, world clock and breathing, animated in braille'
+arch=('x86_64' 'aarch64')
+url='https://github.com/sazardev/enfo'
+license=('custom')
+depends=('glibc')
+makedepends=('go')
+optdepends=('libnotify: desktop notifications when a timer or alarm ends'
+            'pipewire: sound through pw-play'
+            'libpulse: sound through paplay'
+            'sound-theme-freedesktop: the sounds Enfo plays')
+options=('!debug')
+
+build() {
+  cd "$startdir"
+  export CGO_ENABLED=0 GOFLAGS='-trimpath -mod=readonly -modcacherw'
+  go build -ldflags "-s -w -X main.version=$pkgver" -o enfo ./cmd/enfo
+}
+
+check() {
+  cd "$startdir"
+  go test ./...
+}
+
+package() {
+  cd "$startdir"
+  install -Dm755 enfo "$pkgdir/usr/bin/enfo"
+  ./enfo completion bash | install -Dm644 /dev/stdin "$pkgdir/usr/share/bash-completion/completions/enfo"
+  ./enfo completion zsh  | install -Dm644 /dev/stdin "$pkgdir/usr/share/zsh/site-functions/_enfo"
+  ./enfo completion fish | install -Dm644 /dev/stdin "$pkgdir/usr/share/fish/vendor_completions.d/enfo.fish"
+  ./enfo man | install -Dm644 /dev/stdin "$pkgdir/usr/share/man/man1/enfo.1"
+}
