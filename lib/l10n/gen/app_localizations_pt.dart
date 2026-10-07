@@ -151,20 +151,49 @@ class AppLocalizationsPt extends AppLocalizations {
   String get supportTitle => 'Apoie o Enfo';
 
   @override
-  String get supportSubtitle => 'Café e anúncios';
-
-  @override
-  String get supportSubtitleNoAds => 'Me pague um café';
+  String get supportSubtitleNoAds => 'Doações e café';
 
   @override
   String get buyCoffee => 'Me pague um café';
 
   @override
-  String get watchAd => 'Ver um anúncio para ajudar';
-
-  @override
   String get supportHint =>
       'O Enfo é gratuito e feito por uma única pessoa. Obrigado por usar.';
+
+  @override
+  String get rateApp => 'Avaliar o Enfo';
+
+  @override
+  String get shareApp => 'Compartilhar o Enfo';
+
+  @override
+  String shareMessage(String url) {
+    return 'Enfo, uma caixa de ferramentas de relógios e timers para Android: $url';
+  }
+
+  @override
+  String get donateTitle => 'Doar';
+
+  @override
+  String get donateSubtitle => 'Pagamento único, pelo Google Play';
+
+  @override
+  String get donateHint =>
+      'O Enfo é grátis e sem anúncios. Se quiser apoiar, você pode deixar uma doação única pelo Google Play. Obrigado!';
+
+  @override
+  String get donateUnavailable =>
+      'As doações não estão disponíveis agora. Você ainda pode me pagar um café.';
+
+  @override
+  String get donateThanks => 'Obrigado por apoiar o Enfo!';
+
+  @override
+  String get donatePending => 'Compra pendente…';
+
+  @override
+  String get donateError =>
+      'Não foi possível concluir a compra. Nada foi cobrado.';
 
   @override
   String get statsTitle => 'Estatísticas';
@@ -2268,5 +2297,5 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get widgetsFocusSubtitle =>
-      'Today\\\'s focus time and pomodoros at a glance.';
+      'Tempo de foco e pomodoros de hoje em um relance.';
 }

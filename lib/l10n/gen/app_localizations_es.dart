@@ -151,20 +151,49 @@ class AppLocalizationsEs extends AppLocalizations {
   String get supportTitle => 'Apoya a Enfo';
 
   @override
-  String get supportSubtitle => 'Café y anuncios';
-
-  @override
-  String get supportSubtitleNoAds => 'Invítame un café';
+  String get supportSubtitleNoAds => 'Donaciones y café';
 
   @override
   String get buyCoffee => 'Invítame un café';
 
   @override
-  String get watchAd => 'Ver un anuncio para ayudar';
-
-  @override
   String get supportHint =>
       'Enfo es gratis y lo hace una sola persona. Gracias por usarlo.';
+
+  @override
+  String get rateApp => 'Califica Enfo';
+
+  @override
+  String get shareApp => 'Comparte Enfo';
+
+  @override
+  String shareMessage(String url) {
+    return 'Enfo, una caja de herramientas de relojes y temporizadores para Android: $url';
+  }
+
+  @override
+  String get donateTitle => 'Donar';
+
+  @override
+  String get donateSubtitle => 'Pago único, con Google Play';
+
+  @override
+  String get donateHint =>
+      'Enfo es gratis y sin anuncios. Si quieres apoyarlo, puedes dejar una donación única con Google Play. ¡Gracias!';
+
+  @override
+  String get donateUnavailable =>
+      'Las donaciones no están disponibles ahora mismo. Puedes invitarme a un café.';
+
+  @override
+  String get donateThanks => '¡Gracias por apoyar a Enfo!';
+
+  @override
+  String get donatePending => 'Compra pendiente…';
+
+  @override
+  String get donateError =>
+      'No se pudo completar la compra. No se te cobró nada.';
 
   @override
   String get statsTitle => 'Estadísticas';

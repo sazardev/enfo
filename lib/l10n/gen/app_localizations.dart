@@ -376,16 +376,10 @@ abstract class AppLocalizations {
   /// **'Support Enfo'**
   String get supportTitle;
 
-  /// No description provided for @supportSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Coffee and ads'**
-  String get supportSubtitle;
-
   /// No description provided for @supportSubtitleNoAds.
   ///
   /// In en, this message translates to:
-  /// **'Buy me a coffee'**
+  /// **'Donations and coffee'**
   String get supportSubtitleNoAds;
 
   /// No description provided for @buyCoffee.
@@ -394,17 +388,71 @@ abstract class AppLocalizations {
   /// **'Buy me a coffee'**
   String get buyCoffee;
 
-  /// No description provided for @watchAd.
-  ///
-  /// In en, this message translates to:
-  /// **'Watch an ad to help'**
-  String get watchAd;
-
   /// No description provided for @supportHint.
   ///
   /// In en, this message translates to:
   /// **'Enfo is free and made by one person. Thank you for using it.'**
   String get supportHint;
+
+  /// No description provided for @rateApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Rate Enfo'**
+  String get rateApp;
+
+  /// No description provided for @shareApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Enfo'**
+  String get shareApp;
+
+  /// No description provided for @shareMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Enfo, a calm clock and timer toolbox for Android: {url}'**
+  String shareMessage(String url);
+
+  /// No description provided for @donateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Donate'**
+  String get donateTitle;
+
+  /// No description provided for @donateSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'One-time, through Google Play'**
+  String get donateSubtitle;
+
+  /// No description provided for @donateHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enfo is free and ad-free. If you want to support it, you can leave a one-time donation through Google Play. Thank you!'**
+  String get donateHint;
+
+  /// No description provided for @donateUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Donations are not available right now. You can still buy me a coffee.'**
+  String get donateUnavailable;
+
+  /// No description provided for @donateThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for supporting Enfo!'**
+  String get donateThanks;
+
+  /// No description provided for @donatePending.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchase pending…'**
+  String get donatePending;
+
+  /// No description provided for @donateError.
+  ///
+  /// In en, this message translates to:
+  /// **'The purchase could not be completed. Nothing was charged.'**
+  String get donateError;
 
   /// No description provided for @statsTitle.
   ///

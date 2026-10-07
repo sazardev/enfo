@@ -149,19 +149,45 @@ class AppLocalizationsZh extends AppLocalizations {
   String get supportTitle => '支持 Enfo';
 
   @override
-  String get supportSubtitle => '咖啡与广告';
-
-  @override
-  String get supportSubtitleNoAds => '请我喝杯咖啡';
+  String get supportSubtitleNoAds => '捐赠与咖啡';
 
   @override
   String get buyCoffee => '请我喝杯咖啡';
 
   @override
-  String get watchAd => '观看广告以支持我';
+  String get supportHint => 'Enfo 免费，由一个人独立开发。感谢你的使用。';
 
   @override
-  String get supportHint => 'Enfo 免费，由一个人独立开发。感谢你的使用。';
+  String get rateApp => '评价 Enfo';
+
+  @override
+  String get shareApp => '分享 Enfo';
+
+  @override
+  String shareMessage(String url) {
+    return 'Enfo,一款安静的时钟与计时器工具箱(Android):$url';
+  }
+
+  @override
+  String get donateTitle => '捐赠';
+
+  @override
+  String get donateSubtitle => '通过 Google Play 一次性支付';
+
+  @override
+  String get donateHint => 'Enfo 免费且无广告。如果想支持它,可以通过 Google Play 进行一次捐赠。谢谢!';
+
+  @override
+  String get donateUnavailable => '目前无法捐赠。你仍然可以请我喝杯咖啡。';
+
+  @override
+  String get donateThanks => '感谢你支持 Enfo!';
+
+  @override
+  String get donatePending => '购买处理中…';
+
+  @override
+  String get donateError => '购买未能完成,未产生任何扣款。';
 
   @override
   String get statsTitle => '统计';
@@ -2207,6 +2233,5 @@ class AppLocalizationsZh extends AppLocalizations {
   String get musicActionPause => '暂停';
 
   @override
-  String get widgetsFocusSubtitle =>
-      'Today\\\'s focus time and pomodoros at a glance.';
+  String get widgetsFocusSubtitle => '今日专注时长与番茄钟数量,一目了然。';
 }

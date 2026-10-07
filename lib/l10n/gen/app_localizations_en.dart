@@ -151,20 +151,49 @@ class AppLocalizationsEn extends AppLocalizations {
   String get supportTitle => 'Support Enfo';
 
   @override
-  String get supportSubtitle => 'Coffee and ads';
-
-  @override
-  String get supportSubtitleNoAds => 'Buy me a coffee';
+  String get supportSubtitleNoAds => 'Donations and coffee';
 
   @override
   String get buyCoffee => 'Buy me a coffee';
 
   @override
-  String get watchAd => 'Watch an ad to help';
-
-  @override
   String get supportHint =>
       'Enfo is free and made by one person. Thank you for using it.';
+
+  @override
+  String get rateApp => 'Rate Enfo';
+
+  @override
+  String get shareApp => 'Share Enfo';
+
+  @override
+  String shareMessage(String url) {
+    return 'Enfo, a calm clock and timer toolbox for Android: $url';
+  }
+
+  @override
+  String get donateTitle => 'Donate';
+
+  @override
+  String get donateSubtitle => 'One-time, through Google Play';
+
+  @override
+  String get donateHint =>
+      'Enfo is free and ad-free. If you want to support it, you can leave a one-time donation through Google Play. Thank you!';
+
+  @override
+  String get donateUnavailable =>
+      'Donations are not available right now. You can still buy me a coffee.';
+
+  @override
+  String get donateThanks => 'Thank you for supporting Enfo!';
+
+  @override
+  String get donatePending => 'Purchase pending…';
+
+  @override
+  String get donateError =>
+      'The purchase could not be completed. Nothing was charged.';
 
   @override
   String get statsTitle => 'Statistics';

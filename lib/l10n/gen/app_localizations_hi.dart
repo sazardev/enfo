@@ -151,20 +151,49 @@ class AppLocalizationsHi extends AppLocalizations {
   String get supportTitle => 'Enfo को सहयोग दें';
 
   @override
-  String get supportSubtitle => 'कॉफ़ी और विज्ञापन';
-
-  @override
-  String get supportSubtitleNoAds => 'मुझे एक कॉफ़ी पिलाएँ';
+  String get supportSubtitleNoAds => 'दान और कॉफ़ी';
 
   @override
   String get buyCoffee => 'मुझे एक कॉफ़ी पिलाएँ';
 
   @override
-  String get watchAd => 'मदद के लिए विज्ञापन देखें';
-
-  @override
   String get supportHint =>
       'Enfo मुफ़्त है और इसे एक ही व्यक्ति बनाता है। इसे इस्तेमाल करने के लिए धन्यवाद।';
+
+  @override
+  String get rateApp => 'Enfo को रेट करें';
+
+  @override
+  String get shareApp => 'Enfo शेयर करें';
+
+  @override
+  String shareMessage(String url) {
+    return 'Enfo, Android के लिए एक शांत घड़ी और टाइमर टूलबॉक्स: $url';
+  }
+
+  @override
+  String get donateTitle => 'दान करें';
+
+  @override
+  String get donateSubtitle => 'Google Play से एक बार का भुगतान';
+
+  @override
+  String get donateHint =>
+      'Enfo मुफ़्त और विज्ञापन-मुक्त है। अगर आप साथ देना चाहें, तो Google Play से एक बार का दान दे सकते हैं। धन्यवाद!';
+
+  @override
+  String get donateUnavailable =>
+      'अभी दान उपलब्ध नहीं है। आप फिर भी मुझे एक कॉफ़ी पिला सकते हैं।';
+
+  @override
+  String get donateThanks => 'Enfo का साथ देने के लिए धन्यवाद!';
+
+  @override
+  String get donatePending => 'ख़रीद लंबित…';
+
+  @override
+  String get donateError =>
+      'ख़रीद पूरी नहीं हो सकी। कुछ भी शुल्क नहीं लिया गया।';
 
   @override
   String get statsTitle => 'आँकड़े';
@@ -2254,5 +2283,5 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get widgetsFocusSubtitle =>
-      'Today\\\'s focus time and pomodoros at a glance.';
+      'आज का फ़ोकस समय और पोमोडोरो, एक नज़र में।';
 }

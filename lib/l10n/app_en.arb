@@ -78,11 +78,26 @@
   "languageSystem": "System default",
   "languageHint": "Choose the language of the app.",
   "supportTitle": "Support Enfo",
-  "supportSubtitle": "Coffee and ads",
-  "supportSubtitleNoAds": "Buy me a coffee",
+  "supportSubtitleNoAds": "Donations and coffee",
   "buyCoffee": "Buy me a coffee",
-  "watchAd": "Watch an ad to help",
   "supportHint": "Enfo is free and made by one person. Thank you for using it.",
+  "rateApp": "Rate Enfo",
+  "shareApp": "Share Enfo",
+  "shareMessage": "Enfo, a calm clock and timer toolbox for Android: {url}",
+  "donateTitle": "Donate",
+  "donateSubtitle": "One-time, through Google Play",
+  "donateHint": "Enfo is free and ad-free. If you want to support it, you can leave a one-time donation through Google Play. Thank you!",
+  "donateUnavailable": "Donations are not available right now. You can still buy me a coffee.",
+  "donateThanks": "Thank you for supporting Enfo!",
+  "donatePending": "Purchase pending…",
+  "donateError": "The purchase could not be completed. Nothing was charged.",
+  "@shareMessage": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
   "statsTitle": "Statistics",
   "statsEmpty": "No sessions yet.\nStart a pomodoro and it will show up here.",
   "statsTodayPomodoros": "Pomodoros today",
