@@ -1,0 +1,48 @@
+default_platform(:android)
+
+# Run everything from store/:
+#   cd store
+#   bundle exec fastlane android validate
+#   bundle exec fastlane android listing
+#   bundle exec fastlane android images
+#   bundle exec fastlane android deploy
+platform :android do
+  desc "Check the listing against Play without uploading anything"
+  lane :validate do
+    supply(
+      metadata_path: "fastlane/metadata/android",
+      validate_only: true
+    )
+  end
+
+  desc "Upload listing texts (title, descriptions, what's new)"
+  lane :listing do
+    supply(
+      metadata_path: "fastlane/metadata/android",
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+
+  desc "Sync store graphics into fastlane and upload images + screenshots"
+  lane :images do
+    sh("python3", "../tools/sync_fastlane_images.py")
+    supply(
+      metadata_path: "fastlane/metadata/android",
+      skip_upload_metadata: true,
+      skip_upload_changelogs: true,
+      skip_upload_apk: true,
+      skip_upload_aab: true
+    )
+  end
+
+  desc "Upload a release AAB plus the full listing"
+  lane :deploy do
+    supply(
+      aab: "../build/app/outputs/bundle/release/app-release.aab",
+      metadata_path: "fastlane/metadata/android"
+    )
+  end
+end

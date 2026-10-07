@@ -1,0 +1,7 @@
+# Service account JSON key for the Google Play Android Developer API.
+# Create it in Google Cloud and grant it access in Play Console
+# (Users and permissions). See store/fastlane/README.md.
+json_key_file(ENV["PLAY_JSON_KEY"] ||
+  File.expand_path("~/.config/enfo/play-service-account.json"))
+
+package_name("com.sazarcode.enfo")

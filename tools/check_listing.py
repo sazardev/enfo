@@ -47,7 +47,7 @@ for loc in LOCALES:
     fl = ROOT / "fastlane/metadata/android" / loc
     pairs = [("title.txt", "title.txt"), ("short_description.txt", "short_description.txt"),
              ("full_description.txt", "full_description.txt"),
-             ("changelogs/4.txt", "whats_new.txt")]
+             ("changelogs/10.txt", "whats_new.txt")]
     for fa, li in pairs:
         a, b = fl / fa, ROOT / "listing" / loc / li
         if not a.exists() or read(a) != read(b):

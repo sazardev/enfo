@@ -1,0 +1,1 @@
+Um app tranquilo para cada relógio: pomodoro, timers e despertador.

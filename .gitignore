@@ -33,6 +33,11 @@ secret.dart
 .pub/
 /build
 
+# Fastlane: images are generated from store/graphics + store/screenshots
+store/fastlane/metadata/android/*/images/
+store/vendor/
+store/.bundle/
+
 # Symbolication related
 app.*.symbols
 
