@@ -80,6 +80,8 @@ La app ofrece donaciones consumibles (`enfo_donate_1`, `_3`, `_5`, `_10`,
 - Foreground services: declaración de `mediaPlayback` con vídeo demo
   (no listado): https://www.youtube.com/watch?v=VQme5O-Vw8
 - Producción: 1.4.0 (versionCode 10) enviada a revisión con rollout completo.
-- Track interno: mismo 1.4.0, útil para probar las donaciones con licencias de
-  prueba.
+- Track interno: **1.5.0 (versionCode 11)** subida el 2026-10-07 con las
+  novedades en 10 idiomas (AAB de 217.6 MB con símbolos; ~78 MB de bajada).
+  Para promover sin re-subir: `python3 tools/upload_play_bundle.py
+  --version-code 11 --track production`.
 - Productos: `enfo_donate_1/3/5/10/25` activos, precios en 174 regiones.
