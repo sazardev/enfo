@@ -379,7 +379,7 @@ under "More tools". Every one has its own dir in `lib/modes/<name>/`.
 | versus | Two-player chess-style clock + speaker agenda | setup persisted, running game is not |
 | breaks | 20-20-20 / stretch / water / posture reminders | ids 70100+, `RingRequest.gentle` (shared with ringing_page) |
 | ambient | Synth noise (white/pink/brown/rain/wind/ocean), sleep timer | `flutter_soloud`; sleep timer also stops music |
-| music | 14 bundled lo-fi songs, big-title pager + clock-style dial | see below |
+| music | 72 bundled lo-fi songs, big-title pager + clock-style dial | see below |
 
 Plumbing worth knowing:
 - `mode_services.dart`: `ModeService` (`load()` at boot, `check()` on the
@@ -403,14 +403,24 @@ Plumbing worth knowing:
   (Android only: notifications + exact alarms via `Notifier`).
 
 ### Music
-- 14 songs in `assets/music/` (~21 MB, Ogg Vorbis ~96 kbps, ~40 min), all
-  from Wikimedia Commons with per-file verified license: 10 CC0 and 4 CC BY
-  (Kuromaru, Raspberrymusic, Sappheiros, Kevin MacLeod). Credits:
-  `assets/music/CREDITS.md`, `lib/modes/ambient/music_catalog.dart`, and the
-  Settings > Music credits page (CC BY requires attribution).
+- 72 songs in `assets/music/` (~67 MB, ~3 h) from two collections with a
+  checked license. 14 are Wikimedia Commons (10 CC0 + 4 CC BY: Kuromaru,
+  Raspberrymusic, Sappheiros, Kevin MacLeod). 58 come from the Open Lo-Fi
+  GitHub release (`btahir/open-lofi`: 166 tracks generated with Suno v5 and
+  dedicated to CC0 by their author). Credits: `assets/music/CREDITS.md`,
+  `lib/modes/ambient/music_catalog.dart`, the Settings > Music credits page
+  and the docs site (regenerate with `tools/sync_site_assets.sh`).
   archive.org's "CC0" flag is NOT reliable (it lists commercial albums): only
-  use Commons or an artist's own release.
-- The song genres were picked from titles, never listened to. The Loyalty
+  use Commons, a release that carries its own LICENSE, or an artist's own
+  release. The catalog test allows Commons and the Open Lo-Fi repo as `source`
+  hosts only.
+- The 58 Open Lo-Fi tracks are deliberately degraded and tiny: mono 32 kHz,
+  Vorbis q0 (~43 kbps average, under 1 MB each) after a lo-fi chain (9.5 kHz
+  low-pass, tanh saturation, tape wow, a whisper of pink-noise hiss), then
+  normalised per track to -15 LUFS (two ffmpeg passes). Selection favours the
+  instrumental categories (focus/routines, ambient, chillhop, jazz lounge,
+  Asian/zen, late night); the vocal soul/funk batches were left out.
+- The Commons songs were picked from titles, never listened to. The Loyalty
   Freak tracks are more lo-fi indie than lo-fi hip hop.
 - UI is deliberately minimal: `TitlePager` (swipe/wheel/arrows) + the mode's
   play/pause in the bottom bar; the dial is a normal `ClockStyle` (progress =

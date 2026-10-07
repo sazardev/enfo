@@ -62,7 +62,7 @@ La app ofrece donaciones consumibles (`enfo_donate_1`, `_3`, `_5`, `_10`,
 
 ## 5. Pendientes y notas
 
-- **Novedades (what's new)**: `changelogs/10.txt` ya está creado (1.4.0);
+- **Novedades (what's new)**: `changelogs/11.txt` ya está creado (1.5.0);
   supply las sube por versionCode.
 - **Capturas**: solo hay de `en-US` y `es-419`; el resto de idiomas usan las
   de la ficha por defecto (Play no exige capturas por idioma).
@@ -70,8 +70,8 @@ La app ofrece donaciones consumibles (`enfo_donate_1`, `_3`, `_5`, `_10`,
   en Play Console → Ficha principal.
 - **Marketing externo**: se activa a mano en Play Console → Configuración de
   la tienda.
-- Los textos de la ficha ya están actualizados a 1.4.0 (sin anuncios, 9
-  widgets y donaciones).
+- Los textos de la ficha ya están actualizados a 1.5.0 (72 canciones lo-fi,
+  sin anuncios y donaciones).
 
 ## 6. Estado de la cuenta (Play Console, 2026-10-07)
 

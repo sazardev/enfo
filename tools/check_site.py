@@ -3,7 +3,7 @@
    - every local href/src/url() in index.html and site.css exists
    - JS syntax (node --check) for every docs/assets/js/*.js and site-config.js
    - every data-i18n key in index.html has a Spanish entry
-   - the GitHub slug appears only where it must (site-config.js + static meta)
+   - only the project's GitHub slug (plus the music source repo) appears
 Run: python3 tools/check_site.py"""
 import glob, os, re, subprocess, sys
 root = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'docs')
@@ -46,15 +46,16 @@ for f in ('app.js', 'demos.js'):
     src = open(os.path.join(root, 'assets/js', f)).read()
     for n in set(re.findall(r"\bico\('([a-z0-9]+)'", src) + re.findall(r"icon\('([a-z0-9]+)'", src)):
         if n not in have: fail('icon missing: ' + n)
-# slug
+# slug (the bundled-music credits also legitimately link their source repo)
 slug = re.search(r"GITHUB_SLUG = '([^']+)'", open(os.path.join(root, 'assets/site-config.js')).read()).group(1)
 owner = slug.split('/')[0]
+allowed_slugs = {slug, owner, 'btahir/open-lofi'}
 for f in glob.glob(os.path.join(root, '**/*'), recursive=True):
     if os.path.isdir(f) or f.endswith(('.ttf', '.png', '.jpg', '.webp', '.mp4', '.webm')): continue
     txt = open(f, encoding='utf-8', errors='ignore').read()
     if f.endswith('site-config.js') or f.endswith('OFL.txt'): continue
     for m in re.finditer(r'github\.com/([\w.-]+/[\w.-]+)|([\w.-]+)\.github\.io', txt):
         s = m.group(1) or m.group(2)
-        if s not in (slug, owner): fail('%s mentions %s (config says %s)' % (os.path.relpath(f, root), s, slug))
+        if s not in allowed_slugs: fail('%s mentions %s (config says %s)' % (os.path.relpath(f, root), s, slug))
 print('checked %d refs, %d i18n keys; %s' % (len(refs), len(keys), 'OK' if not bad else '%d problems' % bad))
 sys.exit(1 if bad else 0)

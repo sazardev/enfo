@@ -2199,7 +2199,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get ambientMusicCreditsNote =>
-      'Wikimedia Commons의 곡으로, CC0 또는 크리에이티브 커먼즈 저작자표시 라이선스로 공개되었습니다.';
+      'Wikimedia Commons 및 Open Lo-Fi 컬렉션의 곡으로, CC0 또는 크리에이티브 커먼즈 저작자표시 라이선스로 공개되었습니다.';
 
   @override
   String get modeMusic => '음악';

@@ -4219,7 +4219,7 @@ abstract class AppLocalizations {
   /// No description provided for @ambientMusicCreditsNote.
   ///
   /// In en, this message translates to:
-  /// **'Songs from Wikimedia Commons, released under CC0 or Creative Commons Attribution licenses.'**
+  /// **'Songs from Wikimedia Commons and the Open Lo-Fi collection, released under CC0 or Creative Commons Attribution licenses.'**
   String get ambientMusicCreditsNote;
 
   /// No description provided for @modeMusic.

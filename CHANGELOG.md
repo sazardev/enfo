@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.5.0 (build 11)
+
+### New
+- **72 lo-fi songs** in the music mode, up from 14: 58 new tracks from the
+  Open Lo-Fi collection (CC0, generated with Suno v5 and dedicated to the
+  public domain), spanning focus, ambient, chillhop, jazz lounge, Asian and
+  late-night moods.
+- The new tracks get a deliberate lo-fi treatment (9.5 kHz low-pass, tape
+  saturation and wow, a whisper of pink-noise hiss, mono 32 kHz, Vorbis q0)
+  that leaves each one under 1 MB, so eight times the music adds far less
+  than eight times the size.
+
+### Changed
+- Music credits cover both collections in Settings, `assets/music/CREDITS.md`
+  and the website; the store listing now says 72 songs.
+
 ## 1.4.0 (build 10)
 
 ### New

@@ -2,6 +2,24 @@
 window.REPO_DATA = {
  "changelog": [
   {
+   "version": "1.5.0 (build 11)",
+   "sections": [
+    {
+     "title": "New",
+     "items": [
+      "**72 lo-fi songs** in the music mode, up from 14: 58 new tracks from the Open Lo-Fi collection (CC0, generated with Suno v5 and dedicated to the public domain), spanning focus, ambient, chillhop, jazz lounge, Asian and late-night moods.",
+      "The new tracks get a deliberate lo-fi treatment (9.5 kHz low-pass, tape saturation and wow, a whisper of pink-noise hiss, mono 32 kHz, Vorbis q0) that leaves each one under 1 MB, so eight times the music adds far less than eight times the size."
+     ]
+    },
+    {
+     "title": "Changed",
+     "items": [
+      "Music credits cover both collections in Settings, `assets/music/CREDITS.md` and the website; the store listing now says 72 songs."
+     ]
+    }
+   ]
+  },
+  {
    "version": "1.4.0 (build 10)",
    "sections": [
     {
@@ -198,6 +216,412 @@ window.REPO_DATA = {
    "license": "CC BY 4.0",
    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
    "url": "https://commons.wikimedia.org/wiki/File:Study_And_Relax_by_Kevin_MacLeod.ogg"
+  },
+  {
+   "song": "2 AM Debug Loop",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Brushstrokes and Rain",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Chapter By Lamplight",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Coffee Ring Notebook",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Cursor After Midnight",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Dog Eared Pages",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Dust in the Curtains",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "First Coffee Thoughts",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Graphite Mornings",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Hour Between Clicks",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Kettle Before Work",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Margin Notes at Dusk",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Morning Pages",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Penciled Sunbeams",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Quiet Lungs Quiet Light",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Stacks of Quiet Hours",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Sunrise Stretch Flow",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Watercolors By the Window",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Almost Floating",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Aurora on Mute",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Blue Below the Surface",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Drifting Through Fog",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "First Light on the Ridge",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Glasshouse Ghosts",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Green After Midnight",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Moonlit Moss",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Orbiting in Silence",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Satellite Lullaby",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Tide Pools at Twilight",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Warm Constellations",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Dusk Between Stoops",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Dust on the Morning Keys",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Glow on the Overpass",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Porchlight Golden Hour",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Sidewalk Slow Jam",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Soft Gold Sky",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Sunset Offbeat",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Window Seat Daydream",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Ashes in the Coffee Cup",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Breezy Afternoon Terrace",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Candlelit at 70 BPM",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Dust and Hardcovers",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Harbor Before Words",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Last Call in C Minor",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Linen and Limoncello",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Midnight Amber Room",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Rain on the Boulevard",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Saxophone in the Rain",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Stacks of Quiet Books",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Velvet Cigarette Haze",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Bamboo Shadow Waltz",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Bells Before Sunrise",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Teacup Morning Fog",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Temple at Dawn",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "3 AM Echoes",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Electric Puddles",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Rain Off the Neon Signs",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
+  },
+  {
+   "song": "Streetlights in the Rearview",
+   "artist": "Open Lo-Fi",
+   "license": "CC0",
+   "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "url": "https://github.com/btahir/open-lofi"
   }
  ]
 };

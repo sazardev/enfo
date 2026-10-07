@@ -17,7 +17,7 @@ Enfo est né comme un simple minuteur Pomodoro minimaliste, avant de devenir une
 • Tours : horloge à deux joueurs et programme des intervenants
 • Pauses : rappels 20-20-20, étirements, eau et posture
 • Ambiance : bruit blanc, rose et brun, pluie, vent et océan avec minuteur d'endormissement
-• Musique : 14 morceaux lo-fi pour se concentrer
+• Musique : 72 morceaux lo-fi pour se concentrer
 
 Les six premiers outils sont actifs dès le départ. Les dix autres sont à une touche dans le menu des modes.
 

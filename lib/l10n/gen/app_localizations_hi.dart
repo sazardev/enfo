@@ -2235,7 +2235,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get ambientMusicCreditsNote =>
-      'Wikimedia Commons के गाने, CC0 या Creative Commons Attribution लाइसेंस के अंतर्गत।';
+      'Wikimedia Commons और Open Lo-Fi संग्रह के गाने, CC0 या Creative Commons Attribution लाइसेंस के अंतर्गत।';
 
   @override
   String get modeMusic => 'संगीत';

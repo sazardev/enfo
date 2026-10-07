@@ -268,7 +268,7 @@
     $('#creditList').innerHTML = C.map(function (c) {
       var by = /BY/.test(c.license);
       return '<div class="credit"><div><b>' + esc(c.song) + '</b><small>' + esc(c.artist) + '</small></div><a class="chip' + (by ? ' on' : '') + '" href="' + esc(c.licenseUrl) + '" target="_blank" rel="noopener">' + esc(c.license) + '</a>' +
-        '<a class="ibtn" href="' + esc(c.url) + '" target="_blank" rel="noopener" aria-label="Wikimedia Commons: ' + esc(c.song) + '">' + ico('external') + '</a></div>';
+        '<a class="ibtn" href="' + esc(c.url) + '" target="_blank" rel="noopener" aria-label="Source: ' + esc(c.song) + '">' + ico('external') + '</a></div>';
     }).join('');
   }
   function buildFaq() {

@@ -2187,7 +2187,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get ambientMusicCreditsNote =>
-      '歌曲来自 Wikimedia Commons，采用 CC0 或知识共享署名许可协议发布。';
+      '歌曲来自 Wikimedia Commons 和 Open Lo-Fi 合集，采用 CC0 或知识共享署名许可协议发布。';
 
   @override
   String get modeMusic => '音乐';

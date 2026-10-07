@@ -1,0 +1,1 @@
+Enfo 1.5.0 bringt 72 Lo-Fi-Songs in den Musikmodus (vorher 14). Die 58 neuen Titel aus der Open-Lo-Fi-Sammlung (CC0) erhalten eine bewusste Lo-Fi-Behandlung (Bandwärme, Mono 32 kHz) und bleiben so unter 1 MB.

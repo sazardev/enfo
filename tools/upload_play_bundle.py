@@ -5,8 +5,10 @@
         [--aab build/app/outputs/bundle/release/app-release.aab]
         [--notes "text"] [--quota-project PROJECT] [--json-key PATH]
 
-Auth: same as tools/create_play_products.py (service account JSON, or gcloud
-Application Default Credentials with a quota project).
+Release notes: with --notes, only en-US is sent. Without it, every
+store/fastlane/metadata/android/<locale>/changelogs/<versionCode>.txt is sent
+localized. Auth: same as tools/create_play_products.py (service account JSON,
+or gcloud Application Default Credentials with a quota project).
 """
 import argparse, base64, json, os, subprocess, sys, tempfile, time
 import urllib.error
@@ -73,6 +75,21 @@ def gcloud_project():
     if out.returncode or not project or project == "(unset)":
         return None
     return project
+
+
+def fastlane_notes(version_code: str):
+    """What's-new per locale from the fastlane changelogs for a versionCode."""
+    base = Path(__file__).resolve().parent.parent / "store" / "fastlane" / \
+        "metadata" / "android"
+    notes = []
+    if base.is_dir():
+        for lang_dir in sorted(base.iterdir()):
+            f = lang_dir / "changelogs" / f"{version_code}.txt"
+            if f.is_file():
+                text = f.read_text(encoding="utf-8").strip()
+                if text:
+                    notes.append({"language": lang_dir.name, "text": text})
+    return notes
 
 
 def request(method, url, token, payload=None, quota_project=None, raw=None,
@@ -152,6 +169,14 @@ def main() -> int:
     release = {"versionCodes": [version_code], "status": args.status}
     if args.notes:
         release["releaseNotes"] = [{"language": "en-US", "text": args.notes}]
+    else:
+        notes = fastlane_notes(version_code)
+        if notes:
+            release["releaseNotes"] = notes
+            langs = ", ".join(n["language"] for n in notes)
+            print(f"Novedades localizadas ({len(notes)}): {langs}")
+        else:
+            print(f"Sin novedades para el versionCode {version_code}")
     status, track = request(
         "PUT", f"{API}/{PACKAGE}/edits/{edit_id}/tracks/{args.track}",
         token, {"track": args.track, "releases": [release]}, quota_project)

@@ -2249,7 +2249,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get ambientMusicCreditsNote =>
-      'Músicas do Wikimedia Commons, publicadas sob licenças CC0 ou Creative Commons Atribuição.';
+      'Músicas do Wikimedia Commons e da coleção Open Lo-Fi, publicadas sob licenças CC0 ou Creative Commons Atribuição.';
 
   @override
   String get modeMusic => 'Música';

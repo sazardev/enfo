@@ -2196,7 +2196,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get ambientMusicCreditsNote =>
-      'Wikimedia Commons の楽曲。CC0 または クリエイティブ・コモンズ 表示ライセンスで公開されています。';
+      'Wikimedia Commons と Open Lo-Fi コレクションの楽曲。CC0 または クリエイティブ・コモンズ 表示ライセンスで公開されています。';
 
   @override
   String get modeMusic => '音楽';

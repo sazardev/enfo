@@ -49,7 +49,13 @@ void main() {
         expect(t.license.contains('NC') || t.license.contains('ND'), isFalse);
         expect(t.needsCredit, t.license != 'CC0', reason: t.title);
         expect(t.licenseUrl, startsWith('http'));
-        expect(t.source, contains('commons.wikimedia.org'));
+        // Only verified-collection hosts: Commons pages or the Open Lo-Fi
+        // release repository (CC0, dedicated to the public domain).
+        expect(
+            t.source.contains('commons.wikimedia.org') ||
+                t.source == 'https://github.com/btahir/open-lofi',
+            isTrue,
+            reason: t.source);
       }
     });
 
