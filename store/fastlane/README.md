@@ -63,7 +63,11 @@ La app ofrece donaciones consumibles (`enfo_donate_1`, `_3`, `_5`, `_10`,
 ## 5. Pendientes y notas
 
 - **Novedades (what's new)**: `changelogs/11.txt` ya está creado (1.5.0);
-  supply las sube por versionCode.
+  `tools/upload_play_bundle.py` sin `--notes` las sube por versionCode en los
+  10 idiomas (supply haría lo mismo).
+- **Ficha sin fastlane**: `python3 tools/upload_play_listing.py` sube título,
+  descripción corta y larga de los 10 idiomas (conserva el vídeo de es-419).
+  Usa la misma autenticación que el uploader (ADC de gcloud).
 - **Capturas**: solo hay de `en-US` y `es-419`; el resto de idiomas usan las
   de la ficha por defecto (Play no exige capturas por idioma).
 - **Vídeo promocional**: supply no lo sube; se pega la URL de YouTube a mano
@@ -79,9 +83,11 @@ La app ofrece donaciones consumibles (`enfo_donate_1`, `_3`, `_5`, `_10`,
 - Seguridad de datos: **No recopila datos** (verificado, sin cambios).
 - Foreground services: declaración de `mediaPlayback` con vídeo demo
   (no listado): https://www.youtube.com/watch?v=VQme5O-Vw8
-- Producción: 1.4.0 (versionCode 10) enviada a revisión con rollout completo.
-- Track interno: **1.5.0 (versionCode 11)** subida el 2026-10-07 con las
-  novedades en 10 idiomas (AAB de 217.6 MB con símbolos; ~78 MB de bajada).
-  Para promover sin re-subir: `python3 tools/upload_play_bundle.py
-  --version-code 11 --track production`.
+- Producción: **1.5.0 (versionCode 11)** enviada a revisión el 2026-10-07 con
+  rollout completo y novedades en 10 idiomas.
+- Track interno: mismo 1.5.0 (versionCode 11) desde el mismo día; para
+  reasignar el bundle ya subido: `python3 tools/upload_play_bundle.py
+  --version-code 11 --track <track>`.
+- Ficha: los 10 listings localizados ya tienen la descripción actualizada
+  (72 canciones lo-fi) y el vídeo promocional de es-419 se conservó.
 - Productos: `enfo_donate_1/3/5/10/25` activos, precios en 174 regiones.
