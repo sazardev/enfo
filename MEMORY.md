@@ -25,9 +25,9 @@ a **Modes menu** lets the user turn modes on/off, drag to reorder, pick the
 start mode and customize the clock. Everything that happens is recorded in a
 unified **Activity** history.
 
-Targets: Android, Windows, Linux (web exists on a separate branch). Ads and
-mobile notifications are Android-only; desktop uses `local_notifier` +
-`window_manager`.
+Targets: Android, Windows, Linux (web exists on a separate branch). Play
+Billing donations and mobile notifications are Android-only; desktop uses
+`local_notifier` + `window_manager`.
 
 ## 2. Ground rules of the codebase
 
@@ -206,9 +206,9 @@ must never be reordered.
 
 ## 5. How to verify (no GUI available in the authoring sandbox)
 
-- `flutter analyze` — clean except the pre-existing `admob_id` naming lint in
-  the gitignored `lib/secret.dart`.
-- `flutter test` — ~370 tests: logic (timers, alarms, history, world clock),
+- `flutter analyze` — clean except the pre-existing lints in the
+  `tool/store/` helper tests.
+- `flutter test` — ~1950 tests: logic (timers, alarms, history, world clock),
   widget flows for every mode, data wipe, i18n, onboarding, and **responsive
   matrices** that render every screen at watch / phone / landscape / tablet /
   TV / desktop sizes (normal and full screen) and fail on any overflow.
@@ -224,10 +224,10 @@ must never be reordered.
 
 ## 6. Build environment
 
-- `lib/secret.dart` is gitignored and must define
-  `const String admob_id = '...'` or nothing compiles on any platform (it is
-  imported unconditionally by `support_page.dart`). Google's test interstitial
-  id works for development: `ca-app-pub-3940256099942544/1033173712`.
+- No `lib/secret.dart` and no API keys: Enfo has no ads and no ad SDKs.
+  Donations use Google Play Billing (`lib/donate_page.dart`, product ids
+  `enfo_donate_1/3/5/10/25`, Android only); those products must exist and be
+  active in Play Console for the tiers to appear.
 - Linux needs `libnotify` (`sudo pacman -S libnotify` on Arch/CachyOS). A
   stale `build/linux/**/CMakeCache.txt` with `CMAKE_INSTALL_PREFIX=/usr/local`
   makes later builds try to install system-wide: `flutter clean`.

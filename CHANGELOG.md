@@ -1,5 +1,35 @@
 # Changelog
 
+## 1.4.0 (build 10)
+
+### New
+- **Donations**: support Enfo with a one-time donation through Google Play
+  Billing, in five amounts with prices localized by Google Play. The Support
+  page gains a Donate entry on Android; the coffee link stays for everyone.
+- Donation strings in all nine languages.
+
+### Changed
+- Enfo remains completely ad-free: no ad SDKs and no trackers are bundled.
+
+## 1.3.3 (build 9)
+
+### New
+- **No more ads**: Enfo is completely ad-free. The ad SDK is gone; the
+  support page keeps only the coffee link, and the app no longer needs
+  `lib/secret.dart`.
+- **Live notification cards**: ongoing timer and Pomodoro notifications with a
+  live countdown, progress bar, monochrome icon and lock-screen visibility.
+- **Lock-screen media session** for the lo-fi player: MediaStyle notification
+  with generated cover art, play/pause/next/previous, and playback with the
+  screen off.
+- **Two new home-screen widgets**: Music and Focus (nine widgets in total).
+
+### Developer notes
+- Android build migrated to declarative Gradle plugins (AGP 9, Gradle 9.3,
+  compileSdk 37) with release signing wired.
+- `keep.xml` keeps the notification icons through the release resource
+  shrinker.
+
 ## 1.2.0 (build 5)
 
 ### New

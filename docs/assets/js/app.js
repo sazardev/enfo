@@ -183,7 +183,6 @@
     var lines = [
       'git clone https://github.com/' + SITE.githubSlug + '.git',
       'cd enfo',
-      "echo \"const String admob_id = 'ca-app-pub-3940256099942544/1033173712';\" > lib/secret.dart",
       'flutter pub get',
       'flutter run -d linux     # or: -d windows, or a connected Android device'
     ];
@@ -226,7 +225,7 @@
     $('#langChips').innerHTML = L.map(function (l) { return '<span class="chip on-hover" lang="' + ({ English: 'en', 'Español': 'es', Deutsch: 'de', 'Français': 'fr', 'हिन्दी': 'hi', '日本語': 'ja', '한국어': 'ko', 'Português': 'pt', '中文': 'zh' }[l]) + '">' + l + '</span>'; }).join('');
   }
   function buildWidgets() {
-    var W = [['clock', 'clock'], ['analog', 'analog'], ['pomodoro', 'ring'], ['timer', 'wavyRing'], ['stopwatch', 'sw'], ['alarms', 'al'], ['world', 'wd']];
+    var W = [['clock', 'clock'], ['analog', 'analog'], ['pomodoro', 'ring'], ['timer', 'wavyRing'], ['stopwatch', 'sw'], ['alarms', 'al'], ['world', 'wd'], ['music', 'mu'], ['focus', 'fo']];
     $('#widgetList').innerHTML = W.map(function (w) { return '<div class="wg" data-k="' + w[1] + '"><div class="wg-body"></div><span>' + esc(T('wg.' + w[0])) + '</span></div>'; }).join('');
     $$('#widgetList .wg').forEach(function (el) {
       var k = el.dataset.k, b = $('.wg-body', el);
@@ -235,6 +234,8 @@
       else if (k === 'sw') { b.innerHTML = '<b class="wg-t" data-tick="sw"></b>'; }
       else if (k === 'al') { b.innerHTML = '<div class="wg-l"><b>06:45</b><small>' + esc(T('d.wake')) + '</small></div><div class="wg-l off"><b>13:30</b><small>' + esc(T('d.lunch')) + '</small></div>'; }
       else if (k === 'wd') { b.innerHTML = '<div class="wg-l"><b data-tick="ny"></b><small>New York</small></div><div class="wg-l"><b data-tick="ldn"></b><small>London</small></div>'; }
+      else if (k === 'mu') { b.innerHTML = '<b class="wg-t">Lo-fi</b>'; }
+      else if (k === 'fo') { b.innerHTML = '<b class="wg-t">25:00</b>'; }
     });
   }
   var dyn = [];

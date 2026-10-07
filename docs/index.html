@@ -23,7 +23,8 @@
 <meta name="twitter:title" content="Enfo – a flat, calm clock &amp; timer toolbox">
 <meta name="twitter:description" content="16 tools, 63 clock styles, Material You colors, 9 languages. Android, Windows, Linux.">
 <meta name="twitter:image" content="https://sazardev.github.io/enfo/assets/og.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Enfo","applicationCategory":"UtilitiesApplication","operatingSystem":"Android, Windows, Linux","description":"A flat, minimal clock and timer toolbox with 16 tools and 63 clock styles.","softwareVersion":"1.2.0","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://sazardev.github.io/enfo/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Enfo","applicationCategory":"UtilitiesApplication","operatingSystem":"Android, Windows, Linux","description":"A flat, minimal clock and timer toolbox with 16 tools and 63 clock styles.","softwareVersion":"1.4.0","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://sazardev.github.io/enfo/","installUrl":"https://play.google.com/store/apps/details?id=com.sazarcode.enfo","downloadUrl":"https://github.com/sazardev/enfo/releases/latest","sameAs":["https://github.com/sazardev/enfo","https://play.google.com/store/apps/details?id=com.sazarcode.enfo"],"image":"https://sazardev.github.io/enfo/assets/og.png","screenshot":"https://sazardev.github.io/enfo/assets/cover-banner.webp"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is Enfo free?","acceptedAnswer":{"@type":"Answer","text":"Yes, you can download and use it for free, with no ads. If you want to support it, the app has a one-time donation through Google Play and a tip jar."}},{"@type":"Question","name":"Which platforms does it run on?","acceptedAnswer":{"@type":"Answer","text":"Android (Google Play), Windows and Linux (GitHub Releases or build from source). There is no iOS or macOS build."}},{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. Everything, including the music and ambient sounds, is bundled or generated on your device. Everything works offline."}},{"@type":"Question","name":"Will alarms ring with the app closed?","acceptedAnswer":{"@type":"Answer","text":"On Android, alarms are also scheduled with the system for the next 14 days, so they ring with the app closed. Delivery of notifications has not been verified on every device and vendor; check your battery and notification settings. On desktop, Enfo must be running."}},{"@type":"Question","name":"Where is my data?","acceptedAnswer":{"@type":"Answer","text":"On your device only. Settings > Data lets you reset settings or erase everything."}},{"@type":"Question","name":"Can I turn tools off?","acceptedAnswer":{"@type":"Answer","text":"Yes. Six tools are on by default; the other ten are off until you enable them in the Modes menu. You can also reorder them, choose the start tool and hide bottom-menu buttons."}}]}</script>
 
 <link rel="stylesheet" href="assets/css/site.css">
 <script src="assets/site-config.js"></script>
@@ -73,7 +74,7 @@
         <li><b>16</b> <span data-i18n="facts.tools">tools</span></li>
         <li><b>63</b> <span data-i18n="facts.styles">clock styles</span></li>
         <li><b>9</b> <span data-i18n="facts.langs">languages</span></li>
-        <li><b>7</b> <span data-i18n="facts.widgets">Android widgets</span></li>
+        <li><b>9</b> <span data-i18n="facts.widgets">Android widgets</span></li>
       </ul>
     </div>
     <div class="hero-dial reveal">
@@ -133,7 +134,7 @@
     <p class="eyebrow reveal" data-i18n="why.eyebrow">Why Enfo</p>
     <h2 id="why-h" class="reveal" data-i18n="why.title">Small on the surface, deep underneath</h2>
     <div class="cards" id="whyCards"></div>
-    <p class="note reveal" data-i18n="why.ads">Honest note: the Android version shows ads (Google AdMob). Enfo has no account, no sign-in and no in-app purchases that we know of; the support page in the app has a tip jar if you would rather chip in.</p>
+    <p class="note reveal" data-i18n="why.ads">Honest note: Enfo has no ads, no account and no sign-in. The support page in the app has a one-time donation through Google Play and a tip jar if you would rather chip in.</p>
   </div>
 </section>
 
@@ -248,8 +249,8 @@
     </div>
     <div>
       <p class="eyebrow reveal" data-i18n="widgets.eyebrow">Android widgets</p>
-      <h2 class="reveal" data-i18n="widgets.title">Seven Material You widgets</h2>
-      <p class="lead reveal" data-i18n="widgets.lead">Clock, analog clock, Pomodoro, timer, stopwatch, alarms and world clock. The Pomodoro and timer widgets are drawn in the clock style you picked.</p>
+      <h2 class="reveal" data-i18n="widgets.title">Nine Material You widgets</h2>
+      <p class="lead reveal" data-i18n="widgets.lead">Clock, analog clock, Pomodoro, timer, stopwatch, alarms, world clock, music and focus. The Pomodoro and timer widgets are drawn in the clock style you picked.</p>
       <div class="widgets reveal" id="widgetList"></div>
     </div>
   </div>
@@ -265,7 +266,7 @@
     <p class="detected" id="detected2" aria-live="polite"></p>
     <div class="build card reveal" id="build">
       <h3 data-i18n="dl.buildTitle">Build from source</h3>
-      <p data-i18n="dl.buildLead">You need the Flutter SDK. Enfo needs a local <code>lib/secret.dart</code> (git-ignored) with an AdMob id to compile on any platform; Google's public test id works for development.</p>
+      <p data-i18n="dl.buildLead">You need the Flutter SDK. Clone the repo, run flutter pub get and flutter run; no extra secrets or API keys are needed.</p>
       <pre tabindex="0"><code id="buildCode"></code></pre>
       <button type="button" class="btn tonal" id="copyBuild"></button>
       <p class="hint" data-i18n="dl.buildLinux">Linux also needs the libnotify development package (for example libnotify-dev on Debian/Ubuntu).</p>

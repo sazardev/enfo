@@ -28,7 +28,7 @@ Mira pasar el tiempo como un anillo, una ola de dígitos, una pizza, una lámpar
 Convierte cualquier herramienta en un reloj de escritorio o buró: los controles se ocultan, la pantalla se mantiene encendida, el brillo puede bajar y la imagen se desplaza un poco para cuidar tu pantalla.
 
 <b>WIDGETS PARA LA PANTALLA DE INICIO</b>
-Siete widgets de Android: Reloj, Reloj analógico, Pomodoro, Temporizador, Cronómetro, Alarmas y Hora mundial. Combinan con tu tema, y Pomodoro y Temporizador usan el estilo de reloj que elijas.
+Nueve widgets de Android: Reloj, Reloj analógico, Pomodoro, Temporizador, Cronómetro, Alarmas, Hora mundial, Música y Enfoque. Combinan con tu tema, y Pomodoro y Temporizador usan el estilo de reloj que elijas.
 
 <b>TU ESTILO</b>
 Tema del sistema, claro u oscuro. 32 colores de acento y un selector de color personalizado. Diseño estrictamente plano con una tipografía monoespaciada limpia. Elige qué botones aparecen en el menú inferior.
@@ -40,6 +40,6 @@ Pomodoros, tiempo de enfoque, rachas y un historial de actividad que también in
 Español, inglés, alemán, francés, portugués, hindi, japonés, coreano y chino.
 
 <b>PRIVADA POR DISEÑO</b>
-Sin cuenta ni registro. Tu historial y tus ajustes se guardan en tu dispositivo y puedes borrarlos cuando quieras. Solo verás anuncios si eliges ver uno para apoyar al desarrollador.
+Sin cuenta ni registro. Tu historial y tus ajustes se guardan en tu dispositivo y puedes borrarlos cuando quieras. Sin anuncios y sin rastreo.
 
 Enfo: menos ruido, más tiempo.
