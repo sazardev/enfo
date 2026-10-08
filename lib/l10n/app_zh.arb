@@ -791,5 +791,9 @@
   "focusQuoteToggle": "每日专注语",
   "focusQuoteHint": "每天一条,从 500 句话中为你挑选,给你灵感。",
   "focusQuoteTime": "发送时间",
-  "focusQuoteExample": "今天:"
+  "focusQuoteExample": "今天:",
+  "widgetsQuoteSubtitle": "今天的专注语,用你的颜色装点。",
+  "widgetsQuoteStyle": "专注语样式",
+  "widgetsQuoteClassic": "经典",
+  "widgetsQuoteAccent": "强调色"
 }

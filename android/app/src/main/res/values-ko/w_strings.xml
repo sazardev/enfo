@@ -20,4 +20,7 @@
     <string name="widget_music_desc">앱을 열지 않고 재생, 일시정지, 건너뛰기.</string>
     <string name="widget_focus_label">Enfo · 집중</string>
     <string name="widget_focus_desc">오늘의 집중 시간과 뽀모도로를 한눈에.</string>
+    <string name="widget_quote_label">Enfo · 집중 문장</string>
+    <string name="widget_quote_desc">오늘의 집중 문장을 당신의 색으로.</string>
+    <string name="widget_quote_empty">오늘의 문장을 불러오려면 Enfo를 여세요.</string>
 </resources>

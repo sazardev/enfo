@@ -2513,4 +2513,16 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get focusQuoteExample => '今天:';
+
+  @override
+  String get widgetsQuoteSubtitle => '今天的专注语,用你的颜色装点。';
+
+  @override
+  String get widgetsQuoteStyle => '专注语样式';
+
+  @override
+  String get widgetsQuoteClassic => '经典';
+
+  @override
+  String get widgetsQuoteAccent => '强调色';
 }

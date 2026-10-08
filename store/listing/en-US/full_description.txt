@@ -28,7 +28,7 @@ Watch your time as a ring, a wave of digits, a pizza, a lava lamp or a cookie ja
 Turn any tool into a desk or nightstand clock: controls fade away, the screen stays awake, brightness can dim and the picture drifts slightly to protect your display.
 
 <b>HOME-SCREEN WIDGETS</b>
-Nine Android widgets: Clock, Analog clock, Pomodoro, Timer, Stopwatch, Alarms, World clock, Music and Focus. They match your theme, and Pomodoro and Timer use your chosen clock style.
+Ten Android widgets: Clock, Analog clock, Pomodoro, Timer, Stopwatch, Alarms, World clock, Music, Focus and Quote. They match your theme, and Pomodoro and Timer use your chosen clock style.
 
 <b>YOUR LOOK</b>
 System, light or dark theme. 32 accent colors plus a custom color picker. Strictly flat design with a clean monospaced font. Choose which buttons appear in the bottom menu.

@@ -28,7 +28,7 @@ Regardez le temps défiler sous forme d'anneau, de vague de chiffres, de pizza, 
 Transformez n'importe quel outil en horloge de bureau ou de chevet : les commandes s'effacent, l'écran reste allumé, la luminosité peut baisser et l'image se décale légèrement pour ménager votre écran.
 
 <b>WIDGETS D'ÉCRAN D'ACCUEIL</b>
-Neuf widgets Android : Horloge, Horloge analogique, Pomodoro, Minuteur, Chronomètre, Alarmes, Heure mondiale, Musique et Focus. Ils s'accordent à votre thème, et Pomodoro et Minuteur reprennent le style d'horloge choisi.
+Dix widgets Android : Horloge, Horloge analogique, Pomodoro, Minuteur, Chronomètre, Alarmes, Heure mondiale, Musique, Focus et Phrase du jour. Ils s'accordent à votre thème, et Pomodoro et Minuteur reprennent le style d'horloge choisi.
 
 <b>VOTRE STYLE</b>
 Thème système, clair ou sombre. 32 couleurs d'accent et un sélecteur de couleur libre. Design résolument plat avec une police à chasse fixe épurée. Choisissez les boutons affichés dans le menu du bas.

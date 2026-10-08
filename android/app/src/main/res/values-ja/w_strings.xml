@@ -20,4 +20,7 @@
     <string name="widget_music_desc">アプリを開かずに再生・一時停止・スキップ。</string>
     <string name="widget_focus_label">Enfo · フォーカス</string>
     <string name="widget_focus_desc">今日の集中時間とポモドーロをひと目で。</string>
+    <string name="widget_quote_label">Enfo · 集中の言葉</string>
+    <string name="widget_quote_desc">今日の集中の言葉を、あなたの色で。</string>
+    <string name="widget_quote_empty">今日の言葉を読み込むには Enfo を開いてください。</string>
 </resources>

@@ -20,4 +20,7 @@
     <string name="widget_music_desc">Abspielen, pausieren und überspringen, ohne die App zu öffnen.</string>
     <string name="widget_focus_label">Enfo · Fokus</string>
     <string name="widget_focus_desc">Heutige Fokuszeit und Pomodoros auf einen Blick.</string>
+    <string name="widget_quote_label">Enfo · Fokus-Satz</string>
+    <string name="widget_quote_desc">Der Fokus-Satz des Tages, in deinen Farben.</string>
+    <string name="widget_quote_empty">Öffne Enfo, um den heutigen Satz zu laden.</string>
 </resources>

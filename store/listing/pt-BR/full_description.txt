@@ -28,7 +28,7 @@ Veja o tempo passar como um anel, uma onda de dígitos, uma pizza, uma lâmpada 
 Transforme qualquer ferramenta em relógio de mesa ou de criado-mudo: os controles somem, a tela fica acesa, o brilho pode diminuir e a imagem se desloca de leve para poupar sua tela.
 
 <b>WIDGETS NA TELA INICIAL</b>
-Nove widgets Android: Relógio, Relógio analógico, Pomodoro, Timer, Cronômetro, Alarmes, Hora mundial, Música e Foco. Eles combinam com o seu tema, e Pomodoro e Timer usam o estilo de relógio que você escolher.
+Dez widgets Android: Relógio, Relógio analógico, Pomodoro, Timer, Cronômetro, Alarmes, Hora mundial, Música, Foco e Frase do dia. Eles combinam com o seu tema, e Pomodoro e Timer usam o estilo de relógio que você escolher.
 
 <b>SEU VISUAL</b>
 Tema do sistema, claro ou escuro. 32 cores de destaque e um seletor de cor personalizada. Design estritamente plano com uma fonte monoespaçada limpa. Escolha quais botões aparecem no menu inferior.

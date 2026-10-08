@@ -791,5 +791,9 @@
   "focusQuoteToggle": "रोज़ का फ़ोकस वाक्य",
   "focusQuoteHint": "रोज़ एक सूचना, 500 वाक्यों में से, आपको प्रेरित करने के लिए।",
   "focusQuoteTime": "समय",
-  "focusQuoteExample": "आज:"
+  "focusQuoteExample": "आज:",
+  "widgetsQuoteSubtitle": "आज का फ़ोकस वाक्य, आपके रंगों में सजा।",
+  "widgetsQuoteStyle": "वाक्य शैली",
+  "widgetsQuoteClassic": "क्लासिक",
+  "widgetsQuoteAccent": "एक्सेंट"
 }

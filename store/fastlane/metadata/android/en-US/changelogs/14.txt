@@ -1,0 +1,1 @@
+Enfo 1.8.0 adds the focus quote widget: today's phrase on your home screen, in the app's type and your colors. Pick Classic or Accent in Settings > Widgets. It changes every midnight, even with the app closed. Ten widgets in total.

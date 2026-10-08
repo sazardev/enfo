@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:enfo/app_preferences.dart';
+import 'package:enfo/focus_quotes.dart';
 import 'package:enfo/l10n/gen/app_localizations.dart';
 import 'package:enfo/modes/alarm/alarm.dart';
 import 'package:enfo/modes/app_mode.dart';
@@ -175,6 +176,43 @@ void main() {
       final s = snapshot()['stopwatch'] as Map;
       expect(s['running'], false);
       expect(s['elapsedMs'], 0);
+    });
+
+    test('carries two weeks of focus quotes for the quote widget', () {
+      final quote = snapshot()['quote'] as Map<String, dynamic>;
+      expect(quote['style'], 0);
+      final days = quote['days'] as List;
+      expect(days, hasLength(WidgetSnapshot.quoteDays));
+      final first = days.first as Map<String, dynamic>;
+      expect(first['at'], DateTime(2026, 9, 29).millisecondsSinceEpoch);
+      expect(first['text'], FocusQuotes.forDate(
+          lookupAppLocalizations(const Locale('en')), now));
+      expect(first['day'], isNotEmpty);
+      // Consecutive midnights, one per day.
+      expect((days[1] as Map)['at'],
+          DateTime(2026, 9, 30).millisecondsSinceEpoch);
+
+      // The style travels with the snapshot.
+      nowProvider = () => now;
+      final styled = WidgetSnapshot.build(
+        now: now,
+        l10n: lookupAppLocalizations(const Locale('en')),
+        lang: 'en',
+        clockFormat: ClockFormat.h24,
+        showDate: true,
+        dynamicColor: false,
+        light: Themes.light(Colors.lime).colorScheme,
+        dark: Themes.dark(Colors.lime).colorScheme,
+        pomodoro: const PomodoroState(),
+        timer: TimerController.instance,
+        stopwatch: StopwatchController.instance,
+        alarms: const [],
+        worldCityIds: const [],
+        music: const {},
+        focus: const {},
+        quoteStyle: 1,
+      );
+      expect((styled['quote'] as Map)['style'], 1);
     });
   });
 

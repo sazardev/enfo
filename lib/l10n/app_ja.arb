@@ -791,5 +791,9 @@
   "focusQuoteToggle": "毎日の集中の言葉",
   "focusQuoteHint": "1日1回、500の言葉からあなたを励ます通知。",
   "focusQuoteTime": "通知する時刻",
-  "focusQuoteExample": "今日:"
+  "focusQuoteExample": "今日:",
+  "widgetsQuoteSubtitle": "今日の集中の言葉を、あなたの色で。",
+  "widgetsQuoteStyle": "言葉のスタイル",
+  "widgetsQuoteClassic": "クラシック",
+  "widgetsQuoteAccent": "アクセント"
 }

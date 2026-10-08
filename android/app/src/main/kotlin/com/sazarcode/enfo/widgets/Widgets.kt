@@ -18,6 +18,7 @@ object Widgets {
         Entry("world", WorldWidget::class.java) { WorldWidget() },
         Entry("music", MusicWidget::class.java) { MusicWidget() },
         Entry("focus", FocusWidget::class.java) { FocusWidget() },
+        Entry("quote", QuoteWidget::class.java) { QuoteWidget() },
     )
 
     fun ids(ctx: Context, entry: Entry): IntArray =

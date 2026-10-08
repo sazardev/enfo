@@ -62,9 +62,12 @@ La app ofrece donaciones consumibles (`enfo_donate_1`, `_3`, `_5`, `_10`,
 
 ## 5. Pendientes y notas
 
-- **Novedades (what's new)**: `changelogs/13.txt` ya está creado (1.7.0);
+- **Novedades (what's new)**: `changelogs/14.txt` ya está creado (1.8.0);
   `tools/upload_play_bundle.py` sin `--notes` las sube por versionCode en los
   10 idiomas (supply haría lo mismo).
+- **Widget de la frase**: `QuoteWidget.kt` + `w_quote.xml`, con dos estilos
+  (`WidgetPrefs.quoteStyle`) y 14 días de frases en el snapshot; `Ticker`
+  despierta a medianoche. Los textos nativos viven en `values*/w_strings.xml`.
 - **Frase diaria**: `lib/daily_quote.dart` programa 30 días en el canal
   `enfo_quotes` (sin permiso de alarmas exactas); el texto sale de
   `FocusQuotes` (500 combinaciones por idioma desde las claves ARB
@@ -81,8 +84,8 @@ La app ofrece donaciones consumibles (`enfo_donate_1`, `_3`, `_5`, `_10`,
   en Play Console → Ficha principal.
 - **Marketing externo**: se activa a mano en Play Console → Configuración de
   la tienda.
-- Los textos de la ficha ya están actualizados a 1.7.0 (72 canciones lo-fi,
-  40 ambientes, frase de enfoque diaria, sin anuncios y donaciones).
+- Los textos de la ficha ya están actualizados a 1.8.0 (72 canciones lo-fi,
+  40 ambientes, frase diaria, diez widgets, sin anuncios y donaciones).
 
 ## 6. Estado de la cuenta (Play Console, 2026-10-07)
 

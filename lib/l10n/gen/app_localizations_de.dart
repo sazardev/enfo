@@ -2590,4 +2590,17 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get focusQuoteExample => 'Heute:';
+
+  @override
+  String get widgetsQuoteSubtitle =>
+      'Der Fokus-Satz des Tages, in deinen Farben.';
+
+  @override
+  String get widgetsQuoteStyle => 'Stil des Satzes';
+
+  @override
+  String get widgetsQuoteClassic => 'Klassisch';
+
+  @override
+  String get widgetsQuoteAccent => 'Akzent';
 }

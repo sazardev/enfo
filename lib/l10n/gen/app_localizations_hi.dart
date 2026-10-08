@@ -2564,4 +2564,16 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get focusQuoteExample => 'आज:';
+
+  @override
+  String get widgetsQuoteSubtitle => 'आज का फ़ोकस वाक्य, आपके रंगों में सजा।';
+
+  @override
+  String get widgetsQuoteStyle => 'वाक्य शैली';
+
+  @override
+  String get widgetsQuoteClassic => 'क्लासिक';
+
+  @override
+  String get widgetsQuoteAccent => 'एक्सेंट';
 }

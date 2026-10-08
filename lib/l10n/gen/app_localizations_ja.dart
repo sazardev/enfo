@@ -2522,4 +2522,16 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get focusQuoteExample => '今日:';
+
+  @override
+  String get widgetsQuoteSubtitle => '今日の集中の言葉を、あなたの色で。';
+
+  @override
+  String get widgetsQuoteStyle => '言葉のスタイル';
+
+  @override
+  String get widgetsQuoteClassic => 'クラシック';
+
+  @override
+  String get widgetsQuoteAccent => 'アクセント';
 }

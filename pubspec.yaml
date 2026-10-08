@@ -2,7 +2,7 @@ name: enfo
 description: Enfo, a flat, calm clock & timer toolbox.
 publish_to: 'none'
 
-version: 1.7.0+13
+version: 1.8.0+14
 
 environment:
   sdk: '>=3.3.0 <4.0.0'

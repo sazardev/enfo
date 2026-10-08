@@ -791,5 +791,9 @@
   "focusQuoteToggle": "Frase de foco diária",
   "focusQuoteHint": "Uma notificação por dia, escolhida entre 500 frases, para inspirar você.",
   "focusQuoteTime": "Horário",
-  "focusQuoteExample": "Hoje:"
+  "focusQuoteExample": "Hoje:",
+  "widgetsQuoteSubtitle": "A frase de foco do dia, decorada com suas cores.",
+  "widgetsQuoteStyle": "Estilo da frase",
+  "widgetsQuoteClassic": "Clássico",
+  "widgetsQuoteAccent": "Destaque"
 }

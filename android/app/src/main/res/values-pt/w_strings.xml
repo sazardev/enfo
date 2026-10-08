@@ -20,4 +20,7 @@
     <string name="widget_music_desc">Reproduza, pause e pule sem abrir o app.</string>
     <string name="widget_focus_label">Enfo · Foco</string>
     <string name="widget_focus_desc">Tempo de foco e pomodoros de hoje num relance.</string>
+    <string name="widget_quote_label">Enfo · Frase do dia</string>
+    <string name="widget_quote_desc">A frase de foco do dia, decorada com suas cores.</string>
+    <string name="widget_quote_empty">Abra o Enfo para carregar a frase de hoje.</string>
 </resources>

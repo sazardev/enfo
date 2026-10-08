@@ -1,0 +1,1 @@
+O Enfo 1.8.0 adiciona o widget da frase de foco: a frase de hoje na tela inicial, na fonte do app e com suas cores. Escolha Clássico ou Destaque em Ajustes > Widgets. Muda a cada meia-noite, mesmo com o app fechado. Dez widgets no total.

@@ -4863,6 +4863,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Today:'**
   String get focusQuoteExample;
+
+  /// No description provided for @widgetsQuoteSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The focus quote of the day, decorated in your colors.'**
+  String get widgetsQuoteSubtitle;
+
+  /// No description provided for @widgetsQuoteStyle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quote style'**
+  String get widgetsQuoteStyle;
+
+  /// No description provided for @widgetsQuoteClassic.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic'**
+  String get widgetsQuoteClassic;
+
+  /// No description provided for @widgetsQuoteAccent.
+  ///
+  /// In en, this message translates to:
+  /// **'Accent'**
+  String get widgetsQuoteAccent;
 }
 
 class _AppLocalizationsDelegate

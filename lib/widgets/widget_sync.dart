@@ -51,6 +51,7 @@ class WidgetSync {
         AppPreferences.clockFormat,
         ClockPrefs.showDate,
         WidgetPrefs.dynamicColor,
+        WidgetPrefs.quoteStyle,
         LocaleController.locale,
         ClockStyle.changes,
         Themes.accentChanges,
@@ -234,6 +235,7 @@ class WidgetSync {
       worldCityIds: WorldPrefs.cities.value,
       music: music,
       focus: focus,
+      quoteStyle: WidgetPrefs.quoteStyle.value,
       frames: frames,
     );
     await WidgetBridge.sync(WidgetSnapshot.encode(snapshot));

@@ -20,4 +20,7 @@
     <string name="widget_music_desc">ऐप खोले बिना चलाएँ, रोकें और बदलें।</string>
     <string name="widget_focus_label">Enfo · फोकस</string>
     <string name="widget_focus_desc">आज का फोकस समय और पोमोडोरो एक नज़र में।</string>
+    <string name="widget_quote_label">Enfo · फ़ोकस वाक्य</string>
+    <string name="widget_quote_desc">आज का फ़ोकस वाक्य, आपके रंगों में सजा।</string>
+    <string name="widget_quote_empty">आज का वाक्य लोड करने के लिए Enfo खोलें।</string>
 </resources>

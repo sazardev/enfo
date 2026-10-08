@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
 import '../app_preferences.dart';
+import '../focus_quotes.dart';
 import '../l10n/gen/app_localizations.dart';
 import '../modes/alarm/alarm.dart';
 import '../modes/alarm/alarm_service.dart';
@@ -29,6 +30,10 @@ class WidgetSnapshot {
   static const maxWorldCities = 4;
   static const maxAlarms = 8;
 
+  /// Days of focus quotes carried in the snapshot, so the quote widget keeps
+  /// changing at midnight for two weeks with the app closed.
+  static const quoteDays = 14;
+
   static String encode(Map<String, Object?> snapshot) => jsonEncode(snapshot);
 
   static Map<String, Object?> build({
@@ -47,6 +52,7 @@ class WidgetSnapshot {
     required List<String> worldCityIds,
     required Map<String, Object?> music,
     required Map<String, Object?> focus,
+    int quoteStyle = 0,
     Map<WidgetKind, FrameSet> frames = const {},
   }) {
     final nowMs = now.millisecondsSinceEpoch;
@@ -79,6 +85,7 @@ class WidgetSnapshot {
         'today': l10n.worldToday,
         'tomorrow': l10n.worldTomorrow,
         'yesterday': l10n.worldYesterday,
+        'quote': l10n.focusQuoteTitle,
       },
       'pomodoro': _countdown(
         phase: pomodoro.phase,
@@ -112,7 +119,28 @@ class WidgetSnapshot {
       'world': _world(worldCityIds, lang),
       'music': music,
       'focus': focus,
+      'quote': {'style': quoteStyle, 'days': _quotes(now, l10n, lang)},
     };
+  }
+
+  /// One entry per calendar day from today on: the midnight that starts it,
+  /// the phrase and a short localized date for the footer.
+  static List<Map<String, Object?>> _quotes(
+    DateTime now,
+    AppLocalizations l10n,
+    String lang,
+  ) {
+    final dateFormat = DateFormat.MMMEd(lang);
+    final out = <Map<String, Object?>>[];
+    for (var d = 0; d < quoteDays; d++) {
+      final day = DateTime(now.year, now.month, now.day + d);
+      out.add({
+        'at': day.millisecondsSinceEpoch,
+        'text': FocusQuotes.forDate(l10n, day),
+        'day': dateFormat.format(day),
+      });
+    }
+    return out;
   }
 
   static Map<String, int> _palette(ColorScheme cs) => {

@@ -1,0 +1,1 @@
+Enfo 1.8.0 bringt das Fokus-Satz-Widget: der heutige Satz auf dem Homescreen, in der Schrift der App und deinen Farben. Wähle Klassisch oder Akzent unter Einstellungen > Widgets. Er wechselt jede Mitternacht, auch bei geschlossener App. Zehn Widgets insgesamt.

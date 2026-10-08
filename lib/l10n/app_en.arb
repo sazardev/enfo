@@ -1149,5 +1149,9 @@
   "focusQuoteToggle": "Daily focus quote",
   "focusQuoteHint": "One notification a day, drawn from 500 phrases, to inspire you.",
   "focusQuoteTime": "Delivery time",
-  "focusQuoteExample": "Today:"
+  "focusQuoteExample": "Today:",
+  "widgetsQuoteSubtitle": "The focus quote of the day, decorated in your colors.",
+  "widgetsQuoteStyle": "Quote style",
+  "widgetsQuoteClassic": "Classic",
+  "widgetsQuoteAccent": "Accent"
 }

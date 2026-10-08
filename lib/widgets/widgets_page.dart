@@ -4,6 +4,7 @@ import '../l10n/locale_controller.dart';
 import '../modes/app_mode.dart';
 import '../ui/atoms/app_icon_button.dart';
 import '../ui/atoms/app_switch.dart';
+import '../ui/atoms/bouncy_tap.dart';
 import '../ui/design/spacing.dart';
 import '../ui/molecules/settings_row.dart';
 import '../ui/templates/settings_shell.dart';
@@ -91,6 +92,11 @@ class _WidgetsPageState extends State<WidgetsPage> {
           description: l10n.widgetsFocusSubtitle,
           icon: Icons.local_fire_department_rounded,
         ),
+      WidgetKind.quote => (
+          name: l10n.focusQuoteToggle,
+          description: l10n.widgetsQuoteSubtitle,
+          icon: Icons.format_quote_rounded,
+        ),
     };
   }
 
@@ -130,6 +136,7 @@ class _WidgetsPageState extends State<WidgetsPage> {
           ),
           const SizedBox(height: AppSpacing.xl),
         ],
+        const _QuoteStyleRow(),
         Padding(
           padding: const EdgeInsets.only(
             left: AppSpacing.lg,
@@ -161,6 +168,101 @@ class _WidgetsPageState extends State<WidgetsPage> {
         hint(l10n.widgetsStyleHint),
         hint(l10n.widgetsTapHint),
       ],
+    );
+  }
+}
+
+/// Decoration of the quote widget: a plain card with the big quote mark, or
+/// a filled accent card; the app's palette follows the Material You switch.
+class _QuoteStyleRow extends StatelessWidget {
+  const _QuoteStyleRow();
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final colorScheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    return ValueListenableBuilder<int>(
+      valueListenable: WidgetPrefs.quoteStyle,
+      builder: (context, style, _) => Padding(
+        padding: const EdgeInsets.fromLTRB(
+          AppSpacing.lg,
+          0,
+          AppSpacing.lg,
+          AppSpacing.md,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.widgetsQuoteStyle,
+              style: textTheme.labelLarge
+                  ?.copyWith(color: colorScheme.onSurfaceVariant),
+            ),
+            const SizedBox(height: AppSpacing.xs),
+            Wrap(
+              spacing: AppSpacing.sm,
+              children: [
+                _StyleChip(
+                  label: l10n.widgetsQuoteClassic,
+                  selected: style == 0,
+                  onTap: () => WidgetPrefs.setQuoteStyle(0),
+                ),
+                _StyleChip(
+                  label: l10n.widgetsQuoteAccent,
+                  selected: style == 1,
+                  onTap: () => WidgetPrefs.setQuoteStyle(1),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _StyleChip extends StatelessWidget {
+  const _StyleChip({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return BouncyTap(
+      onTap: onTap,
+      pressedScale: 0.94,
+      focusBorderRadius: BorderRadius.circular(24),
+      child: Semantics(
+        selected: selected,
+        button: true,
+        child: AnimatedContainer(
+          duration: MediaQuery.disableAnimationsOf(context)
+              ? Duration.zero
+              : const Duration(milliseconds: 200),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: AppSpacing.xs,
+          ),
+          decoration: BoxDecoration(
+            color: selected ? scheme.primary : scheme.surfaceContainerHigh,
+            borderRadius: BorderRadius.circular(24),
+          ),
+          child: Text(
+            label,
+            style: TextStyle(
+              color: selected ? scheme.onPrimary : scheme.onSurface,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

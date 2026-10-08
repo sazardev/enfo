@@ -791,5 +791,9 @@
   "focusQuoteToggle": "Phrase de concentration quotidienne",
   "focusQuoteHint": "Une notification par jour, choisie parmi 500 phrases, pour vous inspirer.",
   "focusQuoteTime": "Heure d'envoi",
-  "focusQuoteExample": "Aujourd'hui :"
+  "focusQuoteExample": "Aujourd'hui :",
+  "widgetsQuoteSubtitle": "La phrase de concentration du jour, dans vos couleurs.",
+  "widgetsQuoteStyle": "Style de la phrase",
+  "widgetsQuoteClassic": "Classique",
+  "widgetsQuoteAccent": "Accent"
 }

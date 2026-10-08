@@ -791,5 +791,9 @@
   "focusQuoteToggle": "Täglicher Fokus-Satz",
   "focusQuoteHint": "Eine Mitteilung pro Tag, aus 500 Sätzen, die dich inspirieren.",
   "focusQuoteTime": "Uhrzeit",
-  "focusQuoteExample": "Heute:"
+  "focusQuoteExample": "Heute:",
+  "widgetsQuoteSubtitle": "Der Fokus-Satz des Tages, in deinen Farben.",
+  "widgetsQuoteStyle": "Stil des Satzes",
+  "widgetsQuoteClassic": "Klassisch",
+  "widgetsQuoteAccent": "Akzent"
 }

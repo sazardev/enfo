@@ -1,0 +1,1 @@
+Enfo 1.8.0 ajoute le widget de la phrase du jour : la phrase du jour sur votre écran d'accueil, dans la police de l'app et vos couleurs. Choisissez Classique ou Accent dans Réglages > Widgets. Il change chaque minuit, même app fermée. Dix widgets au total.

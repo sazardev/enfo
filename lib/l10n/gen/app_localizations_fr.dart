@@ -2593,4 +2593,17 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get focusQuoteExample => 'Aujourd\'hui :';
+
+  @override
+  String get widgetsQuoteSubtitle =>
+      'La phrase de concentration du jour, dans vos couleurs.';
+
+  @override
+  String get widgetsQuoteStyle => 'Style de la phrase';
+
+  @override
+  String get widgetsQuoteClassic => 'Classique';
+
+  @override
+  String get widgetsQuoteAccent => 'Accent';
 }

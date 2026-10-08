@@ -28,7 +28,7 @@ Sieh die Zeit als Ring, Ziffernwelle, Pizza, Lavalampe oder Keksdose. Wähle aus
 Mach aus jedem Tool eine Schreibtisch- oder Nachttischuhr: Die Bedienelemente blenden sich aus, der Bildschirm bleibt an, die Helligkeit lässt sich dimmen und das Bild wandert leicht, um dein Display zu schonen.
 
 <b>HOMESCREEN-WIDGETS</b>
-Neun Android-Widgets: Uhr, Analoguhr, Pomodoro, Timer, Stoppuhr, Wecker, Weltzeit, Musik und Fokus. Sie passen zu deinem Design, und Pomodoro und Timer nutzen deinen gewählten Uhrenstil.
+Zehn Android-Widgets: Uhr, Analoguhr, Pomodoro, Timer, Stoppuhr, Wecker, Weltzeit, Musik, Fokus und Fokus-Satz. Sie passen zu deinem Design, und Pomodoro und Timer nutzen deinen gewählten Uhrenstil.
 
 <b>DEIN LOOK</b>
 System-, helles oder dunkles Design. 32 Akzentfarben plus eigener Farbwähler. Konsequent flaches Design mit klarer Monospace-Schrift. Du bestimmst, welche Tasten im unteren Menü erscheinen.

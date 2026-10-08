@@ -1,0 +1,1 @@
+Enfo 1.8.0 suma el widget de la frase de enfoque: la frase de hoy en tu pantalla de inicio, con la tipografía de la app y tus colores. Elegí Clásico o Acento en Ajustes > Widgets. Cambia cada medianoche, aunque la app esté cerrada. Ya son diez widgets.

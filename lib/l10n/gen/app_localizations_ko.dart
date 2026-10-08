@@ -2525,4 +2525,16 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get focusQuoteExample => '오늘:';
+
+  @override
+  String get widgetsQuoteSubtitle => '오늘의 집중 문장을 당신의 색으로.';
+
+  @override
+  String get widgetsQuoteStyle => '문장 스타일';
+
+  @override
+  String get widgetsQuoteClassic => '클래식';
+
+  @override
+  String get widgetsQuoteAccent => '강조';
 }

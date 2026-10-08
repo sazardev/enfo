@@ -791,5 +791,9 @@
   "focusQuoteToggle": "매일의 집중 문장",
   "focusQuoteHint": "하루 한 번, 500개의 문장 중 하나를 보내 영감을 드려요.",
   "focusQuoteTime": "알림 시간",
-  "focusQuoteExample": "오늘:"
+  "focusQuoteExample": "오늘:",
+  "widgetsQuoteSubtitle": "오늘의 집중 문장을 당신의 색으로.",
+  "widgetsQuoteStyle": "문장 스타일",
+  "widgetsQuoteClassic": "클래식",
+  "widgetsQuoteAccent": "강조"
 }

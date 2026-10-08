@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.8.0 (build 14)
+
+### New
+- **Quote widget**: today's focus quote on the home screen, drawn in the
+  app's monospaced type and your colors, with two decorations (Classic with
+  the big quote mark, Accent filled with the container color) in
+  Settings > Widgets. It carries two weeks of phrases and changes at
+  midnight even with the app closed. Ten widgets in total.
+
+### Developer notes
+- The widget snapshot gained `quote.days` (14 days) and `quote.style`;
+  `Ticker` wakes at the next midnight while the widget is placed. Geist
+  Mono ships in `res/font/` for the widget layouts.
+
 ## 1.7.0 (build 13)
 
 ### New

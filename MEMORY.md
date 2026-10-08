@@ -300,9 +300,9 @@ Written carefully against the plugin APIs but **never run**:
 
 ## 8. Android home-screen widgets
 
-Seven Material You widgets (Clock, Analog clock, Pomodoro, Timer, Stopwatch,
-Alarms, World clock). Pomodoro and Timer are drawn in the user's chosen one
-of the 63 clock styles.
+Ten Material You widgets (Clock, Analog clock, Pomodoro, Timer, Stopwatch,
+Alarms, World clock, Music, Focus, Quote). Pomodoro and Timer are drawn in
+the user's chosen one of the 63 clock styles.
 
 **Two halves, one contract.** Dart (`lib/widgets/`) watches the app state and
 pushes one JSON snapshot (`widget_snapshot.dart`) through the
@@ -348,7 +348,18 @@ state, so `CountdownDial` mirrors itself into `PomodoroLive` (read-only) and
 receives toggle requests from it.
 
 **Settings > Widgets** (Android only, `widgets_page.dart`): pin any widget
-(`requestPinAppWidget`) and the Material You switch (`WidgetPrefs`).
+(`requestPinAppWidget`), the Material You switch (`WidgetPrefs`) and the
+quote decoration (Classic / Accent, `WidgetPrefs.quoteStyle`).
+
+**The quote widget.** The snapshot carries two weeks of `FocusQuotes` days
+(`quote.days`, each with its midnight, phrase and short date) plus the
+decoration style; native picks the entry whose midnight passed and `Ticker`
+wakes at the next one, so the phrase changes daily with the app closed
+(the window only rolls forward when the app is opened). Classic uses the
+surface card and a big quote mark; Accent fills it with the container color
+(from the snapshot palette, so Material You still applies). It draws with
+the bundled Geist Mono (`res/font/geist_mono_*`, OFL) and taps open
+Pomodoro.
 
 **Add a widget:** add a `WidgetKind` value, a provider class extending
 `EnfoWidget`, an entry in `Widgets.all`, a layout + `res/xml/widget_*_info.xml`

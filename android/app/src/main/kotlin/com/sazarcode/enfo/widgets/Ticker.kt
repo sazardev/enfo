@@ -39,6 +39,11 @@ object Ticker {
         if (Widgets.has(ctx, "alarm")) {
             consider(AlarmWidget.upcoming(snap, now).firstOrNull()?.at?.plus(1000))
         }
+        if (Widgets.has(ctx, "quote")) {
+            // The quote changes at midnight; the snapshot carries two weeks
+            // of days so this keeps working with the app closed.
+            consider(QuoteWidget.nextChange(snap.obj("quote"), now))
+        }
         return next
     }
 
