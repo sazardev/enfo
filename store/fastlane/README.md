@@ -87,16 +87,16 @@ La app ofrece donaciones consumibles (`enfo_donate_1`, `_3`, `_5`, `_10`,
 - Los textos de la ficha ya están actualizados a 1.8.0 (72 canciones lo-fi,
   40 ambientes, frase diaria, diez widgets, sin anuncios y donaciones).
 
-## 6. Estado de la cuenta (Play Console, 2026-10-07)
+## 6. Estado de la cuenta (Play Console, 2026-10-08)
 
 - Anuncios: declaración en **"No contiene anuncios"** (en revisión).
 - Seguridad de datos: **No recopila datos** (verificado, sin cambios).
 - Foreground services: declaración de `mediaPlayback` con vídeo demo
   (no listado): https://www.youtube.com/watch?v=VQme5O-Vw8
-- Producción: **1.7.0 (versionCode 13)** enviada a revisión el 2026-10-07 con
-  rollout completo, frase de enfoque diaria y novedades en 10 idiomas.
+- Producción: **1.8.0 (versionCode 14)** enviada a revisión el 2026-10-08 con
+  rollout completo, widget de la frase y novedades en 10 idiomas.
 - Track interno: 1.5.0 (versionCode 11); para mover un bundle ya subido:
-  `python3 tools/upload_play_bundle.py --version-code 13 --track <track>`.
-- Ficha: los 10 listings localizados mencionan las 72 canciones, los 40
-  ambientes y la frase diaria; el vídeo promocional de es-419 se conservó.
+  `python3 tools/upload_play_bundle.py --version-code 14 --track <track>`.
+- Ficha: los 10 listings mencionan las 72 canciones, los 40 ambientes, la
+  frase diaria y los diez widgets; el vídeo promocional de es-419 se conservó.
 - Productos: `enfo_donate_1/3/5/10/25` activos, precios en 174 regiones.
