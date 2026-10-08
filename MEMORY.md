@@ -67,6 +67,8 @@ history.dart            PomodoroSession + SessionHistory + SessionStats
 app_preferences.dart    simple toggles as ValueNotifiers (clock bar, 12/24h,
                         auto-start, haptics, UI size)
 app_data.dart           the one place that wipes data (reset / erase all)
+daily_quote.dart        daily focus-quote notification: prefs, plan, scheduling
+focus_quotes.dart       500-phrase daily bank composed from ARB parts
 theme.dart              accent is a Color (Themes.accent), 32-color palette
 modes/                  the toolbox (see below)
 haptics/                the vibration system (see "Haptics" below)
@@ -126,6 +128,19 @@ with the app closed. The 14-day window rolls forward each time the app opens.
 An occurrence more than 10 minutes old is logged as missed instead of rung
 late. Editing/re-enabling an alarm never rings for a time already past today.
 Snoozing a one-shot alarm re-enables it until the snooze rings.
+
+**Daily focus quote.** `DailyQuote` (top level) posts the next 30 days as
+individual one-shot notifications (ids 9500-9530, channel `enfo_quotes`,
+`AndroidScheduleMode.inexactAllowWhileIdle` so it needs no exact-alarm
+permission), one per calendar day at the configured time (default 09:00).
+The text comes from `FocusQuotes.forDate`: 20 leads x 25 thoughts = 500
+combinations per language, built from the `quoteLeadN`/`quoteThoughtN` ARB
+keys; the day index is UTC-normalised so a DST shift cannot repeat a phrase.
+`refresh()` cancels and re-posts the window; it runs at boot (rolling the
+window and picking up a language change) and on every switch/time change.
+The switch and the time wheels live in Settings > Notifications and in the
+onboarding permissions step; `AppData` reloads it (off) and clears the
+window on a reset.
 
 **Full screen.** `HomeShell` swaps to `ImmersiveView` when
 `Fullscreen.active` — so *every* mode (Pomodoro included) gets full screen for

@@ -5,6 +5,8 @@ import 'app_preferences.dart';
 import 'haptics/haptic_events.dart';
 import 'haptics/haptics.dart';
 import 'clock_style_page.dart';
+import 'daily_quote.dart';
+import 'focus_quotes.dart';
 import 'modes/app_mode.dart';
 import 'modes/clock/clock_prefs.dart';
 import 'modes/clock/clock_settings_page.dart';
@@ -29,6 +31,7 @@ import 'ui/design/page_transition.dart';
 import 'ui/design/responsive.dart';
 import 'ui/design/spacing.dart';
 import 'ui/molecules/clock_combo_card.dart';
+import 'ui/molecules/time_wheels.dart';
 import 'ui/molecules/clock_style_tile.dart';
 import 'ui/molecules/settings_row.dart';
 import 'ui/molecules/theme_mode_selector.dart';
@@ -71,6 +74,9 @@ class _OnboardingState extends State<Onboarding>
   int _restMinutes = Presets.classic.restMinutes;
   ClockStyle _style = ClockStyle.ring;
   bool _notifications = true;
+  bool _quote = false;
+  int _quoteHour = DailyQuote.defaultHour;
+  int _quoteMinute = DailyQuote.defaultMinute;
   bool _notifAllowed = false;
   bool _exactAllowed = false;
   bool _lastModeBlocked = false;
@@ -96,6 +102,7 @@ class _OnboardingState extends State<Onboarding>
     final preset = await Presets.load();
     final style = await ClockStyle.load();
     final notifications = await Presets.loadNotificationsEnabled();
+    await DailyQuote.load();
     final notifAllowed = await Notifier.notificationsAllowed();
     final exactAllowed = await Notifier.exactAlarmsAllowed();
     if (!mounted) return;
@@ -106,6 +113,9 @@ class _OnboardingState extends State<Onboarding>
       _restMinutes = preset.restMinutes;
       _style = style;
       _notifications = notifications;
+      _quote = DailyQuote.enabled;
+      _quoteHour = DailyQuote.hour;
+      _quoteMinute = DailyQuote.minute;
       _loaded = true;
     });
   }
@@ -837,6 +847,64 @@ class _OnboardingState extends State<Onboarding>
             },
           ),
         ),
+      SettingsRow(
+        label: l10n.focusQuoteToggle,
+        subtitle: l10n.focusQuoteHint,
+        trailing: AppSwitch(
+          value: _quote,
+          onChanged: (value) async {
+            setState(() => _quote = value);
+            if (value) {
+              final ok = await Notifier.requestNotifications();
+              if (mounted) setState(() => _notifAllowed = ok);
+            }
+            await DailyQuote.setEnabled(value);
+          },
+        ),
+      ),
+      if (_quote) ...[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.lg,
+            AppSpacing.sm,
+            AppSpacing.lg,
+            AppSpacing.xs,
+          ),
+          child: Text(
+            '${l10n.focusQuoteExample} '
+            '${FocusQuotes.forDate(l10n, DateTime.now())}',
+            style: textTheme.bodySmall?.copyWith(color: colorScheme.primary),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg,
+            vertical: AppSpacing.xs,
+          ),
+          child: Text(
+            l10n.focusQuoteTime,
+            style: textTheme.labelLarge
+                ?.copyWith(color: colorScheme.onSurfaceVariant),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.lg,
+            vertical: AppSpacing.sm,
+          ),
+          child: TimeWheels(
+            hour: _quoteHour,
+            minute: _quoteMinute,
+            onChanged: (h, m) {
+              setState(() {
+                _quoteHour = h;
+                _quoteMinute = m;
+              });
+              DailyQuote.setTime(h, m);
+            },
+          ),
+        ),
+      ],
       Padding(
         padding: const EdgeInsets.fromLTRB(
           AppSpacing.lg,

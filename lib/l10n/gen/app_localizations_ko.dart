@@ -2375,4 +2375,154 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get breaksRelaxSound => '휴식 소리';
+
+  @override
+  String get quoteLead1 => '깊게 숨 쉬세요.';
+
+  @override
+  String get quoteLead2 => '한 번에 하나씩.';
+
+  @override
+  String get quoteLead3 => '작게 시작하세요.';
+
+  @override
+  String get quoteLead4 => '지금으로 돌아오세요.';
+
+  @override
+  String get quoteLead5 => '오늘은 서두르지 않게.';
+
+  @override
+  String get quoteLead6 => '단순하게.';
+
+  @override
+  String get quoteLead7 => '한 걸음 더.';
+
+  @override
+  String get quoteLead8 => '소음을 줄이세요.';
+
+  @override
+  String get quoteLead9 => '지금 집중하세요.';
+
+  @override
+  String get quoteLead10 => '적게, 더 좋게.';
+
+  @override
+  String get quoteLead11 => '5분이면 충분해요.';
+
+  @override
+  String get quoteLead12 => '중요한 것을 고르세요.';
+
+  @override
+  String get quoteLead13 => '여기 그리고 지금.';
+
+  @override
+  String get quoteLead14 => '차분하게.';
+
+  @override
+  String get quoteLead15 => '한 걸음씩.';
+
+  @override
+  String get quoteLead16 => '방해하는 것을 닫으세요.';
+
+  @override
+  String get quoteLead17 => '당신의 주의는 당신의 것.';
+
+  @override
+  String get quoteLead18 => '어려운 것부터 시작하세요.';
+
+  @override
+  String get quoteLead19 => '숨 쉬고, 계속하세요.';
+
+  @override
+  String get quoteLead20 => '오늘도 의미가 있어요.';
+
+  @override
+  String get quoteThought1 => '다음 한 걸음이 완벽한 계획보다 가치 있어요.';
+
+  @override
+  String get quoteThought2 => '진전은 완벽할 필요가 없어요.';
+
+  @override
+  String get quoteThought3 => '5분의 집중은 1시간의 망설임보다 강해요.';
+
+  @override
+  String get quoteThought4 => '내가 바꿀 수 있는 것에 집중하세요.';
+
+  @override
+  String get quoteThought5 => '꾸준함이 서두름을 이겨요.';
+
+  @override
+  String get quoteThought6 => '끝낸 하나가 시작한 열보다 가치 있어요.';
+
+  @override
+  String get quoteThought7 => '마음은 주의를 두는 곳에 있어요.';
+
+  @override
+  String get quoteThought8 => '고요함도 생산적이에요.';
+
+  @override
+  String get quoteThought9 => '되어가는 나를 위해 하세요.';
+
+  @override
+  String get quoteThought10 => '필요한 건 의욕이 아니라 시작이에요.';
+
+  @override
+  String get quoteThought11 => '휴식도 일의 일부예요.';
+
+  @override
+  String get quoteThought12 => '평온은 진전을 막지 않고 지탱해요.';
+
+  @override
+  String get quoteThought13 => '다음을 열기 전에 하나를 끝내세요.';
+
+  @override
+  String get quoteThought14 => '당신의 에너지는 분명한 목표를 원해요.';
+
+  @override
+  String get quoteThought15 => '작은 날들이 큰 해를 만들어요.';
+
+  @override
+  String get quoteThought16 => '돌아간 길에서 배우고, 머물지 마세요.';
+
+  @override
+  String get quoteThought17 => '규율은 기다리는 것이 아니라 연습하는 것.';
+
+  @override
+  String get quoteThought18 => '모든 시도가 당신을 가깝게 해요.';
+
+  @override
+  String get quoteThought19 => '집중은 힘이 아니라 결정이에요.';
+
+  @override
+  String get quoteThought20 => '아침을 지키면 하루가 정리돼요.';
+
+  @override
+  String get quoteThought21 => '걸음이 짧아도 나아가세요.';
+
+  @override
+  String get quoteThought22 => '중요한 것이 중심에 있게 하세요.';
+
+  @override
+  String get quoteThought23 => '하루씩이면 충분해요.';
+
+  @override
+  String get quoteThought24 => '최고의 작업은 시작할 때 시작돼요.';
+
+  @override
+  String get quoteThought25 => '오늘의 주의는 내일의 선물이에요.';
+
+  @override
+  String get focusQuoteTitle => '오늘의 집중 문장';
+
+  @override
+  String get focusQuoteToggle => '매일의 집중 문장';
+
+  @override
+  String get focusQuoteHint => '하루 한 번, 500개의 문장 중 하나를 보내 영감을 드려요.';
+
+  @override
+  String get focusQuoteTime => '알림 시간';
+
+  @override
+  String get focusQuoteExample => '오늘:';
 }

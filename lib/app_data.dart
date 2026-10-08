@@ -2,6 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app_preferences.dart';
 import 'bar_buttons.dart';
+import 'daily_quote.dart';
 import 'history.dart';
 import 'l10n/locale_controller.dart';
 import 'haptics/haptics.dart';
@@ -98,5 +99,9 @@ class AppData {
     await ClockPrefs.load();
     await WorldPrefs.load();
     await LocaleController.load();
+    // Quotes are settings, so a reset switches them off and clears the
+    // already-scheduled window.
+    await DailyQuote.load();
+    await DailyQuote.refresh();
   }
 }

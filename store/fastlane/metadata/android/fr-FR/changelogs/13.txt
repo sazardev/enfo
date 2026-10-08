@@ -1,0 +1,1 @@
+Enfo 1.7.0 ajoute la phrase de concentration quotidienne : une notification par jour, à l'heure choisie, avec l'une des 500 phrases pour vous inspirer. Activez-la dans Réglages > Notifications ou dans l'intro. Les 30 prochains jours sont programmés, elle arrive même app fermée.

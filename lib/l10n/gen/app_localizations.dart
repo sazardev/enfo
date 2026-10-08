@@ -4563,6 +4563,306 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Break sound'**
   String get breaksRelaxSound;
+
+  /// No description provided for @quoteLead1.
+  ///
+  /// In en, this message translates to:
+  /// **'Breathe deeply.'**
+  String get quoteLead1;
+
+  /// No description provided for @quoteLead2.
+  ///
+  /// In en, this message translates to:
+  /// **'One thing at a time.'**
+  String get quoteLead2;
+
+  /// No description provided for @quoteLead3.
+  ///
+  /// In en, this message translates to:
+  /// **'Start small.'**
+  String get quoteLead3;
+
+  /// No description provided for @quoteLead4.
+  ///
+  /// In en, this message translates to:
+  /// **'Come back to now.'**
+  String get quoteLead4;
+
+  /// No description provided for @quoteLead5.
+  ///
+  /// In en, this message translates to:
+  /// **'Today, unhurried.'**
+  String get quoteLead5;
+
+  /// No description provided for @quoteLead6.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep it simple.'**
+  String get quoteLead6;
+
+  /// No description provided for @quoteLead7.
+  ///
+  /// In en, this message translates to:
+  /// **'One more step.'**
+  String get quoteLead7;
+
+  /// No description provided for @quoteLead8.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn down the noise.'**
+  String get quoteLead8;
+
+  /// No description provided for @quoteLead9.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus now.'**
+  String get quoteLead9;
+
+  /// No description provided for @quoteLead10.
+  ///
+  /// In en, this message translates to:
+  /// **'Less, but better.'**
+  String get quoteLead10;
+
+  /// No description provided for @quoteLead11.
+  ///
+  /// In en, this message translates to:
+  /// **'Five minutes are enough.'**
+  String get quoteLead11;
+
+  /// No description provided for @quoteLead12.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose what matters.'**
+  String get quoteLead12;
+
+  /// No description provided for @quoteLead13.
+  ///
+  /// In en, this message translates to:
+  /// **'Here and now.'**
+  String get quoteLead13;
+
+  /// No description provided for @quoteLead14.
+  ///
+  /// In en, this message translates to:
+  /// **'Take it calmly.'**
+  String get quoteLead14;
+
+  /// No description provided for @quoteLead15.
+  ///
+  /// In en, this message translates to:
+  /// **'Step by step.'**
+  String get quoteLead15;
+
+  /// No description provided for @quoteLead16.
+  ///
+  /// In en, this message translates to:
+  /// **'Close what distracts.'**
+  String get quoteLead16;
+
+  /// No description provided for @quoteLead17.
+  ///
+  /// In en, this message translates to:
+  /// **'Your attention is yours.'**
+  String get quoteLead17;
+
+  /// No description provided for @quoteLead18.
+  ///
+  /// In en, this message translates to:
+  /// **'Start with the hard thing.'**
+  String get quoteLead18;
+
+  /// No description provided for @quoteLead19.
+  ///
+  /// In en, this message translates to:
+  /// **'Breathe, then continue.'**
+  String get quoteLead19;
+
+  /// No description provided for @quoteLead20.
+  ///
+  /// In en, this message translates to:
+  /// **'Today counts.'**
+  String get quoteLead20;
+
+  /// No description provided for @quoteThought1.
+  ///
+  /// In en, this message translates to:
+  /// **'Your next step is worth more than the perfect plan.'**
+  String get quoteThought1;
+
+  /// No description provided for @quoteThought2.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress does not have to be perfect.'**
+  String get quoteThought2;
+
+  /// No description provided for @quoteThought3.
+  ///
+  /// In en, this message translates to:
+  /// **'Five minutes of focus beat an hour of doubt.'**
+  String get quoteThought3;
+
+  /// No description provided for @quoteThought4.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus on what you can control.'**
+  String get quoteThought4;
+
+  /// No description provided for @quoteThought5.
+  ///
+  /// In en, this message translates to:
+  /// **'Consistency beats haste.'**
+  String get quoteThought5;
+
+  /// No description provided for @quoteThought6.
+  ///
+  /// In en, this message translates to:
+  /// **'One finished task is worth more than ten started.'**
+  String get quoteThought6;
+
+  /// No description provided for @quoteThought7.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mind goes where your attention goes.'**
+  String get quoteThought7;
+
+  /// No description provided for @quoteThought8.
+  ///
+  /// In en, this message translates to:
+  /// **'Silence is productive too.'**
+  String get quoteThought8;
+
+  /// No description provided for @quoteThought9.
+  ///
+  /// In en, this message translates to:
+  /// **'Do it for the person you are becoming.'**
+  String get quoteThought9;
+
+  /// No description provided for @quoteThought10.
+  ///
+  /// In en, this message translates to:
+  /// **'You do not need motivation; you need to start.'**
+  String get quoteThought10;
+
+  /// No description provided for @quoteThought11.
+  ///
+  /// In en, this message translates to:
+  /// **'Rest is part of the work too.'**
+  String get quoteThought11;
+
+  /// No description provided for @quoteThought12.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm does not slow progress; it sustains it.'**
+  String get quoteThought12;
+
+  /// No description provided for @quoteThought13.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish one thing before opening the next.'**
+  String get quoteThought13;
+
+  /// No description provided for @quoteThought14.
+  ///
+  /// In en, this message translates to:
+  /// **'Your energy deserves a clear target.'**
+  String get quoteThought14;
+
+  /// No description provided for @quoteThought15.
+  ///
+  /// In en, this message translates to:
+  /// **'Small days build big years.'**
+  String get quoteThought15;
+
+  /// No description provided for @quoteThought16.
+  ///
+  /// In en, this message translates to:
+  /// **'Learn from the detour; do not stay there.'**
+  String get quoteThought16;
+
+  /// No description provided for @quoteThought17.
+  ///
+  /// In en, this message translates to:
+  /// **'Discipline is practiced, not awaited.'**
+  String get quoteThought17;
+
+  /// No description provided for @quoteThought18.
+  ///
+  /// In en, this message translates to:
+  /// **'Every attempt brings you closer.'**
+  String get quoteThought18;
+
+  /// No description provided for @quoteThought19.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus is not force; it is a decision.'**
+  String get quoteThought19;
+
+  /// No description provided for @quoteThought20.
+  ///
+  /// In en, this message translates to:
+  /// **'Protect your morning and the day falls into place.'**
+  String get quoteThought20;
+
+  /// No description provided for @quoteThought21.
+  ///
+  /// In en, this message translates to:
+  /// **'Move forward even if the step is short.'**
+  String get quoteThought21;
+
+  /// No description provided for @quoteThought22.
+  ///
+  /// In en, this message translates to:
+  /// **'Let what matters take the center.'**
+  String get quoteThought22;
+
+  /// No description provided for @quoteThought23.
+  ///
+  /// In en, this message translates to:
+  /// **'One day at a time is enough.'**
+  String get quoteThought23;
+
+  /// No description provided for @quoteThought24.
+  ///
+  /// In en, this message translates to:
+  /// **'Your best work begins when you begin.'**
+  String get quoteThought24;
+
+  /// No description provided for @quoteThought25.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s attention is tomorrow\'s gift.'**
+  String get quoteThought25;
+
+  /// No description provided for @focusQuoteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus quote of the day'**
+  String get focusQuoteTitle;
+
+  /// No description provided for @focusQuoteToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily focus quote'**
+  String get focusQuoteToggle;
+
+  /// No description provided for @focusQuoteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'One notification a day, drawn from 500 phrases, to inspire you.'**
+  String get focusQuoteHint;
+
+  /// No description provided for @focusQuoteTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery time'**
+  String get focusQuoteTime;
+
+  /// No description provided for @focusQuoteExample.
+  ///
+  /// In en, this message translates to:
+  /// **'Today:'**
+  String get focusQuoteExample;
 }
 
 class _AppLocalizationsDelegate

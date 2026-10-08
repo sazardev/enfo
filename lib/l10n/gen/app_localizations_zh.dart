@@ -2363,4 +2363,154 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get breaksRelaxSound => '休息音效';
+
+  @override
+  String get quoteLead1 => '深呼吸。';
+
+  @override
+  String get quoteLead2 => '一次一件事。';
+
+  @override
+  String get quoteLead3 => '从小处开始。';
+
+  @override
+  String get quoteLead4 => '回到当下。';
+
+  @override
+  String get quoteLead5 => '今天不急。';
+
+  @override
+  String get quoteLead6 => '保持简单。';
+
+  @override
+  String get quoteLead7 => '再进一步。';
+
+  @override
+  String get quoteLead8 => '关掉噪音。';
+
+  @override
+  String get quoteLead9 => '现在就专注。';
+
+  @override
+  String get quoteLead10 => '少而更好。';
+
+  @override
+  String get quoteLead11 => '五分钟就够。';
+
+  @override
+  String get quoteLead12 => '选择重要的。';
+
+  @override
+  String get quoteLead13 => '此时此刻。';
+
+  @override
+  String get quoteLead14 => '从容一点。';
+
+  @override
+  String get quoteLead15 => '一步一步。';
+
+  @override
+  String get quoteLead16 => '关掉干扰。';
+
+  @override
+  String get quoteLead17 => '注意力属于你。';
+
+  @override
+  String get quoteLead18 => '从难的事开始。';
+
+  @override
+  String get quoteLead19 => '深呼吸,然后继续。';
+
+  @override
+  String get quoteLead20 => '今天也算数。';
+
+  @override
+  String get quoteThought1 => '下一步比完美的计划更值钱。';
+
+  @override
+  String get quoteThought2 => '进步不必完美。';
+
+  @override
+  String get quoteThought3 => '五分钟的专注胜过一小时的犹豫。';
+
+  @override
+  String get quoteThought4 => '专注你能掌控的事。';
+
+  @override
+  String get quoteThought5 => '坚持胜过匆忙。';
+
+  @override
+  String get quoteThought6 => '完成一件胜过开始十件。';
+
+  @override
+  String get quoteThought7 => '心在哪里,注意力就在哪里。';
+
+  @override
+  String get quoteThought8 => '安静也是生产力。';
+
+  @override
+  String get quoteThought9 => '为正在成为的自己而努力。';
+
+  @override
+  String get quoteThought10 => '你需要的不是动力,而是开始。';
+
+  @override
+  String get quoteThought11 => '休息也是工作的一部分。';
+
+  @override
+  String get quoteThought12 => '平静不会拖慢进步,而是支撑它。';
+
+  @override
+  String get quoteThought13 => '开启下一件事前,先完成这一件。';
+
+  @override
+  String get quoteThought14 => '你的精力值得一个清晰的目标。';
+
+  @override
+  String get quoteThought15 => '小的日子筑成大的年份。';
+
+  @override
+  String get quoteThought16 => '从绕路中学习,但别停留。';
+
+  @override
+  String get quoteThought17 => '自律是练出来的,不是等来的。';
+
+  @override
+  String get quoteThought18 => '每一次尝试都让你更近。';
+
+  @override
+  String get quoteThought19 => '专注不是力气,而是决定。';
+
+  @override
+  String get quoteThought20 => '守住早晨,一天自然有序。';
+
+  @override
+  String get quoteThought21 => '哪怕步子很小,也要前进。';
+
+  @override
+  String get quoteThought22 => '让重要的事占据中心。';
+
+  @override
+  String get quoteThought23 => '一天一天来就够了。';
+
+  @override
+  String get quoteThought24 => '你最好的工作从开始那一刻开始。';
+
+  @override
+  String get quoteThought25 => '今天的专注是明天的礼物。';
+
+  @override
+  String get focusQuoteTitle => '今日专注语';
+
+  @override
+  String get focusQuoteToggle => '每日专注语';
+
+  @override
+  String get focusQuoteHint => '每天一条,从 500 句话中为你挑选,给你灵感。';
+
+  @override
+  String get focusQuoteTime => '发送时间';
+
+  @override
+  String get focusQuoteExample => '今天:';
 }

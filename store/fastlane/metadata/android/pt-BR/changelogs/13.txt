@@ -1,0 +1,1 @@
+O Enfo 1.7.0 adiciona a frase de foco diária: uma notificação por dia, no horário que você escolher, com uma das 500 frases para inspirar você. Ative em Ajustes > Notificações ou na introdução. Os próximos 30 dias são agendados, então chega mesmo com o app fechado.

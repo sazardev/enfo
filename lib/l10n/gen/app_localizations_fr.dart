@@ -2432,4 +2432,165 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get breaksRelaxSound => 'Son de pause';
+
+  @override
+  String get quoteLead1 => 'Respire profondément.';
+
+  @override
+  String get quoteLead2 => 'Une chose à la fois.';
+
+  @override
+  String get quoteLead3 => 'Commence petit.';
+
+  @override
+  String get quoteLead4 => 'Reviens au présent.';
+
+  @override
+  String get quoteLead5 => 'Aujourd\'hui, sans hâte.';
+
+  @override
+  String get quoteLead6 => 'Fais simple.';
+
+  @override
+  String get quoteLead7 => 'Un pas de plus.';
+
+  @override
+  String get quoteLead8 => 'Baisse le bruit.';
+
+  @override
+  String get quoteLead9 => 'Concentre-toi maintenant.';
+
+  @override
+  String get quoteLead10 => 'Moins, mais mieux.';
+
+  @override
+  String get quoteLead11 => 'Cinq minutes suffisent.';
+
+  @override
+  String get quoteLead12 => 'Choisis l\'essentiel.';
+
+  @override
+  String get quoteLead13 => 'Ici et maintenant.';
+
+  @override
+  String get quoteLead14 => 'Avec calme.';
+
+  @override
+  String get quoteLead15 => 'Pas à pas.';
+
+  @override
+  String get quoteLead16 => 'Ferme ce qui distrait.';
+
+  @override
+  String get quoteLead17 => 'Ton attention t\'appartient.';
+
+  @override
+  String get quoteLead18 => 'Commence par le plus dur.';
+
+  @override
+  String get quoteLead19 => 'Respire, puis continue.';
+
+  @override
+  String get quoteLead20 => 'Aujourd\'hui compte.';
+
+  @override
+  String get quoteThought1 =>
+      'Ton prochain pas vaut mieux que le plan parfait.';
+
+  @override
+  String get quoteThought2 => 'Le progrès n\'a pas besoin d\'être parfait.';
+
+  @override
+  String get quoteThought3 =>
+      'Cinq minutes de concentration valent une heure de doute.';
+
+  @override
+  String get quoteThought4 => 'Concentre-toi sur ce que tu peux contrôler.';
+
+  @override
+  String get quoteThought5 => 'La régularité bat la précipitation.';
+
+  @override
+  String get quoteThought6 => 'Une tâche finie vaut mieux que dix commencées.';
+
+  @override
+  String get quoteThought7 => 'Ton esprit va là où va ton attention.';
+
+  @override
+  String get quoteThought8 => 'Le silence est productif lui aussi.';
+
+  @override
+  String get quoteThought9 => 'Fais-le pour la personne que tu deviens.';
+
+  @override
+  String get quoteThought10 =>
+      'Tu n\'as pas besoin de motivation, tu as besoin de commencer.';
+
+  @override
+  String get quoteThought11 => 'Le repos fait partie du travail.';
+
+  @override
+  String get quoteThought12 =>
+      'Le calme ne freine pas le progrès, il le soutient.';
+
+  @override
+  String get quoteThought13 =>
+      'Termine une chose avant d\'en ouvrir une autre.';
+
+  @override
+  String get quoteThought14 => 'Ton énergie mérite un objectif clair.';
+
+  @override
+  String get quoteThought15 =>
+      'Les petits jours construisent les grandes années.';
+
+  @override
+  String get quoteThought16 => 'Apprends du détour ; ne t\'y arrête pas.';
+
+  @override
+  String get quoteThought17 =>
+      'La discipline se pratique, elle ne s\'attend pas.';
+
+  @override
+  String get quoteThought18 => 'Chaque essai te rapproche.';
+
+  @override
+  String get quoteThought19 =>
+      'La concentration n\'est pas une force, c\'est une décision.';
+
+  @override
+  String get quoteThought20 => 'Protège ta matinée et la journée s\'ordonne.';
+
+  @override
+  String get quoteThought21 => 'Avance même si le pas est court.';
+
+  @override
+  String get quoteThought22 => 'Laisse l\'important occuper le centre.';
+
+  @override
+  String get quoteThought23 => 'Un jour à la fois suffit.';
+
+  @override
+  String get quoteThought24 =>
+      'Ton meilleur travail commence quand tu commences.';
+
+  @override
+  String get quoteThought25 =>
+      'L\'attention d\'aujourd\'hui est un cadeau pour demain.';
+
+  @override
+  String get focusQuoteTitle => 'Phrase de concentration du jour';
+
+  @override
+  String get focusQuoteToggle => 'Phrase de concentration quotidienne';
+
+  @override
+  String get focusQuoteHint =>
+      'Une notification par jour, choisie parmi 500 phrases, pour vous inspirer.';
+
+  @override
+  String get focusQuoteTime => 'Heure d\'envoi';
+
+  @override
+  String get focusQuoteExample => 'Aujourd\'hui :';
 }

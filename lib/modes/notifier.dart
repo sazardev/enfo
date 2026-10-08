@@ -111,6 +111,20 @@ class Notifier {
         chronometerCountDown: !paused,
       );
 
+  /// The daily focus quote: noticeable but gentle (no vibration).
+  static AndroidNotificationDetails _quoteDetails() =>
+      AndroidNotificationDetails(
+        'enfo_quotes',
+        'Focus quotes',
+        channelDescription: 'Daily focus quote',
+        icon: 'ic_stat_enfo',
+        importance: Importance.defaultImportance,
+        priority: Priority.defaultPriority,
+        category: AndroidNotificationCategory.reminder,
+        playSound: true,
+        enableVibration: false,
+      );
+
   static AndroidNotificationDetails _musicDetails({
     required bool playing,
     int progressMs = 0,
@@ -345,6 +359,7 @@ class Notifier {
     required String title,
     required String body,
     bool alarm = false,
+    bool quote = false,
   }) async {
     if (!_mobile || !at.isAfter(DateTime.now())) return;
     try {
@@ -356,12 +371,20 @@ class Notifier {
         title: title,
         body: body,
         notificationDetails: NotificationDetails(
-          android: alarm ? _alarmDetails() : _timerDetails(),
+          android: alarm
+              ? _alarmDetails()
+              : quote
+                  ? _quoteDetails()
+                  : _timerDetails(),
           iOS: const DarwinNotificationDetails(presentSound: true),
         ),
         androidScheduleMode: alarm
             ? AndroidScheduleMode.alarmClock
-            : AndroidScheduleMode.exactAllowWhileIdle,
+            : quote
+                // A daily quote needs no exact alarm, and this keeps working
+                // even when the exact-alarm permission was never granted.
+                ? AndroidScheduleMode.inexactAllowWhileIdle
+                : AndroidScheduleMode.exactAllowWhileIdle,
       );
     } catch (e) {
       debugPrint('Notifier.schedule: $e');

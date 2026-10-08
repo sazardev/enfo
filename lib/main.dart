@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:ui' show PointerDeviceKind;
 
@@ -10,6 +11,7 @@ import 'package:timezone/data/latest_10y.dart' as tzdata;
 import 'package:window_manager/window_manager.dart';
 
 import 'app_preferences.dart';
+import 'daily_quote.dart';
 import 'haptics/haptics.dart';
 import 'modes/alarm/alarm_service.dart';
 import 'modes/ambient/music_handler.dart';
@@ -54,6 +56,10 @@ void main() async {
   await WorldPrefs.load();
   await AlarmService.load();
   await loadModeServices();
+  await DailyQuote.load();
+  // Roll the daily-quote window in the background: it is not needed to draw
+  // the first frame.
+  unawaited(DailyQuote.refresh());
   await WidgetPrefs.load();
 
   // The system media session (lock-screen player with cover art). Desktop

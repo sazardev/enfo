@@ -2428,4 +2428,158 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get breaksRelaxSound => 'Sonido de descanso';
+
+  @override
+  String get quoteLead1 => 'Respira hondo.';
+
+  @override
+  String get quoteLead2 => 'Una cosa a la vez.';
+
+  @override
+  String get quoteLead3 => 'Empieza pequeño.';
+
+  @override
+  String get quoteLead4 => 'Vuelve al presente.';
+
+  @override
+  String get quoteLead5 => 'Hoy, sin prisa.';
+
+  @override
+  String get quoteLead6 => 'Hazlo simple.';
+
+  @override
+  String get quoteLead7 => 'Un paso más.';
+
+  @override
+  String get quoteLead8 => 'Baja el ruido.';
+
+  @override
+  String get quoteLead9 => 'Enfócate ahora.';
+
+  @override
+  String get quoteLead10 => 'Menos, pero mejor.';
+
+  @override
+  String get quoteLead11 => 'Cinco minutos bastan.';
+
+  @override
+  String get quoteLead12 => 'Elige lo importante.';
+
+  @override
+  String get quoteLead13 => 'Aquí y ahora.';
+
+  @override
+  String get quoteLead14 => 'Con calma.';
+
+  @override
+  String get quoteLead15 => 'Paso a paso.';
+
+  @override
+  String get quoteLead16 => 'Cierra lo que distrae.';
+
+  @override
+  String get quoteLead17 => 'Tu atención es tuya.';
+
+  @override
+  String get quoteLead18 => 'Empieza por lo difícil.';
+
+  @override
+  String get quoteLead19 => 'Respira, y sigue.';
+
+  @override
+  String get quoteLead20 => 'Hoy cuenta.';
+
+  @override
+  String get quoteThought1 =>
+      'Tu siguiente paso vale más que el plan perfecto.';
+
+  @override
+  String get quoteThought2 => 'El progreso no necesita ser perfecto.';
+
+  @override
+  String get quoteThought3 => 'Cinco minutos de foco vencen una hora de duda.';
+
+  @override
+  String get quoteThought4 => 'Concéntrate en lo que puedes controlar.';
+
+  @override
+  String get quoteThought5 => 'La constancia gana a la prisa.';
+
+  @override
+  String get quoteThought6 =>
+      'Una tarea terminada vale más que diez empezadas.';
+
+  @override
+  String get quoteThought7 => 'Tu mente está donde pones tu atención.';
+
+  @override
+  String get quoteThought8 => 'El silencio también es productivo.';
+
+  @override
+  String get quoteThought9 =>
+      'Hazlo por la persona en la que te estás convirtiendo.';
+
+  @override
+  String get quoteThought10 => 'No necesitas motivación, necesitas empezar.';
+
+  @override
+  String get quoteThought11 => 'El descanso también es parte del trabajo.';
+
+  @override
+  String get quoteThought12 => 'La calma no frena el progreso: lo sostiene.';
+
+  @override
+  String get quoteThought13 => 'Termina una cosa antes de abrir la siguiente.';
+
+  @override
+  String get quoteThought14 => 'Tu energía merece un objetivo claro.';
+
+  @override
+  String get quoteThought15 => 'Los días pequeños construyen los años grandes.';
+
+  @override
+  String get quoteThought16 => 'Aprende del desvío; no te quedes ahí.';
+
+  @override
+  String get quoteThought17 => 'La disciplina se practica, no se espera.';
+
+  @override
+  String get quoteThought18 => 'Cada intento te acerca.';
+
+  @override
+  String get quoteThought19 => 'El foco no es fuerza, es decisión.';
+
+  @override
+  String get quoteThought20 => 'Protege tu mañana y el día se ordena.';
+
+  @override
+  String get quoteThought21 => 'Avanza aunque el paso sea corto.';
+
+  @override
+  String get quoteThought22 => 'Deja que lo importante ocupe el centro.';
+
+  @override
+  String get quoteThought23 => 'Un día a la vez ya es suficiente.';
+
+  @override
+  String get quoteThought24 => 'Tu mejor trabajo empieza al comenzar.';
+
+  @override
+  String get quoteThought25 => 'La atención de hoy es un regalo mañana.';
+
+  @override
+  String get focusQuoteTitle => 'Frase de enfoque del día';
+
+  @override
+  String get focusQuoteToggle => 'Frase de enfoque diaria';
+
+  @override
+  String get focusQuoteHint =>
+      'Una notificación al día, elegida entre 500 frases, para inspirarte.';
+
+  @override
+  String get focusQuoteTime => 'Hora de envío';
+
+  @override
+  String get focusQuoteExample => 'Hoy:';
 }

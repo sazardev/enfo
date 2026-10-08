@@ -17,7 +17,7 @@ Enfo began as a minimalist Pomodoro timer and grew into a clock and timer toolbo
 • Turns: a two-player clock and a speaker agenda
 • Breaks: 20-20-20, stretch, water and posture reminders, with nature sounds to relax
 • Ambient: white, pink and brown noise, rain, wind, ocean and 20 places (office, city, café, subway) with a sleep timer
-• Music: 72 lo-fi songs to focus to
+• Music: 72 lo-fi songs to focus to, plus a daily focus quote
 
 The first six tools are on from the start. The other ten are one tap away in the Modes menu.
 

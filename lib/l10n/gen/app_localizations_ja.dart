@@ -2372,4 +2372,154 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get breaksRelaxSound => '休憩サウンド';
+
+  @override
+  String get quoteLead1 => '深く息をしよう。';
+
+  @override
+  String get quoteLead2 => '一つずつ。';
+
+  @override
+  String get quoteLead3 => '小さく始めよう。';
+
+  @override
+  String get quoteLead4 => '今に戻ろう。';
+
+  @override
+  String get quoteLead5 => '今日は急がない。';
+
+  @override
+  String get quoteLead6 => 'シンプルに。';
+
+  @override
+  String get quoteLead7 => 'あと一歩。';
+
+  @override
+  String get quoteLead8 => '音を静めよう。';
+
+  @override
+  String get quoteLead9 => '今、集中しよう。';
+
+  @override
+  String get quoteLead10 => '少なく、よく。';
+
+  @override
+  String get quoteLead11 => '5分で十分。';
+
+  @override
+  String get quoteLead12 => '大事なものを選ぼう。';
+
+  @override
+  String get quoteLead13 => 'ここ、今。';
+
+  @override
+  String get quoteLead14 => '落ち着いて。';
+
+  @override
+  String get quoteLead15 => '一歩ずつ。';
+
+  @override
+  String get quoteLead16 => '妨げるものを閉じよう。';
+
+  @override
+  String get quoteLead17 => '注意はあなたのもの。';
+
+  @override
+  String get quoteLead18 => '難しいことから始めよう。';
+
+  @override
+  String get quoteLead19 => '息をして、続けよう。';
+
+  @override
+  String get quoteLead20 => '今日も意味がある。';
+
+  @override
+  String get quoteThought1 => '次の一歩は完璧な計画より価値がある。';
+
+  @override
+  String get quoteThought2 => '進歩は完璧でなくていい。';
+
+  @override
+  String get quoteThought3 => '5分の集中は1時間の迷いより強い。';
+
+  @override
+  String get quoteThought4 => '自分で変えられることに集中しよう。';
+
+  @override
+  String get quoteThought5 => '急ぐより続けるほうが強い。';
+
+  @override
+  String get quoteThought6 => '終えた一つは、始めた十より価値がある。';
+
+  @override
+  String get quoteThought7 => '心は注意を向けたところにある。';
+
+  @override
+  String get quoteThought8 => '静けさも生産的だ。';
+
+  @override
+  String get quoteThought9 => 'なりたい自分のためにやろう。';
+
+  @override
+  String get quoteThought10 => '必要なのはやる気ではなく、始めること。';
+
+  @override
+  String get quoteThought11 => '休むことも仕事のうち。';
+
+  @override
+  String get quoteThought12 => '平静は進歩を止めず、支える。';
+
+  @override
+  String get quoteThought13 => '次を開く前に、一つ終えよう。';
+
+  @override
+  String get quoteThought14 => 'エネルギーには明確な目標を。';
+
+  @override
+  String get quoteThought15 => '小さな日々が大きな年を作る。';
+
+  @override
+  String get quoteThought16 => '寄り道から学ぼう。留まらない。';
+
+  @override
+  String get quoteThought17 => '規律は待つものではなく、練習するもの。';
+
+  @override
+  String get quoteThought18 => 'どの挑戦も近づける。';
+
+  @override
+  String get quoteThought19 => '集中は力ではなく、決断だ。';
+
+  @override
+  String get quoteThought20 => '朝を守れば、一日は整う。';
+
+  @override
+  String get quoteThought21 => '歩みが短くても進もう。';
+
+  @override
+  String get quoteThought22 => '大切なものを真ん中に。';
+
+  @override
+  String get quoteThought23 => '一日ずつで十分。';
+
+  @override
+  String get quoteThought24 => '最高の仕事は始めたときに始まる。';
+
+  @override
+  String get quoteThought25 => '今日の注意は明日への贈り物。';
+
+  @override
+  String get focusQuoteTitle => '今日の集中の言葉';
+
+  @override
+  String get focusQuoteToggle => '毎日の集中の言葉';
+
+  @override
+  String get focusQuoteHint => '1日1回、500の言葉からあなたを励ます通知。';
+
+  @override
+  String get focusQuoteTime => '通知する時刻';
+
+  @override
+  String get focusQuoteExample => '今日:';
 }

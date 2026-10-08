@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.7.0 (build 13)
+
+### New
+- **Daily focus quote**: one notification a day, at the time you choose
+  (default 09:00), with one of 500 phrases per language built from 20 leads
+  and 25 thoughts, so the bank only repeats after 500 days. Available in
+  Settings > Notifications and in the onboarding; the next 30 days are
+  scheduled ahead, so it arrives with the app closed.
+
+### Changed
+- The alarm-style time picker is now a shared `TimeWheels` widget (also used
+  by the sleep planner).
+
+### Developer notes
+- `DailyQuote` owns the window (ids 9500-9530, channel `enfo_quotes`,
+  inexact scheduling so no exact-alarm permission is needed) and
+  `FocusQuotes` composes the phrase of a date with a UTC-normalised index.
+
 ## 1.6.0 (build 12)
 
 ### New

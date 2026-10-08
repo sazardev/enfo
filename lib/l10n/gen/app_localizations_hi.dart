@@ -2413,4 +2413,155 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get breaksRelaxSound => 'ब्रेक ध्वनि';
+
+  @override
+  String get quoteLead1 => 'गहरी साँस लें।';
+
+  @override
+  String get quoteLead2 => 'एक बार में एक काम।';
+
+  @override
+  String get quoteLead3 => 'छोटे से शुरू करें।';
+
+  @override
+  String get quoteLead4 => 'वर्तमान में लौटें।';
+
+  @override
+  String get quoteLead5 => 'आज बिना जल्दबाज़ी।';
+
+  @override
+  String get quoteLead6 => 'सरल रखें।';
+
+  @override
+  String get quoteLead7 => 'एक कदम और।';
+
+  @override
+  String get quoteLead8 => 'शोर कम करें।';
+
+  @override
+  String get quoteLead9 => 'अब ध्यान दें।';
+
+  @override
+  String get quoteLead10 => 'कम, पर बेहतर।';
+
+  @override
+  String get quoteLead11 => 'पाँच मिनट काफ़ी हैं।';
+
+  @override
+  String get quoteLead12 => 'ज़रूरी चुनें।';
+
+  @override
+  String get quoteLead13 => 'यहीं और अभी।';
+
+  @override
+  String get quoteLead14 => 'शांति से।';
+
+  @override
+  String get quoteLead15 => 'कदम-दर-कदम।';
+
+  @override
+  String get quoteLead16 => 'जो ध्यान भटकाए, बंद करें।';
+
+  @override
+  String get quoteLead17 => 'आपका ध्यान आपका है।';
+
+  @override
+  String get quoteLead18 => 'मुश्किल से शुरू करें।';
+
+  @override
+  String get quoteLead19 => 'साँस लें, फिर आगे बढ़ें।';
+
+  @override
+  String get quoteLead20 => 'आज मायने रखता है।';
+
+  @override
+  String get quoteThought1 => 'आपका अगला कदम सही योजना से ज़्यादा कीमती है।';
+
+  @override
+  String get quoteThought2 => 'बढ़त को सही होने की ज़रूरत नहीं।';
+
+  @override
+  String get quoteThought3 => 'पाँच मिनट का ध्यान एक घंटे के शक से बेहतर है।';
+
+  @override
+  String get quoteThought4 => 'जो आपके वश में है, उस पर ध्यान दें।';
+
+  @override
+  String get quoteThought5 => 'निरंतरता जल्दबाज़ी से जीतती है।';
+
+  @override
+  String get quoteThought6 => 'एक पूरा काम दस अधूरों से बेहतर है।';
+
+  @override
+  String get quoteThought7 => 'मन वहीं होता है जहाँ ध्यान होता है।';
+
+  @override
+  String get quoteThought8 => 'ख़ामोशी भी उत्पादक है।';
+
+  @override
+  String get quoteThought9 => 'उस इंसान के लिए करें जो आप बन रहे हैं।';
+
+  @override
+  String get quoteThought10 => 'प्रेरणा नहीं, शुरुआत चाहिए।';
+
+  @override
+  String get quoteThought11 => 'आराम भी काम का हिस्सा है।';
+
+  @override
+  String get quoteThought12 => 'शांति प्रगति को रोकती नहीं, सँभालती है।';
+
+  @override
+  String get quoteThought13 => 'अगला खोलने से पहले एक पूरा करें।';
+
+  @override
+  String get quoteThought14 => 'आपकी ऊर्जा स्पष्ट लक्ष्य की हक़दार है।';
+
+  @override
+  String get quoteThought15 => 'छोटे दिन बड़े साल बनाते हैं।';
+
+  @override
+  String get quoteThought16 => 'भटकाव से सीखें; वहीं न रुकें।';
+
+  @override
+  String get quoteThought17 => 'अनुशासन का अभ्यास होता है, इंतज़ार नहीं।';
+
+  @override
+  String get quoteThought18 => 'हर कोशिश आपको करीब लाती है।';
+
+  @override
+  String get quoteThought19 => 'ध्यान ताक़त नहीं, फ़ैसला है।';
+
+  @override
+  String get quoteThought20 => 'सुबह की रक्षा करें, दिन ख़ुद सँवर जाएगा।';
+
+  @override
+  String get quoteThought21 => 'आगे बढ़ें, चाहे कदम छोटा हो।';
+
+  @override
+  String get quoteThought22 => 'ज़रूरी को केंद्र में रहने दें।';
+
+  @override
+  String get quoteThought23 => 'एक दिन एक बार ही काफ़ी है।';
+
+  @override
+  String get quoteThought24 => 'आपका सबसे अच्छा काम शुरू करने से शुरू होता है।';
+
+  @override
+  String get quoteThought25 => 'आज का ध्यान कल का तोहफ़ा है।';
+
+  @override
+  String get focusQuoteTitle => 'आज का फ़ोकस वाक्य';
+
+  @override
+  String get focusQuoteToggle => 'रोज़ का फ़ोकस वाक्य';
+
+  @override
+  String get focusQuoteHint =>
+      'रोज़ एक सूचना, 500 वाक्यों में से, आपको प्रेरित करने के लिए।';
+
+  @override
+  String get focusQuoteTime => 'समय';
+
+  @override
+  String get focusQuoteExample => 'आज:';
 }

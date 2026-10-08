@@ -1,0 +1,1 @@
+Enfo 1.7.0 adds the daily focus quote: one notification a day, at the time you choose, with one of 500 phrases to inspire you. Turn it on in Settings > Notifications or in the intro. The next 30 days are scheduled, so it arrives even with the app closed.
