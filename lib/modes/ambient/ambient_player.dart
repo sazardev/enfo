@@ -11,6 +11,11 @@ abstract interface class AmbientPlayer {
   /// whatever plays. Throws if audio cannot be produced.
   Future<void> start(String id, Uint8List wav, double volume);
 
+  /// Starts looping the bundled Ogg [asset] at [volume], streamed from disk
+  /// (a recorded ambience loop is minutes long decoded). Replaces whatever
+  /// plays. Throws if audio cannot be produced.
+  Future<void> startAsset(String id, String asset, double volume);
+
   /// Sets the volume, gliding there over [fade] when given.
   Future<void> setVolume(double volume, {Duration fade = Duration.zero});
 
@@ -57,6 +62,17 @@ class SoloudAmbientPlayer implements AmbientPlayer {
     }
     await stop();
     final source = await _engine.loadMem('ambient_$id.wav', wav);
+    _source = source;
+    _handle = _engine.play(source, volume: volume, looping: true);
+  }
+
+  @override
+  Future<void> startAsset(String id, String asset, double volume) async {
+    if (!_engine.isInitialized) {
+      await _engine.init();
+    }
+    await stop();
+    final source = await _engine.loadAsset(asset, mode: LoadMode.disk);
     _source = source;
     _handle = _engine.play(source, volume: volume, looping: true);
   }

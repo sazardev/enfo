@@ -13,6 +13,10 @@ import '../../ui/design/spacing.dart';
 import '../../ui/molecules/confirm_action_row.dart';
 import '../../ui/molecules/countdown_ring.dart';
 import '../../ui/molecules/primary_action_button.dart';
+import '../ambient/ambient_service.dart';
+import '../ambient/ambience_catalog.dart';
+import '../ambient/ambience_labels.dart';
+import '../ambient/title_pager.dart';
 import '../app_mode.dart';
 import '../clock/time_builder.dart';
 import '../format.dart';
@@ -213,6 +217,8 @@ class _BreaksModePageState extends State<BreaksModePage> {
             ),
           ),
           const SizedBox(height: AppSpacing.md),
+          const _RelaxSound(),
+          const SizedBox(height: AppSpacing.md),
           Align(
             alignment: Alignment.centerLeft,
             child: Padding(
@@ -374,6 +380,75 @@ class _BreaksModePageState extends State<BreaksModePage> {
         ),
         const SizedBox(height: AppSpacing.xl),
       ],
+    );
+  }
+}
+
+/// Breaks > relax sound: play/stop plus a compact pager with the nature
+/// loops. It shares the ambient engine, so the sound keeps playing in other
+/// modes and obeys the ambient volume and sleep timer.
+class _RelaxSound extends StatelessWidget {
+  const _RelaxSound();
+
+  static Future<void> _toggle() async {
+    final s = AmbientService.instance;
+    if (s.playing && s.loop == s.breaksLoop) {
+      await s.stop();
+      return;
+    }
+    if (s.loop != s.breaksLoop) await s.selectLoop(s.breaksLoop);
+    if (!s.playing) await s.play();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final s = AmbientService.instance;
+    final loops = natureLoops.toList();
+    final scheme = Theme.of(context).colorScheme;
+    return ListenableBuilder(
+      listenable: s,
+      builder: (context, _) {
+        final playing = s.playing && s.loop == s.breaksLoop;
+        var index = loops.indexOf(s.breaksLoop);
+        if (index < 0) index = 0;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: AppSpacing.sm),
+              child: Text(l10n.breaksRelaxSound,
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelLarge
+                      ?.copyWith(color: scheme.onSurfaceVariant)),
+            ),
+            Row(
+              children: [
+                AppIconButton(
+                  icon: Icon(playing
+                      ? Icons.stop_rounded
+                      : Icons.play_arrow_rounded),
+                  selected: playing,
+                  tooltip: l10n.breaksRelaxSound,
+                  onPressed: _toggle,
+                ),
+                Expanded(
+                  child: SizedBox(
+                    height: 46,
+                    child: TitlePager(
+                      titles: [for (final l in loops) l.label(l10n)],
+                      index: index,
+                      onChanged: (i) => s.selectBreaksLoop(loops[i]),
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
     );
   }
 }

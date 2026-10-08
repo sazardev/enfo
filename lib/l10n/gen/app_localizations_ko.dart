@@ -2195,11 +2195,11 @@ class AppLocalizationsKo extends AppLocalizations {
   String get ambientMusicVolume => '음악 볼륨';
 
   @override
-  String get ambientMusicCredits => '음악 크레딧';
+  String get ambientMusicCredits => '음악 및 앰비언스 크레딧';
 
   @override
   String get ambientMusicCreditsNote =>
-      'Wikimedia Commons 및 Open Lo-Fi 컬렉션의 곡으로, CC0 또는 크리에이티브 커먼즈 저작자표시 라이선스로 공개되었습니다.';
+      'Wikimedia Commons와 Open Lo-Fi 컬렉션의 곡, 그리고 Wikimedia Commons의 앰비언스. CC0, 퍼블릭 도메인 또는 크리에이티브 커먼즈 저작자표시 라이선스로 공개되었습니다.';
 
   @override
   String get modeMusic => '음악';
@@ -2246,4 +2246,133 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get widgetsFocusSubtitle => '오늘의 집중 시간과 뽀모도로를 한눈에 확인하세요.';
+
+  @override
+  String get ambienceStream => '시냇물';
+
+  @override
+  String get ambienceSnowmelt => '눈 녹는 물';
+
+  @override
+  String get ambienceRivulet => '실개천';
+
+  @override
+  String get ambienceFountain => '분수';
+
+  @override
+  String get ambiencePlazaFountain => '광장 분수';
+
+  @override
+  String get ambienceGeyser => '간헐천';
+
+  @override
+  String get ambienceBubblingGeyser => '끓는 간헐천';
+
+  @override
+  String get ambienceRainWindow => '창가의 비';
+
+  @override
+  String get ambienceRainThunder => '비와 천둥';
+
+  @override
+  String get ambienceThunderstorm => '뇌우';
+
+  @override
+  String get ambienceThunderbolts => '번개';
+
+  @override
+  String get ambienceStormWind => '폭풍 바람';
+
+  @override
+  String get ambienceForest => '숲';
+
+  @override
+  String get ambienceForestBirds => '새소리 숲';
+
+  @override
+  String get ambienceDawnChorus => '새벽 새소리';
+
+  @override
+  String get ambienceCountryDawn => '시골 새벽';
+
+  @override
+  String get ambiencePondDusk => '해질녘 연못';
+
+  @override
+  String get ambienceMorningBirds => '아침 새소리';
+
+  @override
+  String get ambienceCampfire => '모닥불';
+
+  @override
+  String get ambienceFireplace => '벽난로';
+
+  @override
+  String get ambienceLibrary => '도서관';
+
+  @override
+  String get ambienceBusyLibrary => '붐비는 도서관';
+
+  @override
+  String get ambienceOffice => '사무실';
+
+  @override
+  String get ambienceClassroom => '교실';
+
+  @override
+  String get ambienceCafeteria => '카페테리아';
+
+  @override
+  String get ambienceRestaurant => '레스토랑';
+
+  @override
+  String get ambienceSupermarket => '슈퍼마켓';
+
+  @override
+  String get ambienceShoppingMall => '쇼핑몰';
+
+  @override
+  String get ambienceRainyStreet => '비 오는 거리';
+
+  @override
+  String get ambienceSpringStreet => '봄의 거리';
+
+  @override
+  String get ambienceSubway => '지하철';
+
+  @override
+  String get ambienceSubwayRide => '지하철 주행';
+
+  @override
+  String get ambienceStationTunnel => '역 터널';
+
+  @override
+  String get ambienceTrain => '기차';
+
+  @override
+  String get ambienceTaiwanTrain => '대만 기차';
+
+  @override
+  String get ambienceEscalator => '에스컬레이터';
+
+  @override
+  String get ambienceElevator => '엘리베이터';
+
+  @override
+  String get ambiencePlayground => '놀이터';
+
+  @override
+  String get ambienceStreetMarket => '노점 시장';
+
+  @override
+  String get ambienceKeyboard => '키보드';
+
+  @override
+  String get ambientNature => '자연';
+
+  @override
+  String get ambientPlaces => '장소';
+
+  @override
+  String get breaksRelaxSound => '휴식 소리';
 }

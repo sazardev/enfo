@@ -15,8 +15,8 @@ Enfo begann als minimalistischer Pomodoro-Timer und ist heute ein Werkzeugkasten
 • Küche: mehrere benannte Timer gleichzeitig
 • Schlaf: ein Planer für 90-Minuten-Zyklen, der deine Wecker stellt
 • Zugwechsel: Zwei-Spieler-Uhr und Rednerliste
-• Pausen: 20-20-20, Dehnen, Wasser und Haltung
-• Ambient: weißes, rosa und braunes Rauschen, Regen, Wind und Meer mit Einschlaf-Timer
+• Pausen: 20-20-20, Dehnen, Wasser und Haltung, mit Naturklängen zum Entspannen
+• Ambient: weißes, rosa und braunes Rauschen, Regen, Wind, Meer und 20 Orte (Büro, Stadt, Café, U-Bahn) mit Einschlaf-Timer
 • Musik: 72 Lo-Fi-Songs zum Fokussieren
 
 Die ersten sechs Tools sind von Anfang an aktiv. Die anderen zehn schaltest du im Modus-Menü mit einem Tipp dazu.

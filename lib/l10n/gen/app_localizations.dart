@@ -4213,13 +4213,13 @@ abstract class AppLocalizations {
   /// No description provided for @ambientMusicCredits.
   ///
   /// In en, this message translates to:
-  /// **'Music credits'**
+  /// **'Music and ambience credits'**
   String get ambientMusicCredits;
 
   /// No description provided for @ambientMusicCreditsNote.
   ///
   /// In en, this message translates to:
-  /// **'Songs from Wikimedia Commons and the Open Lo-Fi collection, released under CC0 or Creative Commons Attribution licenses.'**
+  /// **'Songs from Wikimedia Commons and the Open Lo-Fi collection, and ambience loops from Wikimedia Commons, released under CC0, public domain or Creative Commons Attribution licenses.'**
   String get ambientMusicCreditsNote;
 
   /// No description provided for @modeMusic.
@@ -4305,6 +4305,264 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Today\\\'s focus time and pomodoros at a glance.'**
   String get widgetsFocusSubtitle;
+
+  /// No description provided for @ambienceStream.
+  ///
+  /// In en, this message translates to:
+  /// **'Stream'**
+  String get ambienceStream;
+
+  /// No description provided for @ambienceSnowmelt.
+  ///
+  /// In en, this message translates to:
+  /// **'Snowmelt'**
+  String get ambienceSnowmelt;
+
+  /// No description provided for @ambienceRivulet.
+  ///
+  /// In en, this message translates to:
+  /// **'Rivulet'**
+  String get ambienceRivulet;
+
+  /// No description provided for @ambienceFountain.
+  ///
+  /// In en, this message translates to:
+  /// **'Fountain'**
+  String get ambienceFountain;
+
+  /// No description provided for @ambiencePlazaFountain.
+  ///
+  /// In en, this message translates to:
+  /// **'Plaza fountain'**
+  String get ambiencePlazaFountain;
+
+  /// No description provided for @ambienceGeyser.
+  ///
+  /// In en, this message translates to:
+  /// **'Geyser'**
+  String get ambienceGeyser;
+
+  /// No description provided for @ambienceBubblingGeyser.
+  ///
+  /// In en, this message translates to:
+  /// **'Bubbling geyser'**
+  String get ambienceBubblingGeyser;
+
+  /// No description provided for @ambienceRainWindow.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain on the window'**
+  String get ambienceRainWindow;
+
+  /// No description provided for @ambienceRainThunder.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain and thunder'**
+  String get ambienceRainThunder;
+
+  /// No description provided for @ambienceThunderstorm.
+  ///
+  /// In en, this message translates to:
+  /// **'Thunderstorm'**
+  String get ambienceThunderstorm;
+
+  /// No description provided for @ambienceThunderbolts.
+  ///
+  /// In en, this message translates to:
+  /// **'Thunderbolts'**
+  String get ambienceThunderbolts;
+
+  /// No description provided for @ambienceStormWind.
+  ///
+  /// In en, this message translates to:
+  /// **'Storm wind'**
+  String get ambienceStormWind;
+
+  /// No description provided for @ambienceForest.
+  ///
+  /// In en, this message translates to:
+  /// **'Forest'**
+  String get ambienceForest;
+
+  /// No description provided for @ambienceForestBirds.
+  ///
+  /// In en, this message translates to:
+  /// **'Forest with birds'**
+  String get ambienceForestBirds;
+
+  /// No description provided for @ambienceDawnChorus.
+  ///
+  /// In en, this message translates to:
+  /// **'Dawn chorus'**
+  String get ambienceDawnChorus;
+
+  /// No description provided for @ambienceCountryDawn.
+  ///
+  /// In en, this message translates to:
+  /// **'Country dawn'**
+  String get ambienceCountryDawn;
+
+  /// No description provided for @ambiencePondDusk.
+  ///
+  /// In en, this message translates to:
+  /// **'Pond at dusk'**
+  String get ambiencePondDusk;
+
+  /// No description provided for @ambienceMorningBirds.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning birds'**
+  String get ambienceMorningBirds;
+
+  /// No description provided for @ambienceCampfire.
+  ///
+  /// In en, this message translates to:
+  /// **'Campfire'**
+  String get ambienceCampfire;
+
+  /// No description provided for @ambienceFireplace.
+  ///
+  /// In en, this message translates to:
+  /// **'Fireplace'**
+  String get ambienceFireplace;
+
+  /// No description provided for @ambienceLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Library'**
+  String get ambienceLibrary;
+
+  /// No description provided for @ambienceBusyLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy library'**
+  String get ambienceBusyLibrary;
+
+  /// No description provided for @ambienceOffice.
+  ///
+  /// In en, this message translates to:
+  /// **'Office'**
+  String get ambienceOffice;
+
+  /// No description provided for @ambienceClassroom.
+  ///
+  /// In en, this message translates to:
+  /// **'Classroom'**
+  String get ambienceClassroom;
+
+  /// No description provided for @ambienceCafeteria.
+  ///
+  /// In en, this message translates to:
+  /// **'Cafeteria'**
+  String get ambienceCafeteria;
+
+  /// No description provided for @ambienceRestaurant.
+  ///
+  /// In en, this message translates to:
+  /// **'Restaurant'**
+  String get ambienceRestaurant;
+
+  /// No description provided for @ambienceSupermarket.
+  ///
+  /// In en, this message translates to:
+  /// **'Supermarket'**
+  String get ambienceSupermarket;
+
+  /// No description provided for @ambienceShoppingMall.
+  ///
+  /// In en, this message translates to:
+  /// **'Shopping mall'**
+  String get ambienceShoppingMall;
+
+  /// No description provided for @ambienceRainyStreet.
+  ///
+  /// In en, this message translates to:
+  /// **'Rainy street'**
+  String get ambienceRainyStreet;
+
+  /// No description provided for @ambienceSpringStreet.
+  ///
+  /// In en, this message translates to:
+  /// **'Spring street'**
+  String get ambienceSpringStreet;
+
+  /// No description provided for @ambienceSubway.
+  ///
+  /// In en, this message translates to:
+  /// **'Subway'**
+  String get ambienceSubway;
+
+  /// No description provided for @ambienceSubwayRide.
+  ///
+  /// In en, this message translates to:
+  /// **'Subway ride'**
+  String get ambienceSubwayRide;
+
+  /// No description provided for @ambienceStationTunnel.
+  ///
+  /// In en, this message translates to:
+  /// **'Station tunnel'**
+  String get ambienceStationTunnel;
+
+  /// No description provided for @ambienceTrain.
+  ///
+  /// In en, this message translates to:
+  /// **'Train'**
+  String get ambienceTrain;
+
+  /// No description provided for @ambienceTaiwanTrain.
+  ///
+  /// In en, this message translates to:
+  /// **'Taiwan train'**
+  String get ambienceTaiwanTrain;
+
+  /// No description provided for @ambienceEscalator.
+  ///
+  /// In en, this message translates to:
+  /// **'Escalator'**
+  String get ambienceEscalator;
+
+  /// No description provided for @ambienceElevator.
+  ///
+  /// In en, this message translates to:
+  /// **'Elevator'**
+  String get ambienceElevator;
+
+  /// No description provided for @ambiencePlayground.
+  ///
+  /// In en, this message translates to:
+  /// **'Playground'**
+  String get ambiencePlayground;
+
+  /// No description provided for @ambienceStreetMarket.
+  ///
+  /// In en, this message translates to:
+  /// **'Street market'**
+  String get ambienceStreetMarket;
+
+  /// No description provided for @ambienceKeyboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Keyboard'**
+  String get ambienceKeyboard;
+
+  /// No description provided for @ambientNature.
+  ///
+  /// In en, this message translates to:
+  /// **'Nature'**
+  String get ambientNature;
+
+  /// No description provided for @ambientPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Places'**
+  String get ambientPlaces;
+
+  /// No description provided for @breaksRelaxSound.
+  ///
+  /// In en, this message translates to:
+  /// **'Break sound'**
+  String get breaksRelaxSound;
 }
 
 class _AppLocalizationsDelegate

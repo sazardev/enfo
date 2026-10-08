@@ -15,8 +15,8 @@ Enfo began as a minimalist Pomodoro timer and grew into a clock and timer toolbo
 • Kitchen: several named timers at once
 • Sleep: a 90-minute cycle planner that sets your alarms
 • Turns: a two-player clock and a speaker agenda
-• Breaks: 20-20-20, stretch, water and posture reminders
-• Ambient: white, pink and brown noise, rain, wind and ocean with a sleep timer
+• Breaks: 20-20-20, stretch, water and posture reminders, with nature sounds to relax
+• Ambient: white, pink and brown noise, rain, wind, ocean and 20 places (office, city, café, subway) with a sleep timer
 • Music: 72 lo-fi songs to focus to
 
 The first six tools are on from the start. The other ten are one tap away in the Modes menu.

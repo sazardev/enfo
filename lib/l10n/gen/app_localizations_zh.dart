@@ -2183,11 +2183,11 @@ class AppLocalizationsZh extends AppLocalizations {
   String get ambientMusicVolume => '音乐音量';
 
   @override
-  String get ambientMusicCredits => '音乐版权信息';
+  String get ambientMusicCredits => '音乐与环境音致谢';
 
   @override
   String get ambientMusicCreditsNote =>
-      '歌曲来自 Wikimedia Commons 和 Open Lo-Fi 合集，采用 CC0 或知识共享署名许可协议发布。';
+      '歌曲来自 Wikimedia Commons 和 Open Lo-Fi 合集，环境音来自 Wikimedia Commons，采用 CC0、公有领域或知识共享署名许可协议发布。';
 
   @override
   String get modeMusic => '音乐';
@@ -2234,4 +2234,133 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get widgetsFocusSubtitle => '今日专注时长与番茄钟数量,一目了然。';
+
+  @override
+  String get ambienceStream => '溪流';
+
+  @override
+  String get ambienceSnowmelt => '融雪';
+
+  @override
+  String get ambienceRivulet => '细流';
+
+  @override
+  String get ambienceFountain => '喷泉';
+
+  @override
+  String get ambiencePlazaFountain => '广场喷泉';
+
+  @override
+  String get ambienceGeyser => '间歇泉';
+
+  @override
+  String get ambienceBubblingGeyser => '沸腾的间歇泉';
+
+  @override
+  String get ambienceRainWindow => '窗边雨声';
+
+  @override
+  String get ambienceRainThunder => '雨声与雷声';
+
+  @override
+  String get ambienceThunderstorm => '雷暴';
+
+  @override
+  String get ambienceThunderbolts => '闪电';
+
+  @override
+  String get ambienceStormWind => '暴风';
+
+  @override
+  String get ambienceForest => '森林';
+
+  @override
+  String get ambienceForestBirds => '鸟鸣森林';
+
+  @override
+  String get ambienceDawnChorus => '黎明合唱';
+
+  @override
+  String get ambienceCountryDawn => '乡村清晨';
+
+  @override
+  String get ambiencePondDusk => '黄昏池塘';
+
+  @override
+  String get ambienceMorningBirds => '清晨鸟鸣';
+
+  @override
+  String get ambienceCampfire => '篝火';
+
+  @override
+  String get ambienceFireplace => '壁炉';
+
+  @override
+  String get ambienceLibrary => '图书馆';
+
+  @override
+  String get ambienceBusyLibrary => '繁忙图书馆';
+
+  @override
+  String get ambienceOffice => '办公室';
+
+  @override
+  String get ambienceClassroom => '教室';
+
+  @override
+  String get ambienceCafeteria => '自助餐厅';
+
+  @override
+  String get ambienceRestaurant => '餐厅';
+
+  @override
+  String get ambienceSupermarket => '超市';
+
+  @override
+  String get ambienceShoppingMall => '购物中心';
+
+  @override
+  String get ambienceRainyStreet => '雨中街道';
+
+  @override
+  String get ambienceSpringStreet => '春日街道';
+
+  @override
+  String get ambienceSubway => '地铁';
+
+  @override
+  String get ambienceSubwayRide => '地铁行驶';
+
+  @override
+  String get ambienceStationTunnel => '车站隧道';
+
+  @override
+  String get ambienceTrain => '火车';
+
+  @override
+  String get ambienceTaiwanTrain => '台湾列车';
+
+  @override
+  String get ambienceEscalator => '自动扶梯';
+
+  @override
+  String get ambienceElevator => '电梯';
+
+  @override
+  String get ambiencePlayground => '游乐场';
+
+  @override
+  String get ambienceStreetMarket => '街市';
+
+  @override
+  String get ambienceKeyboard => '键盘';
+
+  @override
+  String get ambientNature => '自然';
+
+  @override
+  String get ambientPlaces => '场所';
+
+  @override
+  String get breaksRelaxSound => '休息音效';
 }

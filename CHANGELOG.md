@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.6.0 (build 12)
+
+### New
+- **40 ambience loops** recorded from Wikimedia Commons (CC0, public domain
+  and CC BY), seamless and tiny (mono 32 kHz Vorbis q0 after the same
+  deliberate lo-fi chain as the music bank): 20 nature sounds for the Breaks
+  mode (stream, forest, rain, campfire, geysers…) and 20 places for Ambient
+  (office, library, city, café, subway, train…).
+- **Breaks > relax sound**: a compact picker with the nature loops and its
+  own play/stop; the sound keeps playing in other modes and follows the
+  ambient volume and sleep timer.
+
+### Changed
+- Ambient's list now mixes the six synthesized noises with the 20 place
+  loops; a recorded loop streams from disk and loops gaplessly.
+- The music credits page, `assets/ambience/CREDITS.md` and the store listing
+  cover the new sounds.
+
+### Developer notes
+- `tools/fetch_ambience.py` verifies each Commons license, builds the
+  seamless loops (tile + fold crossfades), encodes them and regenerates the
+  Dart catalog; `upload_play_bundle.py` gained `--notes`-less localized
+  release notes in the previous release.
+
 ## 1.5.0 (build 11)
 
 ### New

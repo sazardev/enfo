@@ -1,0 +1,50 @@
+import '../../l10n/gen/app_localizations.dart';
+import 'ambience_catalog.dart';
+
+/// Localized names for the bundled ambience loops (audio_dial and the
+/// Breaks relax picker share them).
+extension AmbienceLoopUi on AmbienceLoop {
+  String label(AppLocalizations l10n) => switch (id) {
+        'stream' => l10n.ambienceStream,
+        'snowmelt' => l10n.ambienceSnowmelt,
+        'rivulet' => l10n.ambienceRivulet,
+        'fountain_toulouse' => l10n.ambienceFountain,
+        'fountain_place' => l10n.ambiencePlazaFountain,
+        'geyser_anemone' => l10n.ambienceGeyser,
+        'geyser_beehive' => l10n.ambienceBubblingGeyser,
+        'rain_window' => l10n.ambienceRainWindow,
+        'rain_thunder1' => l10n.ambienceRainThunder,
+        'rain_uetersen' => l10n.ambienceThunderstorm,
+        'storm_thunder' => l10n.ambienceThunderbolts,
+        'wind_killiney' => l10n.ambienceStormWind,
+        'forest_nille' => l10n.ambienceForest,
+        'forest_gravity1' => l10n.ambienceForestBirds,
+        'dawn_royal' => l10n.ambienceDawnChorus,
+        'dawn_uk' => l10n.ambienceCountryDawn,
+        'pond_dordogne' => l10n.ambiencePondDusk,
+        'birds_reggeli' => l10n.ambienceMorningBirds,
+        'campfire' => l10n.ambienceCampfire,
+        'fire_grass' => l10n.ambienceFireplace,
+        'lib_quiet' => l10n.ambienceLibrary,
+        'lib_ground' => l10n.ambienceBusyLibrary,
+        'office' => l10n.ambienceOffice,
+        'classroom' => l10n.ambienceClassroom,
+        'cafeteria' => l10n.ambienceCafeteria,
+        'restaurant' => l10n.ambienceRestaurant,
+        'supermarket' => l10n.ambienceSupermarket,
+        'mall_berlin' => l10n.ambienceShoppingMall,
+        'urban_rain' => l10n.ambienceRainyStreet,
+        'urban_berlin' => l10n.ambienceSpringStreet,
+        'ttc_museum' => l10n.ambienceSubway,
+        'ttc_dupont' => l10n.ambienceSubwayRide,
+        'station_tampere' => l10n.ambienceStationTunnel,
+        'train_northern' => l10n.ambienceTrain,
+        'train_taiwan' => l10n.ambienceTaiwanTrain,
+        'escalator' => l10n.ambienceEscalator,
+        'elevator' => l10n.ambienceElevator,
+        'playground' => l10n.ambiencePlayground,
+        'fleamarket' => l10n.ambienceStreetMarket,
+        'computer_kb' => l10n.ambienceKeyboard,
+        _ => title,
+      };
+}

@@ -16,6 +16,8 @@ import '../mode_actions.dart';
 import '../mode_scaffold.dart';
 import 'ambient_service.dart';
 import 'ambient_synth.dart';
+import 'ambience_catalog.dart';
+import 'ambience_labels.dart';
 import '../../ui/clock/clock_frame.dart';
 import 'audio_dial.dart';
 import 'title_pager.dart';
@@ -45,24 +47,51 @@ class _AmbientModePageState extends State<AmbientModePage> {
   Timer? _debounce;
   final AudioDialController _dial = AudioDialController();
 
+  /// The synthesized noises first, then the recorded place loops.
+  static final List<Object> _entries = [
+    ...AmbientSound.values,
+    ...placeLoops,
+  ];
+
   @override
   void dispose() {
     _debounce?.cancel();
     super.dispose();
   }
 
+  static String _label(Object entry, AppLocalizations l10n) =>
+      entry is AmbientSound ? entry.label(l10n) : (entry as AmbienceLoop).label(l10n);
+
   void _picked(int i) {
     final s = AmbientService.instance;
     _debounce?.cancel();
-    final next = AmbientSound.values[i];
-    if (next == s.sound) return;
-    if (s.playing || s.preparing) {
-      _debounce = Timer(const Duration(milliseconds: 250), () {
-        AmbientService.instance.select(next);
-      });
-    } else {
-      s.select(next);
+    final next = _entries[i];
+    if (next is AmbientSound) {
+      if (next == s.sound && s.loop == null) return;
+    } else if (next == s.loop) {
+      return;
     }
+    void apply() {
+      if (next is AmbientSound) {
+        s.select(next);
+      } else {
+        s.selectLoop(next as AmbienceLoop);
+      }
+    }
+
+    if (s.playing || s.preparing) {
+      _debounce = Timer(const Duration(milliseconds: 250), apply);
+    } else {
+      apply();
+    }
+  }
+
+  static int _indexOf(AmbientService s) {
+    if (s.loop != null) {
+      final i = _entries.indexOf(s.loop!);
+      if (i >= 0) return i;
+    }
+    return s.sound.index;
   }
 
   @override
@@ -103,9 +132,9 @@ class _AmbientModePageState extends State<AmbientModePage> {
                   child: TitlePager(
                     onVertical: _dial.stepStyle,
                     titles: [
-                      for (final s in AmbientSound.values) s.label(l10n)
+                      for (final e in _entries) _label(e, l10n)
                     ],
-                    index: service.sound.index,
+                    index: _indexOf(service),
                     onChanged: _picked,
                     fontSize: r.isWatch ? 18 : 32,
                   ),

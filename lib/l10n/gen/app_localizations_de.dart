@@ -2248,11 +2248,11 @@ class AppLocalizationsDe extends AppLocalizations {
   String get ambientMusicVolume => 'Musiklautstärke';
 
   @override
-  String get ambientMusicCredits => 'Musik-Credits';
+  String get ambientMusicCredits => 'Musik- und Ambient-Credits';
 
   @override
   String get ambientMusicCreditsNote =>
-      'Titel von Wikimedia Commons und der Open-Lo-Fi-Sammlung, veröffentlicht unter CC0- oder Creative-Commons-Namensnennungslizenzen.';
+      'Songs von Wikimedia Commons und der Open Lo-Fi-Sammlung sowie Ambiente-Loops von Wikimedia Commons, veröffentlicht unter CC0-, gemeinfreien oder Creative-Commons-Namensnennungslizenzen.';
 
   @override
   String get modeMusic => 'Musik';
@@ -2301,4 +2301,133 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get widgetsFocusSubtitle =>
       'Fokuszeit und Pomodoros von heute auf einen Blick.';
+
+  @override
+  String get ambienceStream => 'Bach';
+
+  @override
+  String get ambienceSnowmelt => 'Schmelzwasser';
+
+  @override
+  String get ambienceRivulet => 'Rinnsal';
+
+  @override
+  String get ambienceFountain => 'Springbrunnen';
+
+  @override
+  String get ambiencePlazaFountain => 'Platzbrunnen';
+
+  @override
+  String get ambienceGeyser => 'Geysir';
+
+  @override
+  String get ambienceBubblingGeyser => 'Sprudelnder Geysir';
+
+  @override
+  String get ambienceRainWindow => 'Regen am Fenster';
+
+  @override
+  String get ambienceRainThunder => 'Regen und Donner';
+
+  @override
+  String get ambienceThunderstorm => 'Gewitter';
+
+  @override
+  String get ambienceThunderbolts => 'Blitze';
+
+  @override
+  String get ambienceStormWind => 'Sturmwind';
+
+  @override
+  String get ambienceForest => 'Wald';
+
+  @override
+  String get ambienceForestBirds => 'Wald mit Vögeln';
+
+  @override
+  String get ambienceDawnChorus => 'Morgenchor';
+
+  @override
+  String get ambienceCountryDawn => 'Morgen auf dem Land';
+
+  @override
+  String get ambiencePondDusk => 'Teich in der Dämmerung';
+
+  @override
+  String get ambienceMorningBirds => 'Morgenvögel';
+
+  @override
+  String get ambienceCampfire => 'Lagerfeuer';
+
+  @override
+  String get ambienceFireplace => 'Kaminfeuer';
+
+  @override
+  String get ambienceLibrary => 'Bibliothek';
+
+  @override
+  String get ambienceBusyLibrary => 'Belebte Bibliothek';
+
+  @override
+  String get ambienceOffice => 'Büro';
+
+  @override
+  String get ambienceClassroom => 'Klassenzimmer';
+
+  @override
+  String get ambienceCafeteria => 'Cafeteria';
+
+  @override
+  String get ambienceRestaurant => 'Restaurant';
+
+  @override
+  String get ambienceSupermarket => 'Supermarkt';
+
+  @override
+  String get ambienceShoppingMall => 'Einkaufszentrum';
+
+  @override
+  String get ambienceRainyStreet => 'Regnerische Straße';
+
+  @override
+  String get ambienceSpringStreet => 'Frühlingsstraße';
+
+  @override
+  String get ambienceSubway => 'U-Bahn';
+
+  @override
+  String get ambienceSubwayRide => 'U-Bahn-Fahrt';
+
+  @override
+  String get ambienceStationTunnel => 'Bahnhofstunnel';
+
+  @override
+  String get ambienceTrain => 'Zug';
+
+  @override
+  String get ambienceTaiwanTrain => 'Zug in Taiwan';
+
+  @override
+  String get ambienceEscalator => 'Rolltreppe';
+
+  @override
+  String get ambienceElevator => 'Aufzug';
+
+  @override
+  String get ambiencePlayground => 'Spielplatz';
+
+  @override
+  String get ambienceStreetMarket => 'Straßenmarkt';
+
+  @override
+  String get ambienceKeyboard => 'Tastatur';
+
+  @override
+  String get ambientNature => 'Natur';
+
+  @override
+  String get ambientPlaces => 'Orte';
+
+  @override
+  String get breaksRelaxSound => 'Pausensound';
 }

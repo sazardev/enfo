@@ -8,6 +8,7 @@ import '../clock/time_builder.dart';
 import '../mode_services.dart';
 import '../notifier.dart';
 import 'ambient_player.dart';
+import 'ambience_catalog.dart';
 import 'music_art.dart';
 import 'music_handler.dart';
 import 'ambient_synth.dart';
@@ -30,6 +31,8 @@ class AmbientService extends ChangeNotifier implements ModeService {
   static final AmbientService instance = AmbientService._();
 
   static const _soundKey = 'ambient_sound';
+  static const _loopKey = 'ambient_loop';
+  static const _breaksLoopKey = 'ambient_breaks_loop';
   static const _volumeKey = 'ambient_volume';
   static const _sleepKey = 'ambient_sleep';
   static const _musicVolumeKey = 'ambient_music_volume';
@@ -50,6 +53,14 @@ class AmbientService extends ChangeNotifier implements ModeService {
   Future<Uint8List> Function(AmbientSound) synth = AmbientSynth.renderWavAsync;
 
   AmbientSound sound = AmbientSound.pink;
+
+  /// When set, a bundled recorded loop plays instead of the synthesized
+  /// [sound]; exactly one of the two is the current selection.
+  AmbienceLoop? loop;
+
+  /// The nature loop the Breaks mode offers (persisted separately from
+  /// [loop], so picking a place in Ambient does not lose it).
+  AmbienceLoop breaksLoop = ambienceLoops.first;
   double volume = 0.6;
   int sleepMinutes = 0;
 
@@ -138,6 +149,12 @@ class AmbientService extends ChangeNotifier implements ModeService {
     final name = prefs.getString(_soundKey);
     sound = AmbientSound.values
         .firstWhere((s) => s.name == name, orElse: () => AmbientSound.pink);
+    final loopId = prefs.getString(_loopKey);
+    final li = ambienceLoops.indexWhere((l) => l.id == loopId);
+    loop = li < 0 ? null : ambienceLoops[li];
+    final bi = ambienceLoops.indexWhere(
+        (l) => l.id == prefs.getString(_breaksLoopKey));
+    breaksLoop = bi < 0 ? ambienceLoops.first : ambienceLoops[bi];
     volume = (prefs.getDouble(_volumeKey) ?? 0.6).clamp(0.0, 1.0);
     final sleep = prefs.getInt(_sleepKey) ?? 0;
     sleepMinutes = sleepChoices.contains(sleep) ? sleep : 0;
@@ -156,6 +173,8 @@ class AmbientService extends ChangeNotifier implements ModeService {
   Future<void> _save() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_soundKey, sound.name);
+    await prefs.setString(_loopKey, loop?.id ?? '');
+    await prefs.setString(_breaksLoopKey, breaksLoop.id);
     await prefs.setDouble(_volumeKey, volume);
     await prefs.setInt(_sleepKey, sleepMinutes);
     await prefs.setDouble(_musicVolumeKey, musicVolume);
@@ -174,9 +193,14 @@ class AmbientService extends ChangeNotifier implements ModeService {
     unavailable = false;
     notifyListeners();
     try {
-      final wav = _cache[sound] ??= await synth(sound);
-      if (gen != _generation) return;
-      await player.start(sound.name, wav, volume);
+      final selected = loop;
+      if (selected != null) {
+        await player.startAsset(selected.id, selected.asset, volume);
+      } else {
+        final wav = _cache[sound] ??= await synth(sound);
+        if (gen != _generation) return;
+        await player.start(sound.name, wav, volume);
+      }
       if (gen != _generation) {
         await player.stop();
         return;
@@ -208,8 +232,34 @@ class AmbientService extends ChangeNotifier implements ModeService {
 
   /// Picks a sound; if one is playing it switches over immediately.
   Future<void> select(AmbientSound next) async {
-    if (next == sound) return;
+    if (next == sound && loop == null) return;
     sound = next;
+    loop = null;
+    await _reselection();
+  }
+
+  /// Picks a recorded loop; if one is playing it switches over immediately.
+  Future<void> selectLoop(AmbienceLoop next) async {
+    if (next == loop) return;
+    loop = next;
+    await _reselection();
+  }
+
+  /// Picks the Breaks relax loop. When the bed is already a nature loop it
+  /// switches over, so the Breaks picker behaves like Ambient's.
+  Future<void> selectBreaksLoop(AmbienceLoop next) async {
+    breaksLoop = next;
+    _save();
+    if (loop != null && loop!.group == 'nature') {
+      await selectLoop(next);
+    } else {
+      notifyListeners();
+    }
+  }
+
+  /// Persists the new selection and, when something is playing, swaps it
+  /// without losing the running sleep timer.
+  Future<void> _reselection() async {
     _save();
     final keepGoing = playing;
     final remaining = sleepRemaining;
@@ -602,6 +652,8 @@ class AmbientService extends ChangeNotifier implements ModeService {
     random = math.Random();
     _buildOrder(first: 0);
     sound = AmbientSound.pink;
+    loop = null;
+    breaksLoop = ambienceLoops.first;
     volume = 0.6;
     sleepMinutes = 0;
     _cache.clear();

@@ -62,9 +62,12 @@ La app ofrece donaciones consumibles (`enfo_donate_1`, `_3`, `_5`, `_10`,
 
 ## 5. Pendientes y notas
 
-- **Novedades (what's new)**: `changelogs/11.txt` ya está creado (1.5.0);
+- **Novedades (what's new)**: `changelogs/12.txt` ya está creado (1.6.0);
   `tools/upload_play_bundle.py` sin `--notes` las sube por versionCode en los
   10 idiomas (supply haría lo mismo).
+- **Sonidos de ambiente**: `tools/fetch_ambience.py` verifica licencias en
+  Commons, genera los 40 loops sin costura (`assets/ambience/`) y regenera
+  `lib/modes/ambient/ambience_catalog.dart`; `--catalog-only` no re-codifica.
 - **Ficha sin fastlane**: `python3 tools/upload_play_listing.py` sube título,
   descripción corta y larga de los 10 idiomas (conserva el vídeo de es-419).
   Usa la misma autenticación que el uploader (ADC de gcloud).
@@ -74,8 +77,8 @@ La app ofrece donaciones consumibles (`enfo_donate_1`, `_3`, `_5`, `_10`,
   en Play Console → Ficha principal.
 - **Marketing externo**: se activa a mano en Play Console → Configuración de
   la tienda.
-- Los textos de la ficha ya están actualizados a 1.5.0 (72 canciones lo-fi,
-  sin anuncios y donaciones).
+- Los textos de la ficha ya están actualizados a 1.6.0 (72 canciones lo-fi,
+  40 ambientes, sin anuncios y donaciones).
 
 ## 6. Estado de la cuenta (Play Console, 2026-10-07)
 

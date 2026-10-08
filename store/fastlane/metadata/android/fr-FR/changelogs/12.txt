@@ -1,0 +1,1 @@
+Enfo 1.6.0 ajoute 40 ambiances enregistrées, issues de Wikimedia Commons et traitées lo-fi. Dans Pauses, choisissez un son de nature (ruisseau, forêt, pluie, feu de camp) avec son propre bouton. Dans Ambiance, en plus des bruits, 20 lieux : bureau, ville, café, métro, bibliothèque et plus.

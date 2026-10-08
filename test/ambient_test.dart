@@ -27,6 +27,13 @@ class FakePlayer implements AmbientPlayer {
   }
 
   @override
+  Future<void> startAsset(String id, String asset, double volume) async {
+    if (fail) throw StateError('no audio');
+    calls.add('loop:$asset');
+    this.volume = volume;
+  }
+
+  @override
   Future<void> setVolume(double volume, {Duration fade = Duration.zero}) async {
     calls.add('volume:$volume');
     this.volume = volume;

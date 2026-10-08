@@ -2192,11 +2192,11 @@ class AppLocalizationsJa extends AppLocalizations {
   String get ambientMusicVolume => '音楽の音量';
 
   @override
-  String get ambientMusicCredits => '音楽クレジット';
+  String get ambientMusicCredits => '音楽と環境音のクレジット';
 
   @override
   String get ambientMusicCreditsNote =>
-      'Wikimedia Commons と Open Lo-Fi コレクションの楽曲。CC0 または クリエイティブ・コモンズ 表示ライセンスで公開されています。';
+      'Wikimedia Commons と Open Lo-Fi コレクションの楽曲、および Wikimedia Commons の環境音。CC0、パブリックドメイン、クリエイティブ・コモンズ 表示ライセンスで公開されています。';
 
   @override
   String get modeMusic => '音楽';
@@ -2243,4 +2243,133 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get widgetsFocusSubtitle => '今日の集中時間とポモドーロ数がひと目でわかります。';
+
+  @override
+  String get ambienceStream => '小川';
+
+  @override
+  String get ambienceSnowmelt => '雪解け水';
+
+  @override
+  String get ambienceRivulet => 'せせらぎ';
+
+  @override
+  String get ambienceFountain => '噴水';
+
+  @override
+  String get ambiencePlazaFountain => '広場の噴水';
+
+  @override
+  String get ambienceGeyser => '間欠泉';
+
+  @override
+  String get ambienceBubblingGeyser => '泡立つ間欠泉';
+
+  @override
+  String get ambienceRainWindow => '窓辺の雨';
+
+  @override
+  String get ambienceRainThunder => '雨と雷';
+
+  @override
+  String get ambienceThunderstorm => '雷雨';
+
+  @override
+  String get ambienceThunderbolts => '稲妻';
+
+  @override
+  String get ambienceStormWind => '嵐の風';
+
+  @override
+  String get ambienceForest => '森';
+
+  @override
+  String get ambienceForestBirds => '鳥のいる森';
+
+  @override
+  String get ambienceDawnChorus => '夜明けの鳥声';
+
+  @override
+  String get ambienceCountryDawn => '田園の夜明け';
+
+  @override
+  String get ambiencePondDusk => '夕暮れの池';
+
+  @override
+  String get ambienceMorningBirds => '朝の鳥';
+
+  @override
+  String get ambienceCampfire => '焚き火';
+
+  @override
+  String get ambienceFireplace => '暖炉';
+
+  @override
+  String get ambienceLibrary => '図書館';
+
+  @override
+  String get ambienceBusyLibrary => 'にぎやかな図書館';
+
+  @override
+  String get ambienceOffice => 'オフィス';
+
+  @override
+  String get ambienceClassroom => '教室';
+
+  @override
+  String get ambienceCafeteria => 'カフェテリア';
+
+  @override
+  String get ambienceRestaurant => 'レストラン';
+
+  @override
+  String get ambienceSupermarket => 'スーパー';
+
+  @override
+  String get ambienceShoppingMall => 'ショッピングモール';
+
+  @override
+  String get ambienceRainyStreet => '雨の街路';
+
+  @override
+  String get ambienceSpringStreet => '春の街';
+
+  @override
+  String get ambienceSubway => '地下鉄';
+
+  @override
+  String get ambienceSubwayRide => '地下鉄の走行';
+
+  @override
+  String get ambienceStationTunnel => '駅のトンネル';
+
+  @override
+  String get ambienceTrain => '電車';
+
+  @override
+  String get ambienceTaiwanTrain => '台湾の電車';
+
+  @override
+  String get ambienceEscalator => 'エスカレーター';
+
+  @override
+  String get ambienceElevator => 'エレベーター';
+
+  @override
+  String get ambiencePlayground => '遊び場';
+
+  @override
+  String get ambienceStreetMarket => '路上市場';
+
+  @override
+  String get ambienceKeyboard => 'キーボード';
+
+  @override
+  String get ambientNature => '自然';
+
+  @override
+  String get ambientPlaces => '場所';
+
+  @override
+  String get breaksRelaxSound => '休憩サウンド';
 }

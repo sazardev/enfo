@@ -377,8 +377,8 @@ under "More tools". Every one has its own dir in `lib/modes/<name>/`.
 | kitchen | Several named timers at once | notif ids 9200-9299 |
 | sleep | 90-min cycle planner, sets real alarms | alarm ids kept in prefs `sleep_alarm_id/_wind_id` |
 | versus | Two-player chess-style clock + speaker agenda | setup persisted, running game is not |
-| breaks | 20-20-20 / stretch / water / posture reminders | ids 70100+, `RingRequest.gentle` (shared with ringing_page) |
-| ambient | Synth noise (white/pink/brown/rain/wind/ocean), sleep timer | `flutter_soloud`; sleep timer also stops music |
+| breaks | 20-20-20 / stretch / water / posture reminders + relax sound | ids 70100+, `RingRequest.gentle` (shared with ringing_page); the relax picker plays the nature loops through `AmbientService` |
+| ambient | Synth noise (white/pink/brown/rain/wind/ocean) + 20 place loops, sleep timer | `flutter_soloud`; sleep timer also stops music |
 | music | 72 bundled lo-fi songs, big-title pager + clock-style dial | see below |
 
 Plumbing worth knowing:
@@ -429,6 +429,27 @@ Plumbing worth knowing:
   playback position; it drives the animation clock and a subtle pulse.
   Regenerate the envelopes when songs change.
 
+### Ambience
+- 40 recorded loops in `assets/ambience/` (~15 MB, 24-75 s each): 20 nature
+  (Breaks > relax sound, `natureLoops`) and 20 places (Ambient, `placeLoops`).
+  All from Wikimedia Commons with a per-file checked license (CC0, public
+  domain or CC BY); credits: `assets/ambience/CREDITS.md`, the generated
+  `lib/modes/ambient/ambience_catalog.dart` and the Settings > music credits
+  page. `tools/fetch_ambience.py` is the source of truth: it verifies the
+  license, builds a *seamless* loop (tile with 0.5 s crossfades when the
+  source is short, then fold a 2 s tail into the head), applies the lo-fi
+  chain (40 Hz high-pass, 10 kHz low-pass, tanh saturation), normalises to
+  the same RMS as `AmbientSynth` and encodes mono 32 kHz Vorbis q0. Re-run
+  it (or `--catalog-only`) when the sound list changes.
+- `AmbientService` now selects either a synth sound or an `AmbienceLoop`;
+  the loop plays via `AmbientPlayer.startAsset` (Ogg streamed from disk,
+  looping) and `ambient_loop` / `ambient_breaks_loop` are persisted
+  separately, so picking a place in Ambient does not lose the Breaks choice.
+  The Breaks status card has a compact play/pager for the nature loops; both
+  modes share the one bed, the volume and the sleep timer.
+- Labels are localized in the 9 languages (`ambience<Id>` keys in the ARBs,
+  mapped by `lib/modes/ambient/ambience_labels.dart`; keep the switch and the
+  keys in sync when adding a loop).
 
 ## 11. Terminal UI (`tui/`)
 

@@ -2,7 +2,7 @@ name: enfo
 description: Enfo, a flat, calm clock & timer toolbox.
 publish_to: 'none'
 
-version: 1.5.0+11
+version: 1.6.0+12
 
 environment:
   sdk: '>=3.3.0 <4.0.0'
@@ -47,6 +47,7 @@ flutter:
   assets:
     - assets/music/
     - assets/music/envelopes/
+    - assets/ambience/
 
   fonts:
     - family: GeistMono

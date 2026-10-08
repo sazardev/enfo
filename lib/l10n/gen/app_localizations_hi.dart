@@ -2231,11 +2231,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get ambientMusicVolume => 'संगीत की आवाज़';
 
   @override
-  String get ambientMusicCredits => 'संगीत श्रेय';
+  String get ambientMusicCredits => 'संगीत और परिवेश श्रेय';
 
   @override
   String get ambientMusicCreditsNote =>
-      'Wikimedia Commons और Open Lo-Fi संग्रह के गाने, CC0 या Creative Commons Attribution लाइसेंस के अंतर्गत।';
+      'Wikimedia Commons और Open Lo-Fi संग्रह के गाने, और Wikimedia Commons के परिवेश — CC0, सार्वजनिक डोमेन या Creative Commons Attribution लाइसेंस के अंतर्गत।';
 
   @override
   String get modeMusic => 'संगीत';
@@ -2284,4 +2284,133 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get widgetsFocusSubtitle =>
       'आज का फ़ोकस समय और पोमोडोरो, एक नज़र में।';
+
+  @override
+  String get ambienceStream => 'धारा';
+
+  @override
+  String get ambienceSnowmelt => 'हिम-पिघलाव';
+
+  @override
+  String get ambienceRivulet => 'छोटी धारा';
+
+  @override
+  String get ambienceFountain => 'फ़व्वारा';
+
+  @override
+  String get ambiencePlazaFountain => 'चौक का फ़व्वारा';
+
+  @override
+  String get ambienceGeyser => 'गीज़र';
+
+  @override
+  String get ambienceBubblingGeyser => 'बुदबुदाता गीज़र';
+
+  @override
+  String get ambienceRainWindow => 'खिड़की पर बारिश';
+
+  @override
+  String get ambienceRainThunder => 'बारिश और गड़गड़ाहट';
+
+  @override
+  String get ambienceThunderstorm => 'आंधी-तूफ़ान';
+
+  @override
+  String get ambienceThunderbolts => 'बिजली की कड़क';
+
+  @override
+  String get ambienceStormWind => 'तूफ़ानी हवा';
+
+  @override
+  String get ambienceForest => 'जंगल';
+
+  @override
+  String get ambienceForestBirds => 'पक्षियों वाला जंगल';
+
+  @override
+  String get ambienceDawnChorus => 'भोर का कलरव';
+
+  @override
+  String get ambienceCountryDawn => 'गाँव की भोर';
+
+  @override
+  String get ambiencePondDusk => 'साँझ का तालाब';
+
+  @override
+  String get ambienceMorningBirds => 'सुबह के पक्षी';
+
+  @override
+  String get ambienceCampfire => 'अलाव';
+
+  @override
+  String get ambienceFireplace => 'अंगीठी';
+
+  @override
+  String get ambienceLibrary => 'पुस्तकालय';
+
+  @override
+  String get ambienceBusyLibrary => 'भीड़भाड़ वाला पुस्तकालय';
+
+  @override
+  String get ambienceOffice => 'कार्यालय';
+
+  @override
+  String get ambienceClassroom => 'कक्षा';
+
+  @override
+  String get ambienceCafeteria => 'कैफ़ेटेरिया';
+
+  @override
+  String get ambienceRestaurant => 'रेस्तराँ';
+
+  @override
+  String get ambienceSupermarket => 'सुपरमार्केट';
+
+  @override
+  String get ambienceShoppingMall => 'शॉपिंग मॉल';
+
+  @override
+  String get ambienceRainyStreet => 'बरसाती सड़क';
+
+  @override
+  String get ambienceSpringStreet => 'वसंत की सड़क';
+
+  @override
+  String get ambienceSubway => 'मेट्रो';
+
+  @override
+  String get ambienceSubwayRide => 'मेट्रो की सवारी';
+
+  @override
+  String get ambienceStationTunnel => 'स्टेशन सुरंग';
+
+  @override
+  String get ambienceTrain => 'ट्रेन';
+
+  @override
+  String get ambienceTaiwanTrain => 'ताइवान ट्रेन';
+
+  @override
+  String get ambienceEscalator => 'एस्केलेटर';
+
+  @override
+  String get ambienceElevator => 'लिफ़्ट';
+
+  @override
+  String get ambiencePlayground => 'खेल का मैदान';
+
+  @override
+  String get ambienceStreetMarket => 'सड़क बाज़ार';
+
+  @override
+  String get ambienceKeyboard => 'कीबोर्ड';
+
+  @override
+  String get ambientNature => 'प्रकृति';
+
+  @override
+  String get ambientPlaces => 'स्थान';
+
+  @override
+  String get breaksRelaxSound => 'ब्रेक ध्वनि';
 }
