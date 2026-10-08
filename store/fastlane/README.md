@@ -86,11 +86,10 @@ La app ofrece donaciones consumibles (`enfo_donate_1`, `_3`, `_5`, `_10`,
 - Seguridad de datos: **No recopila datos** (verificado, sin cambios).
 - Foreground services: declaración de `mediaPlayback` con vídeo demo
   (no listado): https://www.youtube.com/watch?v=VQme5O-Vw8
-- Producción: **1.5.0 (versionCode 11)** enviada a revisión el 2026-10-07 con
-  rollout completo y novedades en 10 idiomas.
-- Track interno: mismo 1.5.0 (versionCode 11) desde el mismo día; para
-  reasignar el bundle ya subido: `python3 tools/upload_play_bundle.py
-  --version-code 11 --track <track>`.
-- Ficha: los 10 listings localizados ya tienen la descripción actualizada
-  (72 canciones lo-fi) y el vídeo promocional de es-419 se conservó.
+- Producción: **1.6.0 (versionCode 12)** enviada a revisión el 2026-10-07 con
+  rollout completo, 40 sonidos de ambiente y novedades en 10 idiomas.
+- Track interno: 1.5.0 (versionCode 11); para mover el bundle ya subido:
+  `python3 tools/upload_play_bundle.py --version-code 12 --track <track>`.
+- Ficha: los 10 listings localizados mencionan ahora las 72 canciones y los
+  40 ambientes; el vídeo promocional de es-419 se conservó.
 - Productos: `enfo_donate_1/3/5/10/25` activos, precios en 174 regiones.
