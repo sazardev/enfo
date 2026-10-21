@@ -1990,6 +1990,12 @@ abstract class AppLocalizations {
   /// **'Choose the modes you use and their order. Drag to reorder.'**
   String get modesHint;
 
+  /// No description provided for @modesHintTv.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn modes on or off, and use the up/down arrows to reorder them.'**
+  String get modesHintTv;
+
   /// No description provided for @modesStart.
   ///
   /// In en, this message translates to:
@@ -2283,6 +2289,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tap + to save this time. Long-press a preset to remove it.'**
   String get timerPresetHint;
+
+  /// No description provided for @timerRemovePreset.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove preset'**
+  String get timerRemovePreset;
+
+  /// No description provided for @tvHintSelect.
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get tvHintSelect;
+
+  /// No description provided for @tvMoveUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Move up'**
+  String get tvMoveUp;
+
+  /// No description provided for @tvMoveDown.
+  ///
+  /// In en, this message translates to:
+  /// **'Move down'**
+  String get tvMoveDown;
 
   /// No description provided for @stopwatchStop.
   ///
@@ -2739,6 +2769,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Arrow keys or the remote\'s D-pad move around, Enter or OK presses. These keys do the rest.'**
   String get shortcutsIntro;
+
+  /// No description provided for @tvHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'On a TV: the D-pad moves, OK selects, Back goes back, channel up/down changes mode, and play/pause starts or pauses.'**
+  String get tvHelp;
 
   /// No description provided for @shortcutKeySpace.
   ///

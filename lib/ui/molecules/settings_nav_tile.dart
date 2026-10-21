@@ -19,6 +19,7 @@ class SettingsNavTile extends StatelessWidget {
     this.subtitle,
     required this.onTap,
     this.selected = false,
+    this.autofocus = false,
   });
 
   final IconData icon;
@@ -26,6 +27,7 @@ class SettingsNavTile extends StatelessWidget {
   final String? subtitle;
   final VoidCallback onTap;
   final bool selected;
+  final bool autofocus;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +48,7 @@ class SettingsNavTile extends StatelessWidget {
       child: BouncyTap(
         onTap: onTap,
         pressedScale: 0.98,
+        autofocus: autofocus,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           padding: EdgeInsets.all(watch ? AppSpacing.md : AppSpacing.lg),

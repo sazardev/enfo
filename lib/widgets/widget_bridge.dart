@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
+import '../tv/tv_mode.dart';
+
 /// The Android home-screen widgets a user can place. The names are the ones
 /// the native side uses (`WidgetKind` in Kotlin).
 enum WidgetKind {
@@ -32,7 +34,7 @@ class WidgetBridge {
   static bool? debugSupported;
 
   static bool get supported =>
-      debugSupported ?? (!kIsWeb && Platform.isAndroid);
+      debugSupported ?? (!kIsWeb && Platform.isAndroid && !TvMode.isTv);
 
   static Future<T?> _call<T>(String method, [Object? arguments]) async {
     if (!supported) return null;

@@ -3,6 +3,8 @@ import 'package:timezone/timezone.dart' as tz;
 
 import '../../app_preferences.dart';
 import '../../l10n/locale_controller.dart';
+import '../../tv/tv_mode.dart';
+import '../../tv/tv_reorder_buttons.dart';
 import '../../ui/atoms/app_icon_button.dart';
 import '../../ui/design/page_transition.dart';
 import '../../ui/design/radii.dart';
@@ -157,13 +159,21 @@ class _WorldClockPageState extends State<WorldClockPage> {
                             icon:
                                 const Icon(Icons.remove_circle_outline_rounded),
                           ),
-                          ReorderableDragStartListener(
-                            index: i,
-                            child: const Padding(
-                              padding: EdgeInsets.all(AppSpacing.sm),
-                              child: Icon(Icons.drag_indicator_rounded),
+                          if (TvMode.isTv)
+                            TvReorderButtons(
+                              onMoveUp: () => WorldPrefs.reorder(i, i - 1),
+                              onMoveDown: () => WorldPrefs.reorder(i, i + 1),
+                              canMoveUp: i > 0,
+                              canMoveDown: i < ids.length - 1,
+                            )
+                          else
+                            ReorderableDragStartListener(
+                              index: i,
+                              child: const Padding(
+                                padding: EdgeInsets.all(AppSpacing.sm),
+                                child: Icon(Icons.drag_indicator_rounded),
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),

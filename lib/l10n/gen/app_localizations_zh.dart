@@ -991,6 +991,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get modesHint => '选择要使用的模式及其顺序。拖动可重新排序。';
 
   @override
+  String get modesHintTv => '开启或关闭模式，并使用 ↑/↓ 方向键调整顺序。';
+
+  @override
   String get modesStart => '启动时进入';
 
   @override
@@ -1164,6 +1167,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get timerPresetHint => '点按 + 保存此时长。长按预设可将其移除。';
+
+  @override
+  String get timerRemovePreset => '删除预设';
+
+  @override
+  String get tvHintSelect => '选择';
+
+  @override
+  String get tvMoveUp => '上移';
+
+  @override
+  String get tvMoveDown => '下移';
 
   @override
   String get stopwatchStop => '停止';
@@ -1399,6 +1414,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get shortcutsIntro => '用方向键或遥控器十字键移动，Enter 或 OK 键确认。其余操作使用以下按键。';
+
+  @override
+  String get tvHelp => '在电视上：十字键移动，OK 选择，返回上一页，频道加/减切换模式，播放/暂停开始或暂停。';
 
   @override
   String get shortcutKeySpace => '空格';

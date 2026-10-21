@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../l10n/locale_controller.dart';
+import '../tv/tv_mode.dart';
 import '../ui/atoms/app_icon_button.dart';
 import '../ui/design/responsive.dart';
 import '../ui/design/spacing.dart';
@@ -94,6 +95,18 @@ class _ImmersiveViewState extends State<ImmersiveView> {
         },
         child: Focus(
           autofocus: true,
+          onKeyEvent: (node, event) {
+            if (event is! KeyDownEvent) return KeyEventResult.ignored;
+            // A TV remote has no "tap anywhere". Any key wakes the controls;
+            // once they are visible, arrows move focus normally.
+            if (!_controls) {
+              setState(() => _controls = true);
+              _scheduleHide();
+              return KeyEventResult.handled;
+            }
+            _scheduleHide();
+            return KeyEventResult.ignored;
+          },
           child: Scaffold(
             backgroundColor: colorScheme.surface,
             body: GestureDetector(
@@ -109,10 +122,19 @@ class _ImmersiveViewState extends State<ImmersiveView> {
                     curve: Curves.easeInOut,
                     builder: (context, offset, child) =>
                         Transform.translate(offset: offset, child: child),
-                    child: Padding(
-                      padding: const EdgeInsets.all(AppSpacing.lg),
-                      child: widget.child,
-                    ),
+                    // On TV keep the clock inside the overscan-safe area; the
+                    // hint bar and controls already use SafeArea.
+                    child: TvMode.isTv
+                        ? SafeArea(
+                            child: Padding(
+                              padding: const EdgeInsets.all(AppSpacing.lg),
+                              child: widget.child,
+                            ),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.all(AppSpacing.lg),
+                            child: widget.child,
+                          ),
                   ),
                   // Dimming sits under the controls so they stay usable.
                   ValueListenableBuilder<int>(
@@ -125,46 +147,51 @@ class _ImmersiveViewState extends State<ImmersiveView> {
                       ),
                     ),
                   ),
-                  SafeArea(
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: AnimatedOpacity(
-                        duration: const Duration(milliseconds: 250),
-                        opacity: _controls ? 1 : 0,
-                        child: IgnorePointer(
-                          ignoring: !_controls,
-                          child: Padding(
-                            padding: const EdgeInsets.all(AppSpacing.md),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                AppIconButton(
-                                  tooltip: l10n.tooltipDim,
-                                  onPressed: () {
-                                    Fullscreen.cycleDim();
-                                    _scheduleHide();
-                                  },
-                                  icon: const Icon(
-                                    Icons.brightness_medium_rounded,
-                                  ),
-                                ),
-                                if (ModePrefs.enabled.length > 1)
+                  ExcludeFocus(
+                    excluding: !_controls,
+                    child: SafeArea(
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: AnimatedOpacity(
+                          duration: const Duration(milliseconds: 250),
+                          opacity: _controls ? 1 : 0,
+                          child: IgnorePointer(
+                            ignoring: !_controls,
+                            child: Padding(
+                              padding: const EdgeInsets.all(AppSpacing.md),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
                                   AppIconButton(
-                                    tooltip: l10n.tooltipSwitchMode,
+                                    tooltip: l10n.tooltipDim,
                                     onPressed: () {
-                                      ModePrefs.step();
+                                      Fullscreen.cycleDim();
                                       _scheduleHide();
                                     },
-                                    icon: const Icon(Icons.swap_horiz_rounded),
+                                    icon: const Icon(
+                                      Icons.brightness_medium_rounded,
+                                    ),
                                   ),
-                                AppIconButton(
-                                  tooltip: l10n.tooltipExitFullscreen,
-                                  onPressed: Fullscreen.exit,
-                                  icon: const Icon(
-                                    Icons.fullscreen_exit_rounded,
+                                  if (ModePrefs.enabled.length > 1)
+                                    AppIconButton(
+                                      tooltip: l10n.tooltipSwitchMode,
+                                      onPressed: () {
+                                        ModePrefs.step();
+                                        _scheduleHide();
+                                      },
+                                      icon: const Icon(
+                                        Icons.swap_horiz_rounded,
+                                      ),
+                                    ),
+                                  AppIconButton(
+                                    tooltip: l10n.tooltipExitFullscreen,
+                                    onPressed: Fullscreen.exit,
+                                    icon: const Icon(
+                                      Icons.fullscreen_exit_rounded,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),

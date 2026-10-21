@@ -15,6 +15,7 @@ import 'presets.dart';
 import 'shortcuts_page.dart';
 import 'support_page.dart';
 import 'timers_page.dart';
+import 'tv/tv_mode.dart';
 import 'modes/music/music_credits_page.dart';
 import 'ui/design/motion.dart';
 import 'ui/design/page_transition.dart';
@@ -109,7 +110,7 @@ class _SettingsState extends State<Settings> {
             : l10n.displayClockHidden,
         page: const DisplayPage(),
       ),
-      if (Haptics.available)
+      if (Haptics.available && !TvMode.isTv)
         _Section(
           icon: Icons.vibration_rounded,
           title: l10n.hapticsTitle,
@@ -118,8 +119,8 @@ class _SettingsState extends State<Settings> {
               : l10n.hapticsOff,
           page: const HapticsPage(),
         ),
-      // Home-screen widgets exist on Android only.
-      if (WidgetBridge.supported)
+      // Home-screen widgets exist on Android phones/tablets only.
+      if (WidgetBridge.supported && !TvMode.isTv)
         _Section(
           icon: Icons.widgets_outlined,
           title: l10n.widgetsTitle,
@@ -158,8 +159,8 @@ class _SettingsState extends State<Settings> {
         subtitle: l10n.dataSubtitle,
         page: const DataPage(),
       ),
-      // The coffee link makes no sense on a watch.
-      if (!r.isWatch)
+      // The coffee/review/share links make no sense on a watch or a TV.
+      if (!r.isWatch && !TvMode.isTv)
         _Section(
           icon: Icons.coffee_outlined,
           title: l10n.supportTitle,
@@ -199,6 +200,7 @@ class _SettingsState extends State<Settings> {
                     title: sections[i].title,
                     subtitle: sections[i].subtitle,
                     selected: detail && i == selected,
+                    autofocus: TvMode.isTv && i == 0,
                     onTap: () {
                       if (detail) {
                         setState(() => _selected = i);
@@ -211,7 +213,10 @@ class _SettingsState extends State<Settings> {
               ],
             );
 
-        if (!r.isExpanded) {
+        // Master-detail is great with a mouse; on a TV it leaves the remote
+        // stranded between two panes and Back exits Settings instead of
+        // returning to the list. TVs get the single-column flow.
+        if (!r.isExpanded || TvMode.isTv) {
           return SettingsShell(
             title: context.l10n.settingsTitle,
             loaded: _loaded,

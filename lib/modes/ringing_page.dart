@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import '../haptics/haptic_events.dart';
 import '../haptics/haptics.dart';
 import '../l10n/locale_controller.dart';
+import '../tv/tv_focus_ring.dart';
 import '../ui/design/responsive.dart';
 import '../ui/design/spacing.dart';
 import 'alerts.dart';
@@ -39,6 +40,7 @@ class _RingingPageState extends State<RingingPage>
 
   Timer? _cycle;
   Timer? _expire;
+  final FocusNode _dismissFocus = FocusNode(debugLabel: 'RingingDismiss');
   bool _done = false;
   bool _started = false;
   bool _still = false;
@@ -60,6 +62,9 @@ class _RingingPageState extends State<RingingPage>
     _cycle = Timer.periodic(Duration(milliseconds: _period), (_) => _beat());
     _expire = Timer(widget.request.giveUpAfter ?? _giveUpAfter,
         () => _finish(widget.request.onExpire));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _dismissFocus.requestFocus();
+    });
   }
 
   void _beat() {
@@ -88,6 +93,7 @@ class _RingingPageState extends State<RingingPage>
   void dispose() {
     _cycle?.cancel();
     _expire?.cancel();
+    _dismissFocus.dispose();
     _pulse.dispose();
     super.dispose();
   }
@@ -171,9 +177,14 @@ class _RingingPageState extends State<RingingPage>
                     ],
                     SizedBox(
                         height: r.isWatch ? AppSpacing.md : AppSpacing.huge),
-                    FilledButton(
-                      onPressed: () => _finish(null),
-                      child: Text(req.dismissLabel ?? l10n.ringDismiss),
+                    TvFocusRing(
+                      node: _dismissFocus,
+                      child: FilledButton(
+                        autofocus: true,
+                        focusNode: _dismissFocus,
+                        onPressed: () => _finish(null),
+                        child: Text(req.dismissLabel ?? l10n.ringDismiss),
+                      ),
                     ),
                     if (req.onSnooze != null && req.snoozeMinutes != null) ...[
                       const SizedBox(height: AppSpacing.sm),

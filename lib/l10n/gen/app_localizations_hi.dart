@@ -1012,6 +1012,10 @@ class AppLocalizationsHi extends AppLocalizations {
       'जो मोड आप इस्तेमाल करते हैं और उनका क्रम चुनें। क्रम बदलने के लिए खींचें।';
 
   @override
+  String get modesHintTv =>
+      'मोड चालू/बंद करें और क्रम बदलने के लिए ↑/↓ तीर दबाएँ।';
+
+  @override
   String get modesStart => 'इससे शुरू करें';
 
   @override
@@ -1188,6 +1192,18 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get timerPresetHint =>
       'यह समय सहेजने के लिए + दबाएँ। किसी प्रीसेट को हटाने के लिए उसे देर तक दबाएँ।';
+
+  @override
+  String get timerRemovePreset => 'प्रीसेट हटाएँ';
+
+  @override
+  String get tvHintSelect => 'चुनें';
+
+  @override
+  String get tvMoveUp => 'ऊपर ले जाएँ';
+
+  @override
+  String get tvMoveDown => 'नीचे ले जाएँ';
 
   @override
   String get stopwatchStop => 'रोकें';
@@ -1431,6 +1447,10 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get shortcutsIntro =>
       'तीर कुंजियाँ या रिमोट का D-pad घुमाते हैं, Enter या OK दबाता है। बाकी काम ये कुंजियाँ करती हैं।';
+
+  @override
+  String get tvHelp =>
+      'टीवी पर: D-pad घुमाता है, OK चुनता है, वापस जाता है, चैनल ऊपर/नीचे मोड बदलता है, और प्ले/पॉज़ शुरू या रोकता है।';
 
   @override
   String get shortcutKeySpace => 'स्पेस';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'tv/tv_mode.dart';
 import 'ui/design/radii.dart';
 
 class Themes {
@@ -103,6 +104,28 @@ class Themes {
       colorScheme: colorScheme,
     ).textTheme.apply(fontFamily: fontFamily);
 
+    // Material buttons have their own focus overlay, separate from
+    // BouncyTap. On a TV it must be strong enough to read from the sofa.
+    final tvFocusOverlay = TvMode.isTv
+        ? WidgetStateProperty.resolveWith<Color?>((states) {
+            if (states.contains(WidgetState.focused)) {
+              return colorScheme.onSurface.withValues(alpha: 0.24);
+            }
+            return null;
+          })
+        : null;
+    final tvFocusSide = TvMode.isTv
+        ? WidgetStateProperty.resolveWith<BorderSide?>((states) {
+            if (states.contains(WidgetState.focused)) {
+              return BorderSide(
+                color: colorScheme.onSurface.withValues(alpha: 0.92),
+                width: 2.5,
+              );
+            }
+            return null;
+          })
+        : null;
+
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
@@ -152,12 +175,24 @@ class Themes {
               ? colorScheme.primary
               : null,
         ),
+        overlayColor: tvFocusOverlay,
       ),
       iconButtonTheme: IconButtonThemeData(
         style: IconButton.styleFrom(
           shape: const StadiumBorder(),
+        ).copyWith(
+          overlayColor: tvFocusOverlay,
+          side: tvFocusSide,
         ),
       ),
+      textButtonTheme: TvMode.isTv
+          ? TextButtonThemeData(
+              style: TextButton.styleFrom().copyWith(
+                overlayColor: tvFocusOverlay,
+                side: tvFocusSide,
+              ),
+            )
+          : null,
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
           elevation: 0,
@@ -167,6 +202,9 @@ class Themes {
             fontWeight: FontWeight.w600,
             letterSpacing: 0.4,
           ),
+        ).copyWith(
+          overlayColor: tvFocusOverlay,
+          side: tvFocusSide,
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
@@ -174,6 +212,9 @@ class Themes {
           shape: AppRadii.pill,
           side: BorderSide.none,
           backgroundColor: colorScheme.surfaceContainerHigh,
+        ).copyWith(
+          overlayColor: tvFocusOverlay,
+          side: tvFocusSide,
         ),
       ),
       segmentedButtonTheme: SegmentedButtonThemeData(
@@ -183,7 +224,13 @@ class Themes {
       ),
       sliderTheme: SliderThemeData(
         trackHeight: 3,
-        overlayShape: SliderComponentShape.noOverlay,
+        // A TV has no hover and the focus halo must be visible from the
+        // sofa; phones keep the flat, overlay-free look.
+        overlayShape: TvMode.isTv
+            ? const RoundSliderOverlayShape(overlayRadius: 20)
+            : SliderComponentShape.noOverlay,
+        overlayColor:
+            TvMode.isTv ? colorScheme.primary.withValues(alpha: 0.18) : null,
       ),
       tooltipTheme: TooltipThemeData(
         decoration: BoxDecoration(

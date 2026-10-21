@@ -1,8 +1,10 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'l10n/locale_controller.dart';
 import 'theme.dart';
+import 'tv/tv_mode.dart';
 import 'ui/atoms/bouncy_tap.dart';
 import 'ui/clock/clock_combo.dart';
 import 'ui/clock/clock_style.dart';
@@ -194,6 +196,10 @@ class _ClockStylePageState extends State<ClockStylePage>
             ),
         ];
         return CustomScrollView(
+          // A remote can only focus nodes that are built. Keep a few extra
+          // rows alive on TV so D-pad traversal can reach the next row.
+          scrollCacheExtent:
+              TvMode.isTv ? const ScrollCacheExtent.pixels(1200) : null,
           slivers: [
             SliverPadding(
               padding: EdgeInsets.fromLTRB(side, 0, side, AppSpacing.xxxl),
@@ -218,6 +224,9 @@ class _ClockStylePageState extends State<ClockStylePage>
                         child: GridView.builder(
                           scrollDirection: Axis.horizontal,
                           clipBehavior: Clip.none,
+                          scrollCacheExtent: TvMode.isTv
+                              ? const ScrollCacheExtent.pixels(1200)
+                              : null,
                           itemCount: ClockCombo.values.length,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(

@@ -995,6 +995,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get modesHint => '使うモードと順番を選びます。ドラッグして並べ替えできます。';
 
   @override
+  String get modesHintTv => 'モードのオン/オフを切り替え、↑/↓キーで並べ替えます。';
+
+  @override
   String get modesStart => '起動時のモード';
 
   @override
@@ -1169,6 +1172,18 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get timerPresetHint => '+をタップするとこの時間を保存できます。プリセットを長押しすると削除できます。';
+
+  @override
+  String get timerRemovePreset => 'プリセットを削除';
+
+  @override
+  String get tvHintSelect => '選択';
+
+  @override
+  String get tvMoveUp => '上へ移動';
+
+  @override
+  String get tvMoveDown => '下へ移動';
 
   @override
   String get stopwatchStop => '停止';
@@ -1408,6 +1423,10 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get shortcutsIntro =>
       '矢印キーまたはリモコンの十字キーで移動し、EnterまたはOKで決定します。そのほかの操作は以下のキーです。';
+
+  @override
+  String get tvHelp =>
+      'テレビでは、十字キーで移動、OKで選択、戻るで前の画面へ、チャンネル上下でモード切替、再生/一時停止で開始・停止します。';
 
   @override
   String get shortcutKeySpace => 'スペース';

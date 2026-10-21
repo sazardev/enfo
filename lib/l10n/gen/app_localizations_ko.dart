@@ -996,6 +996,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get modesHint => '사용할 모드와 순서를 선택하세요. 끌어서 순서를 바꿀 수 있어요.';
 
   @override
+  String get modesHintTv => '모드를 켜거나 끄고 ↑/↓ 화살표로 순서를 바꾸세요.';
+
+  @override
   String get modesStart => '시작 모드';
 
   @override
@@ -1171,6 +1174,18 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get timerPresetHint => '+를 눌러 이 시간을 저장하세요. 프리셋을 길게 누르면 삭제돼요.';
+
+  @override
+  String get timerRemovePreset => '프리셋 삭제';
+
+  @override
+  String get tvHintSelect => '선택';
+
+  @override
+  String get tvMoveUp => '위로 이동';
+
+  @override
+  String get tvMoveDown => '아래로 이동';
 
   @override
   String get stopwatchStop => '정지';
@@ -1411,6 +1426,10 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get shortcutsIntro =>
       '방향키나 리모컨의 D-pad로 이동하고, Enter나 OK로 선택해요. 나머지는 아래 키를 사용하세요.';
+
+  @override
+  String get tvHelp =>
+      'TV에서는 D-pad로 이동하고, OK로 선택하고, 뒤로로 돌아가며, 채널 위/아래로 모드를 바꾸고, 재생/일시정지로 시작하거나 멈춥니다.';
 
   @override
   String get shortcutKeySpace => '스페이스';

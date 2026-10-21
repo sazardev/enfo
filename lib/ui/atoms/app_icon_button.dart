@@ -50,6 +50,7 @@ class AppIconButton extends StatefulWidget {
     this.selected = false,
     this.size,
     this.autofocus = false,
+    this.focusNode,
   });
 
   final Widget icon;
@@ -63,6 +64,10 @@ class AppIconButton extends StatefulWidget {
 
   /// See [BouncyTap.autofocus].
   final bool autofocus;
+
+  /// Optional focus node, for screens that need to place the remote's focus
+  /// on a specific button.
+  final FocusNode? focusNode;
 
   @override
   State<AppIconButton> createState() => _AppIconButtonState();
@@ -133,6 +138,8 @@ class _AppIconButtonState extends State<AppIconButton>
       focusBorderRadius: BorderRadius.circular(size),
       pressedScale: 0.9,
       autofocus: widget.autofocus,
+      focusNode: widget.focusNode,
+      focusLabel: widget.tooltip,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeOut,

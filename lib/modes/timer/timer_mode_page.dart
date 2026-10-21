@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
 import '../../l10n/locale_controller.dart';
+import '../../tv/tv_mode.dart';
 import '../../ui/atoms/app_icon_button.dart';
 import '../../ui/atoms/bouncy_tap.dart';
 import '../../ui/clock/clock_frame.dart';
@@ -140,11 +141,27 @@ class _TimerModePageState extends State<TimerModePage>
                     runSpacing: AppSpacing.sm,
                     children: [
                       for (final p in _timer.presets)
-                        _PresetChip(
-                          label: formatDuration(p),
-                          selected: p == _timer.totalSeconds,
-                          onTap: () => _timer.setTotal(p),
-                          onLongPress: () => _timer.removePreset(p),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            _PresetChip(
+                              label: formatDuration(p),
+                              selected: p == _timer.totalSeconds,
+                              onTap: () => _timer.setTotal(p),
+                              onLongPress: () => _timer.removePreset(p),
+                            ),
+                            // A remote's OK cannot long-press. Give TV users
+                            // an explicit, focusable way to remove a preset.
+                            if (TvMode.isTv) ...[
+                              const SizedBox(width: 2),
+                              AppIconButton(
+                                size: 32,
+                                tooltip: l10n.timerRemovePreset,
+                                onPressed: () => _timer.removePreset(p),
+                                icon: const Icon(Icons.close_rounded),
+                              ),
+                            ],
+                          ],
                         ),
                       if (_timer.totalSeconds > 0 &&
                           !_timer.presets.contains(_timer.totalSeconds))

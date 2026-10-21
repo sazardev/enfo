@@ -1019,6 +1019,10 @@ class AppLocalizationsFr extends AppLocalizations {
       'Choisis les modes que tu utilises et leur ordre. Fais glisser pour réorganiser.';
 
   @override
+  String get modesHintTv =>
+      'Activez ou désactivez les modes et utilisez les flèches ↑/↓ pour les réordonner.';
+
+  @override
   String get modesStart => 'Démarrer avec';
 
   @override
@@ -1195,6 +1199,18 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get timerPresetHint =>
       'Touche + pour enregistrer cette durée. Maintiens appuyé sur un préréglage pour le retirer.';
+
+  @override
+  String get timerRemovePreset => 'Supprimer le préréglage';
+
+  @override
+  String get tvHintSelect => 'Sélectionner';
+
+  @override
+  String get tvMoveUp => 'Monter';
+
+  @override
+  String get tvMoveDown => 'Descendre';
 
   @override
   String get stopwatchStop => 'Arrêter';
@@ -1444,6 +1460,10 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get shortcutsIntro =>
       'Les flèches ou le pavé directionnel de la télécommande déplacent, Entrée ou OK valide. Ces touches font le reste.';
+
+  @override
+  String get tvHelp =>
+      'Sur TV : le pavé directionnel déplace, OK sélectionne, Retour revient, chaîne haut/bas change de mode, lecture/pause démarre ou met en pause.';
 
   @override
   String get shortcutKeySpace => 'Espace';

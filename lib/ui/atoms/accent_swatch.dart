@@ -12,12 +12,14 @@ class AccentSwatch extends StatelessWidget {
     required this.selected,
     required this.onTap,
     this.size = 52,
+    this.focusLabel,
   });
 
   final Color color;
   final bool selected;
   final VoidCallback onTap;
   final double size;
+  final String? focusLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +27,7 @@ class AccentSwatch extends StatelessWidget {
       onTap: onTap,
       focusBorderRadius: BorderRadius.circular(size),
       pressedScale: 0.88,
+      focusLabel: focusLabel,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeOut,

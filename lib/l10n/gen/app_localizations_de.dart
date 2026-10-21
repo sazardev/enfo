@@ -1017,6 +1017,10 @@ class AppLocalizationsDe extends AppLocalizations {
       'Wähle die Modi, die du nutzt, und ihre Reihenfolge. Zum Umordnen ziehen.';
 
   @override
+  String get modesHintTv =>
+      'Modi ein- oder ausschalten und mit den Pfeilen ↑/↓ sortieren.';
+
+  @override
   String get modesStart => 'Starten mit';
 
   @override
@@ -1193,6 +1197,18 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get timerPresetHint =>
       'Tippe auf +, um diese Zeit zu speichern. Halte eine Voreinstellung gedrückt, um sie zu entfernen.';
+
+  @override
+  String get timerRemovePreset => 'Voreinstellung entfernen';
+
+  @override
+  String get tvHintSelect => 'Auswählen';
+
+  @override
+  String get tvMoveUp => 'Nach oben';
+
+  @override
+  String get tvMoveDown => 'Nach unten';
 
   @override
   String get stopwatchStop => 'Stopp';
@@ -1439,6 +1455,10 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get shortcutsIntro =>
       'Mit den Pfeiltasten oder dem D-Pad der Fernbedienung navigierst du, Enter oder OK bestätigt. Diese Tasten erledigen den Rest.';
+
+  @override
+  String get tvHelp =>
+      'Auf dem TV: D-Pad bewegt, OK wählt, Zurück geht zurück, Kanal auf/ab wechselt den Modus, Play/Pause startet oder pausiert.';
 
   @override
   String get shortcutKeySpace => 'Leertaste';

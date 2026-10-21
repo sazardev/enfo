@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'donate_page.dart';
 import 'l10n/locale_controller.dart';
+import 'tv/tv_mode.dart';
 import 'ui/design/page_transition.dart';
 import 'ui/design/spacing.dart';
 import 'ui/molecules/settings_row.dart';
@@ -106,28 +107,32 @@ class _SupportPageState extends State<SupportPage> {
                 ?.copyWith(color: colorScheme.onSurfaceVariant),
           ),
         ),
-        if (defaultTargetPlatform == TargetPlatform.android)
+        // Play Billing, the review sheet and the share chooser do not have a
+        // useful TV equivalent; don't show dead ends on the big screen.
+        if (!TvMode.isTv) ...[
+          if (defaultTargetPlatform == TargetPlatform.android)
+            SettingsRow(
+              label: l10n.donateTitle,
+              subtitle: l10n.donateSubtitle,
+              onTap: _openDonate,
+              trailing: const Icon(Icons.volunteer_activism_outlined),
+            ),
           SettingsRow(
-            label: l10n.donateTitle,
-            subtitle: l10n.donateSubtitle,
-            onTap: _openDonate,
-            trailing: const Icon(Icons.volunteer_activism_outlined),
+            label: l10n.rateApp,
+            onTap: _rate,
+            trailing: const Icon(Icons.star_outline_rounded),
           ),
-        SettingsRow(
-          label: l10n.rateApp,
-          onTap: _rate,
-          trailing: const Icon(Icons.star_outline_rounded),
-        ),
-        SettingsRow(
-          label: l10n.shareApp,
-          onTap: _share,
-          trailing: const Icon(Icons.ios_share_rounded),
-        ),
-        SettingsRow(
-          label: l10n.buyCoffee,
-          onTap: _openCoffee,
-          trailing: const Icon(Icons.coffee_rounded),
-        ),
+          SettingsRow(
+            label: l10n.shareApp,
+            onTap: _share,
+            trailing: const Icon(Icons.ios_share_rounded),
+          ),
+          SettingsRow(
+            label: l10n.buyCoffee,
+            onTap: _openCoffee,
+            trailing: const Icon(Icons.coffee_rounded),
+          ),
+        ],
       ],
     );
   }

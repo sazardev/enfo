@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../tv/tv_mode.dart';
 import '../design/responsive.dart';
 
 /// Toolbar height for the current screen class: slim on watches so the
@@ -27,6 +28,11 @@ AppBar appTopBar(
 
   return AppBar(
     title: title,
+    // On TV the remote's Back key is the way out; keeping the visible arrow
+    // out of the focus order puts the first focus on the actual content.
+    leading: ModalRoute.of(context)?.canPop == true
+        ? ExcludeFocus(excluding: TvMode.isTv, child: const BackButton())
+        : null,
     actions: actions,
     toolbarHeight: appBarHeightFor(r),
     leadingWidth: watch ? 36 : null,

@@ -34,6 +34,7 @@
         android:label="enfo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
+        android:banner="@drawable/tv_banner"
         >
 
         <!-- Media session: lock-screen controls with cover art. -->

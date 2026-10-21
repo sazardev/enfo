@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'tv/tv_mode.dart';
+
 enum ClockFormat { system, h12, h24 }
 
 /// User-chosen interface size, on top of the automatic per-screen scale.
@@ -36,7 +38,9 @@ class AppPreferences {
     final size = prefs.getString(_uiSizeKey);
     uiSize.value = UiSize.values.firstWhere(
       (u) => u.name == size,
-      orElse: () => UiSize.normal,
+      // A TV is always across the room: start one step larger unless the
+      // user already chose a size.
+      orElse: () => TvMode.isTv ? UiSize.large : UiSize.normal,
     );
     final format = prefs.getString(_clockFormatKey);
     clockFormat.value = ClockFormat.values.firstWhere(

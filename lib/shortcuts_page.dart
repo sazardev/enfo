@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'l10n/locale_controller.dart';
+import 'tv/tv_mode.dart';
 import 'ui/design/radii.dart';
 import 'ui/design/spacing.dart';
 import 'ui/templates/settings_shell.dart';
@@ -45,6 +46,22 @@ class ShortcutsPage extends StatelessWidget {
                 ?.copyWith(color: scheme.onSurfaceVariant),
           ),
         ),
+        if (TvMode.isTv)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(
+              AppSpacing.lg,
+              AppSpacing.sm,
+              AppSpacing.lg,
+              AppSpacing.md,
+            ),
+            child: Text(
+              l10n.tvHelp,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: scheme.primary,
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+          ),
         for (final (keys, label) in rows)
           Padding(
             padding: const EdgeInsets.symmetric(

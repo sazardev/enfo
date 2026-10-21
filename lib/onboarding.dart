@@ -1,5 +1,6 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 import 'app_preferences.dart';
 import 'haptics/haptic_events.dart';
@@ -19,6 +20,8 @@ import 'modes/notifier.dart';
 import 'l10n/locale_controller.dart';
 import 'presets.dart';
 import 'theme.dart';
+import 'tv/tv_focus_ring.dart';
+import 'tv/tv_mode.dart';
 import 'ui/atoms/app_icon_button.dart';
 import 'ui/brand/enfo_mark.dart';
 import 'ui/clock/clock_combo.dart';
@@ -67,6 +70,7 @@ class Onboarding extends StatefulWidget {
 class _OnboardingState extends State<Onboarding>
     with SingleTickerProviderStateMixin {
   final PageController _pages = PageController();
+  final FocusNode _nextFocus = FocusNode(debugLabel: 'OnboardingNext');
   int _index = 0;
   bool _loaded = false;
 
@@ -118,11 +122,17 @@ class _OnboardingState extends State<Onboarding>
       _quoteMinute = DailyQuote.minute;
       _loaded = true;
     });
+    if (TvMode.isTv) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _nextFocus.requestFocus();
+      });
+    }
   }
 
   @override
   void dispose() {
     _pages.dispose();
+    _nextFocus.dispose();
     _clock.dispose();
     super.dispose();
   }
@@ -285,7 +295,14 @@ class _OnboardingState extends State<Onboarding>
                 // would fight them, so navigation is buttons only.
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  for (final step in steps) _page(context, r, step),
+                  for (var i = 0; i < steps.length; i++)
+                    // PageView keeps neighbours alive for the transition; a
+                    // remote must never focus a control on a page that is not
+                    // on screen.
+                    ExcludeFocus(
+                      excluding: i != index,
+                      child: _page(context, r, steps[i]),
+                    ),
                 ],
               ),
             ),
@@ -317,18 +334,25 @@ class _OnboardingState extends State<Onboarding>
                             ),
                     ),
                     const Spacer(),
-                    FilledButton(
-                      style: r.isWatch
-                          ? FilledButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 8,
-                              ),
-                            )
-                          : null,
-                      onPressed: last ? _finish : () => _go(index + 1, steps),
-                      child: Text(
-                        last ? l10n.onboardingStart : l10n.onbNext,
+                    TvFocusRing(
+                      node: _nextFocus,
+                      child: FilledButton(
+                        // Put the remote's first focus on the way forward, not
+                        // on Skip (which sits at the top-right of the wizard).
+                        focusNode: _nextFocus,
+                        autofocus: index == 0,
+                        style: r.isWatch
+                            ? FilledButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 8,
+                                ),
+                              )
+                            : null,
+                        onPressed: last ? _finish : () => _go(index + 1, steps),
+                        child: Text(
+                          last ? l10n.onboardingStart : l10n.onbNext,
+                        ),
                       ),
                     ),
                   ],
@@ -570,6 +594,8 @@ class _OnboardingState extends State<Onboarding>
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           clipBehavior: Clip.none,
+          scrollCacheExtent:
+              TvMode.isTv ? const ScrollCacheExtent.pixels(1200) : null,
           itemCount: ClockCombo.values.length,
           separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.md),
           itemBuilder: (context, i) {
@@ -620,6 +646,8 @@ class _OnboardingState extends State<Onboarding>
               builder: (context, current, _) => ListView.separated(
                 scrollDirection: Axis.horizontal,
                 clipBehavior: Clip.none,
+                scrollCacheExtent:
+                    TvMode.isTv ? const ScrollCacheExtent.pixels(1200) : null,
                 itemCount: ClockFace.values.length,
                 separatorBuilder: (_, __) =>
                     const SizedBox(width: AppSpacing.md),

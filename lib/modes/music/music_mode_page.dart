@@ -90,6 +90,8 @@ class _MusicModePageState extends State<MusicModePage> {
           child: ModeScaffold(
             actions: [ClockStyleButton(onReturn: _dial.reload)],
             primaryAction: PrimaryActionButton(
+              // The title pager above already owns the initial focus.
+              autofocus: false,
               running: running,
               label: running ? l10n.ambientMusicPause : l10n.ambientMusicPlay,
               onPressed: service.toggleMusic,
@@ -121,6 +123,7 @@ class _MusicModePageState extends State<MusicModePage> {
                   height: r.isWatch ? 44 : 92,
                   child: TitlePager(
                     onVertical: _dial.stepStyle,
+                    onSelect: service.toggleMusic,
                     titles: [for (final t in musicCatalog) t.title],
                     index: service.musicIndex,
                     onChanged: _picked,

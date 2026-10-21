@@ -1015,6 +1015,10 @@ class AppLocalizationsEs extends AppLocalizations {
       'Elige los modos que usas y su orden. Arrastra para reordenar.';
 
   @override
+  String get modesHintTv =>
+      'Activa o desactiva modos y usa las flechas ↑/↓ para ordenarlos.';
+
+  @override
   String get modesStart => 'Iniciar con';
 
   @override
@@ -1191,6 +1195,18 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get timerPresetHint =>
       'Toca + para guardar este tiempo. Mantén presionado un preajuste para quitarlo.';
+
+  @override
+  String get timerRemovePreset => 'Quitar preajuste';
+
+  @override
+  String get tvHintSelect => 'Seleccionar';
+
+  @override
+  String get tvMoveUp => 'Mover arriba';
+
+  @override
+  String get tvMoveDown => 'Mover abajo';
 
   @override
   String get stopwatchStop => 'Parar';
@@ -1439,6 +1455,10 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get shortcutsIntro =>
       'Las flechas o el D-pad del control se mueven, Enter u OK presiona. Estas teclas hacen el resto.';
+
+  @override
+  String get tvHelp =>
+      'En TV: el D-pad mueve, OK selecciona, Atrás vuelve, canal arriba/abajo cambia de modo y play/pausa inicia o pausa.';
 
   @override
   String get shortcutKeySpace => 'Espacio';

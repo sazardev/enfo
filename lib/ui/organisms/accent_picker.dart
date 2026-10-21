@@ -82,6 +82,9 @@ class _AccentPickerState extends State<AccentPicker> {
     _emit(color);
   }
 
+  String _hex(Color color) =>
+      '#${(color.toARGB32() & 0xFFFFFF).toRadixString(16).padLeft(6, '0').toUpperCase()}';
+
   @override
   Widget build(BuildContext context) {
     final gap = widget.swatchSize < 48 ? AppSpacing.sm : AppSpacing.md;
@@ -100,6 +103,7 @@ class _AccentPickerState extends State<AccentPicker> {
                 size: widget.swatchSize,
                 selected:
                     !_customOpen && c.toARGB32() == widget.color.toARGB32(),
+                focusLabel: _hex(c),
                 onTap: () => _pickPalette(c),
               ),
             if (widget.allowCustom)

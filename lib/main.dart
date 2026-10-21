@@ -31,6 +31,8 @@ import 'onboarding.dart';
 import 'pomodoro_state.dart';
 import 'presets.dart';
 import 'splash.dart';
+import 'tv/tv_focus_hint.dart';
+import 'tv/tv_mode.dart';
 import 'ui/design/responsive.dart';
 import 'widgets/widget_prefs.dart';
 import 'widgets/widget_sync.dart';
@@ -41,6 +43,8 @@ void main() async {
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   final onboarded = await Presets.isOnboarded();
   await LocaleController.load();
+  // Before preferences: a TV starts with the larger interface size.
+  await TvMode.load();
 
   await Themes.loadAccent();
   await AppPreferences.load();
@@ -162,13 +166,23 @@ class _MainState extends State<Main> {
                   final media = MediaQuery.of(context);
                   final scale = Responsive.of(context).scale;
                   final systemScale = media.textScaler.scale(14) / 14;
+                  final tv = TvMode.isTv;
                   return MediaQuery(
                     data: media.copyWith(
+                      // Televisions crop a few percent of the picture; make
+                      // every SafeArea respect that (phones are unchanged).
+                      padding: TvMode.mergeSafePadding(media),
                       textScaler: TextScaler.linear(systemScale * scale),
                     ),
                     child: IconTheme.merge(
                       data: IconThemeData(size: 24 * scale),
-                      child: AppShortcuts(child: child!),
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          AppShortcuts(child: child!),
+                          if (tv) const Positioned.fill(child: TvHintBar()),
+                        ],
+                      ),
                     ),
                   );
                 },

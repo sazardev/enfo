@@ -9,6 +9,8 @@ import 'package:enfo/l10n/gen/app_localizations.dart';
 import 'package:enfo/l10n/locale_controller.dart';
 import 'package:enfo/modes/app_shortcuts.dart';
 import 'package:enfo/theme.dart';
+import 'package:enfo/tv/tv_focus_hint.dart';
+import 'package:enfo/tv/tv_mode.dart';
 import 'package:enfo/ui/design/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -39,6 +41,8 @@ const shotDevices = <ShotDevice>[
   ShotDevice('tablet7', 'landscape', Size(1920, 1200), 2.0),
   ShotDevice('tablet10', 'portrait', Size(1600, 2560), 2.0),
   ShotDevice('tablet10', 'landscape', Size(2560, 1600), 2.0),
+  // 1080p TV: 960 x 540 logical pixels at 2x.
+  ShotDevice('tv', 'landscape', Size(1920, 1080), 2.0),
 ];
 
 String flutterRoot() {
@@ -98,11 +102,21 @@ Widget shotApp(Widget home, {required bool dark, required Key boundaryKey}) {
             builder: (context, _, __) {
               final media = MediaQuery.of(context);
               final scale = Responsive.of(context).scale;
+              final tv = TvMode.isTv;
               return MediaQuery(
-                data: media.copyWith(textScaler: TextScaler.linear(scale)),
+                data: media.copyWith(
+                  padding: TvMode.mergeSafePadding(media),
+                  textScaler: TextScaler.linear(scale),
+                ),
                 child: IconTheme.merge(
                   data: IconThemeData(size: 24 * scale),
-                  child: AppShortcuts(child: child!),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      AppShortcuts(child: child!),
+                      if (tv) const Positioned.fill(child: TvHintBar()),
+                    ],
+                  ),
                 ),
               );
             },

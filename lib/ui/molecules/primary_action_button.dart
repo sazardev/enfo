@@ -13,12 +13,17 @@ class PrimaryActionButton extends StatelessWidget {
     required this.label,
     required this.onPressed,
     this.enabled = true,
+    this.autofocus = true,
   });
 
   final bool running;
   final String label;
   final VoidCallback onPressed;
   final bool enabled;
+
+  /// Where a remote/keyboard starts. Music pages set this to false because
+  /// the title pager above already owns the initial focus.
+  final bool autofocus;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +32,7 @@ class PrimaryActionButton extends StatelessWidget {
       tooltip: label,
       selected: running,
       // Where a remote / keyboard starts: OK or Enter presses play.
-      autofocus: true,
+      autofocus: autofocus,
       onPressed: enabled ? onPressed : null,
       icon: AnimatedSwitcher(
         duration: Motion.medium,

@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.9.0 (build 15)
+
+### New
+- **Android TV / Google TV**: Enfo now has a proper TV entry point and banner,
+  10-foot focus ring and hint bar, overscan-safe layout, large TV defaults,
+  and a remote-friendly full-screen mode (any key reveals the controls).
+  Reordering modes and world-clock cities gets up/down buttons, timer presets
+  get an explicit remove button, and the ambient/music pager no longer traps
+  the D-pad. TV settings use a single column and hide phone-only sections.
+
+### Developer notes
+- `TvMode` asks `MainActivity` for `FEATURE_LEANBACK` / `FEATURE_TELEVISION` /
+  `UI_MODE_TYPE_TELEVISION`; `TvHintBar` publishes the focused control's label.
+  `BouncyTap` scrolls focused controls into view and draws the high-contrast
+  TV ring. The TV banner lives at
+  `android/app/src/main/res/drawable-xhdpi/tv_banner.png` (320×180).
+- Play Console still needs the one-time opt-in under
+  **Setup → Advanced Settings → Form Factors → Android TV** and a TV
+  screenshot; see `docs/android-tv.md`.
+
 ## 1.8.0 (build 14)
 
 ### New

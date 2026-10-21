@@ -60,7 +60,9 @@ class _AmbientModePageState extends State<AmbientModePage> {
   }
 
   static String _label(Object entry, AppLocalizations l10n) =>
-      entry is AmbientSound ? entry.label(l10n) : (entry as AmbienceLoop).label(l10n);
+      entry is AmbientSound
+          ? entry.label(l10n)
+          : (entry as AmbienceLoop).label(l10n);
 
   void _picked(int i) {
     final s = AmbientService.instance;
@@ -110,6 +112,8 @@ class _AmbientModePageState extends State<AmbientModePage> {
           child: ModeScaffold(
             actions: [ClockStyleButton(onReturn: _dial.reload)],
             primaryAction: PrimaryActionButton(
+              // The title pager above already owns the initial focus.
+              autofocus: false,
               running: running,
               label: running ? l10n.ambientStop : l10n.ambientPlay,
               onPressed: service.toggle,
@@ -131,9 +135,8 @@ class _AmbientModePageState extends State<AmbientModePage> {
                   height: r.isWatch ? 44 : 92,
                   child: TitlePager(
                     onVertical: _dial.stepStyle,
-                    titles: [
-                      for (final e in _entries) _label(e, l10n)
-                    ],
+                    onSelect: service.toggle,
+                    titles: [for (final e in _entries) _label(e, l10n)],
                     index: _indexOf(service),
                     onChanged: _picked,
                     fontSize: r.isWatch ? 18 : 32,

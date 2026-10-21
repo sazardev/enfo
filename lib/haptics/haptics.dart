@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:vibration/vibration.dart';
 
+import '../tv/tv_mode.dart';
 import 'haptic_events.dart';
 
 /// Which family of feedback an event belongs to. Each can be switched off.
@@ -57,7 +58,8 @@ class Haptics {
   static bool? debugAvailable;
 
   static bool get available =>
-      debugAvailable ?? (Platform.isAndroid || Platform.isIOS);
+      debugAvailable ??
+      ((Platform.isAndroid || Platform.isIOS) && !TvMode.isTv);
 
   static Future<void> load() async {
     final prefs = await SharedPreferences.getInstance();

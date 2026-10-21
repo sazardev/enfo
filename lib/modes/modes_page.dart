@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../l10n/locale_controller.dart';
+import '../tv/tv_mode.dart';
+import '../tv/tv_reorder_buttons.dart';
 import '../ui/atoms/bouncy_tap.dart';
 import '../ui/design/page_transition.dart';
 import '../ui/design/radii.dart';
@@ -26,6 +28,23 @@ class ModesPage extends StatefulWidget {
 
 class _ModesPageState extends State<ModesPage> {
   String? _notice;
+  final FocusNode _firstFocus = FocusNode(debugLabel: 'ModesFirst');
+
+  @override
+  void initState() {
+    super.initState();
+    if (TvMode.isTv) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _firstFocus.requestFocus();
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _firstFocus.dispose();
+    super.dispose();
+  }
 
   Future<void> _toggle(AppMode mode, bool on) async {
     final ok = await ModePrefs.setEnabled(mode, on);
@@ -37,6 +56,13 @@ class _ModesPageState extends State<ModesPage> {
     ModePrefs.setCurrent(mode);
     // Back to the host, which now shows the chosen mode.
     Navigator.of(context).popUntil((route) => route.isFirst);
+  }
+
+  void _move(int from, int to) {
+    final next = List.of(ModePrefs.order.value);
+    if (to < 0 || to >= next.length) return;
+    next.insert(to, next.removeAt(from));
+    ModePrefs.setOrder(next);
   }
 
   @override
@@ -83,7 +109,7 @@ class _ModesPageState extends State<ModesPage> {
           title: l10n.modesTitle,
           loaded: true,
           children: [
-            hint(l10n.modesHint),
+            hint(TvMode.isTv ? l10n.modesHintTv : l10n.modesHint),
             ReorderableListView(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -107,6 +133,17 @@ class _ModesPageState extends State<ModesPage> {
                     current: ModePrefs.current.value == order[i],
                     onOpen: () => _open(order[i]),
                     onToggle: (on) => _toggle(order[i], on),
+                    onMoveUp: () => _move(i, i - 1),
+                    onMoveDown: () => _move(i, i + 1),
+                    canMoveUp: i > 0,
+                    canMoveDown: i < order.length - 1,
+                    autofocus: TvMode.isTv &&
+                        i == 0 &&
+                        !ModePrefs.disabled.value.contains(order[i]),
+                    focusNode:
+                        i == 0 && !ModePrefs.disabled.value.contains(order[i])
+                            ? _firstFocus
+                            : null,
                   ),
               ],
             ),
@@ -154,6 +191,12 @@ class _ModeTile extends StatelessWidget {
     required this.current,
     required this.onOpen,
     required this.onToggle,
+    required this.onMoveUp,
+    required this.onMoveDown,
+    required this.canMoveUp,
+    required this.canMoveDown,
+    this.autofocus = false,
+    this.focusNode,
   });
 
   final int index;
@@ -162,6 +205,12 @@ class _ModeTile extends StatelessWidget {
   final bool current;
   final VoidCallback onOpen;
   final ValueChanged<bool> onToggle;
+  final VoidCallback onMoveUp;
+  final VoidCallback onMoveDown;
+  final bool canMoveUp;
+  final bool canMoveDown;
+  final bool autofocus;
+  final FocusNode? focusNode;
 
   @override
   Widget build(BuildContext context) {
@@ -183,6 +232,8 @@ class _ModeTile extends StatelessWidget {
         child: BouncyTap(
           onTap: enabled ? onOpen : null,
           pressedScale: 0.98,
+          autofocus: autofocus,
+          focusNode: focusNode,
           child: Container(
             padding: const EdgeInsets.fromLTRB(
               AppSpacing.lg,
@@ -218,13 +269,21 @@ class _ModeTile extends StatelessWidget {
                   ),
                 ),
                 AppSwitch(value: enabled, onChanged: onToggle),
-                ReorderableDragStartListener(
-                  index: index,
-                  child: Padding(
-                    padding: const EdgeInsets.all(AppSpacing.sm),
-                    child: Icon(Icons.drag_indicator_rounded, color: muted),
+                if (TvMode.isTv)
+                  TvReorderButtons(
+                    onMoveUp: onMoveUp,
+                    onMoveDown: onMoveDown,
+                    canMoveUp: canMoveUp,
+                    canMoveDown: canMoveDown,
+                  )
+                else
+                  ReorderableDragStartListener(
+                    index: index,
+                    child: Padding(
+                      padding: const EdgeInsets.all(AppSpacing.sm),
+                      child: Icon(Icons.drag_indicator_rounded, color: muted),
+                    ),
                   ),
-                ),
               ],
             ),
           ),

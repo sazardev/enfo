@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../tv/tv_mode.dart';
+
 /// The whole interface of the sound and music modes: big titles side by
 /// side, the current one bright and the neighbours small and dim. Swipe,
 /// mouse-drag, wheel or arrow keys (D-pad) move between them.
@@ -17,10 +19,15 @@ class TitlePager extends StatefulWidget {
     required this.onChanged,
     this.fontSize = 34,
     this.onVertical,
+    this.onSelect,
   });
 
   /// Up (-1) / down (+1) arrow presses, for the page's other control.
   final ValueChanged<int>? onVertical;
+
+  /// OK / Enter while the pager has focus. TV media guidance expects the
+  /// center button to pause/resume audio.
+  final VoidCallback? onSelect;
 
   final List<String> titles;
   final int index;
@@ -88,6 +95,13 @@ class _TitlePagerState extends State<TitlePager> {
       autofocus: true,
       onKeyEvent: (node, event) {
         if (event is KeyUpEvent) return KeyEventResult.ignored;
+        if (widget.onSelect != null &&
+            (event.logicalKey == LogicalKeyboardKey.select ||
+                event.logicalKey == LogicalKeyboardKey.enter ||
+                event.logicalKey == LogicalKeyboardKey.gameButtonA)) {
+          widget.onSelect!();
+          return KeyEventResult.handled;
+        }
         if (event.logicalKey == LogicalKeyboardKey.arrowRight) {
           _step(1);
           return KeyEventResult.handled;
@@ -96,7 +110,10 @@ class _TitlePagerState extends State<TitlePager> {
           _step(-1);
           return KeyEventResult.handled;
         }
-        if (widget.onVertical != null) {
+        // Up/down are a desktop keyboard shortcut for changing the clock
+        // design. On a TV they must move focus to the controls: a remote has
+        // no Tab key, so swallowing all four arrows would trap the user here.
+        if (widget.onVertical != null && !TvMode.isTv) {
           if (event.logicalKey == LogicalKeyboardKey.arrowUp) {
             widget.onVertical!(-1);
             return KeyEventResult.handled;

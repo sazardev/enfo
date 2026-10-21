@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 import '../../app_preferences.dart';
@@ -476,23 +477,51 @@ class _Strip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, c) {
-      void at(double dx) =>
-          onFraction((dx / c.maxWidth).clamp(0.0, 1.0).toDouble());
-      return Semantics(
-        label: semantic,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTapDown: (d) => at(d.localPosition.dx),
-          onHorizontalDragUpdate: (d) => at(d.localPosition.dx),
-          child: SizedBox(
-            height: 26,
-            width: double.infinity,
-            child: CustomPaint(painter: painter),
-          ),
-        ),
-      );
-    });
+    return Focus(
+      onKeyEvent: (node, event) {
+        if (event is KeyUpEvent) return KeyEventResult.ignored;
+        final step = event.logicalKey == LogicalKeyboardKey.arrowLeft
+            ? -1
+            : event.logicalKey == LogicalKeyboardKey.arrowRight
+                ? 1
+                : 0;
+        if (step == 0) return KeyEventResult.ignored;
+        // 15 minutes of the 24-hour strip.
+        onFraction((painter.marker + step / 96).clamp(0.0, 1.0));
+        return KeyEventResult.handled;
+      },
+      child: Builder(builder: (context) {
+        final focused = Focus.of(context).hasFocus;
+        return LayoutBuilder(builder: (context, c) {
+          void at(double dx) =>
+              onFraction((dx / c.maxWidth).clamp(0.0, 1.0).toDouble());
+          return Semantics(
+            label: semantic,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(AppRadii.sm),
+                border: focused
+                    ? Border.all(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 2,
+                      )
+                    : null,
+              ),
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTapDown: (d) => at(d.localPosition.dx),
+                onHorizontalDragUpdate: (d) => at(d.localPosition.dx),
+                child: SizedBox(
+                  height: 26,
+                  width: double.infinity,
+                  child: CustomPaint(painter: painter),
+                ),
+              ),
+            ),
+          );
+        });
+      }),
+    );
   }
 }
 

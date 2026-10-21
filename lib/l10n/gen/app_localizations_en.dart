@@ -1015,6 +1015,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Choose the modes you use and their order. Drag to reorder.';
 
   @override
+  String get modesHintTv =>
+      'Turn modes on or off, and use the up/down arrows to reorder them.';
+
+  @override
   String get modesStart => 'Start with';
 
   @override
@@ -1191,6 +1195,18 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get timerPresetHint =>
       'Tap + to save this time. Long-press a preset to remove it.';
+
+  @override
+  String get timerRemovePreset => 'Remove preset';
+
+  @override
+  String get tvHintSelect => 'Select';
+
+  @override
+  String get tvMoveUp => 'Move up';
+
+  @override
+  String get tvMoveDown => 'Move down';
 
   @override
   String get stopwatchStop => 'Stop';
@@ -1434,6 +1450,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get shortcutsIntro =>
       'Arrow keys or the remote\'s D-pad move around, Enter or OK presses. These keys do the rest.';
+
+  @override
+  String get tvHelp =>
+      'On a TV: the D-pad moves, OK selects, Back goes back, channel up/down changes mode, and play/pause starts or pauses.';
 
   @override
   String get shortcutKeySpace => 'Space';
