@@ -63,18 +63,19 @@ on phones. The Flutter layout is landscape-first on TV (960 × 540 dp).
   **5 TV screenshots** (Pomodoro, Timer, Settings, Modes, full-screen Clock);
   the full description mentions Android TV. English also has the Android TV
   paragraph and inherits the TV graphics.
-- A **production release 1.9.0** is prepared as a draft in Publishing
-  overview (full rollout, all countries).
-- The combined submission (production release + four store-listing changes)
-  is currently blocked by one Play quick-check issue: “Incomplete advertising
-  ID declaration”. App content itself shows the declaration as complete with
-  **No** selected (re-saved with the “change saved” confirmation), so this
-  looks like a stale console check. The working values are: No advertising
-  ID, no `AD_ID` permission in the merged manifest, no ads/analytics SDKs.
-- Still pending: clear that quick-check issue, submit the changes, then
-  complete **Opt-in to Android TV and agree to the review policy**. The
-  opt-in task remains locked until the listing/release submission is
-  accepted.
+- The “Incomplete advertising ID declaration” quick check was **not** stale.
+  Play evaluates every active artifact on **every** track. The old Open
+  testing (Beta) track had 1.0.0 (version 1) and a draft version 2, both
+  targeting API 33 with `com.google.android.gms.permission.AD_ID`, while the
+  app declaration is **No**. That mismatch blocked all publishing.
+- Fix applied: paused Open testing, discarded its draft version 2, and
+  removed the experimental `AD_ID` permission from the new build. The four
+  TV listing changes plus the Open testing pause were submitted for review.
+- A fresh **1.9.1 (version code 17) AAB without `AD_ID`** is built for the
+  production rollout. Once the pause is published, upload that AAB, submit
+  production, then complete **Opt-in to Android TV and agree to the review
+  policy**. The opt-in task remains locked until the listing/release
+  submission is accepted.
 - **16 KB page size verified** in the AAB: `libflutter.so` and `libapp.so`
   have 64 KB LOAD alignment; `libflutter_soloud_plugin.so` has 16 KB.
 

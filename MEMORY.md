@@ -389,14 +389,17 @@ intents (Flutter treats it as a deep link and routes to it).
   set to the **same release track as mobile**. **1.9.0 (15) is live on
   internal testing** and the track includes Android TV. Default (es-419)
   listing has the 1280x720 banner, 5 TV screenshots and an Android TV
-  paragraph; English has the paragraph and inherits the graphics. A
-  production 1.9.0 draft is prepared (100% rollout). The combined submission
-  is blocked by a Play quick-check message, “Incomplete advertising ID
-  declaration”, even though App content shows the declaration complete with
-  **No** (re-saved and confirmed) and the manifest has no AD_ID permission
-  (likely a stale check).
-  After it clears: submit, then complete **Setup > Advanced Settings >
-  Form factors > Opt-in to Android TV**. **16 KB page size verified**
+  paragraph; English has the paragraph and inherits the graphics.
+  The “Incomplete advertising ID declaration” quick check was **not** stale:
+  Play evaluates every active artifact on every track. The old Open testing
+  (Beta) track had 1.0.0 (version 1) and a draft version 2, both targeting
+  API 33 with `AD_ID`, while the app declaration is **No**. Fix: paused the
+  Open testing track, discarded its draft, and removed the experimental
+  `AD_ID` permission from the 1.9.1 build. The 5 pending changes (4 TV
+  listings + Open testing pause) were submitted for review. Next: after the
+  pause is published, upload the fresh 1.9.1 (17) AAB **without AD_ID** to
+  production, submit, then complete **Setup > Advanced Settings > Form
+  factors > Opt-in to Android TV**. **16 KB page size verified**
   (libflutter/libapp LOAD alignment 64 KB, soloud 16 KB). See
   `docs/android-tv.md`.
 - Real-hardware alarm/full-screen testing on TV is still pending.

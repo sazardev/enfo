@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.9.1 (build 17)
+
+### Fixed
+- Fresh Play upload for the Android TV production rollout (same TV
+  features as 1.9.0). The build intentionally has no advertising-ID
+  permission: Enfo has no ads or analytics, and the Play declaration is
+  "No". Old test-track artifacts that carried `AD_ID` were paused and
+  their drafts discarded so the declaration matches every active track.
+
 ## 1.9.0 (build 15)
 
 ### New
