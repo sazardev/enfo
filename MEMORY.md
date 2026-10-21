@@ -393,7 +393,8 @@ intents (Flutter treats it as a deep link and routes to it).
   production 1.9.0 draft is prepared (100% rollout). The combined submission
   is blocked by a Play quick-check message, “Incomplete advertising ID
   declaration”, even though App content shows the declaration complete with
-  **No** and the manifest has no AD_ID permission (likely a stale check).
+  **No** (re-saved and confirmed) and the manifest has no AD_ID permission
+  (likely a stale check).
   After it clears: submit, then complete **Setup > Advanced Settings >
   Form factors > Opt-in to Android TV**. **16 KB page size verified**
   (libflutter/libapp LOAD alignment 64 KB, soloud 16 KB). See

@@ -68,9 +68,9 @@ on phones. The Flutter layout is landscape-first on TV (960 × 540 dp).
 - The combined submission (production release + four store-listing changes)
   is currently blocked by one Play quick-check issue: “Incomplete advertising
   ID declaration”. App content itself shows the declaration as complete with
-  **No** selected, so this looks like a stale console check. The working
-  values are: No advertising ID, no `AD_ID` permission in the merged
-  manifest, no ads/analytics SDKs.
+  **No** selected (re-saved with the “change saved” confirmation), so this
+  looks like a stale console check. The working values are: No advertising
+  ID, no `AD_ID` permission in the merged manifest, no ads/analytics SDKs.
 - Still pending: clear that quick-check issue, submit the changes, then
   complete **Opt-in to Android TV and agree to the review policy**. The
   opt-in task remains locked until the listing/release submission is
