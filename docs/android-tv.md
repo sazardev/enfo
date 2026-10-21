@@ -63,13 +63,18 @@ on phones. The Flutter layout is landscape-first on TV (960 × 540 dp).
   **5 TV screenshots** (Pomodoro, Timer, Settings, Modes, full-screen Clock);
   the full description mentions Android TV. English also has the Android TV
   paragraph and inherits the TV graphics.
-- The listing changes are in **Publishing overview** waiting for the quick
-  checks to finish before they can be submitted for review. The Advertising
-  ID declaration was corrected to **No** (no ads/analytics SDKs).
-- Still pending: submit the four listing changes, then complete **Opt-in to
-  Android TV and agree to the review policy**. The opt-in task remains locked
-  until every store listing has TV graphics and the listing changes are
-  submitted/published.
+- A **production release 1.9.0** is prepared as a draft in Publishing
+  overview (full rollout, all countries).
+- The combined submission (production release + four store-listing changes)
+  is currently blocked by one Play quick-check issue: “Incomplete advertising
+  ID declaration”. App content itself shows the declaration as complete with
+  **No** selected, so this looks like a stale console check. The working
+  values are: No advertising ID, no `AD_ID` permission in the merged
+  manifest, no ads/analytics SDKs.
+- Still pending: clear that quick-check issue, submit the changes, then
+  complete **Opt-in to Android TV and agree to the review policy**. The
+  opt-in task remains locked until the listing/release submission is
+  accepted.
 - **16 KB page size verified** in the AAB: `libflutter.so` and `libapp.so`
   have 64 KB LOAD alignment; `libflutter_soloud_plugin.so` has 16 KB.
 

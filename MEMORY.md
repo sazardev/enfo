@@ -389,12 +389,15 @@ intents (Flutter treats it as a deep link and routes to it).
   set to the **same release track as mobile**. **1.9.0 (15) is live on
   internal testing** and the track includes Android TV. Default (es-419)
   listing has the 1280x720 banner, 5 TV screenshots and an Android TV
-  paragraph; English has the paragraph and inherits the graphics. The four
-  listing changes are in Publishing overview waiting for quick checks;
-  submit them, then complete **Setup > Advanced Settings > Form factors >
-  Opt-in to Android TV**. Advertising ID declaration set to **No**.
-  **16 KB page size verified** (libflutter/libapp LOAD alignment 64 KB,
-  soloud 16 KB). See `docs/android-tv.md`.
+  paragraph; English has the paragraph and inherits the graphics. A
+  production 1.9.0 draft is prepared (100% rollout). The combined submission
+  is blocked by a Play quick-check message, “Incomplete advertising ID
+  declaration”, even though App content shows the declaration complete with
+  **No** and the manifest has no AD_ID permission (likely a stale check).
+  After it clears: submit, then complete **Setup > Advanced Settings >
+  Form factors > Opt-in to Android TV**. **16 KB page size verified**
+  (libflutter/libapp LOAD alignment 64 KB, soloud 16 KB). See
+  `docs/android-tv.md`.
 - Real-hardware alarm/full-screen testing on TV is still pending.
 - **Android Auto / Automotive** only allow specific app categories; an
   alarm/timer app is not one of them. The wide layout works on a car-sized
